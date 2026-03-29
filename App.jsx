@@ -1,0 +1,2169 @@
+import { useState } from "react";
+
+const COLORS = {
+  forest: "#2C4A3E",
+  gold: "#8B6914",
+  sandstone: "#C4956A",
+  cream: "#F7F3EC",
+  parchment: "#EDE8DF",
+  text: "#2A2A2A",
+  sub: "#6B6B6B",
+  border: "#D4C5A9",
+  mint: "#E8F0ED",
+  white: "#FFFFFF",
+};
+
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: ${COLORS.cream};
+    color: ${COLORS.text};
+  }
+
+  .guide-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    background: ${COLORS.white};
+    min-height: 100vh;
+  }
+
+  /* COVER */
+  .cover {
+    background: ${COLORS.forest};
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(196,149,106,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(139,105,20,0.1) 0%, transparent 50%);
+  }
+  .cover-ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: ${COLORS.sandstone};
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .cover-ornament::before, .cover-ornament::after {
+    content: '';
+    height: 1px;
+    width: 60px;
+    background: ${COLORS.sandstone};
+    opacity: 0.6;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: ${COLORS.cream};
+    line-height: 1.05;
+    letter-spacing: -1px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .cover-title span {
+    color: ${COLORS.sandstone};
+    font-style: italic;
+  }
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(247,243,236,0.7);
+    margin-top: 20px;
+    letter-spacing: 1px;
+    position: relative;
+  }
+  .cover-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, ${COLORS.sandstone}, transparent);
+    margin: 28px 0;
+    position: relative;
+    opacity: 0.6;
+  }
+  .cover-cities {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: ${COLORS.sandstone};
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  /* NAV */
+  .nav {
+    background: ${COLORS.forest};
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    padding: 14px 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(247,243,236,0.55);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { color: ${COLORS.sandstone}; }
+  .nav-btn.active {
+    color: ${COLORS.sandstone};
+    border-bottom-color: ${COLORS.sandstone};
+  }
+  .nav-btn.locked-tab {
+    opacity: 0.45;
+  }
+
+  /* CONTENT */
+  .content {
+    padding: 60px 60px 80px;
+  }
+
+  /* SECTION HEADER */
+  .section-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: ${COLORS.forest};
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .section-lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: ${COLORS.sub};
+    line-height: 1.6;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid ${COLORS.border};
+  }
+
+  /* INFO BOX */
+  .info-box {
+    background: ${COLORS.mint};
+    border-left: 3px solid ${COLORS.forest};
+    padding: 24px 28px;
+    margin: 32px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .info-box-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: ${COLORS.forest};
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .info-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .info-box li {
+    font-size: 14px;
+    color: ${COLORS.text};
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .info-box li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: ${COLORS.sandstone};
+    font-size: 9px;
+    top: 3px;
+  }
+
+  /* BUDGET PACKAGES */
+  .packages {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .package {
+    border: 1px solid ${COLORS.border};
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .package-header {
+    padding: 20px 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    border-bottom: 1px solid ${COLORS.border};
+  }
+  .pkg-$ .package-header { background: #F7F3EC; }
+  .pkg-$$ .package-header { background: #EEF5F1; }
+  .pkg-$$$ .package-header { background: #F0EDE4; }
+  .package-tier {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: ${COLORS.gold};
+  }
+  .package-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: ${COLORS.forest};
+  }
+  .package-range {
+    margin-left: auto;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: ${COLORS.sandstone};
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+  .package-body {
+    padding: 20px 28px;
+    background: white;
+  }
+  .package-body ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  .package-body li {
+    font-size: 13.5px;
+    color: ${COLORS.text};
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .package-body li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: ${COLORS.sandstone};
+  }
+
+  /* SUBSECTION */
+  .subsection-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: ${COLORS.gold};
+    margin: 48px 0 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid ${COLORS.border};
+  }
+
+  /* VENDOR CARD */
+  .vendor-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .vendor-card {
+    border: 1px solid ${COLORS.border};
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .vendor-card:hover {
+    box-shadow: 0 4px 20px rgba(44,74,62,0.08);
+  }
+  .vendor-card-header {
+    padding: 16px 22px 14px;
+    background: ${COLORS.parchment};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+  }
+  .vendor-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: ${COLORS.forest};
+  }
+  .vendor-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .vendor-tier {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: ${COLORS.gold};
+    letter-spacing: 1px;
+    background: rgba(139,105,20,0.1);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .vendor-toggle {
+    font-size: 18px;
+    color: ${COLORS.sandstone};
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+  .vendor-toggle.open { transform: rotate(180deg); }
+  .vendor-body {
+    padding: 18px 22px;
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 32px;
+    border-top: 1px solid ${COLORS.border};
+  }
+  .vendor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .vendor-field.full { grid-column: 1 / -1; }
+  .field-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    font-weight: 500;
+  }
+  .field-value {
+    font-size: 14px;
+    color: ${COLORS.text};
+    line-height: 1.5;
+  }
+  .field-value a {
+    color: ${COLORS.forest};
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* PENDING LIST */
+  .pending {
+    background: ${COLORS.parchment};
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-top: 8px;
+  }
+  .pending-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: ${COLORS.sub};
+    margin-bottom: 12px;
+  }
+  .pending-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pending-tag {
+    font-size: 13px;
+    color: ${COLORS.sub};
+    background: rgba(0,0,0,0.04);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid ${COLORS.border};
+  }
+
+  /* CHECKLIST */
+  .checklist-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: ${COLORS.sub};
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .checklist-phase {
+    margin-bottom: 36px;
+  }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .phase-badge {
+    background: ${COLORS.forest};
+    color: ${COLORS.cream};
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .phase-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: ${COLORS.forest};
+  }
+  .phase-progress {
+    margin-left: auto;
+    font-size: 13px;
+    color: ${COLORS.sandstone};
+    font-family: 'Jost', sans-serif;
+  }
+  .check-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: white;
+    border-color: ${COLORS.border};
+  }
+  .check-item:hover { border-color: ${COLORS.sandstone}; }
+  .check-item.done {
+    background: ${COLORS.mint};
+    border-color: ${COLORS.forest};
+    opacity: 0.75;
+  }
+  .check-box {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 2px solid ${COLORS.border};
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .check-item.done .check-box {
+    background: ${COLORS.forest};
+    border-color: ${COLORS.forest};
+  }
+  .check-mark {
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-text {
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: ${COLORS.text};
+  }
+  .check-item.done .check-text {
+    text-decoration: line-through;
+    color: ${COLORS.sub};
+  }
+  .progress-bar-wrap {
+    background: ${COLORS.parchment};
+    border-radius: 2px;
+    height: 4px;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, ${COLORS.forest}, ${COLORS.sandstone});
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: ${COLORS.sub};
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* COMING SOON */
+  .coming-soon {
+    text-align: center;
+    padding: 60px 40px;
+    background: ${COLORS.parchment};
+    border-radius: 4px;
+    border: 1px solid ${COLORS.border};
+  }
+  .coming-soon-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    font-style: italic;
+    color: ${COLORS.forest};
+    margin-bottom: 16px;
+  }
+  .coming-soon-sub {
+    font-size: 14px;
+    color: ${COLORS.sub};
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .coming-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .coming-tag {
+    font-size: 12px;
+    color: ${COLORS.forest};
+    background: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid ${COLORS.border};
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  /* LANDING PAGE */
+  .landing {
+    padding: 72px 60px 80px;
+  }
+  .landing-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 16px;
+  }
+  .landing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: ${COLORS.forest};
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .landing-title em {
+    font-style: italic;
+    color: ${COLORS.sandstone};
+  }
+  .landing-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: ${COLORS.sub};
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+  .landing-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+  .feature-card {
+    padding: 20px 22px;
+    border: 1px solid ${COLORS.border};
+    border-radius: 4px;
+    background: ${COLORS.parchment};
+  }
+  .feature-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: ${COLORS.sandstone};
+    margin-bottom: 10px;
+  }
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: ${COLORS.forest};
+    margin-bottom: 4px;
+  }
+  .feature-desc {
+    font-size: 13px;
+    color: ${COLORS.sub};
+    line-height: 1.5;
+  }
+  .landing-divider {
+    height: 1px;
+    background: linear-gradient(to right, ${COLORS.border}, transparent);
+    margin: 56px 0;
+  }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: ${COLORS.forest};
+    margin-bottom: 8px;
+  }
+  .contact-sub {
+    font-size: 14px;
+    color: ${COLORS.sub};
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 560px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    font-weight: 500;
+  }
+  .form-input, .form-select, .form-textarea {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: ${COLORS.text};
+    background: ${COLORS.white};
+    border: 1px solid ${COLORS.border};
+    border-radius: 3px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: ${COLORS.sandstone};
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C4956A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  .form-btn {
+    align-self: flex-start;
+    background: ${COLORS.forest};
+    color: ${COLORS.cream};
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .form-btn:hover { background: #1e342a; }
+  .form-btn:active { transform: scale(0.98); }
+  .form-success {
+    padding: 20px 24px;
+    background: ${COLORS.mint};
+    border: 1px solid ${COLORS.forest};
+    border-radius: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: ${COLORS.forest};
+  }
+  .free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: ${COLORS.mint};
+    border: 1px solid ${COLORS.forest};
+    color: ${COLORS.forest};
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* LOCK SCREEN */
+  .lock-screen {
+    text-align: center;
+    padding: 80px 40px;
+  }
+  .lock-icon {
+    font-size: 40px;
+    margin-bottom: 24px;
+  }
+  .lock-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: ${COLORS.forest};
+    margin-bottom: 16px;
+  }
+  .lock-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: ${COLORS.sub};
+    max-width: 420px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .lock-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .lock-feature-tag {
+    font-size: 13px;
+    color: ${COLORS.forest};
+    background: ${COLORS.parchment};
+    border: 1px solid ${COLORS.border};
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: 'Jost', sans-serif;
+  }
+  .lock-tiers {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .lock-tier {
+    border: 1px solid ${COLORS.border};
+    border-radius: 4px;
+    padding: 20px 28px;
+    background: ${COLORS.white};
+    min-width: 180px;
+    text-align: center;
+  }
+  .lock-tier-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: ${COLORS.forest};
+    margin-bottom: 4px;
+  }
+  .lock-tier-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 12px;
+  }
+  .lock-tier-desc {
+    font-size: 13px;
+    color: ${COLORS.sub};
+    line-height: 1.5;
+  }
+  .lock-btn {
+    display: inline-block;
+    background: ${COLORS.forest};
+    color: ${COLORS.cream};
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .lock-btn:hover { background: #1e342a; }
+  .lock-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: ${COLORS.sub};
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .landing { padding: 40px 24px 60px; }
+    .landing-title { font-size: 38px; }
+    .landing-features { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .content { padding: 40px 24px 60px; }
+    .cover { padding: 60px 24px; }
+    .cover-title { font-size: 48px; }
+    .package-body ul { grid-template-columns: 1fr; }
+    .vendor-body { grid-template-columns: 1fr; }
+    .check-items { grid-template-columns: 1fr; }
+    .nav { padding: 0 16px; }
+    .lock-tiers { flex-direction: column; align-items: center; }
+  }
+`;
+
+// ── DATA ────────────────────────────────────────────────────────────────────
+
+const checklistData = [
+  {
+    phase: "12+ Months Before",
+    badge: "Start Here",
+    items: [
+      "Set your overall wedding budget",
+      "Choose your wedding date",
+      "Decide on guest list size",
+      "Agree on overall vision and style",
+      "Research and book your venue",
+      "Book your photographer",
+      "Book your videographer",
+      "Start researching wedding planners (if desired)",
+      "Announce your engagement",
+      "Create a wedding website",
+    ],
+  },
+  {
+    phase: "9–12 Months Before",
+    badge: "Building the Team",
+    items: [
+      "Book your caterer",
+      "Book your florist",
+      "Start wedding dress shopping",
+      "Book your officiant",
+      "Book your band or DJ",
+      "Book your audio/visual & sound team",
+      "Book your hair & makeup artists",
+      "Send save the dates",
+      "Book accommodation room blocks for guests",
+      "Start planning your honeymoon",
+    ],
+  },
+  {
+    phase: "6–9 Months Before",
+    badge: "Details",
+    items: [
+      "Order your wedding dress",
+      "Book suits and groomswear",
+      "Design and order invitations",
+      "Book transportation (limo, shuttle etc.)",
+      "Book wedding cake or dessert table",
+      "Book mobile bar service",
+      "Plan your rehearsal dinner",
+      "Register for gifts",
+      "Apply for Banff National Park permit (if applicable)",
+      "Obtain AGLC Special Event Licence (if applicable)",
+    ],
+  },
+  {
+    phase: "3–6 Months Before",
+    badge: "Getting Real",
+    items: [
+      "Send formal invitations",
+      "Schedule dress fittings",
+      "Plan ceremony music and readings",
+      "Finalize menu with caterer",
+      "Book florist consultation and finalize design",
+      "Schedule cake tasting",
+      "Plan rehearsal schedule",
+      "Arrange travel for out-of-town guests",
+      "Book hair and makeup trial",
+      "Choose wedding party gifts",
+    ],
+  },
+  {
+    phase: "1–3 Months Before",
+    badge: "Final Stretch",
+    items: [
+      "Follow up on RSVPs",
+      "Confirm all vendor bookings",
+      "Finalize seating chart",
+      "Final dress fitting",
+      "Create wedding day timeline",
+      "Confirm ceremony details with officiant",
+      "Break in your wedding shoes",
+      "Pick up marriage licence",
+      "Prepare vendor payments and tips",
+      "Write your vows",
+    ],
+  },
+  {
+    phase: "Week Of",
+    badge: "Almost There!",
+    items: [
+      "Confirm all vendors one final time",
+      "Deliver decor and items to venue",
+      "Attend rehearsal dinner",
+      "Delegate day-of tasks to wedding party",
+      "Prepare emergency kit (safety pins, pain relief, etc.)",
+      "Give rings to best person for safekeeping",
+      "Get a good sleep the night before",
+      "Eat breakfast on your wedding day",
+      "Take a deep breath — you've got this!",
+      "Enjoy every single moment",
+    ],
+  },
+];
+
+const venueData = [
+  {
+    sub: "Hotel & Ballroom",
+    vendors: [
+      {
+        name: "The Fairmont Palliser",
+        tier: "$$$",
+        fields: [
+          { label: "Capacity", value: "Up to 450 guests" },
+          { label: "Catering", value: "In-house" },
+          { label: "Pricing", value: "$5,650–$27,800 venue + $125–$157+ per person catering" },
+          { label: "Ceremony", value: "Indoor" },
+          { label: "Parking", value: "Yes" },
+          { label: "Vendor List", value: "Provided to booked couples" },
+          { label: "Instagram", value: "@fairmontpalliser" },
+          { label: "Website", value: "fairmont.com", link: "https://www.fairmont.com/en/hotels/calgary/fairmont-palliser/weddings.html" },
+        ],
+      },
+      {
+        name: "Hotel Arts",
+        tier: "$$$",
+        fields: [
+          { label: "Capacity", value: "50–1,000 guests" },
+          { label: "Catering", value: "In-house; all-inclusive packages available" },
+          { label: "Pricing", value: "From $4,500 smaller groups; up to $90/person larger events" },
+          { label: "Ceremony", value: "Indoor" },
+          { label: "Parking", value: "Yes" },
+          { label: "Website", value: "hotelarts.ca/weddings", link: "https://hotelarts.ca/weddings" },
+        ],
+      },
+      {
+        name: "Calgary Marriott Downtown",
+        tier: "$$$",
+        fields: [
+          { label: "Capacity", value: "50–360 guests" },
+          { label: "Catering", value: "In-house" },
+          { label: "Pricing", value: "$150–$300 per guest (catering, drinks & venue)" },
+          { label: "Ceremony", value: "Indoor" },
+          { label: "Parking", value: "Yes" },
+          { label: "Key Vendors", value: "Jenny Jean Photography, Calyx Floral Design, SWIRL Custom Cakes", full: true },
+          { label: "Instagram", value: "@calgarymarriott" },
+          { label: "Website", value: "marriott.com", link: "https://www.marriott.com/en-us/hotels/yycdt-calgary-marriott-downtown-hotel/events/" },
+        ],
+      },
+    ],
+  },
+  {
+    sub: "Unique & Character Spaces",
+    vendors: [
+      {
+        name: "The Bow Valley Ranche Restaurant",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "Up to 150–175 guests" },
+          { label: "Catering", value: "In-house" },
+          { label: "Pricing", value: "$650–$26,000 per event; $150–$300 per guest" },
+          { label: "Ceremony", value: "Outdoor lawn/garden, verandah & historic indoor rooms" },
+          { label: "Parking", value: "Yes" },
+          { label: "Note", value: "Heritage building inside Fish Creek Provincial Park", full: true },
+          { label: "Instagram", value: "@bowvalleyrancherestaurant" },
+          { label: "Website", value: "bvrrestaurant.com", link: "https://bvrrestaurant.com/weddings/" },
+        ],
+      },
+      {
+        name: "Spruce Meadows",
+        tier: "$$",
+        fields: [
+          { label: "Capacity", value: "120–150 guests across two main venues" },
+          { label: "Catering", value: "In-house" },
+          { label: "Pricing", value: "$6,500–$8,500 venue + catering; ceremony $1,500 additional" },
+          { label: "Ceremony", value: "Indoor and outdoor" },
+          { label: "Parking", value: "Yes" },
+          { label: "AV", value: "Encore for audiovisual services" },
+          { label: "Instagram", value: "@spruce_meadows" },
+          { label: "Website", value: "sprucemeadows.com", link: "https://www.sprucemeadows.com/index.jsp" },
+        ],
+      },
+      {
+        name: "Arts Commons",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "150 seated / 200 cocktail reception" },
+          { label: "Catering", value: "On-site or outside caterers permitted" },
+          { label: "Pricing", value: "$2,000–$4,500 smaller groups; $150–$300 per guest larger" },
+          { label: "Ceremony", value: "Indoor" },
+          { label: "Parking", value: "Multiple parkades nearby" },
+          { label: "Planning Tip", value: "Confirm vendors know downtown Calgary loading logistics", full: true },
+          { label: "Instagram", value: "@thecommonsyyc" },
+          { label: "Website", value: "thecommonscalgary.com", link: "https://thecommonscalgary.com/weddings" },
+        ],
+      },
+      {
+        name: "Fortuna's Row",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "Up to 150 guests; SRO space seats 50 for seated dinner" },
+          { label: "Catering", value: "In-house — unique Latin American cuisine" },
+          { label: "Pricing", value: "$5,000–$42,000 depending on room and guest count" },
+          { label: "Ceremony", value: "Indoor and outdoor" },
+          { label: "Parking", value: "Pay parking nearby" },
+          { label: "AV", value: "2 speakers ($250) + 1 TV ($75) — credited to minimum spend" },
+          { label: "Access", value: "From 12:00 PM; Fri/Sat last call 12:45 AM, exit 2:00 AM" },
+          { label: "Note", value: "External wedding planner required", full: true },
+          { label: "Website", value: "fortunasrow.com", link: "https://fortunasrow.com/pages/weddings" },
+        ],
+      },
+    ],
+  },
+  {
+    sub: "Restaurant Venues (Teatro Group)",
+    note: "Teatro Restaurant, Cucina Market Bistro, and Alforno Eau Claire are all part of the Teatro Group — find all three at @teatrogroupweddings",
+    vendors: [
+      {
+        name: "Teatro Restaurant",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "Opera Room: 50 seated/100 cocktail; Main Room: 120 seated/200 cocktail" },
+          { label: "Catering", value: "In-house only" },
+          { label: "Pricing", value: "$1,500–$22,000 minimum spend" },
+          { label: "Ceremony", value: "Indoor, up to 120 guests" },
+          { label: "Parking", value: "Accessible; no on-site parking" },
+          { label: "Instagram", value: "@teatrorestaurant / @teatrogroupweddings" },
+          { label: "Website", value: "teatro.ca/weddings", link: "https://teatro.ca/weddings/" },
+        ],
+      },
+      {
+        name: "Cucina Market Bistro",
+        tier: "$",
+        fields: [
+          { label: "Capacity", value: "50 seated / 75 cocktail" },
+          { label: "Catering", value: "In-house only" },
+          { label: "Pricing", value: "$1,500–$4,500 minimum spend" },
+          { label: "Ceremony", value: "Indoor, limited capacity" },
+          { label: "Parking", value: "Yes, within building. Fully accessible." },
+          { label: "Instagram", value: "@cucinamarketbistro / @teatrogroupweddings" },
+          { label: "Website", value: "cucinamarketbistro.ca", link: "https://www.cucinamarketbistro.ca/weddings/" },
+        ],
+      },
+      {
+        name: "Alforno Eau Claire",
+        tier: "$",
+        fields: [
+          { label: "Capacity", value: "60 seated / 120 cocktail" },
+          { label: "Catering", value: "In-house only" },
+          { label: "Pricing", value: "$1,250–$9,000 minimum spend" },
+          { label: "Ceremony", value: "Indoor, up to 40 guests" },
+          { label: "Parking", value: "Accessible; no on-site parking" },
+          { label: "Instagram", value: "@alfornoyyc / @teatrogroupweddings" },
+          { label: "Website", value: "alforno.ca (Private Events PDF)", link: "https://alforno.ca/wp-content/uploads/2026/01/Alforno-Private-Events-2025.pdf" },
+        ],
+      },
+      {
+        name: "Rouge",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "14–116 guests depending on space" },
+          { label: "Catering", value: "In-house" },
+          { label: "Pricing", value: "Minimum spend based on guest count; $500 booking fee for select spaces" },
+          { label: "Ceremony", value: "Indoor and outdoor" },
+          { label: "Parking", value: "Yes" },
+          { label: "Instagram", value: "@rougerestaurant" },
+          { label: "Website", value: "rougecalgary.com", link: "https://rougecalgary.com/weddings/" },
+        ],
+      },
+    ],
+  },
+  {
+    sub: "Rustic & Garden",
+    vendors: [
+      {
+        name: "Willow Lane Barn",
+        tier: "$$",
+        fields: [
+          { label: "Capacity", value: "Up to 225 (includes vendors, guests & bridal party)" },
+          { label: "Catering", value: "No restrictions — bring your own caterer" },
+          { label: "Pricing", value: "$30,000–$42,000 average; $150–$300 per guest" },
+          { label: "Ceremony", value: "Indoor and outdoor (field or barn backdrop)" },
+          { label: "Parking", value: "Yes" },
+          { label: "Packages", value: '"Barn and Blooms" (includes florals) or DIY option' },
+          { label: "Amenities", value: "Commercial kitchen, cocktail gazebo, loft space" },
+          { label: "Instagram", value: "@willowlanebarn" },
+          { label: "Website", value: "willowlanebarn.com", link: "https://www.willowlanebarn.com" },
+        ],
+      },
+      {
+        name: "Meadow Muse",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "150 seated / 175 cocktail standing" },
+          { label: "Catering", value: "Great Events Catering (preferred partner)" },
+          { label: "Pricing", value: "$2,500–$5,000 venue + $150–$300 per guest" },
+          { label: "Ceremony", value: "Indoor and outdoor" },
+          { label: "Parking", value: "300 spots" },
+          { label: "Website", value: "meadowmuse.ca", link: "https://meadowmuse.ca" },
+        ],
+      },
+      {
+        name: "Pine and Pond",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "No minimum; up to 200 guests" },
+          { label: "Catering", value: "No in-house — recommended list provided; outside vendors welcome" },
+          { label: "Pricing", value: "Venue packages from $5,000–$13,000" },
+          { label: "Ceremony", value: "Indoor and outdoor" },
+          { label: "Parking", value: "Yes, accessible" },
+          { label: "Instagram", value: "@pine.and.pond" },
+          { label: "Website", value: "pineandpond.com", link: "https://www.pineandpond.com" },
+        ],
+      },
+    ],
+  },
+  {
+    sub: "Large Capacity",
+    vendors: [
+      {
+        name: "SAIT",
+        tier: "$/$$$",
+        fields: [
+          { label: "Capacity", value: "Small gatherings to 1,000+ guests" },
+          { label: "Catering", value: "Exclusive: Curated Catering by Hotel Arts" },
+          { label: "Pricing", value: "$150–$300 per guest" },
+          { label: "Ceremony", value: "Indoor and outdoor" },
+          { label: "Parking", value: "Yes, accessible" },
+          { label: "AV", value: "In-house audio-visual and bar services" },
+          { label: "Website", value: "sait.ca/weddings", link: "https://www.sait.ca/about-sait/event-venues-and-catering/weddings" },
+        ],
+      },
+      {
+        name: "The Heritage Centre",
+        tier: "$/$$$",
+        fields: [
+          { label: "Capacity", value: "50–683 guests" },
+          { label: "Catering", value: "Outside catering required" },
+          { label: "Pricing", value: "See website; seasonal discounts available" },
+          { label: "Ceremony", value: "Indoor and outdoor" },
+          { label: "Parking", value: "Yes, accessible" },
+          { label: "Vendor List", value: "Comprehensive recommended vendor list on website" },
+          { label: "Website", value: "mvetheheritagecentre.com", link: "https://mvetheheritagecentre.com/pricing-promotions-alberta-venue/" },
+        ],
+      },
+    ],
+  },
+  {
+    sub: "Also Worth Exploring",
+    plain: [
+      { name: "The Baron", tier: "$", note: "Modern industrial hall, 130–150 guests, in-house catering, full AV included", url: "thebaroncalgary.ca", ig: "@thebaron.yyc" },
+      { name: "52 North Venue", tier: "$$", note: "Indoor/outdoor, up to 200 guests, BYOB with Roadpop Event Co. bar, from $9,500", url: "52northvenue.ca", ig: "@52northvenue" },
+      { name: "The Lake House", tier: "$$", note: "Well-known Calgary venue on the reservoir", url: "lakehousecalgary.com" },
+    ],
+  },
+];
+
+const cateringData = [
+  { name: "Curated Catering by Hotel Arts", tier: "$$$", fields: [
+    { label: "Style", value: "SAIT's exclusive caterer — gourmet multi-course menus, bold flavours, artful presentation" },
+    { label: "Phone", value: "403-210-5774" },
+    { label: "Menu", value: "View 2025 Menu PDF", link: "https://www.sait.ca/assets/documents/about-sait/event-venues-and-catering/curated-catering-menu-2025.pdf" },
+  ]},
+  { name: "Alpine Catering", tier: "$/$$", fields: [
+    { label: "Style", value: "Buffet and sit-down service; hot & cold food, hors d'oeuvres" },
+    { label: "Extras", value: "China, cutlery, wine glasses, linen serviettes, chair covers available" },
+    { label: "Note", value: "Bartender service available on request" },
+    { label: "Phone", value: "403-279-6664" },
+    { label: "Website", value: "alpinecatering.ca", link: "https://www.alpinecatering.ca/" },
+  ]},
+  { name: "HT Catering & Meats", tier: "$/$$", fields: [
+    { label: "Style", value: "Customizable packages, wide menu selection, professional serving team on-site" },
+    { label: "Includes", value: "Signage, cutlery, and plates in all wedding packages" },
+    { label: "Phone", value: "403-963-2107" },
+    { label: "Website", value: "htcatering.ca", link: "https://www.htcatering.ca/" },
+  ]},
+  { name: "Rocky Mountain BBQ", tier: "$", fields: [
+    { label: "Style", value: "Fresh on-site BBQ — mobile, fully self-sustainable units" },
+    { label: "Includes", value: "Serving tables, own power and water — completely self-contained" },
+    { label: "Best For", value: "Outdoor and rustic venue weddings, casual celebrations" },
+    { label: "Phone", value: "403-651-9926" },
+    { label: "Website", value: "rockymountainbbq.ca", link: "https://rockymountainbbq.ca/" },
+  ]},
+  { name: "Visionary Catering", tier: "$$", fields: [
+    { label: "Style", value: "Flexible custom menus, advanced culinary skill, fresh locally sourced ingredients" },
+    { label: "Phone", value: "403-264-7447" },
+    { label: "Website", value: "visionarycatering.com", link: "https://www.visionarycatering.com/" },
+  ]},
+  { name: "Urbane Culinary", tier: "$$", fields: [
+    { label: "Style", value: "Elevated hospitality — tailored menu planning, delivery, and full service" },
+    { label: "Phone", value: "403-561-6478" },
+    { label: "Email", value: "catering@urbaneculinary.ca" },
+    { label: "Website", value: "urbaneculinary.ca", link: "https://urbaneculinary.ca" },
+  ]},
+  { name: "Devour Catering", tier: "$$/$$$ ", fields: [
+    { label: "Style", value: "Full-service catering; can also serve as full wedding planner" },
+    { label: "Extras", value: "Complimentary consultation; custom seasonal menus" },
+    { label: "Phone", value: "403-242-0046" },
+    { label: "Email", value: "devour@devourcatering.com" },
+    { label: "Website", value: "devourcatering.com", link: "https://devourcatering.com/events/weddings/" },
+  ]},
+  { name: "Black Salt Catering", tier: "$$", fields: [
+    { label: "Style", value: "Customized creative menus; full-service, stress-free execution" },
+    { label: "Phone", value: "587-353-3100" },
+    { label: "Email", value: "info@blacksaltbistro.ca" },
+    { label: "Website", value: "blacksaltbistro.ca", link: "https://blacksaltbistro.ca" },
+  ]},
+  { name: "Food Works Craft Catering", tier: "$$/$$$ ", fields: [
+    { label: "Experience", value: "200+ weddings; serves Calgary, Central Alberta, and Western Canada" },
+    { label: "Extras", value: "Complimentary tasting, full staffing, ProServe bar, vendor introductions" },
+    { label: "Phone", value: "403-804-7775" },
+    { label: "Website", value: "food-works.ca", link: "https://www.food-works.ca" },
+  ]},
+];
+
+const barData = [
+  { name: "In the Mix Bartending", tier: "$/$$", fields: [
+    { label: "Setup", value: "Full bar setup, equipment, glassware, mix & garnish provided" },
+    { label: "Alcohol", value: "Can supply alcohol OR work with client-supplied alcohol" },
+    { label: "AGLC", value: "Handles licensing when supplying alcohol; client responsible if supplying own" },
+    { label: "Cocktails", value: "Custom signature cocktail menus available" },
+    { label: "Mocktails", value: "Yes — full mocktail menus available" },
+    { label: "Guest Count", value: "No minimum or maximum — all event sizes welcome" },
+    { label: "Website", value: "inthemixcalgary.com", link: "https://www.inthemixcalgary.com" },
+  ]},
+  { name: "Suds & Sodas Mobile Bar", tier: "$", fields: [
+    { label: "Setup", value: "Full setup except alcohol — portable station, beverage truck, or Piaggio Apé bar" },
+    { label: "Alcohol", value: "Client supplies own (Suds & Sodas can purchase on your behalf)" },
+    { label: "AGLC", value: "Client/venue responsible — easy online application at aglc.ca" },
+    { label: "Insurance", value: "$5M general liability, WCB coverage, City of Calgary business licence" },
+    { label: "Mocktails", value: "Yes — known for their mocktail menus" },
+    { label: "Guest Count", value: "20–2,000 guests" },
+    { label: "Pricing", value: "From $825 portable / $1,265 truck / $1,565 Piaggio Apé bar" },
+    { label: "Website", value: "sudsandsodas.com", link: "https://www.sudsandsodas.com" },
+  ]},
+];
+
+const barPending = ["Black Tie & Bourbon  @blacktieandbourbonevents", "The Wildflower Wandering Bar  thewildflower.ca", "True Spirits Mobile Bar  truespiritsmobilebar.com", "Olive and Twist Mobile Bar  oliveandtwistmobilebar.com", "The Prosecco Cart  proseccocart.ca", "Sugar Water  sugarwater.bar"];
+
+const photoData = [
+  { name: "Light Delight Photography", tier: "$", fields: [
+    { label: "Services", value: "Photography; highlight video reel for select weddings" },
+    { label: "Coverage", value: "2-hour elopements to multi-day weddings" },
+    { label: "Turnaround", value: "3–8 weeks" },
+    { label: "Pricing", value: "Elopements from $900" },
+    { label: "Banff Permit", value: "Yes ✓" },
+    { label: "Travel", value: "Calgary, Canmore & Banff" },
+    { label: "Experience", value: "14+ years" },
+    { label: "Instagram", value: "@lightdelightphotography" },
+    { label: "Website", value: "lightdelightphotography.ca", link: "https://www.lightdelightphotography.ca" },
+  ]},
+  { name: "Lindsay Fontaine", tier: "$/$$", fields: [
+    { label: "Services", value: "Photo, video, or hybrid; film photography option available" },
+    { label: "Coverage", value: "10 hours standard; customizable" },
+    { label: "Turnaround", value: "Photos 3 months; Video 6 months" },
+    { label: "Style", value: "Vibrant, true-to-life; balanced posed and candid" },
+    { label: "Pricing", value: "Photo or video from $3,500; hybrid from $5,750" },
+    { label: "Travel", value: "All of Alberta complimentary" },
+    { label: "Instagram", value: "@fontaine_photo_film" },
+    { label: "Website", value: "lindsayfontaine.com", link: "https://lindsayfontaine.com/" },
+  ]},
+  { name: "TK Shotz Productions", tier: "$/$$", fields: [
+    { label: "Services", value: "Photo, video, film, Super8 & photo booths" },
+    { label: "Coverage", value: "10–12 hours; 2 shooters included in all packages" },
+    { label: "Turnaround", value: "30–45 days" },
+    { label: "Pricing", value: "Premier package $4,948" },
+    { label: "Travel", value: "Calgary, Canmore & Banff — no travel fees" },
+    { label: "Experience", value: "Since 2007" },
+    { label: "Instagram", value: "@tkshotz" },
+    { label: "Website", value: "tkshotz.com", link: "https://www.tkshotz.com" },
+  ]},
+  { name: "Rose and Range Photography", tier: "$$", fields: [
+    { label: "Services", value: "Photography & videography — digital and film" },
+    { label: "Coverage", value: "8 hours to unlimited for Saturday weddings" },
+    { label: "Turnaround", value: "8 weeks" },
+    { label: "Style", value: "Candid, elegant, and romantic" },
+    { label: "Pricing", value: "From $4,900" },
+    { label: "Travel", value: "Mountains and beyond" },
+    { label: "Instagram", value: "@roseandrangephoto" },
+    { label: "Website", value: "roseandrangephotography.ca", link: "http://www.roseandrangephotography.ca/" },
+  ]},
+  { name: "Erika Lagy Photography", tier: "$$/$$$ ", fields: [
+    { label: "Services", value: "Photography only — film & digital combined" },
+    { label: "Coverage", value: "8–12 hours; 2nd photographer for 10 & 12-hour packages" },
+    { label: "Turnaround", value: "8–12 weeks" },
+    { label: "Style", value: "Documentary and editorial — timeless and artistic" },
+    { label: "Pricing", value: "From $5,000; most couples invest $6,500–$7,000" },
+    { label: "Travel", value: "Canmore & Banff included" },
+    { label: "Instagram", value: "@erikalagyphoto" },
+    { label: "Website", value: "erikalagyphotography.com", link: "https://erikalagyphotography.com" },
+  ]},
+];
+
+const photoPending = ["Jenny Jean Photography @jennyjeanphotography", "Greco Photo Co. @grecophotoco", "Nicole Sarah Photography @nicolesarahwedding", "Gabe McClintock Photography @gabemcclintock", "Alexandra Weddings @_alexandra_weddings", "Fly Free Photo & Film @flyfreeweddings", "Meghan Fenton @meghanfentonphoto"];
+
+const floristData = [
+  { name: "Small Flower", tier: "$", fields: [
+    { label: "Style", value: "English Country Garden — lush, whimsical; locally grown Alberta blooms" },
+    { label: "Services", value: "Full service; à la carte menu available" },
+    { label: "Pricing", value: "À la carte from under $2,500; full service custom quoted" },
+    { label: "Travel", value: "Calgary, Canmore, Banff & surrounding mountain venues" },
+    { label: "Booking", value: "3+ months recommended" },
+    { label: "Instagram", value: "@smallflowerfloralstudio" },
+    { label: "Website", value: "smallflower.ca", link: "https://www.smallflower.ca" },
+  ]},
+  { name: "Creative Edge Flowers", tier: "$", fields: [
+    { label: "Style", value: "Modern to classic — adaptable to any aesthetic" },
+    { label: "Services", value: "Full service including large installations" },
+    { label: "Pricing", value: "No minimum spend" },
+    { label: "Consultations", value: "Free phone/email; in-person $75 deposit (credited at booking)" },
+    { label: "Travel", value: "Calgary, Canmore, Banff & further" },
+    { label: "Booking", value: "Flexible — can accommodate last-minute elopements" },
+    { label: "Instagram", value: "@creativeedgeflowersyyc" },
+    { label: "Website", value: "creativeedgeflowers.com", link: "https://www.creativeedgeflowers.com" },
+  ]},
+  { name: "Flower Chix", tier: "$/$$", fields: [
+    { label: "Style", value: "All styles — lush/romantic, minimalist, wildflower, modern, classic" },
+    { label: "Services", value: "Full service including delivery and on-site setup" },
+    { label: "Travel", value: "Calgary, Canmore & Banff — delivery fee applies" },
+    { label: "Booking", value: "Earlier is better; can sometimes accommodate short notice" },
+    { label: "Instagram", value: "@flowerchixyyc" },
+    { label: "Website", value: "flowerchix.com", link: "https://www.flowerchix.com" },
+  ]},
+  { name: "Calyx Floral Design", tier: "$/$$", fields: [
+    { label: "Style", value: "Flower-forward, lush and romantic; large-scale installations a specialty" },
+    { label: "Services", value: "Full service — bouquets, centrepieces, ceremony, reception, installations" },
+    { label: "Pricing", value: "No minimum spend" },
+    { label: "Travel", value: "Calgary, Canmore & Banff — experienced at mountain venues" },
+    { label: "Note", value: "Preferred florist at Calgary Marriott Downtown" },
+    { label: "Instagram", value: "@calyxfloraldesign" },
+    { label: "Website", value: "calyxfloraldesign.ca", link: "https://calyxfloraldesign.ca" },
+  ]},
+  { name: "The Romantiks", tier: "$/$$", fields: [
+    { label: "Style", value: "Lush, organic, romantic — unique designs for each couple" },
+    { label: "Services", value: "Full service including custom installations" },
+    { label: "Pricing", value: "$2,500 minimum during peak season (May–November)" },
+    { label: "Travel", value: "Canmore, Banff, Lake Louise & beyond" },
+    { label: "Booking", value: "6+ months recommended" },
+    { label: "Instagram", value: "@the.romantiks" },
+    { label: "Website", value: "theromantiks.com", link: "https://www.theromantiks.com" },
+  ]},
+  { name: "Jarman Flower Shop", tier: "$/$$", fields: [
+    { label: "Style", value: "Modern, design-driven, refined — no two weddings the same" },
+    { label: "Services", value: "Full service including large-scale installations" },
+    { label: "Pricing", value: "No minimum in Calgary; $2,500 minimum for Canmore/Banff" },
+    { label: "Travel", value: "Calgary, Canmore & Banff" },
+    { label: "Booking", value: "3–6 months recommended" },
+    { label: "Instagram", value: "@jarmanshop" },
+    { label: "Website", value: "jarmanshop.com", link: "https://jarmanshop.com" },
+  ]},
+  { name: "Among the Wildflwrs", tier: "$$/$$$ ", fields: [
+    { label: "Style", value: "Refined garden-inspired — lush romantic textures, organic editorial feel" },
+    { label: "Services", value: "Full service; selective à la carte bookings" },
+    { label: "Pricing", value: "From $3,500–$5,000; most couples invest $5,000–$8,000+" },
+    { label: "Consultations", value: "Complimentary consultations offered" },
+    { label: "Travel", value: "Calgary, Canmore, Banff & surrounding areas" },
+    { label: "Booking", value: "6–12+ months recommended for peak season" },
+    { label: "Instagram", value: "@amongthewldflwrs" },
+    { label: "Website", value: "amongthewldflwrs.com", link: "https://www.amongthewldflwrs.com" },
+  ]},
+];
+
+const floristPending = ["Flower Aura by Natasha", "Kensington Florist", "Adventure Floral", "Pine for Cedar", "Le Bouquet Floral", "Flower Artistry", "Black Earth Floral", "Flowers by Janie", "Flower Culture YYC", "La Maison Flower Studio", "Callia Florals", "Blue Lakes Floral Design"];
+
+const cakeData = [
+  { name: "SWIRL Custom Cakes", tier: "$/$$", fields: [
+    { label: "Specialty", value: "Wedding cakes, edible image cookies, boxed macarons, custom chocolate place cards" },
+    { label: "Design", value: "Fully customizable — all styles and finishes" },
+    { label: "Tastings", value: "To-go packs (under 60 servings); in-person tastings (60+ servings)" },
+    { label: "Pricing", value: "From $150" },
+    { label: "Delivery", value: "Included for 3-tier+; pickup or delivery for 1–2 tier" },
+    { label: "Travel", value: "All mountain parks including Canmore & Banff" },
+    { label: "Lead Time", value: "3 months recommended; 1 week for elopements" },
+    { label: "Instagram", value: "@swirl_cakes" },
+    { label: "Website", value: "swirlcakes.ca", link: "https://swirlcakes.ca" },
+  ]},
+  { name: "Sweetnd Custom Cakes", tier: "$/$$", fields: [
+    { label: "Specialty", value: "Custom cakes of all types including wedding cakes" },
+    { label: "Design", value: "Buttercream, fondant, naked cakes, floral cakes — all styles" },
+    { label: "Tastings", value: "Available to booked clients only; fee may apply depending on cake size" },
+    { label: "Pricing", value: "Single-tier 6-inch from $150" },
+    { label: "Delivery", value: "Available for 2-tier+; no delivery for single-tier" },
+    { label: "Travel", value: "Yes — Canmore and Banff" },
+    { label: "Lead Time", value: "2–4 weeks smaller; 2–4 months large multi-tier" },
+    { label: "Capacity", value: "Only 1–2 large wedding cakes per weekend — book early!" },
+    { label: "Instagram", value: "@sweetndcc" },
+    { label: "Website", value: "sweetnd.ca", link: "https://www.sweetnd.ca" },
+  ]},
+  { name: "Cakes by Jen YYC", tier: "$", fields: [
+    { label: "Specialty", value: "Custom vintage-style wedding cakes & cupcakes — buttercream only" },
+    { label: "Tastings", value: "Tasting boxes $16.50 — 6 cupcakes in your choice of flavours" },
+    { label: "Pricing", value: "No minimum; single-tier 6-inch from $90" },
+    { label: "Delivery", value: "$0.75/km Calgary; $0.85/km outside; pickup in East Chestermere" },
+    { label: "Travel", value: "Calgary, Canmore & Banff" },
+    { label: "Lead Time", value: "2–3 months peak season" },
+    { label: "Instagram", value: "@cakesbyjenyyc" },
+  ]},
+  { name: "RN Treats", tier: "$", fields: [
+    { label: "Specialty", value: "Custom cakes and dessert tables" },
+    { label: "Design", value: "Buttercream, fondant, semi-naked, floral designs, textured finishes" },
+    { label: "Tastings", value: "Tasting boxes available" },
+    { label: "Pricing", value: "From approximately $60 for smaller custom cakes" },
+    { label: "Delivery", value: "Yes — delivery and venue setup included" },
+    { label: "Travel", value: "Canmore & Banff — delivery fees may vary" },
+    { label: "Lead Time", value: "3–4 weeks minimum; earlier for peak season" },
+    { label: "Instagram", value: "@rntreatsyyc" },
+  ]},
+  { name: "Sweet Relief Pastries", tier: "$", fields: [
+    { label: "Specialty", value: "Cakes, cookies, and treats for weddings" },
+    { label: "Design", value: "Simple buttercream — no fondant or sugar flowers" },
+    { label: "Tastings", value: "Cake tasting boxes available online" },
+    { label: "Pricing", value: "Single tier from $60; 2-tier from $175; 3-tier from $315" },
+    { label: "Travel", value: "Calgary only — does not deliver to mountains" },
+    { label: "Lead Time", value: "2+ weeks minimum" },
+    { label: "Instagram", value: "@sweetreliefpastries" },
+    { label: "Website", value: "sweetreliefpastries.com", link: "https://www.sweetreliefpastries.com" },
+  ]},
+  { name: "Pretty Sweet Bakeshop", tier: "$/$$", fields: [
+    { label: "Specialty", value: "Wedding cakes, donuts, cupcakes & dessert tables" },
+    { label: "Design", value: "Buttercream only — fresh flowers, sugar flowers, or painted finishes" },
+    { label: "Tastings", value: "Online tasting kit available for pickup" },
+    { label: "Delivery", value: "Calgary year-round; Canmore & Banff summer only (not Oct–Mar)" },
+    { label: "Lead Time", value: "6–9 months recommended" },
+    { label: "Instagram", value: "@prettysweetyyc" },
+  ]},
+  { name: "Cakes by AbimSugar", tier: "$/$$", fields: [
+    { label: "Specialty", value: "Custom centrepiece cakes designed uniquely for each couple" },
+    { label: "Design", value: "Buttercream, fondant, semi-naked/naked, floral-inspired finishes" },
+    { label: "Tastings", value: "By appointment — tailored to preferred flavours" },
+    { label: "Pricing", value: "$8–$10 per serving; most couples invest $800–$2,500+" },
+    { label: "Delivery", value: "Yes — delivery and on-site setup" },
+    { label: "Travel", value: "Canmore & Banff — travel quoted based on location" },
+    { label: "Lead Time", value: "4–8 weeks; earlier for peak season" },
+    { label: "Instagram", value: "@cakes.bysugarrush" },
+  ]},
+  { name: "Magnolia Couture Cakery", tier: "$$/$$$ ", fields: [
+    { label: "Specialty", value: "Luxury wedding cakes and curated dessert experiences" },
+    { label: "Design", value: "Refined buttercream, fondant, semi-naked, sugar/edible paper florals, minimalist" },
+    { label: "Tastings", value: "Curated sampler boxes + complimentary virtual or in-person consultation" },
+    { label: "Pricing", value: "From $500+" },
+    { label: "Delivery", value: "Professional delivery and on-site setup" },
+    { label: "Travel", value: "Canmore & Banff — fees based on distance" },
+    { label: "Lead Time", value: "3–6 months; peak dates book early" },
+    { label: "Instagram", value: "@magnoliacakery.ca" },
+    { label: "Website", value: "magnoliacakery.ca", link: "https://www.magnoliacakery.ca" },
+  ]},
+];
+
+const cakePending = ["The Cake Trail", "Butter Love Sugar", "Bake My Day", "The Cake Nook", "Kinni Cakery", "Chartier", "Afsheed Cakes and Sweets", "Kakes and Kanvas", "Black Dog Bakery", "Modern Bake", "Cakeworks", "The Engineers Bakery", "Willow Cake and Bake", "Sugar Shimmer", "Sweet Cakes by Vernz", "Yvonne's Delightful Cakes"];
+
+// ── COMPONENTS ──────────────────────────────────────────────────────────────
+
+function VendorCard({ vendor }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="vendor-card">
+      <div className="vendor-card-header" onClick={() => setOpen(!open)}>
+        <span className="vendor-name">{vendor.name}</span>
+        <div className="vendor-right">
+          <span className="vendor-tier">{vendor.tier}</span>
+          <span className={`vendor-toggle ${open ? "open" : ""}`}>⌄</span>
+        </div>
+      </div>
+      {open && (
+        <div className="vendor-body">
+          {vendor.fields.map((f, i) => (
+            <div key={i} className={`vendor-field ${f.full ? "full" : ""}`}>
+              <span className="field-label">{f.label}</span>
+              <span className="field-value">
+                {f.link ? <a href={f.link} target="_blank" rel="noopener noreferrer">{f.value}</a> : f.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function VenueSection({ sections }) {
+  return (
+    <div>
+      <div className="info-box">
+        <div className="info-box-title">Booking Tips</div>
+        <ul>
+          <li>Peak wedding season runs June through September — popular venues book 12–18 months in advance.</li>
+          <li>Several venues have preferred vendor lists — ask for these once you book.</li>
+          <li>Restaurant venues often have a minimum spend rather than a flat rental fee.</li>
+        </ul>
+      </div>
+      {sections.map((sec, si) => (
+        <div key={si}>
+          <div className="subsection-title">{sec.sub}</div>
+          {sec.note && <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: 16, color: COLORS.sub, marginBottom: 20, lineHeight: 1.6 }}>{sec.note}</p>}
+          {sec.vendors && (
+            <div className="vendor-grid">
+              {sec.vendors.map((v, vi) => <VendorCard key={vi} vendor={v} />)}
+            </div>
+          )}
+          {sec.plain && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {sec.plain.map((p, pi) => (
+                <div key={pi} style={{ padding: "16px 20px", border: `1px solid ${COLORS.border}`, borderRadius: 4, background: COLORS.parchment }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
+                    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: COLORS.forest }}>{p.name}</span>
+                    <span className="vendor-tier">{p.tier}</span>
+                  </div>
+                  <p style={{ fontSize: 14, color: COLORS.sub, marginBottom: 6 }}>{p.note}</p>
+                  <p style={{ fontSize: 13, color: COLORS.sub }}>{p.url}{p.ig ? `  ·  ${p.ig}` : ""}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SimpleVendors({ vendors, pending, pendingLabel, infoTitle, infoItems }) {
+  return (
+    <div>
+      {infoItems && (
+        <div className="info-box">
+          <div className="info-box-title">{infoTitle}</div>
+          <ul>{infoItems.map((it, i) => <li key={i}>{it}</li>)}</ul>
+        </div>
+      )}
+      <div className="vendor-grid" style={{ marginTop: 24 }}>
+        {vendors.map((v, i) => <VendorCard key={i} vendor={v} />)}
+      </div>
+      {pending && pending.length > 0 && (
+        <div className="pending">
+          <div className="pending-title">{pendingLabel || "On our radar — details coming soon"}</div>
+          <div className="pending-list">
+            {pending.map((p, i) => <span key={i} className="pending-tag">{p}</span>)}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Checklist() {
+  const total = checklistData.reduce((a, p) => a + p.items.length, 0);
+  const [checked, setChecked] = useState({});
+  const doneCount = Object.values(checked).filter(Boolean).length;
+  const pct = Math.round((doneCount / total) * 100);
+
+  function toggle(phase, idx) {
+    const key = `${phase}-${idx}`;
+    setChecked(prev => ({ ...prev, [key]: !prev[key] }));
+  }
+
+  return (
+    <div>
+      <p className="checklist-intro">Use this checklist to stay on track from the moment you get engaged to the moment you say "I do." Click each item to mark it complete.</p>
+      <div className="progress-label">
+        <span>Overall Progress</span>
+        <span>{doneCount} of {total} tasks complete</span>
+      </div>
+      <div className="progress-bar-wrap">
+        <div className="progress-bar" style={{ width: `${pct}%` }} />
+      </div>
+      {checklistData.map((phase, pi) => {
+        const phaseDone = phase.items.filter((_, ii) => checked[`${pi}-${ii}`]).length;
+        return (
+          <div key={pi} className="checklist-phase">
+            <div className="phase-header">
+              <span className="phase-badge">{phase.badge}</span>
+              <span className="phase-title">{phase.phase}</span>
+              <span className="phase-progress">{phaseDone}/{phase.items.length}</span>
+            </div>
+            <div className="check-items">
+              {phase.items.map((item, ii) => {
+                const key = `${pi}-${ii}`;
+                const done = !!checked[key];
+                return (
+                  <div key={ii} className={`check-item ${done ? "done" : ""}`} onClick={() => toggle(pi, ii)}>
+                    <div className="check-box">
+                      {done && <span className="check-mark">✓</span>}
+                    </div>
+                    <span className="check-text">{item}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function BudgetGuide() {
+  const packages = [
+    {
+      cls: "pkg-$", tier: "$", name: "The Intimate Rocky Mountain Wedding", range: "$8,000 – $15,000",
+      items: ["Venue: 52 North, Arts Commons, Cucina Market Bistro, or Alforno Eau Claire", "Catering: Rocky Mountain BBQ or Alpine Catering", "Photography: Light Delight Photography (from $900)", "Florals: Small Flower à la carte or Creative Edge Flowers", "Cake: Cakes by Jen YYC or Sweet Relief Pastries", "Bar: Suds & Sodas portable station (from $825)", "Best for: Elopements & intimate gatherings under 40 guests"],
+    },
+    {
+      cls: "pkg-$$", tier: "$$", name: "The Classic Rocky Mountain Wedding", range: "$15,000 – $50,000",
+      items: ["Venue: Spruce Meadows, Willow Lane Barn, Pine and Pond, or Meadow Muse", "Catering: Visionary Catering, Urbane Culinary, or Devour Catering", "Photography: Lindsay Fontaine or Rose and Range Photography", "Florals: Calyx Floral Design, The Romantiks, or Jarman Flower Shop", "Cake: SWIRL Custom Cakes or Sweetnd Custom Cakes", "Bar: In the Mix Bartending or Olive and Twist Mobile Bar", "Best for: Weddings of 50–120 guests with a full vendor team"],
+    },
+    {
+      cls: "pkg-$$$", tier: "$$$", name: "The Rocky Mountain Dream", range: "$50,000+",
+      items: ["Venue: The Fairmont Palliser, Hotel Arts, or Calgary Marriott Downtown", "Catering: Curated Catering by Hotel Arts or Food Works Craft Catering", "Photography: Erika Lagy Photography (film + digital)", "Florals: Among the Wildflwrs or Calyx Floral Design (large installations)", "Cake: Magnolia Couture Cakery", "Bar: Black Tie & Bourbon or True Spirits Mobile Bar", "Best for: Grand celebrations of 100+ guests with a premium experience"],
+    },
+  ];
+  return (
+    <div>
+      <div className="info-box" style={{ marginBottom: 32 }}>
+        <div className="info-box-title">How Budget Tiers Work</div>
+        <ul>
+          <li><strong>$</strong> — Under $15,000 total wedding budget. Elopements, micro-weddings, and intimate gatherings.</li>
+          <li><strong>$$</strong> — $15,000–$50,000. Full wedding with complete vendor team, 50–120 guests.</li>
+          <li><strong>$$$</strong> — $50,000+. Grand celebrations with premium vendors and 100+ guests.</li>
+          <li>Many vendors span two tiers (e.g. $/$$) meaning they serve both budget ranges.</li>
+        </ul>
+      </div>
+      <div className="packages">
+        {packages.map((pkg, i) => (
+          <div key={i} className={`package ${pkg.cls}`}>
+            <div className="package-header">
+              <span className="package-tier">{pkg.tier}</span>
+              <span className="package-name">{pkg.name}</span>
+              <span className="package-range">{pkg.range}</span>
+            </div>
+            <div className="package-body">
+              <ul>{pkg.items.map((it, ii) => <li key={ii}>{it}</li>)}</ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const tabs = [
+  { id: "home", label: "Home" },
+  { id: "checklist", label: "Free Checklist" },
+  { id: "budget", label: "Budget Guide", locked: true },
+  { id: "venues", label: "Venues", locked: true },
+  { id: "catering", label: "Catering", locked: true },
+  { id: "bar", label: "Mobile Bar", locked: true },
+  { id: "photo", label: "Photography", locked: true },
+  { id: "florists", label: "Florists", locked: true },
+  { id: "cakes", label: "Cakes", locked: true },
+  { id: "dresses", label: "Wedding Dresses", locked: true },
+  { id: "coming", label: "On Our Radar", locked: true },
+];
+
+const sectionMeta = {
+  home: { eyebrow: "Canadian Rockies Edition", title: "The Ultimate Wedding Guide", lead: "" },
+  checklist: { eyebrow: "Canadian Rockies Edition", title: "Wedding Planning Checklist", lead: "From the moment you get engaged to the moment you say \"I do\" — every task, every milestone, beautifully organized." },
+  budget: { eyebrow: "Canadian Rockies Edition", title: "Budget Planning Guide", lead: "Every dream wedding is different — and so is every budget. Find the tier that fits your vision and explore vendors that align with your investment." },
+  venues: { eyebrow: "Calgary", title: "Venues", lead: "Calgary offers an exceptional range of wedding venues — from iconic luxury hotels and dramatic arts spaces to rustic barns and intimate restaurant settings." },
+  catering: { eyebrow: "Calgary", title: "Catering", lead: "For venues without in-house catering, these Calgary caterers bring exceptional skill, flexibility, and style to your wedding table." },
+  bar: { eyebrow: "Calgary", title: "Mobile Bar Services", lead: "Alberta's liquor laws make mobile bar services unique. Here's everything you need to know — and the best services in the city." },
+  photo: { eyebrow: "Calgary", title: "Photography & Videography", lead: "Your photos and film are the memories you will revisit for the rest of your lives. Alberta's landscapes reward photographers who truly know light." },
+  florists: { eyebrow: "Calgary", title: "Florists", lead: "Florals set the tone for your entire wedding aesthetic. Calgary's florist community is exceptionally talented — and nearly all travel to Canmore and Banff." },
+  cakes: { eyebrow: "Calgary", title: "Cakes & Desserts", lead: "From elegant tiered cakes to whimsical dessert tables, Calgary's bakers are exceptionally talented. Whatever your vision and budget, there is a baker here for you." },
+  dresses: { eyebrow: "Calgary", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding planning. We recommend visiting each of these boutiques in person — no online browsing compares to trying on the real thing." },
+  coming: { eyebrow: "Canadian Rockies Edition", title: "On Our Radar", lead: "We are constantly scouting, vetting, and adding to this guide. Consider this your insider preview of what's coming — and a reminder that the best vendors book fast." },
+};
+
+const dressData = [
+  { name: "Blush & Raven", ig: "@blushandravenyyc", url: "blushandraven.com", link: "https://www.blushandraven.com" },
+  { name: "The Bridal Boutique", ig: "@thebridalboutiqueyyc", url: "thebridalboutique.ca", link: "https://www.thebridalboutique.ca" },
+  { name: "LOVENOTE", ig: "@lovenotebride", url: "lovenotebride.com", link: "https://lovenotebride.com" },
+  { name: "The Bridal Centre", ig: "@thebridalcentre", url: "bridalcentre.com", link: "https://bridalcentre.com" },
+];
+
+// ── APP ─────────────────────────────────────────────────────────────────────
+function LandingPage() {
+  const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://formspree.io/f/mykbkojw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          inquiry_type: form.type,
+          message: form.message,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again or reach out directly.");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const features = [
+    { icon: "01", title: "Calgary, Canmore & Banff", desc: "Curated vendors across the full Canadian Rockies corridor." },
+    { icon: "02", title: "19 Verified Venues", desc: "From grand hotel ballrooms to rustic mountain barns." },
+    { icon: "03", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, organized." },
+    { icon: "04", title: "Budget Tiers", desc: "Sample packages from intimate elopements to dream celebrations." },
+    { icon: "05", title: "Photography & More", desc: "Vetted photographers, florists, caterers, bakers, and more." },
+    { icon: "06", title: "Regularly Updated", desc: "New vendors and sections added as we grow the guide." },
+  ];
+
+  return (
+    <div className="landing">
+      <div className="landing-eyebrow">Canadian Rockies Edition</div>
+      <h1 className="landing-title">Plan your dream wedding.<br /><em>Without the planner price tag.</em></h1>
+      <p className="landing-body">
+        The Ultimate Wedding Guide — Canadian Rockies Edition is your complete, curated planning resource for getting married in Calgary, Canmore, or Banff. We have done the research, vetted the vendors, and organized everything so you can focus on what matters most — enjoying every moment of your journey to the altar.
+      </p>
+
+      <div className="landing-features">
+        {features.map((f, i) => (
+          <div key={i} className="feature-card">
+            <div className="feature-icon">{f.icon}</div>
+            <div className="feature-title">{f.title}</div>
+            <div className="feature-desc">{f.desc}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="landing-divider" />
+
+      <h2 className="contact-title">Get in Touch</h2>
+      <p className="contact-sub">Whether you are interested in purchasing the guide, want to be added as a vendor, or simply have a question — we would love to hear from you.</p>
+
+      {submitted ? (
+        <div className="form-success">
+          ✦ Thank you — your message has been received. We will be in touch shortly.
+        </div>
+      ) : (
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div className="form-group">
+              <label className="form-label">Name</label>
+              <input className="form-input" type="text" placeholder="Your name" required value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input className="form-input" type="email" placeholder="your@email.com" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+            </div>
+          </div>
+          <div className="form-group">
+            <label className="form-label">I am inquiring about</label>
+            <select className="form-select" required value={form.type} onChange={e => setForm({...form, type: e.target.value})}>
+              <option value="">Select an option</option>
+              <option value="purchase">Purchase the guide</option>
+              <option value="vendor">Add or update a vendor listing</option>
+              <option value="updates">Notify me of updates</option>
+              <option value="general">General inquiry</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Message</label>
+            <textarea className="form-textarea" placeholder="Tell us a little more..." required value={form.message} onChange={e => setForm({...form, message: e.target.value})} />
+          </div>
+          {error && (
+            <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{error}</p>
+          )}
+          <button type="submit" className="form-btn" disabled={loading}>
+            {loading ? "Sending..." : "Send Message"}
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+
+function LockScreen({ onUnlock }) {
+  return (
+    <div className="lock-screen">
+      <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
+      <h2 className="lock-title">Unlock the Full Guide</h2>
+      <p className="lock-sub">This section is part of the complete guide. Purchase once and get lifetime access to all vendor categories — plus free updates as we add more.</p>
+      <div className="lock-features">
+        {["19 Calgary Venues", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "Canmore & Banff — Coming Soon"].map((f, i) => (
+          <span key={i} className="lock-feature-tag">{f}</span>
+        ))}
+      </div>
+      <div className="lock-tiers">
+        <div className="lock-tier">
+          <div className="lock-tier-price">$29</div>
+          <div className="lock-tier-name">The Essential Guide</div>
+          <div className="lock-tier-desc">Full vendor directory, budget guide, and planning checklist.</div>
+        </div>
+        <div className="lock-tier" style={{ border: `2px solid ${COLORS.forest}` }}>
+          <div className="lock-tier-price">$49</div>
+          <div className="lock-tier-name">The Complete Guide</div>
+          <div className="lock-tier-desc">Everything in Essential, plus planning timeline, budget tracker, and vendor question checklist.</div>
+        </div>
+      </div>
+      <button className="lock-btn" onClick={onUnlock}>Purchase the Guide</button>
+      <p className="lock-note">Already purchased? Enter your password above in the nav bar.</p>
+    </div>
+  );
+}
+
+function PasswordGate({ onSuccess }) {
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const GUIDE_PASSWORD = "rockies2025";
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (input.trim().toLowerCase() === GUIDE_PASSWORD) {
+      onSuccess();
+    } else {
+      setError(true);
+      setInput("");
+      setTimeout(() => setError(false), 3000);
+    }
+  }
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      zIndex: 1000, padding: 24
+    }}>
+      <div style={{
+        background: COLORS.white, borderRadius: 4, padding: "56px 48px",
+        maxWidth: 440, width: "100%", textAlign: "center"
+      }}>
+        <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 400, color: COLORS.forest, marginBottom: 12 }}>
+          Welcome Back
+        </h2>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, marginBottom: 36, lineHeight: 1.6 }}>
+          Enter your guide password to access the full Canadian Rockies Edition.
+        </p>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <input
+            type="password"
+            placeholder="Enter password"
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            autoFocus
+            style={{
+              fontFamily: "'Jost', sans-serif", fontSize: 15,
+              padding: "14px 18px", border: `1px solid ${error ? "#c0392b" : COLORS.border}`,
+              borderRadius: 3, outline: "none", textAlign: "center",
+              letterSpacing: 4, color: COLORS.text, width: "100%",
+              transition: "border-color 0.2s"
+            }}
+          />
+          {error && (
+            <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic", margin: 0 }}>
+              Incorrect password. Please try again.
+            </p>
+          )}
+          <button type="submit" style={{
+            background: COLORS.forest, color: COLORS.cream,
+            fontFamily: "'Jost', sans-serif", fontSize: 11,
+            fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
+            padding: "16px 32px", border: "none", borderRadius: 2,
+            cursor: "pointer", transition: "background 0.2s"
+          }}>
+            Unlock Guide
+          </button>
+        </form>
+        <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
+          Don't have a password yet?{" "}
+          <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
+            onClick={() => document.querySelector('.guide-wrap') && window.scrollTo(0,0)}>
+            Purchase the guide
+          </span>{" "}to receive instant access.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState("home");
+  const [unlocked, setUnlocked] = useState(false);
+  const [showPasswordGate, setShowPasswordGate] = useState(false);
+  const meta = sectionMeta[activeTab] || sectionMeta["home"];
+  const isLocked = tabs.find(t => t.id === activeTab)?.locked;
+
+  function handleTabClick(tab) {
+    if (tab.locked && !unlocked) {
+      setShowPasswordGate(true);
+    } else {
+      setActiveTab(tab.id);
+    }
+  }
+
+  function handleUnlock() {
+    setUnlocked(true);
+    setShowPasswordGate(false);
+  }
+
+  return (
+    <>
+      <style>{styles}</style>
+      {showPasswordGate && <PasswordGate onSuccess={handleUnlock} />}
+      <div className="guide-wrap">
+        {/* COVER */}
+        <div className="cover">
+          <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
+          <div className="cover-divider" />
+          <div className="cover-cities">Canadian Rockies Edition</div>
+          <div className="cover-subtitle" style={{marginTop: 12, fontSize: 14, letterSpacing: 3}}>Calgary  ·  Canmore  ·  Banff</div>
+          <div className="cover-subtitle">Your complete planning resource for an unforgettable Rocky Mountain wedding</div>
+        </div>
+
+        {/* NAV */}
+        <nav className="nav">
+          {tabs.map(t => (
+            <button
+              key={t.id}
+              className={`nav-btn ${activeTab === t.id ? "active" : ""} ${t.locked && !unlocked ? "locked-tab" : ""}`}
+              onClick={() => handleTabClick(t)}
+            >
+              {t.label}
+            </button>
+          ))}
+          {unlocked && (
+            <button
+              className="nav-btn"
+              onClick={() => { setUnlocked(false); setActiveTab("home"); }}
+              style={{ marginLeft: "auto", opacity: 0.5, fontSize: 10 }}
+            >
+              Lock
+            </button>
+          )}
+        </nav>
+
+        {/* HOME */}
+        {activeTab === "home" && <LandingPage />}
+
+        {/* FREE CHECKLIST */}
+        {activeTab === "checklist" && (
+          <div className="content">
+            <div className="section-eyebrow">{sectionMeta.checklist.eyebrow}</div>
+            <h1 className="section-title">{sectionMeta.checklist.title}</h1>
+            <p className="section-lead">{sectionMeta.checklist.lead}</p>
+            <Checklist />
+          </div>
+        )}
+
+        {/* LOCKED */}
+        {isLocked && !unlocked && <LockScreen onUnlock={() => setShowPasswordGate(true)} />}
+
+        {/* UNLOCKED CONTENT */}
+        {isLocked && unlocked && (
+          <div className="content">
+            <div className="section-eyebrow">{meta.eyebrow}</div>
+            <h1 className="section-title">{meta.title}</h1>
+            {meta.lead && <p className="section-lead">{meta.lead}</p>}
+          {activeTab === "budget" && <BudgetGuide />}
+          {activeTab === "venues" && <VenueSection sections={venueData} />}
+
+          {activeTab === "catering" && (
+            <SimpleVendors
+              vendors={cateringData}
+              infoTitle="Good to Know"
+              infoItems={[
+                "Always confirm whether full service includes setup, serving staff, and cleanup.",
+                "Check if the caterer is licensed to serve alcohol or if you need a separate bar service.",
+                "For 52 North, Pine and Pond, and The Heritage Centre, outside catering is required.",
+              ]}
+            />
+          )}
+
+          {activeTab === "bar" && (
+            <>
+              <div className="info-box">
+                <div className="info-box-title">Alberta Liquor Licensing — What You Need to Know</div>
+                <ul>
+                  <li>Couples need a Special Event Licence from AGLC for private events — just $25 at aglc.ca.</li>
+                  <li>Most mobile bars cannot supply alcohol under AGLC rules, but staff are ProServe certified to serve it.</li>
+                  <li>You can supply your own alcohol, or many services will purchase and deliver it on your behalf.</li>
+                  <li>Some venues (like 52 North) require a specific bar service — always confirm with your venue first.</li>
+                </ul>
+              </div>
+              <div className="vendor-grid" style={{ marginTop: 24 }}>
+                {barData.map((v, i) => <VendorCard key={i} vendor={v} />)}
+              </div>
+              <div className="pending">
+                <div className="pending-title">On our radar — additional mobile bar services</div>
+                <div className="pending-list">
+                  {barPending.map((p, i) => <span key={i} className="pending-tag">{p}</span>)}
+                </div>
+              </div>
+            </>
+          )}
+
+          {activeTab === "photo" && (
+            <SimpleVendors
+              vendors={photoData}
+              pending={photoPending}
+              pendingLabel="On our radar — additional photographers & videographers"
+              infoTitle="Questions to Ask Every Photographer"
+              infoItems={[
+                "Do you have a permit to shoot inside Banff National Park? Not all photographers do.",
+                "Are travel fees included for Canmore and Banff locations?",
+                "How long until our photos and videos are delivered?",
+                "Do you include a second shooter?",
+                "Can we see a full wedding gallery — not just highlight images?",
+              ]}
+            />
+          )}
+
+          {activeTab === "florists" && (
+            <SimpleVendors
+              vendors={floristData}
+              pending={floristPending}
+              pendingLabel="On our radar — additional florists"
+              infoTitle="Planning Tips for Wedding Florals"
+              infoItems={[
+                "Book your florist 6–12 months in advance for peak season (June–September).",
+                "For micro-weddings and elopements, look for florists offering à la carte menus with no minimums.",
+                "Ask about locally grown Alberta blooms — available seasonally and a beautiful regional touch.",
+                "Always confirm travel fees for Canmore and Banff before signing a contract.",
+              ]}
+            />
+          )}
+
+          {activeTab === "cakes" && (
+            <SimpleVendors
+              vendors={cakeData}
+              pending={cakePending}
+              pendingLabel="On our radar — additional bakers"
+              infoTitle="Planning Tips for Wedding Cakes"
+              infoItems={[
+                "Book your cake 3–6 months in advance; some bakers accommodate shorter timelines.",
+                "Check delivery policies carefully — some bakers do not deliver to mountain venues in winter.",
+                "Many bakers offer online tasting boxes you can order and try at home before committing.",
+                "Consider a dessert table as a beautiful complement or alternative to a traditional tiered cake.",
+              ]}
+            />
+          )}
+
+          {activeTab === "dresses" && (
+            <div>
+              <div className="info-box">
+                <div className="info-box-title">A Note on Wedding Dress Shopping</div>
+                <ul>
+                  <li>Always book an appointment — Calgary's top boutiques are by appointment only.</li>
+                  <li>Allow 4–6 months for made-to-order gowns, plus extra time for alterations.</li>
+                  <li>Bring one or two trusted people whose opinion you value — not a crowd.</li>
+                  <li>Keep an open mind — the dress you fall in love with may surprise you.</li>
+                </ul>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
+                {dressData.map((b, i) => (
+                  <div key={i} style={{
+                    border: `1px solid ${COLORS.border}`,
+                    borderRadius: 4,
+                    overflow: "hidden",
+                    background: COLORS.white,
+                    transition: "box-shadow 0.2s",
+                  }}>
+                    <div style={{ background: COLORS.parchment, padding: "20px 24px", borderBottom: `1px solid ${COLORS.border}` }}>
+                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: COLORS.forest, marginBottom: 4 }}>{b.name}</div>
+                    </div>
+                    <div style={{ padding: "16px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
+                      <div>
+                        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
+                        <div style={{ fontSize: 14, color: COLORS.text }}>{b.ig}</div>
+                      </div>
+                      <div>
+                        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
+                        <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === "coming" && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {[
+                { title: "Calgary — On Our Radar", items: ["Hair & Makeup", "Suit Rentals", "Officiant Services", "Decor & Lighting Rentals", "Transportation", "Music — DJs & Live Bands", "Audio/Visual & Sound Production"] },
+                { title: "Canmore & Banff — Coming Next", items: ["Venues", "Catering", "Photography", "Florals", "Cakes & Desserts", "Hair & Makeup", "Music", "Transportation", "Guest Experience & Tourism", "Accommodations"] },
+                { title: "Permits & Legalities", items: ["Banff National Park Wedding Permits", "AGLC Liquor Licensing", "Marriage Licences in Alberta", "Outdoor Ceremony Regulations"] },
+              ].map((section, i) => (
+                <div key={i} className="coming-soon">
+                  <div className="coming-soon-title">{section.title}</div>
+                  <div className="coming-list">
+                    {section.items.map((it, ii) => <span key={ii} className="coming-tag">{it}</span>)}
+                  </div>
+                </div>
+              ))}
+              <div className="info-box">
+                <div className="info-box-title">Stay in the Loop</div>
+                <ul>
+                  <li>This guide is updated regularly as new vendors are vetted and new sections are added.</li>
+                  <li>Purchased this guide and want to be notified of updates? Reach out and we will keep you posted.</li>
+                  <li>Have a vendor recommendation? We love hearing from couples — your experience makes this guide better for everyone.</li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+        )}
+      </div>
+    </>
+  );
+}
