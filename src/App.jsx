@@ -739,7 +739,265 @@ const styles = `
     margin-bottom: 20px;
   }
 
-  /* LOCK SCREEN */
+  /* GIFT SECTION */
+  .gift-section {
+    margin: 56px 0;
+    padding: 48px;
+    background: ${COLORS.forest};
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gift-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(196,149,106,0.15) 0%, transparent 60%);
+  }
+  .gift-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .gift-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: ${COLORS.cream};
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .gift-title em {
+    font-style: italic;
+    color: ${COLORS.sandstone};
+  }
+  .gift-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(247,243,236,0.7);
+    margin-bottom: 32px;
+    line-height: 1.6;
+    max-width: 480px;
+    position: relative;
+  }
+  .gift-recipients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .gift-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: ${COLORS.sandstone};
+    border: 1px solid rgba(196,149,106,0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .gift-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .gift-btn-primary {
+    background: ${COLORS.sandstone};
+    color: ${COLORS.forest};
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gift-btn-primary:hover { background: #d4a870; }
+  .gift-btn-secondary {
+    background: transparent;
+    color: ${COLORS.cream};
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border: 1px solid rgba(247,243,236,0.3);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gift-btn-secondary:hover { border-color: rgba(247,243,236,0.7); }
+
+  /* GIFT MODAL */
+  .gift-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(44,74,62,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 24px;
+  }
+  .gift-modal {
+    background: ${COLORS.white};
+    border-radius: 4px;
+    padding: 48px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .gift-modal-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 12px;
+  }
+  .gift-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: ${COLORS.forest};
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .gift-modal-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: ${COLORS.sub};
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .gift-tier-select {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .gift-tier-option {
+    border: 2px solid ${COLORS.border};
+    border-radius: 4px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .gift-tier-option:hover { border-color: ${COLORS.sandstone}; }
+  .gift-tier-option.selected { border-color: ${COLORS.forest}; background: ${COLORS.mint}; }
+  .gift-tier-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: ${COLORS.forest};
+    margin-bottom: 4px;
+  }
+  .gift-tier-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 6px;
+  }
+  .gift-tier-desc {
+    font-size: 12px;
+    color: ${COLORS.sub};
+    line-height: 1.4;
+  }
+  .gift-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: ${COLORS.sub};
+    cursor: pointer;
+    line-height: 1;
+  }
+  .gift-success {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .gift-success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: ${COLORS.forest};
+    margin-bottom: 12px;
+  }
+  .gift-success-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: ${COLORS.sub};
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .gift-card-preview {
+    background: ${COLORS.forest};
+    border-radius: 4px;
+    padding: 32px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .gift-card-to {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 8px;
+  }
+  .gift-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: ${COLORS.cream};
+    margin-bottom: 16px;
+  }
+  .gift-card-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(247,243,236,0.7);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .gift-card-divider {
+    height: 1px;
+    background: rgba(196,149,106,0.3);
+    margin: 16px 0;
+  }
+  .gift-card-password {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: ${COLORS.sandstone};
+    margin-bottom: 4px;
+  }
+  .gift-card-password-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: ${COLORS.cream};
+    letter-spacing: 4px;
+  }
+
   .lock-screen {
     text-align: center;
     padding: 80px 40px;
@@ -1725,11 +1983,135 @@ const dressData = [
 ];
 
 // ── APP ─────────────────────────────────────────────────────────────────────
+function GiftModal({ onClose }) {
+  const [step, setStep] = useState(1);
+  const [tier, setTier] = useState("essential");
+  const [giftForm, setGiftForm] = useState({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const tiers = {
+    essential: { price: "$29", name: "The Essential Guide", desc: "Full vendor directory, budget guide & checklist." },
+    complete: { price: "$49", name: "The Complete Guide", desc: "Everything in Essential plus planning timeline & budget tracker." },
+  };
+
+  async function handleGiftSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://formspree.io/f/mykbkojw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          inquiry_type: "gift_purchase",
+          tier: tiers[tier].name,
+          price: tiers[tier].price,
+          recipient_name: giftForm.recipientName,
+          recipient_email: giftForm.recipientEmail,
+          sender_name: giftForm.senderName,
+          personal_message: giftForm.message,
+        }),
+      });
+      if (res.ok) {
+        setStep(3);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="gift-modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="gift-modal" style={{ position: "relative" }}>
+        <button className="gift-modal-close" onClick={onClose}>×</button>
+
+        {step === 1 && (
+          <>
+            <div className="gift-modal-eyebrow">Give the Gift of Planning</div>
+            <h2 className="gift-modal-title">Choose Your Gift</h2>
+            <p className="gift-modal-sub">Select the guide that best suits the couple you are gifting — both include lifetime access and free updates.</p>
+            <div className="gift-tier-select">
+              {Object.entries(tiers).map(([key, t]) => (
+                <div key={key} className={`gift-tier-option ${tier === key ? "selected" : ""}`} onClick={() => setTier(key)}>
+                  <div className="gift-tier-price">{t.price}</div>
+                  <div className="gift-tier-name">{t.name}</div>
+                  <div className="gift-tier-desc">{t.desc}</div>
+                </div>
+              ))}
+            </div>
+            <button className="form-btn" style={{ width: "100%", textAlign: "center" }} onClick={() => setStep(2)}>
+              Continue — {tiers[tier].price}
+            </button>
+          </>
+        )}
+
+        {step === 2 && (
+          <>
+            <div className="gift-modal-eyebrow">Personalize Your Gift</div>
+            <h2 className="gift-modal-title">Add a Personal Touch</h2>
+            <p className="gift-modal-sub">We will send a beautiful gift notification to the lucky couple on your behalf.</p>
+            <form onSubmit={handleGiftSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">Recipient's Name</label>
+                  <input className="form-input" type="text" placeholder="Their name" required value={giftForm.recipientName} onChange={e => setGiftForm({...giftForm, recipientName: e.target.value})} />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Recipient's Email</label>
+                  <input className="form-input" type="email" placeholder="their@email.com" required value={giftForm.recipientEmail} onChange={e => setGiftForm({...giftForm, recipientEmail: e.target.value})} />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Your Name</label>
+                <input className="form-input" type="text" placeholder="Your name" required value={giftForm.senderName} onChange={e => setGiftForm({...giftForm, senderName: e.target.value})} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Personal Message (optional)</label>
+                <textarea className="form-textarea" placeholder="Write a little note to the happy couple..." style={{ minHeight: 80 }} value={giftForm.message} onChange={e => setGiftForm({...giftForm, message: e.target.value})} />
+              </div>
+              {error && <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{error}</p>}
+              <div style={{ display: "flex", gap: 12 }}>
+                <button type="button" className="gift-btn-secondary" style={{ color: COLORS.sub, borderColor: COLORS.border }} onClick={() => setStep(1)}>Back</button>
+                <button type="submit" className="form-btn" style={{ flex: 1, textAlign: "center" }} disabled={loading}>
+                  {loading ? "Sending..." : `Send Gift — ${tiers[tier].price}`}
+                </button>
+              </div>
+            </form>
+          </>
+        )}
+
+        {step === 3 && (
+          <div className="gift-success">
+            <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 24px" }} />
+            <h2 className="gift-success-title">Gift Sent!</h2>
+            <p className="gift-success-sub">Your gift has been received. We will be in touch shortly to process payment and deliver access to {giftForm.recipientName}.</p>
+            <div className="gift-card-preview">
+              <div className="gift-card-to">A gift for</div>
+              <div className="gift-card-name">{giftForm.recipientName}</div>
+              {giftForm.message && <div className="gift-card-message">"{giftForm.message}"</div>}
+              <div className="gift-card-divider" />
+              <div className="gift-card-password">With love from</div>
+              <div className="gift-card-password-value">{giftForm.senderName}</div>
+            </div>
+            <button className="form-btn" style={{ width: "100%" }} onClick={onClose}>Done</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function LandingPage() {
   const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showGift, setShowGift] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -1787,7 +2169,24 @@ function LandingPage() {
 
       <div className="landing-divider" />
 
-      <h2 className="contact-title">Get in Touch</h2>
+      {/* GIFT SECTION */}
+      {showGift && <GiftModal onClose={() => setShowGift(false)} />}
+      <div className="gift-section">
+        <div className="gift-eyebrow">Know Someone Getting Married?</div>
+        <h2 className="gift-title">Give the Gift of<br /><em>a Dream Wedding</em></h2>
+        <p className="gift-desc">The perfect gift for any engaged couple — help them plan the most important day of their lives without the stress.</p>
+        <div className="gift-recipients">
+          {["For the Bride-to-Be", "From the Maid of Honour", "A Gift from Mom", "From the In-Laws", "Bridal Shower Gift", "Engagement Gift"].map((r, i) => (
+            <span key={i} className="gift-tag">{r}</span>
+          ))}
+        </div>
+        <div className="gift-buttons">
+          <button className="gift-btn-primary" onClick={() => setShowGift(true)}>Gift the Guide</button>
+          <button className="gift-btn-secondary" onClick={() => setShowGift(true)}>From $29 CAD — Learn More</button>
+        </div>
+      </div>
+
+      <div className="landing-divider" />
       <p className="contact-sub">Whether you are interested in purchasing the guide, want to be added as a vendor, or simply have a question — we would love to hear from you.</p>
 
       {submitted ? (
