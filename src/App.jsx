@@ -2187,6 +2187,57 @@ function LandingPage() {
       </div>
 
       <div className="landing-divider" />
+
+      {/* COMING SOON CITIES */}
+      <div style={{ marginBottom: 56 }}>
+        <div className="landing-eyebrow" style={{ marginBottom: 12 }}>Expanding Across Canada</div>
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 400, color: COLORS.forest, marginBottom: 12, lineHeight: 1.1 }}>
+          More Editions <em style={{ fontStyle: "italic", color: COLORS.sandstone }}>Coming Soon</em>
+        </h2>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: COLORS.sub, marginBottom: 32, lineHeight: 1.6, maxWidth: 500 }}>
+          The Ultimate Wedding Guide is growing. New city editions are in the works — each one as carefully curated as the one you're reading now.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 12, marginBottom: 28 }}>
+          {[
+            { city: "Vancouver", region: "British Columbia", status: "In Progress" },
+            { city: "Whistler", region: "British Columbia", status: "In Progress" },
+            { city: "Okanagan", region: "British Columbia", status: "Planned" },
+            { city: "Toronto", region: "Ontario", status: "Planned" },
+            { city: "Muskoka", region: "Ontario", status: "Planned" },
+            { city: "Montreal", region: "Quebec", status: "Planned" },
+            { city: "Niagara-on-the-Lake", region: "Ontario", status: "Planned" },
+            { city: "Halifax", region: "Nova Scotia", status: "Planned" },
+          ].map((c, i) => (
+            <div key={i} style={{
+              border: `1px solid ${COLORS.border}`,
+              borderRadius: 4,
+              padding: "16px 18px",
+              background: c.status === "In Progress" ? COLORS.mint : COLORS.white,
+              borderColor: c.status === "In Progress" ? COLORS.forest : COLORS.border,
+            }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: COLORS.forest, marginBottom: 3 }}>{c.city}</div>
+              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
+              <div style={{
+                display: "inline-block",
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 10,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: c.status === "In Progress" ? COLORS.forest : COLORS.sandstone,
+                background: c.status === "In Progress" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
+                padding: "3px 10px",
+                borderRadius: 20,
+              }}>{c.status}</div>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontSize: 13, color: COLORS.sub, fontStyle: "italic" }}>
+          Want to be notified when your city launches? Send us a message below and we will add you to the list.
+        </p>
+      </div>
+
+      <div className="landing-divider" />
+      <h2 className="contact-title">Get in Touch</h2>
       <p className="contact-sub">Whether you are interested in purchasing the guide, want to be added as a vendor, or simply have a question — we would love to hear from you.</p>
 
       {submitted ? (
@@ -2212,6 +2263,7 @@ function LandingPage() {
               <option value="purchase">Purchase the guide</option>
               <option value="vendor">Add or update a vendor listing</option>
               <option value="updates">Notify me of updates</option>
+              <option value="city">Notify me when my city launches</option>
               <option value="general">General inquiry</option>
             </select>
           </div>
