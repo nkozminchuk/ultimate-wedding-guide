@@ -112,14 +112,17 @@ const styles = `
     background: ${COLORS.forest};
     padding: 0 40px;
     display: flex;
+    align-items: center;
     gap: 0;
     border-top: 1px solid rgba(255,255,255,0.08);
-    overflow-x: auto;
-    scrollbar-width: none;
+    position: relative;
+    z-index: 100;
   }
-  .nav::-webkit-scrollbar { display: none; }
+  .nav-item {
+    position: relative;
+  }
   .nav-btn {
-    padding: 14px 18px;
+    padding: 16px 20px;
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -132,14 +135,123 @@ const styles = `
     border-bottom: 2px solid transparent;
     white-space: nowrap;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .nav-btn:hover { color: ${COLORS.sandstone}; }
   .nav-btn.active {
     color: ${COLORS.sandstone};
     border-bottom-color: ${COLORS.sandstone};
   }
-  .nav-btn.locked-tab {
-    opacity: 0.45;
+  .nav-btn .nav-arrow {
+    font-size: 8px;
+    transition: transform 0.2s;
+    opacity: 0.6;
+  }
+  .nav-item:hover .nav-arrow { transform: rotate(180deg); }
+  .nav-gift-btn {
+    margin-left: auto;
+    padding: 8px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: ${COLORS.forest};
+    background: ${COLORS.sandstone};
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-gift-btn:hover { background: #d4a870; }
+  .nav-lock-btn {
+    padding: 8px 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(247,243,236,0.3);
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.2s;
+  }
+  .nav-lock-btn:hover { color: rgba(247,243,236,0.6); }
+
+  /* DROPDOWN */
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: ${COLORS.white};
+    border: 1px solid ${COLORS.border};
+    border-top: 3px solid ${COLORS.sandstone};
+    border-radius: 0 0 4px 4px;
+    min-width: 220px;
+    box-shadow: 0 8px 32px rgba(44,74,62,0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s;
+    z-index: 200;
+  }
+  .nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: ${COLORS.text};
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid ${COLORS.border};
+  }
+  .dropdown-item:last-child { border-bottom: none; }
+  .dropdown-item:hover {
+    background: ${COLORS.parchment};
+    color: ${COLORS.forest};
+    padding-left: 22px;
+  }
+  .dropdown-item.active {
+    color: ${COLORS.forest};
+    font-weight: 600;
+    background: ${COLORS.mint};
+  }
+  .dropdown-item .lock-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: ${COLORS.sandstone};
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .dropdown-divider {
+    height: 1px;
+    background: ${COLORS.border};
+    margin: 4px 0;
+  }
+
+  @media (max-width: 640px) {
+    .nav { padding: 0 16px; }
+    .nav-btn { padding: 14px 12px; font-size: 10px; letter-spacing: 2px; }
+    .dropdown { min-width: 180px; }
   }
 
   /* CONTENT */
@@ -2423,20 +2535,78 @@ export default function App() {
 
         {/* NAV */}
         <nav className="nav">
-          {tabs.map(t => (
+          {/* Home */}
+          <div className="nav-item">
             <button
-              key={t.id}
-              className={`nav-btn ${activeTab === t.id ? "active" : ""} ${t.locked && !unlocked ? "locked-tab" : ""}`}
-              onClick={() => handleTabClick(t)}
+              className={`nav-btn ${activeTab === "home" ? "active" : ""}`}
+              onClick={() => setActiveTab("home")}
             >
-              {t.label}
+              Home
             </button>
-          ))}
+          </div>
+
+          {/* Free Checklist */}
+          <div className="nav-item">
+            <button
+              className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`}
+              onClick={() => setActiveTab("checklist")}
+            >
+              Free Checklist
+            </button>
+          </div>
+
+          {/* The Guide dropdown */}
+          <div className="nav-item">
+            <button
+              className={`nav-btn ${["budget","venues","catering","bar","photo","florists","cakes","dresses","coming"].includes(activeTab) ? "active" : ""}`}
+            >
+              The Guide <span className="nav-arrow">▼</span>
+            </button>
+            <div className="dropdown">
+              {[
+                { id: "budget", label: "Budget Guide" },
+                { id: "venues", label: "Venues" },
+                { id: "catering", label: "Catering" },
+                { id: "bar", label: "Mobile Bar" },
+                { id: "photo", label: "Photography" },
+                { id: "florists", label: "Florists" },
+                { id: "cakes", label: "Cakes & Desserts" },
+                { id: "dresses", label: "Wedding Dresses" },
+                { id: "coming", label: "On Our Radar" },
+              ].map(item => (
+                <button
+                  key={item.id}
+                  className={`dropdown-item ${activeTab === item.id ? "active" : ""}`}
+                  onClick={() => {
+                    const tab = tabs.find(t => t.id === item.id);
+                    handleTabClick(tab);
+                  }}
+                >
+                  {item.label}
+                  {!unlocked && <span className="lock-dot" />}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Gift button */}
+          <button
+            className="nav-gift-btn"
+            onClick={() => {
+              setActiveTab("home");
+              setTimeout(() => {
+                document.querySelector(".gift-section")?.scrollIntoView({ behavior: "smooth" });
+              }, 100);
+            }}
+          >
+            Gift the Guide
+          </button>
+
+          {/* Lock button when unlocked */}
           {unlocked && (
             <button
-              className="nav-btn"
+              className="nav-lock-btn"
               onClick={() => { setUnlocked(false); setActiveTab("home"); }}
-              style={{ marginLeft: "auto", opacity: 0.5, fontSize: 10 }}
             >
               Lock
             </button>
