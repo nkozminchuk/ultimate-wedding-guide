@@ -279,7 +279,7 @@ const styles = `
   .section-lead {
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     font-style: italic;
     color: ${COLORS.sub};
     line-height: 1.6;
@@ -701,11 +701,21 @@ const styles = `
   .landing-body {
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.75;
     color: ${COLORS.sub};
     max-width: 600px;
     margin-bottom: 48px;
+  }
+  .section-lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: ${COLORS.sub};
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid ${COLORS.border};
   }
   .landing-features {
     display: grid;
@@ -2107,6 +2117,7 @@ function BudgetGuide() {
 const tabs = [
   { id: "home", label: "Home" },
   { id: "checklist", label: "Free Checklist" },
+  { id: "why", label: "Our Story" },
   { id: "budget", label: "Budget Guide", locked: true },
   { id: "venues", label: "Venues", locked: true },
   { id: "catering", label: "Catering", locked: true },
@@ -2120,6 +2131,7 @@ const tabs = [
 
 const sectionMeta = {
   home: { eyebrow: "Canadian Rockies Edition", title: "The Ultimate Wedding Guide", lead: "" },
+  why: { eyebrow: "Behind the Guide", title: "Our Story", lead: "" },
   checklist: { eyebrow: "Canadian Rockies Edition", title: "Wedding Planning Checklist", lead: "From the moment you get engaged to the moment you say \"I do\" — every task, every milestone, beautifully organized." },
   budget: { eyebrow: "Canadian Rockies Edition", title: "Budget Planning Guide", lead: "Every dream wedding is different — and so is every budget. Find the tier that fits your vision and explore vendors that align with your investment." },
   venues: { eyebrow: "Calgary", title: "Venues", lead: "Calgary offers an exceptional range of wedding venues — from iconic luxury hotels and dramatic arts spaces to rustic barns, intimate restaurant settings, and beautiful churches and chapels." },
@@ -2309,11 +2321,17 @@ function LandingPage() {
   return (
     <div className="landing">
       <div className="landing-eyebrow">Canadian Rockies Edition</div>
-      <h1 className="landing-title">Plan your dream wedding.<br /><em>Without the planner price tag.</em></h1>
+      <h1 className="landing-title">Your wedding should feel<br /><em>exciting. Not overwhelming.</em></h1>
       <p className="landing-body">
-        The Ultimate Wedding Guide — Canadian Rockies Edition is your complete, curated planning resource for getting married in Calgary, Canmore, or Banff. We have done the research, vetted the vendors, and organized everything so you can focus on what matters most — enjoying every moment of your journey to the altar.
+        We've done the research, vetted the vendors, and organized everything — so you can put down the laptop, stop the endless Googling, and actually enjoy being engaged. The Ultimate Wedding Guide — Canadian Rockies Edition gives you everything you need to plan your dream wedding in Calgary, Canmore, or Banff, all in one beautiful place.
       </p>
 
+      <div style={{ marginBottom: 16 }}>
+        <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.6 }}>
+          Everything you need to plan your Rocky Mountain wedding — researched, vetted, and organized for you.
+        </p>
+      </div>
       <div className="landing-features">
         {features.map((f, i) => (
           <div key={i} className="feature-card">
@@ -2339,7 +2357,6 @@ function LandingPage() {
         </div>
         <div className="gift-buttons">
           <button className="gift-btn-primary" onClick={() => setShowGift(true)}>Gift the Guide</button>
-          <button className="gift-btn-secondary" onClick={() => setShowGift(true)}>From $29 CAD — Learn More</button>
         </div>
       </div>
 
@@ -2590,6 +2607,16 @@ export default function App() {
             </button>
           </div>
 
+          {/* Our Story */}
+          <div className="nav-item">
+            <button
+              className={`nav-btn ${activeTab === "why" ? "active" : ""}`}
+              onClick={() => setActiveTab("why")}
+            >
+              Our Story
+            </button>
+          </div>
+
           {/* Free Checklist */}
           <div className="nav-item">
             <button
@@ -2657,6 +2684,62 @@ export default function App() {
             </button>
           )}
         </nav>
+
+        {/* OUR STORY */}
+        {activeTab === "why" && (
+          <div className="content">
+            <div className="section-eyebrow">Behind the Guide</div>
+            <h1 className="section-title">Our Story</h1>
+            <div style={{ maxWidth: 620 }}>
+              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 400, fontStyle: "italic", color: COLORS.forest, lineHeight: 1.6, marginBottom: 32 }}>
+                "Planning a wedding should be one of the most joyful experiences of your life. I created this guide because I watched someone I love go through the opposite."
+              </p>
+              <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
+                Last summer, my close friend got married. She and her husband were so excited — and they deserved every bit of that excitement. But almost immediately, the planning process started to chip away at it. Every week brought a new curveball. Vendors were hard to find, harder to compare, and nearly impossible to vet without spending hours online. Their planner wasn't providing the relief they had hoped for. Arguments became a daily occurrence. The joy of being engaged was getting buried under the weight of logistics.
+              </p>
+              <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
+                I watched two people who love each other deeply get worn down by a process that should have felt exciting. And I kept thinking — someone should fix this. Someone should do the research, compile the vendors, organize the information, and hand it to couples so they can just breathe and enjoy being engaged.
+              </p>
+              <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
+                So I did.
+              </p>
+              <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
+                The Ultimate Wedding Guide — Canadian Rockies Edition is built for couples who want to feel relief, excitement, and ease when they think about their wedding — not dread. It is for the bride who opens her laptop to research venues and immediately feels overwhelmed. It is for the couple who just wants someone to tell them where to start. We have done the Googling, made the calls, vetted the vendors, and organized everything into one beautiful resource — so you can close the laptop, pour a glass of wine, and actually enjoy this season of your life.
+              </p>
+              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontStyle: "italic", color: COLORS.forest, lineHeight: 1.7, marginBottom: 4 }}>
+                Congratulations on your engagement. All the best,
+              </p>
+              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontStyle: "italic", color: COLORS.forest, marginBottom: 40 }}>
+                Nadia
+              </p>
+              <div style={{
+                background: COLORS.forest,
+                borderRadius: 4,
+                padding: "32px 36px",
+                marginBottom: 40,
+              }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontStyle: "italic", color: COLORS.cream, lineHeight: 1.7, marginBottom: 20 }}>
+                  "You deserve to feel excited about every single part of planning your wedding. That feeling is exactly what this guide was made to give you."
+                </p>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, letterSpacing: 3, color: COLORS.sandstone, textTransform: "uppercase" }}>
+                  — The Ultimate Wedding Guide
+                </p>
+              </div>
+              <div style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 32 }}>
+                <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 12 }}>
+                  Ready to start?
+                </p>
+                <button
+                  className="form-btn"
+                  onClick={() => setActiveTab("checklist")}
+                  style={{ marginRight: 16, marginBottom: 32 }}
+                >
+                  Try the Free Checklist
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* HOME */}
         {activeTab === "home" && <LandingPage />}
