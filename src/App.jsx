@@ -1578,6 +1578,51 @@ const venueData = [
   },
 ];
 
+const churchData = [
+  {
+    name: "Knox United Church",
+    desc: "A stunning downtown landmark with soaring ceilings, a magnificent pipe organ, and beautiful stained glass windows. With a capacity of 654 guests, it's one of Calgary's grandest ceremony settings.",
+    url: "kxcalgary.com",
+    link: "https://www.kxcalgary.com",
+  },
+  {
+    name: "St. Martin's Church",
+    desc: "Tucked inside Heritage Park, this charming country church offers a timeless rustic setting that feels worlds away from the city. Perfect for couples who want a traditional ceremony with character and history.",
+    url: "stmartinschurch.ca",
+    link: "https://stmartinschurch.ca",
+  },
+  {
+    name: "Hillhurst United Church",
+    desc: "A warm and welcoming church in the heart of Hillhurst, proudly affirming and open to all couples regardless of background or identity. A beautiful choice for inclusive celebrations.",
+    url: "hillhurstunited.com",
+    link: "https://hillhurstunited.com",
+  },
+  {
+    name: "Cathedral Church of the Redeemer",
+    desc: "A breathtaking downtown cathedral steps from Olympic Plaza. Offers the intimate Lady Chapel for smaller ceremonies or the grand main Cathedral for larger gatherings — two beautiful options under one roof.",
+    url: "anglicancathedralcalgary.ca",
+    link: "https://www.anglicancathedralcalgary.ca",
+  },
+  {
+    name: "Robert McClure United Church",
+    desc: "An inclusive and welcoming congregation that opens its doors to couples of all genders, faiths, and backgrounds. A meaningful space for couples seeking a spiritual ceremony without boundaries.",
+    url: "robertmcclurechurch.org",
+    link: "https://robertmcclurechurch.org",
+  },
+  {
+    name: "Commons Church",
+    desc: "A modern and vibrant church community with a warm, contemporary feel. Ideal for couples who want the meaning of a church ceremony with a fresh, welcoming atmosphere.",
+    url: "commons.church",
+    link: "https://www.commons.church",
+  },
+  {
+    name: "The Chapel Company",
+    desc: "A beautiful standalone chapel nestled in Water Valley, approximately 45 minutes from Calgary. Bright, intimate, and utterly charming — worth the drive for something truly unique.",
+    url: "thechapelcompany.com",
+    link: "https://www.thechapelcompany.com",
+  },
+];
+
 const cateringData = [
   { name: "Curated Catering by Hotel Arts", tier: "$$$", fields: [
     { label: "Style", value: "SAIT's exclusive caterer — gourmet multi-course menus, bold flavours, artful presentation" },
@@ -2077,7 +2122,7 @@ const sectionMeta = {
   home: { eyebrow: "Canadian Rockies Edition", title: "The Ultimate Wedding Guide", lead: "" },
   checklist: { eyebrow: "Canadian Rockies Edition", title: "Wedding Planning Checklist", lead: "From the moment you get engaged to the moment you say \"I do\" — every task, every milestone, beautifully organized." },
   budget: { eyebrow: "Canadian Rockies Edition", title: "Budget Planning Guide", lead: "Every dream wedding is different — and so is every budget. Find the tier that fits your vision and explore vendors that align with your investment." },
-  venues: { eyebrow: "Calgary", title: "Venues", lead: "Calgary offers an exceptional range of wedding venues — from iconic luxury hotels and dramatic arts spaces to rustic barns and intimate restaurant settings." },
+  venues: { eyebrow: "Calgary", title: "Venues", lead: "Calgary offers an exceptional range of wedding venues — from iconic luxury hotels and dramatic arts spaces to rustic barns, intimate restaurant settings, and beautiful churches and chapels." },
   catering: { eyebrow: "Calgary", title: "Catering", lead: "For venues without in-house catering, these Calgary caterers bring exceptional skill, flexibility, and style to your wedding table." },
   bar: { eyebrow: "Calgary", title: "Mobile Bar Services", lead: "Alberta's liquor laws make mobile bar services unique. Here's everything you need to know — and the best services in the city." },
   photo: { eyebrow: "Calgary", title: "Photography & Videography", lead: "Your photos and film are the memories you will revisit for the rest of your lives. Alberta's landscapes reward photographers who truly know light." },
@@ -2636,7 +2681,67 @@ export default function App() {
             <h1 className="section-title">{meta.title}</h1>
             {meta.lead && <p className="section-lead">{meta.lead}</p>}
           {activeTab === "budget" && <BudgetGuide />}
-          {activeTab === "venues" && <VenueSection sections={venueData} />}
+          {activeTab === "venues" && (
+            <>
+              <VenueSection sections={venueData} />
+              <div style={{ marginTop: 48 }}>
+                <div style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 28, fontWeight: 500,
+                  color: COLORS.gold,
+                  paddingBottom: 12,
+                  borderBottom: `1px solid ${COLORS.border}`,
+                  marginBottom: 16,
+                }}>
+                  Churches & Chapels
+                </div>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 17, fontStyle: "italic",
+                  color: COLORS.sub, marginBottom: 28, lineHeight: 1.6
+                }}>
+                  For couples planning a religious or spiritual ceremony, Calgary and surrounding area offer a range of beautiful churches and chapels — from grand downtown cathedrals to intimate country chapels.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  {churchData.map((c, i) => (
+                    <div key={i} style={{
+                      border: `1px solid ${COLORS.border}`,
+                      borderRadius: 4,
+                      overflow: "hidden",
+                      background: COLORS.white,
+                    }}>
+                      <div style={{
+                        background: COLORS.parchment,
+                        padding: "14px 22px",
+                        borderBottom: `1px solid ${COLORS.border}`,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        flexWrap: "wrap",
+                        gap: 8,
+                      }}>
+                        <span style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontSize: 22, fontWeight: 600,
+                          color: COLORS.forest,
+                        }}>{c.name}</span>
+                        <a href={c.link} target="_blank" rel="noopener noreferrer" style={{
+                          fontFamily: "'Jost', sans-serif",
+                          fontSize: 11, letterSpacing: 1,
+                          color: COLORS.sandstone,
+                          textDecoration: "underline",
+                          textUnderlineOffset: 3,
+                        }}>{c.url}</a>
+                      </div>
+                      <div style={{ padding: "14px 22px" }}>
+                        <p style={{ fontSize: 14, color: COLORS.text, lineHeight: 1.6 }}>{c.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
 
           {activeTab === "catering" && (
             <SimpleVendors
