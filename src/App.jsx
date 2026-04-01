@@ -254,6 +254,72 @@ const styles = `
     .dropdown { min-width: 180px; }
   }
 
+  /* FOOTER */
+  .site-footer {
+    background: ${COLORS.forest};
+    padding: 48px 60px;
+    text-align: center;
+    border-top: 3px solid ${COLORS.sandstone};
+    position: relative;
+    overflow: hidden;
+  }
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(196,149,106,0.1) 0%, transparent 60%);
+  }
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    color: ${COLORS.cream};
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .footer-divider {
+    width: 40px;
+    height: 1px;
+    background: ${COLORS.sandstone};
+    margin: 16px auto;
+    position: relative;
+  }
+  .footer-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .footer-email {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: ${COLORS.cream};
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196,149,106,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .footer-email:hover {
+    border-color: ${COLORS.sandstone};
+  }
+  .footer-copy {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    color: rgba(247,243,236,0.3);
+    margin-top: 32px;
+    letter-spacing: 1px;
+    position: relative;
+  }
+
+  @media (max-width: 640px) {
+    .site-footer { padding: 40px 24px; }
+  }
+
   /* CONTENT */
   .content {
     padding: 60px 60px 80px;
@@ -2972,6 +3038,20 @@ export default function App() {
           )}
         </div>
         )}
+
+        {/* FOOTER */}
+        <footer className="site-footer">
+          <div className="footer-title">Let's Chat!</div>
+          <div className="footer-divider" />
+          <div className="footer-label">Contact us via email</div>
+          <a href="mailto:info@ultimateweddingguide.ca" className="footer-email">
+            info@ultimateweddingguide.ca
+          </a>
+          <div className="footer-copy">
+            © {new Date().getFullYear()} The Ultimate Wedding Guide — Canadian Rockies Edition. All rights reserved.
+          </div>
+        </footer>
+
       </div>
     </>
   );
