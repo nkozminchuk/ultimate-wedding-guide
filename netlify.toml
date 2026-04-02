@@ -2,14 +2,6 @@
   command = "npm run build"
   publish = "build"
 
-# Force www redirect
-[[redirects]]
-  from = "https://ultimateweddingguide.ca/*"
-  to = "https://www.ultimateweddingguide.ca/:splat"
-  status = 301
-  force = true
-
-# React app routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
