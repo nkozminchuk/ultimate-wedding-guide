@@ -252,6 +252,89 @@ const styles = `
     .nav { padding: 0 16px; }
     .nav-btn { padding: 14px 12px; font-size: 10px; letter-spacing: 2px; }
     .dropdown { min-width: 180px; }
+    .nav-desktop { display: none; }
+    .nav-mobile { display: flex; }
+  }
+  @media (min-width: 641px) {
+    .nav-desktop { display: flex; align-items: center; flex: 1; }
+    .nav-mobile { display: none; }
+  }
+
+  /* HAMBURGER */
+  .hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 16px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: auto;
+  }
+  .hamburger-btn span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: rgba(247,243,236,0.7);
+    transition: all 0.2s;
+  }
+  .hamburger-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+  .hamburger-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: ${COLORS.forest};
+    border-top: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    z-index: 300;
+    padding: 8px 0 16px;
+  }
+  .mobile-menu-item {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(247,243,236,0.6);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mobile-menu-item:hover { color: ${COLORS.sandstone}; padding-left: 28px; }
+  .mobile-menu-item.active { color: ${COLORS.sandstone}; }
+  .mobile-menu-item.gift {
+    color: ${COLORS.forest};
+    background: ${COLORS.sandstone};
+    margin: 8px 16px 4px;
+    width: calc(100% - 32px);
+    border-radius: 2px;
+    text-align: center;
+    padding: 14px 24px;
+    font-weight: 600;
+  }
+  .mobile-menu-item.gift:hover { background: #d4a870; padding-left: 24px; }
+  .mobile-menu-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 8px 16px;
+  }
+  .mobile-menu-section {
+    padding: 8px 24px 4px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: ${COLORS.sandstone};
+    opacity: 0.7;
   }
 
   /* FOOTER */
@@ -2631,6 +2714,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [unlocked, setUnlocked] = useState(false);
   const [showPasswordGate, setShowPasswordGate] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const meta = sectionMeta[activeTab] || sectionMeta["home"];
   const isLocked = tabs.find(t => t.id === activeTab)?.locked;
 
@@ -2640,12 +2724,25 @@ export default function App() {
     } else {
       setActiveTab(tab.id);
     }
+    setShowMobileMenu(false);
   }
 
   function handleUnlock() {
     setUnlocked(true);
     setShowPasswordGate(false);
   }
+
+  const guideItems = [
+    { id: "budget", label: "Budget Guide" },
+    { id: "venues", label: "Venues" },
+    { id: "catering", label: "Catering" },
+    { id: "bar", label: "Mobile Bar" },
+    { id: "photo", label: "Photography" },
+    { id: "florists", label: "Florists" },
+    { id: "cakes", label: "Cakes & Desserts" },
+    { id: "dresses", label: "Wedding Dresses" },
+    { id: "coming", label: "On Our Radar" },
+  ];
 
   return (
     <>
@@ -2662,92 +2759,72 @@ export default function App() {
         </div>
 
         {/* NAV */}
-        <nav className="nav">
-          {/* Home */}
-          <div className="nav-item">
-            <button
-              className={`nav-btn ${activeTab === "home" ? "active" : ""}`}
-              onClick={() => setActiveTab("home")}
-            >
-              Home
+        <nav className="nav" style={{ position: "relative" }}>
+
+          {/* DESKTOP NAV */}
+          <div className="nav-desktop">
+            <div className="nav-item">
+              <button className={`nav-btn ${activeTab === "home" ? "active" : ""}`} onClick={() => setActiveTab("home")}>Home</button>
+            </div>
+            <div className="nav-item">
+              <button className={`nav-btn ${activeTab === "why" ? "active" : ""}`} onClick={() => setActiveTab("why")}>Our Story</button>
+            </div>
+            <div className="nav-item">
+              <button className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`} onClick={() => setActiveTab("checklist")}>Free Checklist</button>
+            </div>
+            <div className="nav-item">
+              <button className={`nav-btn ${guideItems.map(i=>i.id).includes(activeTab) ? "active" : ""}`}>
+                The Guide <span className="nav-arrow">▼</span>
+              </button>
+              <div className="dropdown">
+                {guideItems.map(item => (
+                  <button key={item.id} className={`dropdown-item ${activeTab === item.id ? "active" : ""}`}
+                    onClick={() => { const tab = tabs.find(t => t.id === item.id); handleTabClick(tab); }}>
+                    {item.label}
+                    {!unlocked && <span className="lock-dot" />}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <button className="nav-gift-btn" onClick={() => { setActiveTab("home"); setTimeout(() => document.querySelector(".gift-section")?.scrollIntoView({ behavior: "smooth" }), 100); }}>
+              Gift the Guide
+            </button>
+            {unlocked && (
+              <button className="nav-lock-btn" onClick={() => { setUnlocked(false); setActiveTab("home"); }}>Lock</button>
+            )}
+          </div>
+
+          {/* MOBILE NAV */}
+          <div className="nav-mobile" style={{ width: "100%", alignItems: "center", justifyContent: "space-between" }}>
+            <button className={`nav-btn ${activeTab === "home" ? "active" : ""}`} style={{ padding: "16px 8px" }} onClick={() => { setActiveTab("home"); setShowMobileMenu(false); }}>Home</button>
+            <button className="nav-gift-btn" style={{ margin: "0 8px" }} onClick={() => { setActiveTab("home"); setShowMobileMenu(false); setTimeout(() => document.querySelector(".gift-section")?.scrollIntoView({ behavior: "smooth" }), 100); }}>
+              Gift the Guide
+            </button>
+            <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
+              <span /><span /><span />
             </button>
           </div>
 
-          {/* Our Story */}
-          <div className="nav-item">
-            <button
-              className={`nav-btn ${activeTab === "why" ? "active" : ""}`}
-              onClick={() => setActiveTab("why")}
-            >
-              Our Story
-            </button>
-          </div>
-
-          {/* Free Checklist */}
-          <div className="nav-item">
-            <button
-              className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`}
-              onClick={() => setActiveTab("checklist")}
-            >
-              Free Checklist
-            </button>
-          </div>
-
-          {/* The Guide dropdown */}
-          <div className="nav-item">
-            <button
-              className={`nav-btn ${["budget","venues","catering","bar","photo","florists","cakes","dresses","coming"].includes(activeTab) ? "active" : ""}`}
-            >
-              The Guide <span className="nav-arrow">▼</span>
-            </button>
-            <div className="dropdown">
-              {[
-                { id: "budget", label: "Budget Guide" },
-                { id: "venues", label: "Venues" },
-                { id: "catering", label: "Catering" },
-                { id: "bar", label: "Mobile Bar" },
-                { id: "photo", label: "Photography" },
-                { id: "florists", label: "Florists" },
-                { id: "cakes", label: "Cakes & Desserts" },
-                { id: "dresses", label: "Wedding Dresses" },
-                { id: "coming", label: "On Our Radar" },
-              ].map(item => (
-                <button
-                  key={item.id}
-                  className={`dropdown-item ${activeTab === item.id ? "active" : ""}`}
-                  onClick={() => {
-                    const tab = tabs.find(t => t.id === item.id);
-                    handleTabClick(tab);
-                  }}
-                >
-                  {item.label}
-                  {!unlocked && <span className="lock-dot" />}
+          {/* MOBILE DROPDOWN MENU */}
+          {showMobileMenu && (
+            <div className="mobile-menu">
+              <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
+              <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
+              <div className="mobile-menu-divider" />
+              <div className="mobile-menu-section">The Guide</div>
+              {guideItems.map(item => (
+                <button key={item.id} className={`mobile-menu-item ${activeTab === item.id ? "active" : ""}`}
+                  onClick={() => { const tab = tabs.find(t => t.id === item.id); handleTabClick(tab); }}>
+                  {item.label} {!unlocked && "·"}
                 </button>
               ))}
+              {unlocked && (
+                <>
+                  <div className="mobile-menu-divider" />
+                  <button className="mobile-menu-item" style={{ opacity: 0.4 }} onClick={() => { setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>Lock Guide</button>
+                </>
+              )}
             </div>
-          </div>
-
-          {/* Gift button */}
-          <button
-            className="nav-gift-btn"
-            onClick={() => {
-              setActiveTab("home");
-              setTimeout(() => {
-                document.querySelector(".gift-section")?.scrollIntoView({ behavior: "smooth" });
-              }, 100);
-            }}
-          >
-            Gift the Guide
-          </button>
-
-          {/* Lock button when unlocked */}
-          {unlocked && (
-            <button
-              className="nav-lock-btn"
-              onClick={() => { setUnlocked(false); setActiveTab("home"); }}
-            >
-              Lock
-            </button>
           )}
         </nav>
 
