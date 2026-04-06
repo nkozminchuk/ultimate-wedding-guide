@@ -1851,6 +1851,17 @@ const cateringData = [
 ];
 
 const barData = [
+  { name: "Black Tie & Bourbon Events", tier: "$/$$", fields: [
+    { label: "Setup", value: "Two mobile bars available; staffing-only option also offered" },
+    { label: "Pricing", value: "Customized packages to accommodate all budgets" },
+    { label: "Alcohol", value: "Can supply alcohol OR work with client-supplied alcohol" },
+    { label: "Cocktails", value: "Wide variety of signature cocktails available" },
+    { label: "Mocktails", value: "Yes — wide variety of mocktails and dirty sodas available" },
+    { label: "Guest Count", value: "No minimum or maximum — 500+ bartenders on roster" },
+    { label: "AGLC", value: "Can handle the liquor licence or guide couples through the process themselves" },
+    { label: "Licensed & Insured", value: "Yes" },
+    { label: "Instagram", value: "@blacktieandbourbonevents" },
+  ]},
   { name: "In the Mix Bartending", tier: "$/$$", fields: [
     { label: "Setup", value: "Full bar setup, equipment, glassware, mix & garnish provided" },
     { label: "Alcohol", value: "Can supply alcohol OR work with client-supplied alcohol" },
@@ -1873,7 +1884,7 @@ const barData = [
   ]},
 ];
 
-const barPending = ["Black Tie & Bourbon  @blacktieandbourbonevents", "The Wildflower Wandering Bar  thewildflower.ca", "True Spirits Mobile Bar  truespiritsmobilebar.com", "Olive and Twist Mobile Bar  oliveandtwistmobilebar.com", "The Prosecco Cart  proseccocart.ca", "Sugar Water  sugarwater.bar"];
+const barPending = ["The Wildflower Wandering Bar  thewildflower.ca", "True Spirits Mobile Bar  truespiritsmobilebar.com", "Olive and Twist Mobile Bar  oliveandtwistmobilebar.com", "The Prosecco Cart  proseccocart.ca", "Sugar Water  sugarwater.bar"];
 
 const photoData = [
   { name: "Light Delight Photography", tier: "$", fields: [
