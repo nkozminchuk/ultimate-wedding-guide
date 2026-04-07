@@ -2304,17 +2304,17 @@ const tabs = [
 
 const sectionMeta = {
   home: { eyebrow: "Canadian Rockies Edition", title: "The Ultimate Wedding Guide", lead: "" },
-  why: { eyebrow: "Behind the Guide", title: "Our Story", lead: "" },
-  checklist: { eyebrow: "Canadian Rockies Edition", title: "Wedding Planning Checklist", lead: "From the moment you get engaged to the moment you say \"I do\" — every task, every milestone, beautifully organized." },
-  budget: { eyebrow: "Canadian Rockies Edition", title: "Budget Planning Guide", lead: "Every dream wedding is different — and so is every budget. Find the tier that fits your vision and explore vendors that align with your investment." },
-  venues: { eyebrow: "Calgary", title: "Venues", lead: "Calgary offers an exceptional range of wedding venues — from iconic luxury hotels and dramatic arts spaces to rustic barns, intimate restaurant settings, and beautiful churches and chapels." },
-  catering: { eyebrow: "Calgary", title: "Catering", lead: "For venues without in-house catering, these Calgary caterers bring exceptional skill, flexibility, and style to your wedding table." },
-  bar: { eyebrow: "Calgary", title: "Mobile Bar Services", lead: "Alberta's liquor laws make mobile bar services unique. Here's everything you need to know — and the best services in the city." },
-  photo: { eyebrow: "Calgary", title: "Photography & Videography", lead: "Your photos and film are the memories you will revisit for the rest of your lives. Alberta's landscapes reward photographers who truly know light." },
-  florists: { eyebrow: "Calgary", title: "Florists", lead: "Florals set the tone for your entire wedding aesthetic. Calgary's florist community is exceptionally talented — and nearly all travel to Canmore and Banff." },
-  cakes: { eyebrow: "Calgary", title: "Cakes & Desserts", lead: "From elegant tiered cakes to whimsical dessert tables, Calgary's bakers are exceptionally talented. Whatever your vision and budget, there is a baker here for you." },
-  dresses: { eyebrow: "Calgary", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding planning. We recommend visiting each of these boutiques in person — no online browsing compares to trying on the real thing." },
-  coming: { eyebrow: "Canadian Rockies Edition", title: "On Our Radar", lead: "We are constantly scouting, vetting, and adding to this guide. Consider this your insider preview of what's coming — and a reminder that the best vendors book fast." },
+  why: { eyebrow: "Behind the Guide", title: "Our Story", lead: "", icon: "story" },
+  checklist: { eyebrow: "Canadian Rockies Edition", title: "Wedding Planning Checklist", lead: "From the moment you get engaged to the moment you say \"I do\" — every task, every milestone, beautifully organized.", icon: "checklist" },
+  budget: { eyebrow: "Canadian Rockies Edition", title: "Budget Planning Guide", lead: "Every dream wedding is different — and so is every budget. Find the tier that fits your vision and explore vendors that align with your investment.", icon: "budget" },
+  venues: { eyebrow: "Calgary", title: "Venues", lead: "Calgary offers an exceptional range of wedding venues — from iconic luxury hotels and dramatic arts spaces to rustic barns, intimate restaurant settings, and beautiful churches and chapels.", icon: "venues" },
+  catering: { eyebrow: "Calgary", title: "Catering", lead: "For venues without in-house catering, these Calgary caterers bring exceptional skill, flexibility, and style to your wedding table.", icon: "catering" },
+  bar: { eyebrow: "Calgary", title: "Mobile Bar Services", lead: "Alberta's liquor laws make mobile bar services unique. Here's everything you need to know — and the best services in the city.", icon: "bar" },
+  photo: { eyebrow: "Calgary", title: "Photography & Videography", lead: "Your photos and film are the memories you will revisit for the rest of your lives. Alberta's landscapes reward photographers who truly know light.", icon: "photo" },
+  florists: { eyebrow: "Calgary", title: "Florists", lead: "Florals set the tone for your entire wedding aesthetic. Calgary's florist community is exceptionally talented — and nearly all travel to Canmore and Banff.", icon: "florists" },
+  cakes: { eyebrow: "Calgary", title: "Cakes & Desserts", lead: "From elegant tiered cakes to whimsical dessert tables, Calgary's bakers are exceptionally talented. Whatever your vision and budget, there is a baker here for you.", icon: "cakes" },
+  dresses: { eyebrow: "Calgary", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding planning. We recommend visiting each of these boutiques in person — no online browsing compares to trying on the real thing.", icon: "dresses" },
+  coming: { eyebrow: "Canadian Rockies Edition", title: "On Our Radar", lead: "We are constantly scouting, vetting, and adding to this guide. Consider this your insider preview of what's coming — and a reminder that the best vendors book fast.", icon: "coming" },
 };
 
 const dressData = [
@@ -2483,12 +2483,12 @@ function LandingPage() {
   }
 
   const features = [
-    { icon: "01", title: "Calgary, Canmore & Banff", desc: "Curated vendors across the full Canadian Rockies corridor." },
-    { icon: "02", title: "19 Verified Venues", desc: "From grand hotel ballrooms to rustic mountain barns." },
-    { icon: "03", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, organized." },
-    { icon: "04", title: "Budget Tiers", desc: "Sample packages from intimate elopements to dream celebrations." },
-    { icon: "05", title: "Photography & More", desc: "Vetted photographers, florists, caterers, bakers, and more." },
-    { icon: "06", title: "Regularly Updated", desc: "New vendors and sections added as we grow the guide." },
+    { iconKey: "venues", title: "19 Verified Venues", desc: "From grand hotel ballrooms and rustic barns to intimate restaurant settings." },
+    { iconKey: "checklist", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, beautifully organized." },
+    { iconKey: "budget", title: "Budget Planning Guide", desc: "Sample packages from intimate elopements to dream celebrations." },
+    { iconKey: "photo", title: "Photography & More", desc: "Vetted photographers, florists, caterers, bakers, and more." },
+    { iconKey: "florists", title: "All Travel to the Mountains", desc: "Nearly every vendor covers Calgary, Canmore, and Banff." },
+    { iconKey: "cakes", title: "Regularly Updated", desc: "New vendors and sections added as we grow the guide." },
   ];
 
   return (
@@ -2508,7 +2508,9 @@ function LandingPage() {
       <div className="landing-features">
         {features.map((f, i) => (
           <div key={i} className="feature-card">
-            <div className="feature-icon">{f.icon}</div>
+            <div className="feature-icon" style={{ marginBottom: 12 }}>
+              <Icon name={f.iconKey} color={COLORS.sandstone} size={28} />
+            </div>
             <div className="feature-title">{f.title}</div>
             <div className="feature-desc">{f.desc}</div>
           </div>
@@ -2734,6 +2736,36 @@ function PasswordGate({ onSuccess }) {
   );
 }
 
+// ── SVG ICONS ────────────────────────────────────────────────────────────────
+function Icon({ name, color, size }) {
+  size = size || 20;
+  const props = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: color, strokeWidth: "1.2", strokeLinecap: "round", strokeLinejoin: "round" };
+  if (name === "budget") return <svg {...props}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+  if (name === "venues") return <svg {...props}><path d="M3 22V9l9-7 9 7v13"/><path d="M9 22V16h6v6"/><path d="M3 9h18"/></svg>;
+  if (name === "catering") return <svg {...props}><path d="M3 17h18"/><path d="M3 17c0-4 2-7 9-7s9 3 9 7"/><path d="M12 10V6"/><circle cx="12" cy="5" r="1"/></svg>;
+  if (name === "bar") return <svg {...props}><path d="M8 22h8"/><path d="M12 11v11"/><path d="M5 3l2 8h10l2-8z"/><path d="M5 3h14"/></svg>;
+  if (name === "photo") return <svg {...props}><rect x="2" y="6" width="20" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l2-3h4l2 3"/></svg>;
+  if (name === "florists") return <svg {...props}><path d="M12 22V12"/><circle cx="12" cy="8" r="3"/><path d="M9 8c0-3-2-5-5-5 0 3 2 5 5 5"/><path d="M15 8c0-3 2-5 5-5 0 3-2 5-5 5"/><path d="M9 8c0 3-2 5-5 5 0-3 2-5 5-5"/><path d="M15 8c0 3 2 5 5 5 0-3-2-5-5-5"/></svg>;
+  if (name === "cakes") return <svg {...props}><path d="M2 19h20v2H2z"/><path d="M4 19v-6h16v6"/><path d="M6 13v-4h12v4"/><path d="M8 9V7h8v2"/><path d="M12 7V4"/><path d="M10 4c0-1.1.9-2 2-2s2 .9 2 2"/></svg>;
+  if (name === "dresses") return <svg {...props}><path d="M12 2l-4 6h8l-4-6z"/><path d="M8 8l-5 14h18L16 8"/><path d="M8 8h8"/></svg>;
+  if (name === "coming") return <svg {...props}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+  if (name === "checklist") return <svg {...props}><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>;
+  if (name === "story") return <svg {...props}><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>;
+  return null;
+}
+
+const guideItems = [
+  { id: "budget", label: "Budget Guide", icon: "budget" },
+  { id: "venues", label: "Venues", icon: "venues" },
+  { id: "catering", label: "Catering", icon: "catering" },
+  { id: "bar", label: "Mobile Bar", icon: "bar" },
+  { id: "photo", label: "Photography", icon: "photo" },
+  { id: "florists", label: "Florists", icon: "florists" },
+  { id: "cakes", label: "Cakes & Desserts", icon: "cakes" },
+  { id: "dresses", label: "Wedding Dresses", icon: "dresses" },
+  { id: "coming", label: "On Our Radar", icon: "coming" },
+];
+
 export default function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [unlocked, setUnlocked] = useState(false);
@@ -2755,18 +2787,6 @@ export default function App() {
     setUnlocked(true);
     setShowPasswordGate(false);
   }
-
-  const guideItems = [
-    { id: "budget", label: "Budget Guide" },
-    { id: "venues", label: "Venues" },
-    { id: "catering", label: "Catering" },
-    { id: "bar", label: "Mobile Bar" },
-    { id: "photo", label: "Photography" },
-    { id: "florists", label: "Florists" },
-    { id: "cakes", label: "Cakes & Desserts" },
-    { id: "dresses", label: "Wedding Dresses" },
-    { id: "coming", label: "On Our Radar" },
-  ];
 
   return (
     <>
@@ -2804,7 +2824,10 @@ export default function App() {
                 {guideItems.map(item => (
                   <button key={item.id} className={`dropdown-item ${activeTab === item.id ? "active" : ""}`}
                     onClick={() => { const tab = tabs.find(t => t.id === item.id); handleTabClick(tab); }}>
-                    {item.label}
+                    <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <Icon name={item.icon} color={activeTab === item.id ? COLORS.forest : COLORS.sandstone} size={15} />
+                      {item.label}
+                    </span>
                     {!unlocked && <span className="lock-dot" />}
                   </button>
                 ))}
@@ -2838,7 +2861,9 @@ export default function App() {
               <div className="mobile-menu-section">The Guide</div>
               {guideItems.map(item => (
                 <button key={item.id} className={`mobile-menu-item ${activeTab === item.id ? "active" : ""}`}
-                  onClick={() => { const tab = tabs.find(t => t.id === item.id); handleTabClick(tab); }}>
+                  onClick={() => { const tab = tabs.find(t => t.id === item.id); handleTabClick(tab); }}
+                  style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <Icon name={item.icon} color="rgba(196,149,106,0.7)" size={14} />
                   {item.label} {!unlocked && "·"}
                 </button>
               ))}
@@ -2856,7 +2881,10 @@ export default function App() {
         {activeTab === "why" && (
           <div className="content">
             <div className="section-eyebrow">Behind the Guide</div>
-            <h1 className="section-title">Our Story</h1>
+            <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <Icon name="story" color={COLORS.sandstone} size={36} />
+              Our Story
+            </h1>
             <div style={{ maxWidth: 620 }}>
               <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 400, fontStyle: "italic", color: COLORS.forest, lineHeight: 1.6, marginBottom: 32 }}>
                 "Planning a wedding should be one of the most joyful experiences of your life. I created this guide because I watched someone I love go through the opposite."
@@ -2915,7 +2943,10 @@ export default function App() {
         {activeTab === "checklist" && (
           <div className="content">
             <div className="section-eyebrow">{sectionMeta.checklist.eyebrow}</div>
-            <h1 className="section-title">{sectionMeta.checklist.title}</h1>
+            <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <Icon name="checklist" color={COLORS.sandstone} size={36} />
+              {sectionMeta.checklist.title}
+            </h1>
             <p className="section-lead">{sectionMeta.checklist.lead}</p>
             <Checklist />
           </div>
@@ -2928,7 +2959,10 @@ export default function App() {
         {isLocked && unlocked && (
           <div className="content">
             <div className="section-eyebrow">{meta.eyebrow}</div>
-            <h1 className="section-title">{meta.title}</h1>
+            <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <Icon name={meta.icon} color={COLORS.sandstone} size={36} />
+              {meta.title}
+            </h1>
             {meta.lead && <p className="section-lead">{meta.lead}</p>}
           {activeTab === "budget" && <BudgetGuide />}
           {activeTab === "venues" && (
