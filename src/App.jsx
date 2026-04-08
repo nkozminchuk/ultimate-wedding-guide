@@ -1738,6 +1738,164 @@ const venueData = [
       { name: "The Lake House", tier: "$$", note: "Well-known Calgary venue on the reservoir", url: "lakehousecalgary.com", ig: "@thelakehouseyyc" },
     ],
   },
+  {
+    sub: "Canmore Venues",
+    location: "Canmore",
+    vendors: [
+      {
+        name: "Cornerstone Weddings — The Gem & Mainspace",
+        tier: "$/$$",
+        fields: [
+          { label: "Pricing", value: "Varies by season, day of week, and minimum spend — packages available including planning, florals, photography, dining, entertainment & transport. Enquire for details." },
+          { label: "Capacity", value: "The Gem: up to 200 total (100 upper / 150 lower); Mainspace: up to 80; both customizable from as few as 15 guests" },
+          { label: "Catering", value: "Preferred caterer list provided; outside catering permitted at The Gem with signed waiver (commercial kitchen fee may apply)" },
+          { label: "Ceremony", value: "Indoor venues; The Collective team also plans outdoor, elopement, heli, and hiking weddings across the Rockies" },
+          { label: "Parking", value: "Available at both locations; fully accessible with elevators and disabled parking at The Gem" },
+          { label: "Extras", value: "Part of The Collective — in-house photography, videography, florals, decor, DJ, transportation, accommodation & coordination all available" },
+          { label: "Vendor List", value: "Yes — planning guides and resources provided" },
+          { label: "Instagram", value: "@thegem.ca / @mainspace_canmore / @wearethecollective.ca" },
+          { label: "Website", value: "thegem.ca / mainspacecanmore.ca / wearethecollective.ca", link: "https://weddingswithcornerstone.com" },
+        ],
+      },
+      {
+        name: "Creekside Villa",
+        tier: "$$",
+        fields: [
+          { label: "Pricing", value: "Low season from $13,860; peak season Saturday from $17,451 (includes service fees and GST)" },
+          { label: "Capacity", value: "25–90 guests" },
+          { label: "Catering", value: "In-house only; external certified bakeries permitted for wedding cakes and small desserts" },
+          { label: "Ceremony", value: "Indoor and outdoor (low season); outdoor Ceremony Tent only in peak season" },
+          { label: "Parking", value: "Large parking lot; accessible to outdoor ceremony tent and reception space" },
+          { label: "Vendor List", value: "Provided after contract is signed" },
+          { label: "Instagram", value: "@creeksidevillacanmore" },
+          { label: "Website", value: "creeksidevilla.ca", link: "https://www.creeksidevilla.ca" },
+        ],
+      },
+      {
+        name: "The Sensory",
+        tier: "$$",
+        fields: [
+          { label: "Style", value: "Event space and restaurant in the heart of Canmore — intimate and distinctive" },
+          { label: "Instagram", value: "@thesensorycanmore" },
+          { label: "Website", value: "thesensory.ca", link: "https://www.thesensory.ca/sensorysupperseries" },
+        ],
+      },
+      {
+        name: "Stewart Creek Golf & Country Club",
+        tier: "$$",
+        fields: [
+          { label: "Style", value: "Stunning mountain golf club setting with a dramatic Rockies backdrop" },
+          { label: "Website", value: "stewartcreekgolf.com", link: "https://stewartcreekgolf.com" },
+        ],
+      },
+      {
+        name: "A Bear and Bison Inn",
+        tier: "$$",
+        fields: [
+          { label: "Style", value: "Intimate and charming inn — beautiful setting for small weddings and elopements in Canmore" },
+          { label: "Instagram", value: "@bearandbisoninn" },
+          { label: "Website", value: "abearandbisoninn.com", link: "https://abearandbisoninn.com" },
+        ],
+      },
+    ],
+  },
+  {
+    sub: "Banff Venues",
+    location: "Banff",
+    note: "Weddings in Banff National Park require a Parks Canada permit. Most venues have experience navigating this process and can guide you through it.",
+    vendors: [
+      {
+        name: "The Kenrick Hotel & The Fat Ox",
+        tier: "$/$$",
+        fields: [
+          { label: "Capacity", value: "The Arrowwood Room: up to 75 seated / 120 standing (no F&B minimum); The Fat Ox Restaurant: up to 90 seated / 120 standing" },
+          { label: "Catering", value: "The Fat Ox restaurant exclusively caters The Arrowwood Room" },
+          { label: "Ceremony", value: "Indoor and outdoor (weather permitting)" },
+          { label: "Parking", value: "On-site above and underground parking" },
+          { label: "Vendor List", value: "Available on request" },
+          { label: "Email", value: "info@thekenrickhotel.com / info@fatoxbanff.ca" },
+          { label: "Instagram", value: "@thekenrickhotel / @fatoxbanff" },
+          { label: "Website", value: "thekenrickhotel.com", link: "https://thekenrickhotel.com/rooms/event-spaces/" },
+        ],
+      },
+      {
+        name: "The Gem Events Centre",
+        tier: "$$",
+        fields: [
+          { label: "Style", value: "Stunning events centre in the heart of Banff — part of the Rocky Mountain Wedding Collective" },
+          { label: "Email", value: "thegem@rmwc.ca" },
+          { label: "Instagram", value: "@thegem.ca" },
+          { label: "Website", value: "thegem.ca", link: "https://thegem.ca" },
+        ],
+      },
+      {
+        name: "Fairmont Banff Springs",
+        tier: "$$$",
+        fields: [
+          { label: "Style", value: "Iconic castle hotel set against the Rockies — one of the most legendary wedding venues in Canada" },
+          { label: "Email", value: "bshweddings@fairmont.com" },
+          { label: "Instagram", value: "@fairmontbanff" },
+          { label: "Website", value: "banff-springs-hotel.com", link: "https://www.banff-springs-hotel.com/gather/weddings/" },
+        ],
+      },
+      {
+        name: "The Rimrock Resort Hotel",
+        tier: "$$$",
+        fields: [
+          { label: "Style", value: "Luxurious mountain resort perched above Banff with breathtaking valley views" },
+          { label: "Email", value: "info@rimrockresort.com" },
+          { label: "Instagram", value: "@rimrockbanff" },
+          { label: "Website", value: "emblemscollection.com/rimrock-banff", link: "https://www.emblemscollection.com/rimrock-banff/weddings/" },
+        ],
+      },
+      {
+        name: "Buffalo Mountain Lodge",
+        tier: "$$$",
+        fields: [
+          { label: "Style", value: "Rustic luxury lodge nestled in the forest above Banff — warm, intimate, and distinctly mountain" },
+          { label: "Email", value: "info@crmr.com" },
+          { label: "Instagram", value: "@crmresorts" },
+          { label: "Website", value: "crmr.com/buffalo-mountain", link: "https://crmr.com/resorts/buffalo-mountain/weddings/" },
+        ],
+      },
+      {
+        name: "Banff Caribou Lodge & Spa",
+        tier: "$$",
+        fields: [
+          { label: "Style", value: "Classic Banff lodge with a warm, welcoming atmosphere — great for mid-size celebrations" },
+          { label: "Email", value: "events@banfflodgingco.com" },
+          { label: "Website", value: "banffcariboulodge.com", link: "https://banffcariboulodge.com/meetings/" },
+        ],
+      },
+      {
+        name: "The Maple Leaf Grill",
+        tier: "$/$$",
+        fields: [
+          { label: "Style", value: "Beloved Banff restaurant — part of the Banff Hospitality Collective, known for steak and seafood" },
+          { label: "Instagram", value: "@banffhospitalitycollective" },
+          { label: "Website", value: "banffcollective.com", link: "https://www.banffcollective.com/restaurant/maple-leaf-steak-seafood" },
+        ],
+      },
+      {
+        name: "Banff Gondola — Sky Bistro",
+        tier: "$$",
+        fields: [
+          { label: "Style", value: "Truly one-of-a-kind — ceremony and reception at the summit of Sulphur Mountain with 360-degree Rockies views" },
+          { label: "Email", value: "admin@gondolabanff.com" },
+          { label: "Website", value: "gondolabanff.com", link: "https://gondolabanff.com/The-Banff-Gondola-Sky-Bistro.html" },
+        ],
+      },
+      {
+        name: "The Fenlands Banff Recreation Centre",
+        tier: "$",
+        fields: [
+          { label: "Style", value: "Affordable and flexible venue option in Banff — great for larger guest counts on a tighter budget" },
+          { label: "Email", value: "rentals@banff.ca" },
+          { label: "Website", value: "banff.ca/weddings", link: "https://banff.ca/666/Weddings" },
+        ],
+      },
+    ],
+  },
 ];
 
 const churchData = [
@@ -1787,12 +1945,12 @@ const churchData = [
 
 const cateringData = [
   { name: "Curated Catering by Hotel Arts", tier: "$$$", fields: [
-    { label: "Style", value: "SAIT's exclusive caterer — gourmet multi-course menus, bold flavours, artful presentation" },
+    { label: "Style", value: "Exclusive caterer at SAIT — gourmet multi-course menus, bold flavours, artful presentation" },
     { label: "Phone", value: "403-210-5774" },
     { label: "Website", value: "curatedcatering.ca", link: "https://www.sait.ca/about-sait/campus/dining-on-campus/curated-catering" },
   ]},
   { name: "Alpine Catering", tier: "$/$$", fields: [
-    { label: "Style", value: "Buffet and sit-down service; hot & cold food, hors d'oeuvres" },
+    { label: "Style", value: "Buffet and sit-down service; hot & cold food, hors d&apos;oeuvres" },
     { label: "Extras", value: "China, cutlery, wine glasses, linen serviettes, chair covers available" },
     { label: "Note", value: "Bartender service available on request" },
     { label: "Phone", value: "403-279-6664" },
@@ -1871,9 +2029,21 @@ const barData = [
     { label: "AGLC", value: "Handles licensing when supplying alcohol; client responsible if supplying own" },
     { label: "Website", value: "inthemixcalgary.com", link: "https://www.inthemixcalgary.com" },
   ]},
+  { name: "The Prosecco Cart Inc.", tier: "$/$$", fields: [
+    { label: "Setup", value: "Full mobile bar setup including dedicated bartenders" },
+    { label: "Pricing", value: "Custom per event; minimum two-hour booking" },
+    { label: "Alcohol", value: "Client supplies own — team can help place the order" },
+    { label: "Cocktails", value: "Yes — signature cocktail creation available" },
+    { label: "Mocktails", value: "Yes — non-alcoholic menus available" },
+    { label: "Guest Count", value: "No minimum or maximum" },
+    { label: "AGLC", value: "Couple or venue is responsible for the liquor licence" },
+    { label: "Licensed & Insured", value: "Yes" },
+    { label: "Instagram", value: "@theproseccocart" },
+    { label: "Website", value: "proseccocart.ca", link: "https://www.proseccocart.ca" },
+  ]},
   { name: "Suds & Sodas Mobile Bar", tier: "$", fields: [
-    { label: "Pricing", value: "From $825 portable / $1,265 truck / $1,565 Piaggio Apé bar" },
-    { label: "Setup", value: "Full setup except alcohol — portable station, beverage truck, or Piaggio Apé bar" },
+    { label: "Pricing", value: "From $825 portable / $1,265 truck / $1,565 Piaggio Ape bar" },
+    { label: "Setup", value: "Full setup except alcohol — portable station, beverage truck, or Piaggio Ape bar" },
     { label: "Alcohol", value: "Client supplies own (Suds & Sodas can purchase on your behalf)" },
     { label: "Mocktails", value: "Yes — known for their mocktail menus" },
     { label: "Guest Count", value: "20–2,000 guests" },
@@ -1884,7 +2054,7 @@ const barData = [
   ]},
 ];
 
-const barPending = ["The Wildflower Wandering Bar  thewildflower.ca", "True Spirits Mobile Bar  truespiritsmobilebar.com", "Olive and Twist Mobile Bar  oliveandtwistmobilebar.com", "The Prosecco Cart  proseccocart.ca", "Sugar Water  sugarwater.bar"];
+const barPending = ["The Wildflower Wandering Bar  thewildflower.ca", "True Spirits Mobile Bar  truespiritsmobilebar.com", "Olive and Twist Mobile Bar  oliveandtwistmobilebar.com", "Sugar Water  sugarwater.bar"];
 
 const photoData = [
   { name: "Light Delight Photography", tier: "$", fields: [
@@ -2141,8 +2311,22 @@ function VenueSection({ sections }) {
       </div>
       {sections.map((sec, si) => (
         <div key={si}>
-          <div className="subsection-title">{sec.sub}</div>
-          {sec.note && <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: 16, color: COLORS.sub, marginBottom: 20, lineHeight: 1.6 }}>{sec.note}</p>}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+            <div className="subsection-title" style={{ marginBottom: 0 }}>{sec.sub}</div>
+            {sec.location && (
+              <span style={{
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 10, letterSpacing: 2,
+                textTransform: "uppercase",
+                color: COLORS.white,
+                background: COLORS.forest,
+                padding: "3px 10px",
+                borderRadius: 20,
+                marginBottom: 4,
+              }}>{sec.location}</span>
+            )}
+          </div>
+          {sec.note && <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: 16, color: COLORS.sub, marginBottom: 20, lineHeight: 1.6, marginTop: 8 }}>{sec.note}</p>}
           {sec.vendors && (
             <div className="vendor-grid">
               {sec.vendors.map((v, vi) => <VendorCard key={vi} vendor={v} />)}
@@ -2307,7 +2491,7 @@ const sectionMeta = {
   why: { eyebrow: "Behind the Guide", title: "Our Story", lead: "", icon: "story" },
   checklist: { eyebrow: "Canadian Rockies Edition", title: "Wedding Planning Checklist", lead: "From the moment you get engaged to the moment you say \"I do\" — every task, every milestone, beautifully organized.", icon: "checklist" },
   budget: { eyebrow: "Canadian Rockies Edition", title: "Budget Planning Guide", lead: "Every dream wedding is different — and so is every budget. Find the tier that fits your vision and explore vendors that align with your investment.", icon: "budget" },
-  venues: { eyebrow: "Calgary", title: "Venues", lead: "Calgary offers an exceptional range of wedding venues — from iconic luxury hotels and dramatic arts spaces to rustic barns, intimate restaurant settings, and beautiful churches and chapels.", icon: "venues" },
+  venues: { eyebrow: "Calgary · Canmore · Banff", title: "Venues", lead: "From grand Calgary hotel ballrooms and rustic mountain barns to intimate Canmore spaces and iconic Banff resorts — the Canadian Rockies corridor offers some of the most breathtaking wedding venues in the world.", icon: "venues" },
   catering: { eyebrow: "Calgary", title: "Catering", lead: "For venues without in-house catering, these Calgary caterers bring exceptional skill, flexibility, and style to your wedding table.", icon: "catering" },
   bar: { eyebrow: "Calgary", title: "Mobile Bar Services", lead: "Alberta's liquor laws make mobile bar services unique. Here's everything you need to know — and the best services in the city.", icon: "bar" },
   photo: { eyebrow: "Calgary", title: "Photography & Videography", lead: "Your photos and film are the memories you will revisit for the rest of your lives. Alberta's landscapes reward photographers who truly know light.", icon: "photo" },
@@ -2483,7 +2667,7 @@ function LandingPage() {
   }
 
   const features = [
-    { iconKey: "venues", title: "19 Verified Venues", desc: "From grand hotel ballrooms and rustic barns to intimate restaurant settings." },
+    { iconKey: "venues", title: "36 Verified Venues", desc: "From grand Banff resorts and iconic Calgary ballrooms to intimate Canmore spaces and rustic mountain barns." },
     { iconKey: "checklist", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, beautifully organized." },
     { iconKey: "budget", title: "Budget Planning Guide", desc: "Sample packages from intimate elopements to dream celebrations." },
     { iconKey: "photo", title: "Photography & More", desc: "Vetted photographers, florists, caterers, bakers, and more." },
@@ -2964,8 +3148,8 @@ export default function App() {
               {meta.title}
             </h1>
             {meta.lead && <p className="section-lead">{meta.lead}</p>}
-          {activeTab === "budget" && <BudgetGuide />}
-          {activeTab === "venues" && (
+            {activeTab === "budget" && <BudgetGuide />}
+            {activeTab === "venues" && (
             <>
               <VenueSection sections={venueData} />
               <div style={{ marginTop: 48 }}>
@@ -3027,7 +3211,7 @@ export default function App() {
             </>
           )}
 
-          {activeTab === "catering" && (
+            {activeTab === "catering" && (
             <SimpleVendors
               vendors={cateringData}
               infoTitle="Good to Know"
@@ -3039,7 +3223,7 @@ export default function App() {
             />
           )}
 
-          {activeTab === "bar" && (
+            {activeTab === "bar" && (
             <>
               <div className="info-box">
                 <div className="info-box-title">Alberta Liquor Licensing — What You Need to Know</div>
@@ -3062,7 +3246,7 @@ export default function App() {
             </>
           )}
 
-          {activeTab === "photo" && (
+            {activeTab === "photo" && (
             <SimpleVendors
               vendors={photoData}
               pending={photoPending}
@@ -3078,7 +3262,7 @@ export default function App() {
             />
           )}
 
-          {activeTab === "florists" && (
+            {activeTab === "florists" && (
             <SimpleVendors
               vendors={floristData}
               pending={floristPending}
@@ -3093,7 +3277,7 @@ export default function App() {
             />
           )}
 
-          {activeTab === "cakes" && (
+            {activeTab === "cakes" && (
             <SimpleVendors
               vendors={cakeData}
               pending={cakePending}
@@ -3108,7 +3292,7 @@ export default function App() {
             />
           )}
 
-          {activeTab === "dresses" && (
+            {activeTab === "dresses" && (
             <div>
               <div className="info-box">
                 <div className="info-box-title">A Note on Wedding Dress Shopping</div>
@@ -3147,7 +3331,7 @@ export default function App() {
             </div>
           )}
 
-          {activeTab === "coming" && (
+            {activeTab === "coming" && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               {[
                 { title: "Calgary — On Our Radar", items: ["Hair & Makeup", "Suit Rentals", "Officiant Services", "Decor & Lighting Rentals", "Transportation", "Music — DJs & Live Bands", "Audio/Visual & Sound Production"] },
