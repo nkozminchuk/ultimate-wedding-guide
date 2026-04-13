@@ -2517,8 +2517,7 @@ function GiftModal({ onClose }) {
   const [error, setError] = useState("");
 
   const tiers = {
-    essential: { price: "$29", name: "The Essential Guide", desc: "Full vendor directory, budget guide & checklist." },
-    complete: { price: "$49", name: "The Complete Guide", desc: "Everything in Essential plus planning timeline & budget tracker." },
+    complete: { price: "$29", name: "The Ultimate Wedding Guide", desc: "Full vendor directory, budget guide, checklist & more. Regular price $49 — launch special." },
   };
 
   async function handleGiftSubmit(e) {
@@ -2559,19 +2558,23 @@ function GiftModal({ onClose }) {
         {step === 1 && (
           <>
             <div className="gift-modal-eyebrow">Give the Gift of Planning</div>
-            <h2 className="gift-modal-title">Choose Your Gift</h2>
-            <p className="gift-modal-sub">Select the guide that best suits the couple you are gifting — both include lifetime access and free updates.</p>
-            <div className="gift-tier-select">
-              {Object.entries(tiers).map(([key, t]) => (
-                <div key={key} className={`gift-tier-option ${tier === key ? "selected" : ""}`} onClick={() => setTier(key)}>
-                  <div className="gift-tier-price">{t.price}</div>
-                  <div className="gift-tier-name">{t.name}</div>
-                  <div className="gift-tier-desc">{t.desc}</div>
+            <h2 className="gift-modal-title">Gift the Guide</h2>
+            <p className="gift-modal-sub">The perfect gift for any engaged couple — full vendor directory, budget guide, checklist and more across Calgary, Canmore & Banff.</p>
+            <div style={{ textAlign: "center", padding: "24px 0", borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}`, margin: "0 0 24px" }}>
+              <div style={{ display: "inline-block", background: COLORS.sandstone, color: COLORS.white, fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", padding: "4px 14px", borderRadius: 20, marginBottom: 12 }}>
+                Launch Price — Limited Time
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 48, fontWeight: 600, color: COLORS.forest, lineHeight: 1 }}>$29</div>
+                <div style={{ textAlign: "left" }}>
+                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: COLORS.sub, textDecoration: "line-through" }}>$49</div>
+                  <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 1, color: COLORS.sub }}>Regular price</div>
                 </div>
-              ))}
+              </div>
+              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: COLORS.sub, marginTop: 8 }}>CAD · One-time purchase · Lifetime access</div>
             </div>
             <button className="form-btn" style={{ width: "100%", textAlign: "center" }} onClick={() => setStep(2)}>
-              Continue — {tiers[tier].price}
+              Continue — $29
             </button>
           </>
         )}
@@ -2604,7 +2607,7 @@ function GiftModal({ onClose }) {
               <div style={{ display: "flex", gap: 12 }}>
                 <button type="button" className="gift-btn-secondary" style={{ color: COLORS.sub, borderColor: COLORS.border }} onClick={() => setStep(1)}>Back</button>
                 <button type="submit" className="form-btn" style={{ flex: 1, textAlign: "center" }} disabled={loading}>
-                  {loading ? "Sending..." : `Send Gift — ${tiers[tier].price}`}
+                  {loading ? "Sending..." : "Send Gift — $29"}
                 </button>
               </div>
             </form>
@@ -2821,25 +2824,26 @@ function LockScreen({ onUnlock }) {
     <div className="lock-screen">
       <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
       <h2 className="lock-title">Unlock the Full Guide</h2>
-      <p className="lock-sub">This section is part of the complete guide. Purchase once and get lifetime access to all vendor categories — plus free updates as we add more.</p>
+      <p className="lock-sub">Purchase once and get lifetime access to all vendor categories across Calgary, Canmore, and Banff — plus free updates as we grow.</p>
       <div className="lock-features">
-        {["19 Calgary Venues", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "Canmore & Banff — Coming Soon"].map((f, i) => (
+        {["36 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "60-Task Planning Checklist"].map((f, i) => (
           <span key={i} className="lock-feature-tag">{f}</span>
         ))}
       </div>
-      <div className="lock-tiers">
-        <div className="lock-tier">
-          <div className="lock-tier-price">$29</div>
-          <div className="lock-tier-name">The Essential Guide</div>
-          <div className="lock-tier-desc">Full vendor directory, budget guide, and planning checklist.</div>
+      <div style={{ textAlign: "center", margin: "32px 0 8px" }}>
+        <div style={{ display: "inline-block", background: COLORS.sandstone, color: COLORS.white, fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", padding: "4px 14px", borderRadius: 20, marginBottom: 16 }}>
+          Launch Price — Limited Time
         </div>
-        <div className="lock-tier" style={{ border: `2px solid ${COLORS.forest}` }}>
-          <div className="lock-tier-price">$49</div>
-          <div className="lock-tier-name">The Complete Guide</div>
-          <div className="lock-tier-desc">Everything in Essential, plus planning timeline, budget tracker, and vendor question checklist.</div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 8 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 52, fontWeight: 600, color: COLORS.forest, lineHeight: 1 }}>$29</div>
+          <div style={{ textAlign: "left" }}>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: COLORS.sub, textDecoration: "line-through" }}>$49</div>
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 1, color: COLORS.sub }}>Regular price</div>
+          </div>
         </div>
+        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: COLORS.sub }}>CAD · One-time purchase · Lifetime access</div>
       </div>
-      <button className="lock-btn" onClick={onUnlock}>Purchase the Guide</button>
+      <button className="lock-btn" onClick={onUnlock}>Purchase the Guide — $29</button>
       <p className="lock-note">Already purchased? Enter your password above in the nav bar.</p>
     </div>
   );
@@ -2951,6 +2955,7 @@ const guideItems = [
 ];
 
 export default function App() {
+  const [region, setRegion] = useState(null);
   const [activeTab, setActiveTab] = useState("home");
   const [unlocked, setUnlocked] = useState(false);
   const [showPasswordGate, setShowPasswordGate] = useState(false);
@@ -2972,6 +2977,229 @@ export default function App() {
     setShowPasswordGate(false);
   }
 
+  // ── REGION SELECTOR ─────────────────────────────────────────
+  if (!region) {
+    return (
+      <>
+        <style>{styles}</style>
+        <style>{`
+          .region-wrap {
+            min-height: 100vh;
+            background: ${COLORS.forest};
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+            position: relative;
+            overflow: hidden;
+          }
+          .region-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+              radial-gradient(ellipse at 20% 20%, rgba(196,149,106,0.12) 0%, transparent 55%),
+              radial-gradient(ellipse at 80% 80%, rgba(139,105,20,0.08) 0%, transparent 50%);
+          }
+          .region-eyebrow {
+            font-family: 'Jost', sans-serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: ${COLORS.sandstone};
+            margin-bottom: 20px;
+            position: relative;
+          }
+          .region-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            font-weight: 400;
+            color: ${COLORS.cream};
+            text-align: center;
+            line-height: 1.05;
+            margin-bottom: 8px;
+            position: relative;
+          }
+          .region-title span { color: ${COLORS.sandstone}; font-style: italic; }
+          .region-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: rgba(247,243,236,0.65);
+            text-align: center;
+            margin-bottom: 56px;
+            max-width: 520px;
+            line-height: 1.6;
+            position: relative;
+          }
+          .region-divider {
+            width: 48px;
+            height: 1px;
+            background: ${COLORS.sandstone};
+            margin: 0 auto 56px;
+            opacity: 0.5;
+            position: relative;
+          }
+          .region-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+          }
+          .region-card {
+            background: rgba(247,243,236,0.05);
+            border: 1px solid rgba(196,149,106,0.25);
+            border-radius: 4px;
+            padding: 36px 32px;
+            cursor: pointer;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+          }
+          .region-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(196,149,106,0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.25s;
+          }
+          .region-card:hover { border-color: ${COLORS.sandstone}; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+          .region-card:hover::before { opacity: 1; }
+          .region-card.available { border-color: rgba(196,149,106,0.5); background: rgba(196,149,106,0.08); }
+          .region-card.coming { opacity: 0.75; cursor: default; }
+          .region-card.coming:hover { transform: none; box-shadow: none; border-color: rgba(196,149,106,0.25); }
+          .region-badge {
+            display: inline-block;
+            font-family: 'Jost', sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+          }
+          .region-badge.available { background: ${COLORS.sandstone}; color: ${COLORS.forest}; }
+          .region-badge.coming { background: rgba(247,243,236,0.1); color: rgba(247,243,236,0.5); border: 1px solid rgba(247,243,236,0.15); }
+          .region-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            font-weight: 500;
+            color: ${COLORS.cream};
+            margin-bottom: 6px;
+            line-height: 1.1;
+          }
+          .region-cities {
+            font-family: 'Jost', sans-serif;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: ${COLORS.sandstone};
+            margin-bottom: 16px;
+          }
+          .region-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(247,243,236,0.55);
+            line-height: 1.6;
+            margin-bottom: 20px;
+          }
+          .region-cta {
+            font-family: 'Jost', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: ${COLORS.sandstone};
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          .region-notify {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: 'Jost', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(247,243,236,0.4);
+            border: 1px solid rgba(247,243,236,0.15);
+            padding: 6px 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: none;
+          }
+          .region-notify:hover { color: rgba(247,243,236,0.7); border-color: rgba(247,243,236,0.3); }
+          .region-footer {
+            margin-top: 56px;
+            font-family: 'Jost', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgba(247,243,236,0.25);
+            position: relative;
+          }
+          @media (max-width: 640px) {
+            .region-title { font-size: 38px; }
+            .region-grid { grid-template-columns: 1fr; }
+          }
+        `}</style>
+        <div className="region-wrap">
+          <div className="region-eyebrow">The Ultimate Wedding Guide</div>
+          <h1 className="region-title">Your dream wedding<br /><span>starts here.</span></h1>
+          <p className="region-sub">We have done the research, vetted the vendors, and organized everything — select your region and let's get planning.</p>
+          <div className="region-divider" />
+
+          <div className="region-grid">
+            {/* AVAILABLE */}
+            <div className="region-card available" onClick={() => setRegion("rockies")}>
+              <div className="region-badge available">Available Now</div>
+              <div style={{ marginBottom: 16 }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C4956A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                  <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+              </div>
+              <div className="region-name">Canadian Rockies</div>
+              <div className="region-cities">Calgary · Canmore · Banff</div>
+              <div className="region-desc">36 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more — all vetted and ready.</div>
+              <div className="region-cta">Explore the Guide →</div>
+            </div>
+
+            {/* COMING SOON */}
+            {[
+              { name: "Vancouver & Sea-to-Sky", cities: "Vancouver · Whistler · Squamish", desc: "From waterfront venues to mountain lodges — the ultimate guide to BC coastal weddings." },
+              { name: "Okanagan", cities: "Kelowna · Penticton · Vernon", desc: "Vineyard ceremonies, orchard receptions, and stunning lake views — wine country weddings done right." },
+              { name: "Toronto & Surroundings", cities: "Toronto · Muskoka · Niagara", desc: "Grand ballrooms, intimate restaurants, and lakeside escapes across Ontario's best wedding destinations." },
+              { name: "Montreal", cities: "Montreal · Quebec City", desc: "Old world charm meets modern sophistication — francophone Canada's most romantic wedding destinations." },
+              { name: "Ottawa", cities: "Ottawa · Gatineau", desc: "Canada's capital offers stunning heritage venues, beautiful gardens, and an intimate wedding scene." },
+            ].map((r, i) => (
+              <div key={i} className="region-card coming">
+                <div className="region-badge coming">Coming Soon</div>
+                <div style={{ marginBottom: 16 }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(196,149,106,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                    <circle cx="12" cy="9" r="2.5"/>
+                  </svg>
+                </div>
+                <div className="region-name">{r.name}</div>
+                <div className="region-cities">{r.cities}</div>
+                <div className="region-desc">{r.desc}</div>
+                <button className="region-notify" onClick={e => { e.stopPropagation(); setRegion("rockies"); setTimeout(() => { document.querySelector('.contact-form select')?.focus(); }, 500); }}>
+                  Notify Me When Live
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <div className="region-footer">© {new Date().getFullYear()} The Ultimate Wedding Guide · info@ultimateweddingguide.ca</div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <style>{styles}</style>
@@ -2991,6 +3219,9 @@ export default function App() {
 
           {/* DESKTOP NAV */}
           <div className="nav-desktop">
+            <div className="nav-item">
+              <button className="nav-btn" onClick={() => setRegion(null)} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>← All Editions</button>
+            </div>
             <div className="nav-item">
               <button className={`nav-btn ${activeTab === "home" ? "active" : ""}`} onClick={() => setActiveTab("home")}>Home</button>
             </div>
@@ -3039,6 +3270,8 @@ export default function App() {
           {/* MOBILE DROPDOWN MENU */}
           {showMobileMenu && (
             <div className="mobile-menu">
+              <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setShowMobileMenu(false); }}>← All Editions</button>
+              <div className="mobile-menu-divider" />
               <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
               <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
               <div className="mobile-menu-divider" />
