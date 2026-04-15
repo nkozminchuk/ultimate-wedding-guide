@@ -1862,9 +1862,68 @@ const venueData = [
         name: "Banff Caribou Lodge & Spa",
         tier: "$$",
         fields: [
-          { label: "Style", value: "Classic Banff lodge with a warm, welcoming atmosphere — great for mid-size celebrations" },
+          { label: "Capacity", value: "Woodlands Room: 12–48 seated; Tundra Room: 16–20" },
+          { label: "Ceremony", value: "Indoor ceremony in Tundra Room ($450)" },
+          { label: "Reception", value: "Indoor reception in Woodlands Room until 11pm ($900)" },
+          { label: "Catering", value: "The Keg Steakhouse & Bar — welcome appetizers, three course plated service" },
+          { label: "Pricing", value: "Plated menus $66–$95 per person; estimated total for 30 guests approx. $4,550" },
+          { label: "Includes", value: "Cake plating, bartender, sound system" },
+          { label: "Deposits", value: "$1,000 at booking; second $1,000 due 60 days prior; full payment 21 days prior" },
+          { label: "Phone", value: "1-800-563-8764" },
           { label: "Email", value: "events@banfflodgingco.com" },
+          { label: "Instagram", value: "@banff.lodging.co" },
           { label: "Website", value: "banffcariboulodge.com", link: "https://banffcariboulodge.com/meetings/" },
+        ],
+      },
+      {
+        name: "Moose Hotel & Suites",
+        tier: "$$",
+        fields: [
+          { label: "Capacity", value: "Antler Room: up to 120; Darch Suite: 2–16 (intimate celebrations)" },
+          { label: "Ceremony", value: "Indoor ceremony in Antler Room ($1,000) or Darch Suite ($500)" },
+          { label: "Reception", value: "Indoor reception in Antler Room ($2,500) or Darch Suite ($1,100)" },
+          { label: "Catering", value: "Pacini Italian Restaurant — welcome appetizers, dinner buffet, three course plated, late night buffet" },
+          { label: "Pricing", value: "Plated or buffet $55–$75/person; with late night buffet $70–$100/person; estimated total for 100 guests approx. $13,500" },
+          { label: "Includes", value: "Cake plating, bartender, dance floor, podium, sound system and microphone" },
+          { label: "Deposits", value: "$2,000 at booking; second $2,000 due 60 days prior; full payment 21 days prior" },
+          { label: "Phone", value: "1-800-563-8764" },
+          { label: "Email", value: "reservations@banfflodgingco.com" },
+          { label: "Instagram", value: "@moosehotelandsuites" },
+          { label: "Website", value: "moosehotelandsuites.com", link: "https://moosehotelandsuites.com/" },
+        ],
+      },
+      {
+        name: "Otter Hotel",
+        tier: "$$",
+        fields: [
+          { label: "Capacity", value: "Holt Room: up to 104 guests" },
+          { label: "Ceremony", value: "Indoor ceremony in Holt Room included in package — 3 hour flip time to transform layout" },
+          { label: "Reception", value: "Summer/Saturdays: $2,000 + $12,500 min F&B; Off-peak: $1,200 + $7,500 min F&B" },
+          { label: "Catering", value: "Good Folk — welcome appetizers, family style, three to five course plated service, late night snacks" },
+          { label: "Pricing", value: "Plated or family style $100–$174/person; with late night snacks $114–$188/person" },
+          { label: "Includes", value: "Cake plating, bartender, dance floor, podium, sound system and microphone" },
+          { label: "Deposits", value: "Room rental due at booking; 50% of min F&B due 6 months prior; 50% due 90 days prior; full payment 21 days prior" },
+          { label: "Phone", value: "1-800-563-8764" },
+          { label: "Email", value: "reservations@banfflodgingco.com" },
+          { label: "Instagram", value: "@otterhotelbanff" },
+          { label: "Website", value: "otterhotel.com", link: "https://otterhotel.com" },
+        ],
+      },
+      {
+        name: "Rocky Mountain Resort",
+        tier: "$$",
+        fields: [
+          { label: "Capacity", value: "Grey Wolf Room: 128; Timber Wolf Room: 100; White Wolf Suite: 16–40 (intimate)" },
+          { label: "Ceremony", value: "Outdoor ceremony in Pine Meadows with indoor backup (summer $1,750); indoor ceremony (winter $900)" },
+          { label: "Reception", value: "Indoor reception in Grey Wolf or Timber Wolf Room (summer $2,500; winter $1,400)" },
+          { label: "Catering", value: "Alpha Bistro — welcome appetizers, dinner buffet or three course plated, children's menu, late night buffet" },
+          { label: "Pricing", value: "Plated or buffet $60–$95/person; with late night buffet $80–$115/person; estimated total for 100 guests approx. $15,250" },
+          { label: "Includes", value: "Cake plating, bartender, dance floor, podium, sound system and microphone; wedding arch for outdoor ceremony" },
+          { label: "Deposits", value: "$2,000 at booking; second $2,000 due 60 days prior; full payment 21 days prior" },
+          { label: "Phone", value: "1-800-563-8764" },
+          { label: "Email", value: "reservations@banfflodgingco.com" },
+          { label: "Instagram", value: "@banff.lodging.co" },
+          { label: "Website", value: "rockymountainresort.com", link: "https://rockymountainresort.com/" },
         ],
       },
       {
@@ -2892,7 +2951,7 @@ function LandingPage() {
   }
 
   const features = [
-    { iconKey: "venues", title: "36 Verified Venues", desc: "From grand Banff resorts and iconic Calgary ballrooms to intimate Canmore spaces and rustic mountain barns." },
+    { iconKey: "venues", title: "39 Verified Venues", desc: "From grand Banff resorts and iconic Calgary ballrooms to intimate Canmore spaces and rustic mountain barns." },
     { iconKey: "checklist", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, beautifully organized." },
     { iconKey: "budget", title: "Budget Planning Guide", desc: "Sample packages from intimate elopements to dream celebrations." },
     { iconKey: "budget", title: "Interactive Budget Tracker", desc: "Track estimated vs actual costs in real time. Auto-saves between visits." },
@@ -3077,7 +3136,7 @@ function LockScreen({ onUnlock }) {
       <h2 className="lock-title">Unlock the Full Guide</h2>
       <p className="lock-sub">Purchase once and get lifetime access to all vendor categories across Calgary, Canmore, and Banff — plus free updates as we grow.</p>
       <div className="lock-features">
-        {["36 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "Interactive Budget Tracker", "60-Task Planning Checklist"].map((f, i) => (
+        {["39 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "Interactive Budget Tracker", "60-Task Planning Checklist"].map((f, i) => (
           <span key={i} className="lock-feature-tag">{f}</span>
         ))}
       </div>
@@ -3248,7 +3307,9 @@ const guideItems = [
 export default function App() {
   const [region, setRegion] = useState(null);
   const [activeTab, setActiveTab] = useState("home");
-  const [unlocked, setUnlocked] = useState(false);
+  const [unlocked, setUnlocked] = useState(() => {
+    try { return sessionStorage.getItem("uwg_unlocked") === "true"; } catch(e) { return false; }
+  });
   const [showPasswordGate, setShowPasswordGate] = useState(false);
   const [showPurchase, setShowPurchase] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -3267,6 +3328,7 @@ export default function App() {
   function handleUnlock() {
     setUnlocked(true);
     setShowPasswordGate(false);
+    try { sessionStorage.setItem("uwg_unlocked", "true"); } catch(e) {}
   }
 
   // ── SUCCESS PAGE ─────────────────────────────────────────
@@ -3499,7 +3561,7 @@ export default function App() {
               </div>
               <div className="region-name">Canadian Rockies</div>
               <div className="region-cities">Calgary · Canmore · Banff</div>
-              <div className="region-desc">36 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more — all vetted and ready.</div>
+              <div className="region-desc">39 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more — all vetted and ready.</div>
               <div className="region-cta">Explore the Guide →</div>
             </div>
 
