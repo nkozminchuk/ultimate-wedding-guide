@@ -69,7 +69,7 @@ async function sendEmail({ to, name, accessCode, isGift, senderName, giftMessage
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Nadia at The Ultimate Wedding Guide <nadia@ultimateweddingguide.ca>',
+      from: 'Nadia at The Ultimate Wedding Guide <info@ultimateweddingguide.ca>',
       to: [to],
       subject,
       html,
