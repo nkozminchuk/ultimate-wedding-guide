@@ -2895,9 +2895,9 @@ function LandingPage() {
     { iconKey: "venues", title: "36 Verified Venues", desc: "From grand Banff resorts and iconic Calgary ballrooms to intimate Canmore spaces and rustic mountain barns." },
     { iconKey: "checklist", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, beautifully organized." },
     { iconKey: "budget", title: "Budget Planning Guide", desc: "Sample packages from intimate elopements to dream celebrations." },
+    { iconKey: "budget", title: "Interactive Budget Tracker", desc: "Track estimated vs actual costs in real time. Auto-saves between visits." },
     { iconKey: "photo", title: "Photography & More", desc: "Vetted photographers, florists, caterers, bakers, and more." },
     { iconKey: "florists", title: "All Travel to the Mountains", desc: "Nearly every vendor covers Calgary, Canmore, and Banff." },
-    { iconKey: "cakes", title: "Regularly Updated", desc: "New vendors and sections added as we grow the guide." },
   ];
 
   return (
@@ -3077,7 +3077,7 @@ function LockScreen({ onUnlock }) {
       <h2 className="lock-title">Unlock the Full Guide</h2>
       <p className="lock-sub">Purchase once and get lifetime access to all vendor categories across Calgary, Canmore, and Banff — plus free updates as we grow.</p>
       <div className="lock-features">
-        {["36 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "60-Task Planning Checklist"].map((f, i) => (
+        {["36 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "Interactive Budget Tracker", "60-Task Planning Checklist"].map((f, i) => (
           <span key={i} className="lock-feature-tag">{f}</span>
         ))}
       </div>
@@ -3479,8 +3479,8 @@ export default function App() {
       <style>{styles}</style>
       {showPasswordGate && <PasswordGate onSuccess={handleUnlock} onPurchase={() => { setShowPasswordGate(false); setShowPurchase(true); }} />}
       {showPurchase && (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 24 }}>
-          <div style={{ background: COLORS.white, borderRadius: 4, padding: "48px", maxWidth: 480, width: "100%", position: "relative" }}>
+        <div style={{ position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 24, overflowY: "auto" }}>
+          <div style={{ background: COLORS.white, borderRadius: 4, padding: "48px", maxWidth: 480, width: "100%", position: "relative", margin: "auto" }}>
             <button onClick={() => setShowPurchase(false)} style={{ position: "absolute", top: 16, right: 20, background: "none", border: "none", fontSize: 24, color: COLORS.sub, cursor: "pointer" }}>×</button>
             <LockScreen onUnlock={handleUnlock} />
           </div>
