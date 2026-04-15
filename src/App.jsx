@@ -2427,6 +2427,231 @@ function Checklist() {
   );
 }
 
+function BudgetTracker() {
+  const STORAGE_KEY = "uwg_budget_tracker";
+  const DEFAULT_CATEGORIES = [
+    { id: 1, category: "Venue", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 2, category: "Catering", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 3, category: "Photography", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 4, category: "Videography", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 5, category: "Florals", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 6, category: "Wedding Cake", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 7, category: "Mobile Bar", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 8, category: "Hair & Makeup", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 9, category: "Wedding Dress", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 10, category: "Suit / Attire", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 11, category: "Officiant", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 12, category: "Music / DJ", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 13, category: "Transportation", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 14, category: "Invitations", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 15, category: "Rings", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 16, category: "Honeymoon", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+    { id: 17, category: "Miscellaneous", vendor: "", estimated: "", actual: "", status: "Researching", notes: "" },
+  ];
+
+  const loadData = () => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch(e) {}
+    return { totalBudget: "", rows: DEFAULT_CATEGORIES };
+  };
+
+  const [data, setData] = useState(loadData);
+  const [newCategory, setNewCategory] = useState("");
+  const [saved, setSaved] = useState(false);
+
+  const save = (updated) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    } catch(e) {}
+  };
+
+  const updateBudget = (val) => {
+    const updated = { ...data, totalBudget: val };
+    setData(updated);
+    save(updated);
+  };
+
+  const updateRow = (id, field, val) => {
+    const rows = data.rows.map(r => r.id === id ? { ...r, [field]: val } : r);
+    const updated = { ...data, rows };
+    setData(updated);
+    save(updated);
+  };
+
+  const addRow = () => {
+    if (!newCategory.trim()) return;
+    const newRow = { id: Date.now(), category: newCategory.trim(), vendor: "", estimated: "", actual: "", status: "Researching", notes: "" };
+    const rows = [...data.rows, newRow];
+    const updated = { ...data, rows };
+    setData(updated);
+    save(updated);
+    setNewCategory("");
+  };
+
+  const deleteRow = (id) => {
+    const rows = data.rows.filter(r => r.id !== id);
+    const updated = { ...data, rows };
+    setData(updated);
+    save(updated);
+  };
+
+  const resetAll = () => {
+    if (window.confirm("Reset all tracker data? This cannot be undone.")) {
+      const updated = { totalBudget: "", rows: DEFAULT_CATEGORIES };
+      setData(updated);
+      save(updated);
+    }
+  };
+
+  const totalBudget = parseFloat(data.totalBudget) || 0;
+  const totalEstimated = data.rows.reduce((sum, r) => sum + (parseFloat(r.estimated) || 0), 0);
+  const totalActual = data.rows.reduce((sum, r) => sum + (parseFloat(r.actual) || 0), 0);
+  const remaining = totalBudget - totalActual;
+  const progress = totalBudget > 0 ? Math.min((totalActual / totalBudget) * 100, 100) : 0;
+  const estimatedProgress = totalBudget > 0 ? Math.min((totalEstimated / totalBudget) * 100, 100) : 0;
+  const fmt = (n) => n ? `$${n.toLocaleString('en-CA', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}` : "—";
+  const statusColors = { "Researching": COLORS.sub, "Quoted": "#8B6914", "Booked": COLORS.forest, "Paid": "#2a7a2a", "Cancelled": "#c0392b" };
+
+  return (
+    <div>
+      {/* SUMMARY CARDS */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 16, marginBottom: 32 }}>
+        {[
+          { label: "Total Budget", value: totalBudget ? fmt(totalBudget) : "Set below", highlight: true },
+          { label: "Total Estimated", value: fmt(totalEstimated), sub: `${estimatedProgress.toFixed(0)}% of budget` },
+          { label: "Total Spent", value: fmt(totalActual), sub: `${progress.toFixed(0)}% of budget` },
+          { label: "Remaining", value: totalBudget ? fmt(remaining) : "—", sub: remaining < 0 ? "Over budget" : "Left to spend", alert: remaining < 0 },
+        ].map((card, i) => (
+          <div key={i} style={{
+            background: card.highlight ? COLORS.forest : COLORS.parchment,
+            border: `1px solid ${card.alert ? "#c0392b" : COLORS.border}`,
+            borderRadius: 4, padding: "20px 18px",
+          }}>
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: card.highlight ? COLORS.sandstone : COLORS.sub, marginBottom: 8 }}>{card.label}</div>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: card.highlight ? COLORS.cream : card.alert ? "#c0392b" : COLORS.forest, lineHeight: 1 }}>{card.value}</div>
+            {card.sub && <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: card.alert ? "#c0392b" : COLORS.sub, marginTop: 4 }}>{card.sub}</div>}
+          </div>
+        ))}
+      </div>
+
+      {/* BUDGET INPUT */}
+      <div style={{ background: COLORS.parchment, border: `1px solid ${COLORS.border}`, borderRadius: 4, padding: "20px 24px", marginBottom: 24, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+        <label style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub }}>Total Wedding Budget (CAD)</label>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 200 }}>
+          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, color: COLORS.forest }}>$</span>
+          <input
+            type="number"
+            placeholder="e.g. 35000"
+            value={data.totalBudget}
+            onChange={e => updateBudget(e.target.value)}
+            style={{ flex: 1, fontFamily: "'Cormorant Garamond', serif", fontSize: 22, border: "none", borderBottom: `1px solid ${COLORS.border}`, background: "transparent", outline: "none", color: COLORS.forest, padding: "4px 0" }}
+          />
+        </div>
+        {saved && <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.forest, letterSpacing: 1 }}>✓ Saved</span>}
+      </div>
+
+      {/* PROGRESS BAR */}
+      {totalBudget > 0 && (
+        <div style={{ marginBottom: 32 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub }}>Budget Used</span>
+            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 1, color: COLORS.sub }}>{fmt(totalActual)} of {fmt(totalBudget)}</span>
+          </div>
+          <div style={{ height: 6, background: COLORS.border, borderRadius: 3, overflow: "hidden" }}>
+            <div style={{ height: "100%", width: `${estimatedProgress}%`, background: COLORS.border, borderRadius: 3, position: "relative" }}>
+              <div style={{ position: "absolute", inset: 0, width: `${totalEstimated > 0 ? (totalActual / totalEstimated) * 100 : 0}%`, background: COLORS.forest, borderRadius: 3, transition: "width 0.4s" }} />
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 20, marginTop: 8 }}>
+            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, color: COLORS.forest }}>● Spent</span>
+            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, color: COLORS.border }}>● Estimated</span>
+          </div>
+        </div>
+      )}
+
+      {/* TABLE */}
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+          <thead>
+            <tr style={{ borderBottom: `2px solid ${COLORS.border}` }}>
+              {["Category", "Vendor", "Estimated", "Actual", "Status", "Notes", ""].map((h, i) => (
+                <th key={i} style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub, padding: "10px 12px", textAlign: "left", whiteSpace: "nowrap" }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.rows.map((row, i) => (
+              <tr key={row.id} style={{ borderBottom: `1px solid ${COLORS.border}`, background: i % 2 === 0 ? COLORS.white : COLORS.parchment }}>
+                <td style={{ padding: "10px 12px", fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontWeight: 500, color: COLORS.forest, whiteSpace: "nowrap" }}>{row.category}</td>
+                <td style={{ padding: "6px 12px" }}>
+                  <input value={row.vendor} onChange={e => updateRow(row.id, "vendor", e.target.value)} placeholder="Vendor name" style={{ width: "100%", minWidth: 120, border: "none", borderBottom: `1px solid ${COLORS.border}`, background: "transparent", fontFamily: "'Jost', sans-serif", fontSize: 12, color: COLORS.text, outline: "none", padding: "4px 0" }} />
+                </td>
+                <td style={{ padding: "6px 12px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    <span style={{ color: COLORS.sub, fontSize: 12 }}>$</span>
+                    <input type="number" value={row.estimated} onChange={e => updateRow(row.id, "estimated", e.target.value)} placeholder="0" style={{ width: 80, border: "none", borderBottom: `1px solid ${COLORS.border}`, background: "transparent", fontFamily: "'Jost', sans-serif", fontSize: 12, color: COLORS.text, outline: "none", padding: "4px 0" }} />
+                  </div>
+                </td>
+                <td style={{ padding: "6px 12px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    <span style={{ color: COLORS.sub, fontSize: 12 }}>$</span>
+                    <input type="number" value={row.actual} onChange={e => updateRow(row.id, "actual", e.target.value)} placeholder="0" style={{ width: 80, border: "none", borderBottom: `1px solid ${COLORS.border}`, background: "transparent", fontFamily: "'Jost', sans-serif", fontSize: 12, color: COLORS.text, outline: "none", padding: "4px 0" }} />
+                  </div>
+                </td>
+                <td style={{ padding: "6px 12px" }}>
+                  <select value={row.status} onChange={e => updateRow(row.id, "status", e.target.value)} style={{ border: "none", borderBottom: `1px solid ${COLORS.border}`, background: "transparent", fontFamily: "'Jost', sans-serif", fontSize: 11, color: statusColors[row.status] || COLORS.sub, outline: "none", padding: "4px 0", cursor: "pointer" }}>
+                    {["Researching", "Quoted", "Booked", "Paid", "Cancelled"].map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </td>
+                <td style={{ padding: "6px 12px" }}>
+                  <input value={row.notes} onChange={e => updateRow(row.id, "notes", e.target.value)} placeholder="Add a note..." style={{ width: "100%", minWidth: 120, border: "none", borderBottom: `1px solid ${COLORS.border}`, background: "transparent", fontFamily: "'Jost', sans-serif", fontSize: 12, color: COLORS.text, outline: "none", padding: "4px 0" }} />
+                </td>
+                <td style={{ padding: "6px 8px", textAlign: "center" }}>
+                  <button onClick={() => deleteRow(row.id)} style={{ background: "none", border: "none", cursor: "pointer", color: COLORS.sub, fontSize: 16, opacity: 0.4, transition: "opacity 0.2s" }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.4}>×</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr style={{ borderTop: `2px solid ${COLORS.border}`, background: COLORS.mint }}>
+              <td style={{ padding: "12px", fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: COLORS.forest, fontWeight: 600 }}>Total</td>
+              <td />
+              <td style={{ padding: "12px", fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 600, color: COLORS.forest }}>{fmt(totalEstimated)}</td>
+              <td style={{ padding: "12px", fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 600, color: COLORS.forest }}>{fmt(totalActual)}</td>
+              <td colSpan={3} />
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      {/* ADD ROW */}
+      <div style={{ display: "flex", gap: 12, marginTop: 20, alignItems: "center", flexWrap: "wrap" }}>
+        <input
+          value={newCategory}
+          onChange={e => setNewCategory(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && addRow()}
+          placeholder="Add a custom category..."
+          style={{ flex: 1, minWidth: 200, fontFamily: "'Jost', sans-serif", fontSize: 13, border: `1px solid ${COLORS.border}`, borderRadius: 2, padding: "10px 14px", outline: "none", background: COLORS.white, color: COLORS.text }}
+        />
+        <button onClick={addRow} style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", background: COLORS.forest, color: COLORS.cream, border: "none", borderRadius: 2, padding: "10px 24px", cursor: "pointer" }}>
+          Add Row
+        </button>
+        <button onClick={resetAll} style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, background: "none", color: COLORS.sub, border: `1px solid ${COLORS.border}`, borderRadius: 2, padding: "10px 20px", cursor: "pointer" }}>
+          Reset
+        </button>
+      </div>
+
+      <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, marginTop: 16, fontStyle: "italic" }}>
+        ✦ Your budget data is saved automatically to this device. For access across multiple devices, stay tuned — cloud sync is coming.
+      </p>
+    </div>
+  );
+}
+
 function BudgetGuide() {
   const packages = [
     {
@@ -2476,6 +2701,7 @@ const tabs = [
   { id: "checklist", label: "Free Checklist" },
   { id: "why", label: "Our Story" },
   { id: "budget", label: "Budget Guide", locked: true },
+  { id: "tracker", label: "Budget Tracker", locked: true },
   { id: "venues", label: "Venues", locked: true },
   { id: "catering", label: "Catering", locked: true },
   { id: "bar", label: "Mobile Bar", locked: true },
@@ -2491,6 +2717,7 @@ const sectionMeta = {
   why: { eyebrow: "Behind the Guide", title: "Our Story", lead: "", icon: "story" },
   checklist: { eyebrow: "Canadian Rockies Edition", title: "Wedding Planning Checklist", lead: "From the moment you get engaged to the moment you say \"I do\" — every task, every milestone, beautifully organized.", icon: "checklist" },
   budget: { eyebrow: "Canadian Rockies Edition", title: "Budget Planning Guide", lead: "Every dream wedding is different — and so is every budget. Find the tier that fits your vision and explore vendors that align with your investment.", icon: "budget" },
+  tracker: { eyebrow: "Canadian Rockies Edition", title: "Budget Tracker", lead: "Track your wedding budget in real time. Your data is saved automatically between visits.", icon: "budget" },
   venues: { eyebrow: "Calgary · Canmore · Banff", title: "Venues", lead: "From grand Calgary hotel ballrooms and rustic mountain barns to intimate Canmore spaces and iconic Banff resorts — the Canadian Rockies corridor offers some of the most breathtaking wedding venues in the world.", icon: "venues" },
   catering: { eyebrow: "Calgary", title: "Catering", lead: "For venues without in-house catering, these Calgary caterers bring exceptional skill, flexibility, and style to your wedding table.", icon: "catering" },
   bar: { eyebrow: "Calgary", title: "Mobile Bar Services", lead: "Alberta's liquor laws make mobile bar services unique. Here's everything you need to know — and the best services in the city.", icon: "bar" },
@@ -2525,21 +2752,21 @@ function GiftModal({ onClose }) {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("https://formspree.io/f/mykbkojw", {
+      const res = await fetch("/.netlify/functions/create-checkout", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          inquiry_type: "gift_purchase",
-          tier: tiers[tier].name,
-          price: tiers[tier].price,
-          recipient_name: giftForm.recipientName,
-          recipient_email: giftForm.recipientEmail,
-          sender_name: giftForm.senderName,
-          personal_message: giftForm.message,
+          isGift: true,
+          recipientName: giftForm.recipientName,
+          recipientEmail: giftForm.recipientEmail,
+          senderName: giftForm.senderName,
+          message: giftForm.message,
+          email: giftForm.recipientEmail,
         }),
       });
-      if (res.ok) {
-        setStep(3);
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
       } else {
         setError("Something went wrong. Please try again.");
       }
@@ -2820,6 +3047,35 @@ function LandingPage() {
 }
 
 function LockScreen({ onUnlock }) {
+  const [purchasing, setPurchasing] = useState(false);
+  const [purchaseError, setPurchaseError] = useState("");
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "" });
+
+  async function handlePurchase(e) {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim()) return;
+    setPurchasing(true);
+    setPurchaseError("");
+    try {
+      const res = await fetch("/.netlify/functions/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, isGift: false }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setPurchaseError("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setPurchaseError("Something went wrong. Please check your connection.");
+    } finally {
+      setPurchasing(false);
+    }
+  }
+
   return (
     <div className="lock-screen">
       <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
@@ -2843,8 +3099,29 @@ function LockScreen({ onUnlock }) {
         </div>
         <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: COLORS.sub }}>CAD · One-time purchase · Lifetime access</div>
       </div>
-      <button className="lock-btn" onClick={onUnlock}>Purchase the Guide — $29</button>
-      <p className="lock-note">Already purchased? Enter your password above in the nav bar.</p>
+
+      {!showForm ? (
+        <button className="lock-btn" onClick={() => setShowForm(true)}>Purchase the Guide — $29</button>
+      ) : (
+        <form onSubmit={handlePurchase} style={{ width: "100%", maxWidth: 360, margin: "0 auto", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div className="form-group">
+            <label className="form-label">Your Name</label>
+            <input className="form-input" type="text" placeholder="Your name" required value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Email Address</label>
+            <input className="form-input" type="email" placeholder="your@email.com" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+            <p style={{ fontSize: 11, color: COLORS.sub, marginTop: 4, fontStyle: "italic" }}>Your unique access code will be sent here after purchase.</p>
+          </div>
+          {purchaseError && <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{purchaseError}</p>}
+          <button type="submit" className="lock-btn" disabled={purchasing} style={{ marginTop: 8 }}>
+            {purchasing ? "Redirecting to checkout..." : "Continue to Payment — $29"}
+          </button>
+          <button type="button" onClick={() => setShowForm(false)} style={{ background: "none", border: "none", fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, cursor: "pointer", letterSpacing: 1 }}>Cancel</button>
+        </form>
+      )}
+
+      <p className="lock-note">Already purchased? Enter your access code in the nav bar.</p>
     </div>
   );
 }
@@ -2944,6 +3221,7 @@ function Icon({ name, color, size }) {
 
 const guideItems = [
   { id: "budget", label: "Budget Guide", icon: "budget" },
+  { id: "tracker", label: "Budget Tracker", icon: "budget" },
   { id: "venues", label: "Venues", icon: "venues" },
   { id: "catering", label: "Catering", icon: "catering" },
   { id: "bar", label: "Mobile Bar", icon: "bar" },
@@ -3382,6 +3660,7 @@ export default function App() {
             </h1>
             {meta.lead && <p className="section-lead">{meta.lead}</p>}
             {activeTab === "budget" && <BudgetGuide />}
+            {activeTab === "tracker" && <BudgetTracker />}
             {activeTab === "venues" && (
             <>
               <VenueSection sections={venueData} />
