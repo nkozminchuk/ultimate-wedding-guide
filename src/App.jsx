@@ -3121,7 +3121,7 @@ function LockScreen({ onUnlock }) {
   );
 }
 
-function PasswordGate({ onSuccess }) {
+function PasswordGate({ onSuccess, onPurchase }) {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const GUIDE_PASSWORD = "rockies2025";
@@ -3187,7 +3187,7 @@ function PasswordGate({ onSuccess }) {
         <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
           Don't have a password yet?{" "}
           <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
-            onClick={() => document.querySelector('.guide-wrap') && window.scrollTo(0,0)}>
+            onClick={onPurchase}>
             Purchase the guide
           </span>{" "}to receive instant access.
         </p>
@@ -3232,6 +3232,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [unlocked, setUnlocked] = useState(false);
   const [showPasswordGate, setShowPasswordGate] = useState(false);
+  const [showPurchase, setShowPurchase] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const meta = sectionMeta[activeTab] || sectionMeta["home"];
   const isLocked = tabs.find(t => t.id === activeTab)?.locked;
@@ -3476,7 +3477,15 @@ export default function App() {
   return (
     <>
       <style>{styles}</style>
-      {showPasswordGate && <PasswordGate onSuccess={handleUnlock} />}
+      {showPasswordGate && <PasswordGate onSuccess={handleUnlock} onPurchase={() => { setShowPasswordGate(false); setShowPurchase(true); }} />}
+      {showPurchase && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 24 }}>
+          <div style={{ background: COLORS.white, borderRadius: 4, padding: "48px", maxWidth: 480, width: "100%", position: "relative" }}>
+            <button onClick={() => setShowPurchase(false)} style={{ position: "absolute", top: 16, right: 20, background: "none", border: "none", fontSize: 24, color: COLORS.sub, cursor: "pointer" }}>×</button>
+            <LockScreen onUnlock={handleUnlock} />
+          </div>
+        </div>
+      )}
       <div className="guide-wrap">
         {/* COVER */}
         <div className="cover">
@@ -3643,7 +3652,7 @@ export default function App() {
         )}
 
         {/* LOCKED */}
-        {isLocked && !unlocked && <LockScreen onUnlock={() => setShowPasswordGate(true)} />}
+        {isLocked && !unlocked && <LockScreen onUnlock={() => { setShowPasswordGate(false); setShowPurchase(true); }} />}
 
         {/* UNLOCKED CONTENT */}
         {isLocked && unlocked && (
