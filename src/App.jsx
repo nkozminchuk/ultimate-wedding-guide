@@ -3124,16 +3124,33 @@ function LockScreen({ onUnlock }) {
 function PasswordGate({ onSuccess, onPurchase }) {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-  const GUIDE_PASSWORD = "rockies2025";
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (input.trim().toLowerCase() === GUIDE_PASSWORD) {
-      onSuccess();
-    } else {
+    if (!input.trim()) return;
+    setLoading(true);
+    setError(false);
+    try {
+      const res = await fetch("/.netlify/functions/validate-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: input.trim() }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        onSuccess();
+      } else {
+        setError(true);
+        setInput("");
+        setTimeout(() => setError(false), 3000);
+      }
+    } catch (err) {
       setError(true);
       setInput("");
       setTimeout(() => setError(false), 3000);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -3179,9 +3196,10 @@ function PasswordGate({ onSuccess, onPurchase }) {
             fontFamily: "'Jost', sans-serif", fontSize: 11,
             fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
             padding: "16px 32px", border: "none", borderRadius: 2,
-            cursor: "pointer", transition: "background 0.2s"
-          }}>
-            Unlock Guide
+            cursor: "pointer", transition: "background 0.2s",
+            opacity: loading ? 0.7 : 1,
+          }} disabled={loading}>
+            {loading ? "Checking..." : "Unlock Guide"}
           </button>
         </form>
         <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
@@ -3249,6 +3267,49 @@ export default function App() {
   function handleUnlock() {
     setUnlocked(true);
     setShowPasswordGate(false);
+  }
+
+  // ── SUCCESS PAGE ─────────────────────────────────────────
+  const urlParams = new URLSearchParams(window.location.search);
+  const successCode = urlParams.get('code');
+  const successName = urlParams.get('name');
+
+  if (successCode) {
+    return (
+      <>
+        <style>{styles}</style>
+        <div style={{ minHeight: "100vh", background: COLORS.forest, display: "flex", alignItems: "center", justifyContent: "center", padding: 24, position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%, rgba(196,149,106,0.15) 0%, transparent 60%)" }} />
+          <div style={{ background: COLORS.white, borderRadius: 4, padding: "56px 48px", maxWidth: 520, width: "100%", textAlign: "center", position: "relative" }}>
+            <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 32px" }} />
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 16 }}>Purchase Complete</div>
+            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42, fontWeight: 400, color: COLORS.forest, marginBottom: 16, lineHeight: 1.1 }}>
+              Welcome{successName ? `, ${successName}` : ""}!
+            </h1>
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.7, marginBottom: 32 }}>
+              Your purchase was successful. Your unique access code has been sent to your email — check your inbox to get started.
+            </p>
+            <div style={{ background: COLORS.parchment, border: `1px solid ${COLORS.border}`, borderRadius: 4, padding: "24px 32px", marginBottom: 32 }}>
+              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: COLORS.sub, marginBottom: 12 }}>Your Access Code</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: COLORS.forest, letterSpacing: 4 }}>{successCode}</div>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, marginTop: 12, letterSpacing: 1 }}>Save this code — you will need it to access the guide</p>
+            </div>
+            <button
+              onClick={() => {
+                window.history.replaceState({}, '', '/');
+                setRegion("rockies");
+                setShowPasswordGate(true);
+              }}
+              style={{ background: COLORS.forest, color: COLORS.cream, fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", padding: "16px 40px", border: "none", borderRadius: 2, cursor: "pointer", width: "100%" }}>
+              Enter the Guide
+            </button>
+            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, marginTop: 16, letterSpacing: 1 }}>
+              Congratulations on your engagement. — Nadia
+            </p>
+          </div>
+        </div>
+      </>
+    );
   }
 
   // ── REGION SELECTOR ─────────────────────────────────────────
