@@ -863,12 +863,12 @@ function LandingPage({ onBuy }) {
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2C4A3E", marginBottom: 3 }}>{c.city}</div>
               <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: "#6B6B6B", letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
               <div style={{
-                display: "inline-block",
+                display: "block",
                 fontFamily: "'Jost', sans-serif",
                 fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
                 color: c.status === "In Progress" ? "#2C4A3E" : "#C4956A",
                 background: c.status === "In Progress" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
-                padding: "3px 10px", borderRadius: 20, marginBottom: 12, display: "block",
+                padding: "3px 10px", borderRadius: 20, marginBottom: 12,
               }}>{c.status}</div>
               <button
                 onClick={() => { setNotifyCity(c.city); setShowNotify(true); }}
