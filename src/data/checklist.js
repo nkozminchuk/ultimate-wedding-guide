@@ -1,1 +1,103 @@
+// =============================================================================
+// DATA / CHECKLIST.JS — 60-task wedding planning checklist
+// To add tasks: find the right phase object and add to its items array.
+// =============================================================================
 
+export const checklistData = [
+  {
+    phase: "12+ Months Before",
+    badge: "Start Here",
+    items: [
+      "Set your overall wedding budget",
+      "Choose your wedding date",
+      "Decide on guest list size",
+      "Agree on overall vision and style",
+      "Research and book your venue",
+      "Book your photographer",
+      "Book your videographer",
+      "Start researching wedding planners (if desired)",
+      "Announce your engagement",
+      "Create a wedding website",
+    ],
+  },
+  {
+    phase: "9–12 Months Before",
+    badge: "Building the Team",
+    items: [
+      "Book your caterer",
+      "Book your florist",
+      "Start wedding dress shopping",
+      "Book your officiant",
+      "Book your band or DJ",
+      "Book your audio/visual & sound team",
+      "Book your hair & makeup artists",
+      "Send save the dates",
+      "Book accommodation room blocks for guests",
+      "Start planning your honeymoon",
+    ],
+  },
+  {
+    phase: "6–9 Months Before",
+    badge: "Details",
+    items: [
+      "Order your wedding dress",
+      "Book suits and groomswear",
+      "Design and order invitations",
+      "Book transportation (limo, shuttle etc.)",
+      "Book wedding cake or dessert table",
+      "Book mobile bar service",
+      "Plan your rehearsal dinner",
+      "Register for gifts",
+      "Apply for Banff National Park permit (if applicable)",
+      "Obtain AGLC Special Event Licence (if applicable)",
+    ],
+  },
+  {
+    phase: "3–6 Months Before",
+    badge: "Getting Real",
+    items: [
+      "Send formal invitations",
+      "Schedule dress fittings",
+      "Plan ceremony music and readings",
+      "Finalize menu with caterer",
+      "Book florist consultation and finalize design",
+      "Schedule cake tasting",
+      "Plan rehearsal schedule",
+      "Arrange travel for out-of-town guests",
+      "Book hair and makeup trial",
+      "Choose wedding party gifts",
+    ],
+  },
+  {
+    phase: "1–3 Months Before",
+    badge: "Final Stretch",
+    items: [
+      "Follow up on RSVPs",
+      "Confirm all vendor bookings",
+      "Finalize seating chart",
+      "Final dress fitting",
+      "Create wedding day timeline",
+      "Confirm ceremony details with officiant",
+      "Break in your wedding shoes",
+      "Pick up marriage licence",
+      "Prepare vendor payments and tips",
+      "Write your vows",
+    ],
+  },
+  {
+    phase: "Week Of",
+    badge: "Almost There!",
+    items: [
+      "Confirm all vendors one final time",
+      "Deliver decor and items to venue",
+      "Attend rehearsal dinner",
+      "Delegate day-of tasks to wedding party",
+      "Prepare emergency kit (safety pins, pain relief, etc.)",
+      "Give rings to best person for safekeeping",
+      "Get a good sleep the night before",
+      "Eat breakfast on your wedding day",
+      "Take a deep breath — you've got this!",
+      "Enjoy every single moment",
+    ],
+  },
+];
