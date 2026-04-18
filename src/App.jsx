@@ -137,6 +137,85 @@ function SimpleVendors({ vendors, pending, pendingLabel, infoTitle, infoItems })
   );
 }
 
+function ChecklistGate({ onUnlock }) {
+  const [form, setForm] = useState({ name: "", email: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://formspree.io/f/mykbkojw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          inquiry_type: "checklist_access",
+          message: "Requested access to the free wedding planning checklist.",
+        }),
+      });
+      if (res.ok) {
+        onUnlock();
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div style={{
+      maxWidth: 480,
+      margin: "0 auto",
+      padding: "48px 0 24px",
+      textAlign: "center",
+    }}>
+      <div style={{ width: 40, height: 1, background: "#C4956A", margin: "0 auto 28px" }} />
+      <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: "#C4956A", marginBottom: 12 }}>
+        Free Access
+      </div>
+      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 400, color: "#2C4A3E", marginBottom: 12, lineHeight: 1.1 }}>
+        Get the Free Checklist
+      </h2>
+      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: "#6B6B6B", lineHeight: 1.6, marginBottom: 36 }}>
+        Enter your name and email to access our 60-task wedding planning checklist — completely free, no purchase required.
+      </p>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16, textAlign: "left" }}>
+        <div className="form-group">
+          <label className="form-label">Your Name</label>
+          <input className="form-input" type="text" placeholder="Your name" required
+            value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+        </div>
+        <div className="form-group">
+          <label className="form-label">Email Address</label>
+          <input className="form-input" type="email" placeholder="your@email.com" required
+            value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+          <p style={{ fontSize: 11, color: "#6B6B6B", marginTop: 6, fontStyle: "italic" }}>
+            We'll occasionally share planning tips and new guide updates. No spam, ever.
+          </p>
+        </div>
+        {error && <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{error}</p>}
+        <button type="submit" className="form-btn" disabled={loading} style={{ alignSelf: "stretch", textAlign: "center" }}>
+          {loading ? "One moment..." : "Access the Free Checklist →"}
+        </button>
+      </form>
+      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontStyle: "italic", color: "#6B6B6B", marginTop: 20, lineHeight: 1.6 }}>
+        Already have the full guide?{" "}
+        <span style={{ color: "#C4956A", cursor: "pointer", textDecoration: "underline", textUnderlineOffset: 3 }}
+          onClick={onUnlock}>
+          Skip ahead →
+        </span>
+      </p>
+    </div>
+  );
+}
+
 function Checklist() {
   const total = checklistData.reduce((a, p) => a + p.items.length, 0);
   const [checked, setChecked] = useState({});
@@ -459,6 +538,84 @@ function BudgetGuide() {
 
 
 // ── APP ─────────────────────────────────────────────────────────────────────
+
+// ── NOTIFY MODAL ─────────────────────────────────────────────────────────────
+function NotifyModal({ cityName, onClose }) {
+  const [form, setForm] = useState({ name: "", email: "" });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://formspree.io/f/mykbkojw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          inquiry_type: "city_notify",
+          message: `Please notify me when the ${cityName} edition launches.`,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="gift-modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="gift-modal" style={{ position: "relative", maxWidth: 440 }}>
+        <button className="gift-modal-close" onClick={onClose}>×</button>
+        {submitted ? (
+          <div style={{ textAlign: "center", padding: "12px 0" }}>
+            <div style={{ width: 40, height: 1, background: "#C4956A", margin: "0 auto 24px" }} />
+            <h2 className="gift-modal-title">You're on the list!</h2>
+            <p className="gift-modal-sub">
+              We'll reach out the moment the <strong>{cityName}</strong> edition goes live.
+            </p>
+            <button className="form-btn" style={{ width: "100%" }} onClick={onClose}>Done</button>
+          </div>
+        ) : (
+          <>
+            <div className="gift-modal-eyebrow">Coming Soon</div>
+            <h2 className="gift-modal-title">{cityName} Edition</h2>
+            <p className="gift-modal-sub">
+              Leave your details and we'll notify you the moment this edition launches.
+            </p>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div className="form-group">
+                <label className="form-label">Your Name</label>
+                <input className="form-input" type="text" placeholder="Your name" required
+                  value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Email Address</label>
+                <input className="form-input" type="email" placeholder="your@email.com" required
+                  value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+              </div>
+              {error && <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{error}</p>}
+              <button type="submit" className="form-btn" disabled={loading}>
+                {loading ? "Sending..." : "Notify Me When Live"}
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function GiftModal({ onClose }) {
   const [step, setStep] = useState(1);
   const [giftForm, setGiftForm] = useState({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
@@ -586,6 +743,8 @@ function LandingPage({ onBuy }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showGift, setShowGift] = useState(false);
+  const [showNotify, setShowNotify] = useState(false);
+  const [notifyCity, setNotifyCity] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -658,6 +817,7 @@ function LandingPage({ onBuy }) {
 
       {/* GIFT SECTION */}
       {showGift && <GiftModal onClose={() => setShowGift(false)} />}
+      {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
       <div className="gift-section">
         <div className="gift-eyebrow">Know Someone Getting Married?</div>
         <h2 className="gift-title">Give the Gift of<br /><em>a Dream Wedding</em></h2>
@@ -695,30 +855,40 @@ function LandingPage({ onBuy }) {
             { city: "Halifax", region: "Nova Scotia", status: "Planned" },
           ].map((c, i) => (
             <div key={i} style={{
-              border: `1px solid ${COLORS.border}`,
+              border: `1px solid ${c.status === "In Progress" ? "#2C4A3E" : "#D4C5A9"}`,
               borderRadius: 4,
               padding: "16px 18px",
-              background: c.status === "In Progress" ? COLORS.mint : COLORS.white,
-              borderColor: c.status === "In Progress" ? COLORS.forest : COLORS.border,
+              background: c.status === "In Progress" ? "#E8F0ED" : "#FFFFFF",
             }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: COLORS.forest, marginBottom: 3 }}>{c.city}</div>
-              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2C4A3E", marginBottom: 3 }}>{c.city}</div>
+              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: "#6B6B6B", letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
               <div style={{
                 display: "inline-block",
                 fontFamily: "'Jost', sans-serif",
-                fontSize: 10,
-                letterSpacing: 2,
-                textTransform: "uppercase",
-                color: c.status === "In Progress" ? COLORS.forest : COLORS.sandstone,
+                fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+                color: c.status === "In Progress" ? "#2C4A3E" : "#C4956A",
                 background: c.status === "In Progress" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
-                padding: "3px 10px",
-                borderRadius: 20,
+                padding: "3px 10px", borderRadius: 20, marginBottom: 12, display: "block",
               }}>{c.status}</div>
+              <button
+                onClick={() => { setNotifyCity(c.city); setShowNotify(true); }}
+                style={{
+                  width: "100%",
+                  fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
+                  textTransform: "uppercase", color: "#2C4A3E",
+                  background: "none", border: "1px solid #D4C5A9", borderRadius: 2,
+                  padding: "7px 12px", cursor: "pointer", transition: "all 0.2s",
+                }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = "#C4956A"; e.currentTarget.style.color = "#C4956A"; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = "#D4C5A9"; e.currentTarget.style.color = "#2C4A3E"; }}
+              >
+                Notify Me
+              </button>
             </div>
           ))}
         </div>
-        <p style={{ fontSize: 13, color: COLORS.sub, fontStyle: "italic" }}>
-          Want to be notified when your city launches? Send us a message below and we will add you to the list.
+        <p style={{ fontSize: 13, color: "#6B6B6B", fontStyle: "italic" }}>
+          Click any city above to be notified the moment that edition launches.
         </p>
       </div>
 
@@ -955,12 +1125,35 @@ const guideItems = [
   { id: "coming", label: "On Our Radar", icon: "coming" },
 ];
 
+function ChecklistTab() {
+  const [unlocked, setUnlocked] = useState(false);
+  return (
+    <div className="content">
+      <div className="section-eyebrow">{sectionMeta.checklist.eyebrow}</div>
+      <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <Icon name="checklist" color={COLORS.sandstone} size={36} />
+        {sectionMeta.checklist.title}
+      </h1>
+      {!unlocked ? (
+        <ChecklistGate onUnlock={() => setUnlocked(true)} />
+      ) : (
+        <>
+          <p className="section-lead">{sectionMeta.checklist.lead}</p>
+          <Checklist />
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const [region, setRegion] = useState(null);
   const [activeTab, setActiveTab] = useState("home");
   const [unlocked, setUnlocked] = useState(false);
   const [showPasswordGate, setShowPasswordGate] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showNotify, setShowNotify] = useState(false);
+  const [notifyCity, setNotifyCity] = useState("");
   const meta = sectionMeta[activeTab] || sectionMeta["home"];
   const isLocked = tabs.find(t => t.id === activeTab)?.locked;
 
@@ -1073,6 +1266,7 @@ export default function App() {
           .region-card.available { border-color: rgba(196,149,106,0.5); background: rgba(196,149,106,0.08); }
           .region-card.coming { opacity: 0.75; cursor: default; }
           .region-card.coming:hover { transform: none; box-shadow: none; border-color: rgba(196,149,106,0.25); }
+          .region-card.coming .region-notify { pointer-events: auto; cursor: pointer; }
           .region-badge {
             display: inline-block;
             font-family: 'Jost', sans-serif;
@@ -1148,6 +1342,7 @@ export default function App() {
           }
         `}</style>
         <div className="region-wrap">
+          {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
           <div className="region-eyebrow">The Ultimate Wedding Guide</div>
           <h1 className="region-title">Your dream wedding<br /><span>starts here.</span></h1>
           <p className="region-sub">We have done the research, vetted the vendors, and organized everything — select your region and let's get planning.</p>
@@ -1188,7 +1383,7 @@ export default function App() {
                 <div className="region-name">{r.name}</div>
                 <div className="region-cities">{r.cities}</div>
                 <div className="region-desc">{r.desc}</div>
-                <button className="region-notify" onClick={e => { e.stopPropagation(); setRegion("rockies"); setTimeout(() => { document.querySelector('.contact-form select')?.focus(); }, 500); }}>
+                <button className="region-notify" onClick={e => { e.stopPropagation(); setNotifyCity(r.name); setShowNotify(true); }}>
                   Notify Me When Live
                 </button>
               </div>
@@ -1388,17 +1583,7 @@ export default function App() {
         {activeTab === "home" && <LandingPage onBuy={() => setActiveTab("budget")} />}
 
         {/* FREE CHECKLIST */}
-        {activeTab === "checklist" && (
-          <div className="content">
-            <div className="section-eyebrow">{sectionMeta.checklist.eyebrow}</div>
-            <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <Icon name="checklist" color={COLORS.sandstone} size={36} />
-              {sectionMeta.checklist.title}
-            </h1>
-            <p className="section-lead">{sectionMeta.checklist.lead}</p>
-            <Checklist />
-          </div>
-        )}
+        {activeTab === "checklist" && <ChecklistTab />}
 
         {/* LOCKED */}
         {isLocked && !unlocked && <LockScreen onUnlock={() => setShowPasswordGate(true)} />}
