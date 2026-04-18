@@ -3524,6 +3524,36 @@ export default function App() {
           <div className="cover-cities">Canadian Rockies Edition</div>
           <div className="cover-subtitle" style={{marginTop: 12, fontSize: 14, letterSpacing: 3}}>Calgary  ·  Canmore  ·  Banff</div>
           <div className="cover-subtitle">Your complete planning resource for an unforgettable Rocky Mountain wedding</div>
+          <div style={{ marginTop: 32, position: "relative" }}>
+            <button
+              onClick={() => setActiveTab("budget")}
+              style={{
+                background: COLORS.sandstone,
+                color: COLORS.forest,
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: 3,
+                textTransform: "uppercase",
+                padding: "14px 36px",
+                border: "none",
+                borderRadius: 2,
+                cursor: "pointer",
+                transition: "background 0.2s",
+              }}
+              onMouseOver={e => e.currentTarget.style.background = "#d4a870"}
+              onMouseOut={e => e.currentTarget.style.background = COLORS.sandstone}
+            >
+              Buy the Guide — $29
+            </button>
+            <p style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 11,
+              letterSpacing: 1,
+              color: "rgba(247,243,236,0.5)",
+              marginTop: 10,
+            }}>CAD · One-time purchase · Lifetime access</p>
+          </div>
         </div>
 
         {/* NAV */}
