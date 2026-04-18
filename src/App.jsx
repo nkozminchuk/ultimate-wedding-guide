@@ -854,6 +854,35 @@ const styles = `
     line-height: 1.75;
     color: ${COLORS.sub};
     max-width: 600px;
+    margin-bottom: 32px;
+  }
+  .landing-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: ${COLORS.forest};
+    color: ${COLORS.cream};
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-bottom: 10px;
+  }
+  .landing-buy-btn:hover {
+    background: #1e3329;
+    transform: translateY(-1px);
+  }
+  .landing-buy-note {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: ${COLORS.sub};
     margin-bottom: 48px;
   }
   .section-lead {
@@ -1862,68 +1891,9 @@ const venueData = [
         name: "Banff Caribou Lodge & Spa",
         tier: "$$",
         fields: [
-          { label: "Capacity", value: "Woodlands Room: 12–48 seated; Tundra Room: 16–20" },
-          { label: "Ceremony", value: "Indoor ceremony in Tundra Room ($450)" },
-          { label: "Reception", value: "Indoor reception in Woodlands Room until 11pm ($900)" },
-          { label: "Catering", value: "The Keg Steakhouse & Bar — welcome appetizers, three course plated service" },
-          { label: "Pricing", value: "Plated menus $66–$95 per person; estimated total for 30 guests approx. $4,550" },
-          { label: "Includes", value: "Cake plating, bartender, sound system" },
-          { label: "Deposits", value: "$1,000 at booking; second $1,000 due 60 days prior; full payment 21 days prior" },
-          { label: "Phone", value: "1-800-563-8764" },
+          { label: "Style", value: "Classic Banff lodge with a warm, welcoming atmosphere — great for mid-size celebrations" },
           { label: "Email", value: "events@banfflodgingco.com" },
-          { label: "Instagram", value: "@banff.lodging.co" },
           { label: "Website", value: "banffcariboulodge.com", link: "https://banffcariboulodge.com/meetings/" },
-        ],
-      },
-      {
-        name: "Moose Hotel & Suites",
-        tier: "$$",
-        fields: [
-          { label: "Capacity", value: "Antler Room: up to 120; Darch Suite: 2–16 (intimate celebrations)" },
-          { label: "Ceremony", value: "Indoor ceremony in Antler Room ($1,000) or Darch Suite ($500)" },
-          { label: "Reception", value: "Indoor reception in Antler Room ($2,500) or Darch Suite ($1,100)" },
-          { label: "Catering", value: "Pacini Italian Restaurant — welcome appetizers, dinner buffet, three course plated, late night buffet" },
-          { label: "Pricing", value: "Plated or buffet $55–$75/person; with late night buffet $70–$100/person; estimated total for 100 guests approx. $13,500" },
-          { label: "Includes", value: "Cake plating, bartender, dance floor, podium, sound system and microphone" },
-          { label: "Deposits", value: "$2,000 at booking; second $2,000 due 60 days prior; full payment 21 days prior" },
-          { label: "Phone", value: "1-800-563-8764" },
-          { label: "Email", value: "reservations@banfflodgingco.com" },
-          { label: "Instagram", value: "@moosehotelandsuites" },
-          { label: "Website", value: "moosehotelandsuites.com", link: "https://moosehotelandsuites.com/" },
-        ],
-      },
-      {
-        name: "Otter Hotel",
-        tier: "$$",
-        fields: [
-          { label: "Capacity", value: "Holt Room: up to 104 guests" },
-          { label: "Ceremony", value: "Indoor ceremony in Holt Room included in package — 3 hour flip time to transform layout" },
-          { label: "Reception", value: "Summer/Saturdays: $2,000 + $12,500 min F&B; Off-peak: $1,200 + $7,500 min F&B" },
-          { label: "Catering", value: "Good Folk — welcome appetizers, family style, three to five course plated service, late night snacks" },
-          { label: "Pricing", value: "Plated or family style $100–$174/person; with late night snacks $114–$188/person" },
-          { label: "Includes", value: "Cake plating, bartender, dance floor, podium, sound system and microphone" },
-          { label: "Deposits", value: "Room rental due at booking; 50% of min F&B due 6 months prior; 50% due 90 days prior; full payment 21 days prior" },
-          { label: "Phone", value: "1-800-563-8764" },
-          { label: "Email", value: "reservations@banfflodgingco.com" },
-          { label: "Instagram", value: "@otterhotelbanff" },
-          { label: "Website", value: "otterhotel.com", link: "https://otterhotel.com" },
-        ],
-      },
-      {
-        name: "Rocky Mountain Resort",
-        tier: "$$",
-        fields: [
-          { label: "Capacity", value: "Grey Wolf Room: 128; Timber Wolf Room: 100; White Wolf Suite: 16–40 (intimate)" },
-          { label: "Ceremony", value: "Outdoor ceremony in Pine Meadows with indoor backup (summer $1,750); indoor ceremony (winter $900)" },
-          { label: "Reception", value: "Indoor reception in Grey Wolf or Timber Wolf Room (summer $2,500; winter $1,400)" },
-          { label: "Catering", value: "Alpha Bistro — welcome appetizers, dinner buffet or three course plated, children's menu, late night buffet" },
-          { label: "Pricing", value: "Plated or buffet $60–$95/person; with late night buffet $80–$115/person; estimated total for 100 guests approx. $15,250" },
-          { label: "Includes", value: "Cake plating, bartender, dance floor, podium, sound system and microphone; wedding arch for outdoor ceremony" },
-          { label: "Deposits", value: "$2,000 at booking; second $2,000 due 60 days prior; full payment 21 days prior" },
-          { label: "Phone", value: "1-800-563-8764" },
-          { label: "Email", value: "reservations@banfflodgingco.com" },
-          { label: "Instagram", value: "@banff.lodging.co" },
-          { label: "Website", value: "rockymountainresort.com", link: "https://rockymountainresort.com/" },
         ],
       },
       {
@@ -2797,9 +2767,14 @@ const dressData = [
 // ── APP ─────────────────────────────────────────────────────────────────────
 function GiftModal({ onClose }) {
   const [step, setStep] = useState(1);
+  const [tier, setTier] = useState("essential");
   const [giftForm, setGiftForm] = useState({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const tiers = {
+    complete: { price: "$29", name: "The Ultimate Wedding Guide", desc: "Full vendor directory, budget guide, checklist & more. Regular price $49 — launch special." },
+  };
 
   async function handleGiftSubmit(e) {
     e.preventDefault();
@@ -2916,7 +2891,7 @@ function GiftModal({ onClose }) {
   );
 }
 
-function LandingPage() {
+function LandingPage({ onBuy }) {
   const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -2951,12 +2926,12 @@ function LandingPage() {
   }
 
   const features = [
-    { iconKey: "venues", title: "39 Verified Venues", desc: "From grand Banff resorts and iconic Calgary ballrooms to intimate Canmore spaces and rustic mountain barns." },
+    { iconKey: "venues", title: "36 Verified Venues", desc: "From grand Banff resorts and iconic Calgary ballrooms to intimate Canmore spaces and rustic mountain barns." },
     { iconKey: "checklist", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, beautifully organized." },
     { iconKey: "budget", title: "Budget Planning Guide", desc: "Sample packages from intimate elopements to dream celebrations." },
-    { iconKey: "budget", title: "Interactive Budget Tracker", desc: "Track estimated vs actual costs in real time. Auto-saves between visits." },
     { iconKey: "photo", title: "Photography & More", desc: "Vetted photographers, florists, caterers, bakers, and more." },
     { iconKey: "florists", title: "All Travel to the Mountains", desc: "Nearly every vendor covers Calgary, Canmore, and Banff." },
+    { iconKey: "cakes", title: "Regularly Updated", desc: "New vendors and sections added as we grow the guide." },
   ];
 
   return (
@@ -2966,6 +2941,11 @@ function LandingPage() {
       <p className="landing-body">
         We've done the research, vetted the vendors, and organized everything — so you can put down the laptop, stop the endless Googling, and actually enjoy being engaged. The Ultimate Wedding Guide — Canadian Rockies Edition gives you everything you need to plan your dream wedding in Calgary, Canmore, or Banff, all in one beautiful place.
       </p>
+
+      <button className="landing-buy-btn" onClick={onBuy}>
+        Buy the Guide — $29
+      </button>
+      <p className="landing-buy-note">CAD · One-time purchase · Lifetime access</p>
 
       <div style={{ marginBottom: 16 }}>
         <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
@@ -3136,7 +3116,7 @@ function LockScreen({ onUnlock }) {
       <h2 className="lock-title">Unlock the Full Guide</h2>
       <p className="lock-sub">Purchase once and get lifetime access to all vendor categories across Calgary, Canmore, and Banff — plus free updates as we grow.</p>
       <div className="lock-features">
-        {["39 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "Interactive Budget Tracker", "60-Task Planning Checklist"].map((f, i) => (
+        {["36 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "60-Task Planning Checklist"].map((f, i) => (
           <span key={i} className="lock-feature-tag">{f}</span>
         ))}
       </div>
@@ -3180,36 +3160,19 @@ function LockScreen({ onUnlock }) {
   );
 }
 
-function PasswordGate({ onSuccess, onPurchase }) {
+function PasswordGate({ onSuccess }) {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const GUIDE_PASSWORD = "rockies2025";
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    if (!input.trim()) return;
-    setLoading(true);
-    setError(false);
-    try {
-      const res = await fetch("/.netlify/functions/validate-code", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: input.trim() }),
-      });
-      const data = await res.json();
-      if (data.valid) {
-        onSuccess();
-      } else {
-        setError(true);
-        setInput("");
-        setTimeout(() => setError(false), 3000);
-      }
-    } catch (err) {
+    if (input.trim().toLowerCase() === GUIDE_PASSWORD) {
+      onSuccess();
+    } else {
       setError(true);
       setInput("");
       setTimeout(() => setError(false), 3000);
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -3255,16 +3218,15 @@ function PasswordGate({ onSuccess, onPurchase }) {
             fontFamily: "'Jost', sans-serif", fontSize: 11,
             fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
             padding: "16px 32px", border: "none", borderRadius: 2,
-            cursor: "pointer", transition: "background 0.2s",
-            opacity: loading ? 0.7 : 1,
-          }} disabled={loading}>
-            {loading ? "Checking..." : "Unlock Guide"}
+            cursor: "pointer", transition: "background 0.2s"
+          }}>
+            Unlock Guide
           </button>
         </form>
         <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
           Don't have a password yet?{" "}
           <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
-            onClick={onPurchase}>
+            onClick={() => document.querySelector('.guide-wrap') && window.scrollTo(0,0)}>
             Purchase the guide
           </span>{" "}to receive instant access.
         </p>
@@ -3307,11 +3269,8 @@ const guideItems = [
 export default function App() {
   const [region, setRegion] = useState(null);
   const [activeTab, setActiveTab] = useState("home");
-  const [unlocked, setUnlocked] = useState(() => {
-    try { return sessionStorage.getItem("uwg_unlocked") === "true"; } catch(e) { return false; }
-  });
+  const [unlocked, setUnlocked] = useState(false);
   const [showPasswordGate, setShowPasswordGate] = useState(false);
-  const [showPurchase, setShowPurchase] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const meta = sectionMeta[activeTab] || sectionMeta["home"];
   const isLocked = tabs.find(t => t.id === activeTab)?.locked;
@@ -3328,50 +3287,6 @@ export default function App() {
   function handleUnlock() {
     setUnlocked(true);
     setShowPasswordGate(false);
-    try { sessionStorage.setItem("uwg_unlocked", "true"); } catch(e) {}
-  }
-
-  // ── SUCCESS PAGE ─────────────────────────────────────────
-  const urlParams = new URLSearchParams(window.location.search);
-  const successCode = urlParams.get('code');
-  const successName = urlParams.get('name');
-
-  if (successCode) {
-    return (
-      <>
-        <style>{styles}</style>
-        <div style={{ minHeight: "100vh", background: COLORS.forest, display: "flex", alignItems: "center", justifyContent: "center", padding: 24, position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%, rgba(196,149,106,0.15) 0%, transparent 60%)" }} />
-          <div style={{ background: COLORS.white, borderRadius: 4, padding: "56px 48px", maxWidth: 520, width: "100%", textAlign: "center", position: "relative" }}>
-            <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 32px" }} />
-            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 16 }}>Purchase Complete</div>
-            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42, fontWeight: 400, color: COLORS.forest, marginBottom: 16, lineHeight: 1.1 }}>
-              Welcome{successName ? `, ${successName}` : ""}!
-            </h1>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.7, marginBottom: 32 }}>
-              Your purchase was successful. Your unique access code has been sent to your email — check your inbox to get started.
-            </p>
-            <div style={{ background: COLORS.parchment, border: `1px solid ${COLORS.border}`, borderRadius: 4, padding: "24px 32px", marginBottom: 32 }}>
-              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: COLORS.sub, marginBottom: 12 }}>Your Access Code</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 600, color: COLORS.forest, letterSpacing: 4 }}>{successCode}</div>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, marginTop: 12, letterSpacing: 1 }}>Save this code — you will need it to access the guide</p>
-            </div>
-            <button
-              onClick={() => {
-                window.history.replaceState({}, '', '/');
-                setRegion("rockies");
-                setShowPasswordGate(true);
-              }}
-              style={{ background: COLORS.forest, color: COLORS.cream, fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", padding: "16px 40px", border: "none", borderRadius: 2, cursor: "pointer", width: "100%" }}>
-              Enter the Guide
-            </button>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, marginTop: 16, letterSpacing: 1 }}>
-              Congratulations on your engagement. — Nadia
-            </p>
-          </div>
-        </div>
-      </>
-    );
   }
 
   // ── REGION SELECTOR ─────────────────────────────────────────
@@ -3561,7 +3476,7 @@ export default function App() {
               </div>
               <div className="region-name">Canadian Rockies</div>
               <div className="region-cities">Calgary · Canmore · Banff</div>
-              <div className="region-desc">39 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more — all vetted and ready.</div>
+              <div className="region-desc">36 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more — all vetted and ready.</div>
               <div className="region-cta">Explore the Guide →</div>
             </div>
 
@@ -3600,15 +3515,7 @@ export default function App() {
   return (
     <>
       <style>{styles}</style>
-      {showPasswordGate && <PasswordGate onSuccess={handleUnlock} onPurchase={() => { setShowPasswordGate(false); setShowPurchase(true); }} />}
-      {showPurchase && (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 24, overflowY: "auto" }}>
-          <div style={{ background: COLORS.white, borderRadius: 4, padding: "48px", maxWidth: 480, width: "100%", position: "relative", margin: "auto" }}>
-            <button onClick={() => setShowPurchase(false)} style={{ position: "absolute", top: 16, right: 20, background: "none", border: "none", fontSize: 24, color: COLORS.sub, cursor: "pointer" }}>×</button>
-            <LockScreen onUnlock={handleUnlock} />
-          </div>
-        </div>
-      )}
+      {showPasswordGate && <PasswordGate onSuccess={handleUnlock} />}
       <div className="guide-wrap">
         {/* COVER */}
         <div className="cover">
@@ -3759,7 +3666,7 @@ export default function App() {
         )}
 
         {/* HOME */}
-        {activeTab === "home" && <LandingPage />}
+        {activeTab === "home" && <LandingPage onBuy={() => setActiveTab("budget")} />}
 
         {/* FREE CHECKLIST */}
         {activeTab === "checklist" && (
@@ -3775,7 +3682,7 @@ export default function App() {
         )}
 
         {/* LOCKED */}
-        {isLocked && !unlocked && <LockScreen onUnlock={() => { setShowPasswordGate(false); setShowPurchase(true); }} />}
+        {isLocked && !unlocked && <LockScreen onUnlock={() => setShowPasswordGate(true)} />}
 
         {/* UNLOCKED CONTENT */}
         {isLocked && unlocked && (
