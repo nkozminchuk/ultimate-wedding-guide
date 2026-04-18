@@ -2767,14 +2767,9 @@ const dressData = [
 // ── APP ─────────────────────────────────────────────────────────────────────
 function GiftModal({ onClose }) {
   const [step, setStep] = useState(1);
-  const [tier, setTier] = useState("essential");
   const [giftForm, setGiftForm] = useState({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  const tiers = {
-    complete: { price: "$29", name: "The Ultimate Wedding Guide", desc: "Full vendor directory, budget guide, checklist & more. Regular price $49 — launch special." },
-  };
 
   async function handleGiftSubmit(e) {
     e.preventDefault();
