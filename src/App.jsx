@@ -1260,6 +1260,7 @@ export default function App() {
             background: linear-gradient(135deg, rgba(196,149,106,0.08) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.25s;
+            pointer-events: none;
           }
           .region-card:hover { border-color: ${COLORS.sandstone}; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
           .region-card:hover::before { opacity: 1; }
