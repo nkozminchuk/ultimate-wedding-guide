@@ -50,6 +50,5 @@ export const barData = [
   ]},
 ];
 
-const barPending = ["The Wildflower Wandering Bar  thewildflower.ca", "True Spirits Mobile Bar  truespiritsmobilebar.com", "Olive and Twist Mobile Bar  oliveandtwistmobilebar.com", "Sugar Water  sugarwater.bar"];
 
 export const barPending = ["The Wildflower Wandering Bar  thewildflower.ca", "True Spirits Mobile Bar  truespiritsmobilebar.com", "Olive and Twist Mobile Bar  oliveandtwistmobilebar.com", "Sugar Water  sugarwater.bar"];
