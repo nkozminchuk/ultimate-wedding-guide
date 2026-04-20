@@ -65,8 +65,8 @@ function VenueSection({ sections }) {
       <div className="info-box">
         <div className="info-box-title">Booking Tips</div>
         <ul>
-          <li>Peak wedding season runs June through September — popular venues book 12–18 months in advance.</li>
-          <li>Several venues have preferred vendor lists — ask for these once you book.</li>
+          <li>Peak wedding season runs June through September, so popular venues book 12–18 months in advance.</li>
+          <li>Several venues have preferred vendor lists. Ask for these once you book.</li>
           <li>Restaurant venues often have a minimum spend rather than a flat rental fee.</li>
         </ul>
       </div>
@@ -127,7 +127,7 @@ function SimpleVendors({ vendors, pending, pendingLabel, infoTitle, infoItems })
       </div>
       {pending && pending.length > 0 && (
         <div className="pending">
-          <div className="pending-title">{pendingLabel || "On our radar — details coming soon"}</div>
+          <div className="pending-title">{pendingLabel || "On our radar: details coming soon"}</div>
           <div className="pending-list">
             {pending.map((p, i) => <span key={i} className="pending-tag">{p}</span>)}
           </div>
@@ -184,7 +184,7 @@ function ChecklistGate({ onUnlock }) {
         Get the Free Checklist
       </h2>
       <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: "#6B6B6B", lineHeight: 1.6, marginBottom: 36 }}>
-        Enter your name and email to access our 60-task wedding planning checklist — completely free, no purchase required.
+        Enter your name and email to access our 60-task wedding planning checklist, completely free with no purchase required.
       </p>
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16, textAlign: "left" }}>
         <div className="form-group">
@@ -486,7 +486,7 @@ function BudgetTracker() {
       </div>
 
       <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, marginTop: 16, fontStyle: "italic" }}>
-        ✦ Your budget data is saved automatically to this device. For access across multiple devices, stay tuned — cloud sync is coming.
+        ✦ Your budget data is saved automatically to this device. For access across multiple devices, stay tuned: cloud sync is coming.
       </p>
     </div>
   );
@@ -512,9 +512,9 @@ function BudgetGuide() {
       <div className="info-box" style={{ marginBottom: 32 }}>
         <div className="info-box-title">How Budget Tiers Work</div>
         <ul>
-          <li><strong>$</strong> — Under $15,000 total wedding budget. Elopements, micro-weddings, and intimate gatherings.</li>
-          <li><strong>$$</strong> — $15,000–$50,000. Full wedding with complete vendor team, 50–120 guests.</li>
-          <li><strong>$$$</strong> — $50,000+. Grand celebrations with premium vendors and 100+ guests.</li>
+          <li><strong>$</strong>: Under $15,000 total wedding budget. Elopements, micro-weddings, and intimate gatherings.</li>
+          <li><strong>$$</strong>: $15,000–$50,000. Full wedding with complete vendor team, 50–120 guests.</li>
+          <li><strong>$$$</strong>: $50,000+. Grand celebrations with premium vendors and 100+ guests.</li>
           <li>Many vendors span two tiers (e.g. $/$$) meaning they serve both budget ranges.</li>
         </ul>
       </div>
@@ -661,10 +661,10 @@ function GiftModal({ onClose }) {
           <>
             <div className="gift-modal-eyebrow">Give the Gift of Planning</div>
             <h2 className="gift-modal-title">Gift the Guide</h2>
-            <p className="gift-modal-sub">The perfect gift for any engaged couple — full vendor directory, budget guide, checklist and more across Calgary, Canmore & Banff.</p>
+            <p className="gift-modal-sub">The perfect gift for any engaged couple: full vendor directory, budget guide, checklist and more across Calgary, Canmore &amp; Banff.</p>
             <div style={{ textAlign: "center", padding: "24px 0", borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}`, margin: "0 0 24px" }}>
               <div style={{ display: "inline-block", background: COLORS.sandstone, color: COLORS.white, fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", padding: "4px 14px", borderRadius: 20, marginBottom: 12 }}>
-                Launch Price — Limited Time
+                Launch Price · Limited Time
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 48, fontWeight: 600, color: COLORS.forest, lineHeight: 1 }}>$29</div>
@@ -676,7 +676,7 @@ function GiftModal({ onClose }) {
               <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: COLORS.sub, marginTop: 8 }}>CAD · One-time purchase · Lifetime access</div>
             </div>
             <button className="form-btn" style={{ width: "100%", textAlign: "center" }} onClick={() => setStep(2)}>
-              Continue — $29
+              Continue · $29
             </button>
           </>
         )}
@@ -709,7 +709,7 @@ function GiftModal({ onClose }) {
               <div style={{ display: "flex", gap: 12 }}>
                 <button type="button" className="gift-btn-secondary" style={{ color: COLORS.sub, borderColor: COLORS.border }} onClick={() => setStep(1)}>Back</button>
                 <button type="submit" className="form-btn" style={{ flex: 1, textAlign: "center" }} disabled={loading}>
-                  {loading ? "Sending..." : "Send Gift — $29"}
+                  {loading ? "Sending..." : "Send Gift · $29"}
                 </button>
               </div>
             </form>
@@ -787,18 +787,18 @@ function LandingPage({ onBuy }) {
       <div className="landing-eyebrow">Canadian Rockies Edition</div>
       <h1 className="landing-title">Your wedding should feel<br /><em>exciting. Not overwhelming.</em></h1>
       <p className="landing-body">
-        We've done the research, vetted the vendors, and organized everything — so you can put down the laptop, stop the endless Googling, and actually enjoy being engaged. The Ultimate Wedding Guide — Canadian Rockies Edition gives you everything you need to plan your dream wedding in Calgary, Canmore, or Banff, all in one beautiful place.
+        We've done the research, vetted the vendors, and organized everything so you can put down the laptop, stop the endless Googling, and actually enjoy being engaged. The Ultimate Wedding Guide, Canadian Rockies Edition, gives you everything you need to plan your dream wedding in Calgary, Canmore, or Banff, all in one beautiful place.
       </p>
 
       <button className="landing-buy-btn" onClick={onBuy}>
-        Buy the Guide — $29
+        Buy the Guide · $29
       </button>
       <p className="landing-buy-note">CAD · One-time purchase · Lifetime access</p>
 
       <div style={{ marginBottom: 16 }}>
         <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.6 }}>
-          Everything you need to plan your Rocky Mountain wedding — researched, vetted, and organized for you.
+          Everything you need to plan your Rocky Mountain wedding, researched, vetted, and organized for you.
         </p>
       </div>
       <div className="landing-features">
@@ -821,7 +821,7 @@ function LandingPage({ onBuy }) {
       <div className="gift-section">
         <div className="gift-eyebrow">Know Someone Getting Married?</div>
         <h2 className="gift-title">Give the Gift of<br /><em>a Dream Wedding</em></h2>
-        <p className="gift-desc">The perfect gift for any engaged couple — help them plan the most important day of their lives without the stress.</p>
+        <p className="gift-desc">The perfect gift for any engaged couple. Help them plan the most important day of their lives without the stress.</p>
         <div className="gift-recipients">
           {["For the Bride-to-Be", "From the Maid of Honour", "A Gift from Mom", "From the In-Laws", "Bridal Shower Gift", "Engagement Gift"].map((r, i) => (
             <span key={i} className="gift-tag">{r}</span>
@@ -841,7 +841,7 @@ function LandingPage({ onBuy }) {
           More Editions <em style={{ fontStyle: "italic", color: COLORS.sandstone }}>Coming Soon</em>
         </h2>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: COLORS.sub, marginBottom: 32, lineHeight: 1.6, maxWidth: 500 }}>
-          The Ultimate Wedding Guide is growing. New city editions are in the works — each one as carefully curated as the one you're reading now.
+          The Ultimate Wedding Guide is growing. New city editions are in the works, each one as carefully curated as the one you're reading now.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 12, marginBottom: 28 }}>
           {[
@@ -863,12 +863,12 @@ function LandingPage({ onBuy }) {
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2C4A3E", marginBottom: 3 }}>{c.city}</div>
               <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: "#6B6B6B", letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
               <div style={{
-                display: "block",
+                display: "inline-block",
                 fontFamily: "'Jost', sans-serif",
                 fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
                 color: c.status === "In Progress" ? "#2C4A3E" : "#C4956A",
                 background: c.status === "In Progress" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
-                padding: "3px 10px", borderRadius: 20, marginBottom: 12,
+                padding: "3px 10px", borderRadius: 20, marginBottom: 12, display: "block",
               }}>{c.status}</div>
               <button
                 onClick={() => { setNotifyCity(c.city); setShowNotify(true); }}
@@ -894,11 +894,11 @@ function LandingPage({ onBuy }) {
 
       <div className="landing-divider" />
       <h2 className="contact-title">Get in Touch</h2>
-      <p className="contact-sub">Whether you are interested in purchasing the guide, want to be added as a vendor, or simply have a question — we would love to hear from you.</p>
+      <p className="contact-sub">Whether you are interested in purchasing the guide, want to be added as a vendor, or simply have a question, we would love to hear from you.</p>
 
       {submitted ? (
         <div className="form-success">
-          ✦ Thank you — your message has been received. We will be in touch shortly.
+          ✦ Thank you! Your message has been received. We will be in touch shortly.
         </div>
       ) : (
         <form className="contact-form" onSubmit={handleSubmit}>
@@ -973,7 +973,7 @@ function LockScreen({ onUnlock }) {
     <div className="lock-screen">
       <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
       <h2 className="lock-title">Unlock the Full Guide</h2>
-      <p className="lock-sub">Purchase once and get lifetime access to all vendor categories across Calgary, Canmore, and Banff — plus free updates as we grow.</p>
+      <p className="lock-sub">Purchase once and get lifetime access to all vendor categories across Calgary, Canmore, and Banff, plus free updates as we grow.</p>
       <div className="lock-features">
         {["36 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "60-Task Planning Checklist"].map((f, i) => (
           <span key={i} className="lock-feature-tag">{f}</span>
@@ -981,7 +981,7 @@ function LockScreen({ onUnlock }) {
       </div>
       <div style={{ textAlign: "center", margin: "32px 0 8px" }}>
         <div style={{ display: "inline-block", background: COLORS.sandstone, color: COLORS.white, fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", padding: "4px 14px", borderRadius: 20, marginBottom: 16 }}>
-          Launch Price — Limited Time
+          Launch Price · Limited Time
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 8 }}>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 52, fontWeight: 600, color: COLORS.forest, lineHeight: 1 }}>$29</div>
@@ -994,7 +994,7 @@ function LockScreen({ onUnlock }) {
       </div>
 
       {!showForm ? (
-        <button className="lock-btn" onClick={() => setShowForm(true)}>Purchase the Guide — $29</button>
+        <button className="lock-btn" onClick={() => setShowForm(true)}>Purchase the Guide · $29</button>
       ) : (
         <form onSubmit={handlePurchase} style={{ width: "100%", maxWidth: 360, margin: "0 auto", display: "flex", flexDirection: "column", gap: 14 }}>
           <div className="form-group">
@@ -1008,7 +1008,7 @@ function LockScreen({ onUnlock }) {
           </div>
           {purchaseError && <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{purchaseError}</p>}
           <button type="submit" className="lock-btn" disabled={purchasing} style={{ marginTop: 8 }}>
-            {purchasing ? "Redirecting to checkout..." : "Continue to Payment — $29"}
+            {purchasing ? "Redirecting to checkout..." : "Continue to Payment · $29"}
           </button>
           <button type="button" onClick={() => setShowForm(false)} style={{ background: "none", border: "none", fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, cursor: "pointer", letterSpacing: 1 }}>Cancel</button>
         </form>
@@ -1260,7 +1260,6 @@ export default function App() {
             background: linear-gradient(135deg, rgba(196,149,106,0.08) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.25s;
-            pointer-events: none;
           }
           .region-card:hover { border-color: ${COLORS.sandstone}; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
           .region-card:hover::before { opacity: 1; }
@@ -1346,7 +1345,7 @@ export default function App() {
           {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
           <div className="region-eyebrow">The Ultimate Wedding Guide</div>
           <h1 className="region-title">Your dream wedding<br /><span>starts here.</span></h1>
-          <p className="region-sub">We have done the research, vetted the vendors, and organized everything — select your region and let's get planning.</p>
+          <p className="region-sub">We have done the research, vetted the vendors, and organized everything. Select your region and let's get planning.</p>
           <div className="region-divider" />
 
           <div className="region-grid">
@@ -1361,16 +1360,16 @@ export default function App() {
               </div>
               <div className="region-name">Canadian Rockies</div>
               <div className="region-cities">Calgary · Canmore · Banff</div>
-              <div className="region-desc">36 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more — all vetted and ready.</div>
+              <div className="region-desc">36 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more, all vetted and ready.</div>
               <div className="region-cta">Explore the Guide →</div>
             </div>
 
             {/* COMING SOON */}
             {[
-              { name: "Vancouver & Sea-to-Sky", cities: "Vancouver · Whistler · Squamish", desc: "From waterfront venues to mountain lodges — the ultimate guide to BC coastal weddings." },
-              { name: "Okanagan", cities: "Kelowna · Penticton · Vernon", desc: "Vineyard ceremonies, orchard receptions, and stunning lake views — wine country weddings done right." },
+              { name: "Vancouver & Sea-to-Sky", cities: "Vancouver · Whistler · Squamish", desc: "From waterfront venues to mountain lodges, the ultimate guide to BC coastal weddings." },
+              { name: "Okanagan", cities: "Kelowna · Penticton · Vernon", desc: "Vineyard ceremonies, orchard receptions, and stunning lake views. Wine country weddings done right." },
               { name: "Toronto & Surroundings", cities: "Toronto · Muskoka · Niagara", desc: "Grand ballrooms, intimate restaurants, and lakeside escapes across Ontario's best wedding destinations." },
-              { name: "Montreal", cities: "Montreal · Quebec City", desc: "Old world charm meets modern sophistication — francophone Canada's most romantic wedding destinations." },
+              { name: "Montreal", cities: "Montreal · Quebec City", desc: "Old world charm meets modern sophistication across francophone Canada's most romantic wedding destinations." },
               { name: "Ottawa", cities: "Ottawa · Gatineau", desc: "Canada's capital offers stunning heritage venues, beautiful gardens, and an intimate wedding scene." },
             ].map((r, i) => (
               <div key={i} className="region-card coming">
@@ -1429,7 +1428,7 @@ export default function App() {
               onMouseOver={e => e.currentTarget.style.background = "#d4a870"}
               onMouseOut={e => e.currentTarget.style.background = COLORS.sandstone}
             >
-              Buy the Guide — $29
+              Buy the Guide · $29
             </button>
             <p style={{
               fontFamily: "'Jost', sans-serif",
@@ -1534,16 +1533,16 @@ export default function App() {
                 "Planning a wedding should be one of the most joyful experiences of your life. I created this guide because I watched someone I love go through the opposite."
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
-                Last summer, my close friend got married. She and her husband were so excited — and they deserved every bit of that excitement. But almost immediately, the planning process started to chip away at it. Every week brought a new curveball. Vendors were hard to find, harder to compare, and nearly impossible to vet without spending hours online. Their planner wasn't providing the relief they had hoped for. Arguments became a daily occurrence. The joy of being engaged was getting buried under the weight of logistics.
+                Last summer, my close friend got married. She and her husband were so excited, and they deserved every bit of that excitement. But almost immediately, the planning process started to chip away at it. Every week brought a new curveball. Vendors were hard to find, harder to compare, and nearly impossible to vet without spending hours online. Their planner wasn't providing the relief they had hoped for. Arguments became a daily occurrence. The joy of being engaged was getting buried under the weight of logistics.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
-                I watched two people who love each other deeply get worn down by a process that should have felt exciting. And I kept thinking — someone should fix this. Someone should do the research, compile the vendors, organize the information, and hand it to couples so they can just breathe and enjoy being engaged.
+                I watched two people who love each other deeply get worn down by a process that should have felt exciting. And I kept thinking: someone should fix this. Someone should do the research, compile the vendors, organize the information, and hand it to couples so they can just breathe and enjoy being engaged.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
                 So I did.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
-                The Ultimate Wedding Guide — Canadian Rockies Edition is built for couples who want to feel relief, excitement, and ease when they think about their wedding — not dread. It is for the bride who opens her laptop to research venues and immediately feels overwhelmed. It is for the couple who just wants someone to tell them where to start. We have done the Googling, made the calls, vetted the vendors, and organized everything into one beautiful resource — so you can close the laptop, pour a glass of wine, and actually enjoy this season of your life.
+                The Ultimate Wedding Guide, Canadian Rockies Edition, is built for couples who want to feel relief, excitement, and ease when they think about their wedding. Not dread. It is for the bride who opens her laptop to research venues and immediately feels overwhelmed. It is for the couple who just wants someone to tell them where to start. We have done the Googling, made the calls, vetted the vendors, and organized everything into one beautiful resource so you can close the laptop, pour a glass of wine, and actually enjoy this season of your life.
               </p>
               <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontStyle: "italic", color: COLORS.forest, lineHeight: 1.7, marginBottom: 4 }}>
                 Congratulations on your engagement. All the best,
@@ -1619,7 +1618,7 @@ export default function App() {
                   fontSize: 17, fontStyle: "italic",
                   color: COLORS.sub, marginBottom: 28, lineHeight: 1.6
                 }}>
-                  For couples planning a religious or spiritual ceremony, Calgary and surrounding area offer a range of beautiful churches and chapels — from grand downtown cathedrals to intimate country chapels.
+                  For couples planning a religious or spiritual ceremony, Calgary and surrounding area offer a range of beautiful churches and chapels, from grand downtown cathedrals to intimate country chapels.
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                   {churchData.map((c, i) => (
@@ -1677,19 +1676,19 @@ export default function App() {
             {activeTab === "bar" && (
             <>
               <div className="info-box">
-                <div className="info-box-title">Alberta Liquor Licensing — What You Need to Know</div>
+                <div className="info-box-title">Alberta Liquor Licensing: What You Need to Know</div>
                 <ul>
-                  <li>Couples need a Special Event Licence from AGLC for private events — just $25 at aglc.ca.</li>
+                  <li>Couples need a Special Event Licence from AGLC for private events, just $25 at aglc.ca.</li>
                   <li>Most mobile bars cannot supply alcohol under AGLC rules, but staff are ProServe certified to serve it.</li>
                   <li>You can supply your own alcohol, or many services will purchase and deliver it on your behalf.</li>
-                  <li>Some venues (like 52 North) require a specific bar service — always confirm with your venue first.</li>
+                  <li>Some venues (like 52 North) require a specific bar service. Always confirm with your venue first.</li>
                 </ul>
               </div>
               <div className="vendor-grid" style={{ marginTop: 24 }}>
                 {barData.map((v, i) => <VendorCard key={i} vendor={v} />)}
               </div>
               <div className="pending">
-                <div className="pending-title">On our radar — additional mobile bar services</div>
+                <div className="pending-title">On our radar: additional mobile bar services</div>
                 <div className="pending-list">
                   {barPending.map((p, i) => <span key={i} className="pending-tag">{p}</span>)}
                 </div>
@@ -1701,14 +1700,14 @@ export default function App() {
             <SimpleVendors
               vendors={photoData}
               pending={photoPending}
-              pendingLabel="On our radar — additional photographers & videographers"
+              pendingLabel="On our radar: additional photographers &amp; videographers"
               infoTitle="Questions to Ask Every Photographer"
               infoItems={[
                 "Do you have a permit to shoot inside Banff National Park? Not all photographers do.",
                 "Are travel fees included for Canmore and Banff locations?",
                 "How long until our photos and videos are delivered?",
                 "Do you include a second shooter?",
-                "Can we see a full wedding gallery — not just highlight images?",
+                "Can we see a full wedding gallery, not just highlight images?",
               ]}
             />
           )}
@@ -1717,12 +1716,12 @@ export default function App() {
             <SimpleVendors
               vendors={floristData}
               pending={floristPending}
-              pendingLabel="On our radar — additional florists"
+              pendingLabel="On our radar: additional florists"
               infoTitle="Planning Tips for Wedding Florals"
               infoItems={[
                 "Book your florist 6–12 months in advance for peak season (June–September).",
                 "For micro-weddings and elopements, look for florists offering à la carte menus with no minimums.",
-                "Ask about locally grown Alberta blooms — available seasonally and a beautiful regional touch.",
+                "Ask about locally grown Alberta blooms, available seasonally and a beautiful regional touch.",
                 "Always confirm travel fees for Canmore and Banff before signing a contract.",
               ]}
             />
@@ -1732,11 +1731,11 @@ export default function App() {
             <SimpleVendors
               vendors={cakeData}
               pending={cakePending}
-              pendingLabel="On our radar — additional bakers"
+              pendingLabel="On our radar: additional bakers"
               infoTitle="Planning Tips for Wedding Cakes"
               infoItems={[
                 "Book your cake 3–6 months in advance; some bakers accommodate shorter timelines.",
-                "Check delivery policies carefully — some bakers do not deliver to mountain venues in winter.",
+                "Check delivery policies carefully, as some bakers do not deliver to mountain venues in winter.",
                 "Many bakers offer online tasting boxes you can order and try at home before committing.",
                 "Consider a dessert table as a beautiful complement or alternative to a traditional tiered cake.",
               ]}
@@ -1748,10 +1747,10 @@ export default function App() {
               <div className="info-box">
                 <div className="info-box-title">A Note on Wedding Dress Shopping</div>
                 <ul>
-                  <li>Always book an appointment — Calgary's top boutiques are by appointment only.</li>
+                  <li>Always book an appointment. Calgary's top boutiques are by appointment only.</li>
                   <li>Allow 4–6 months for made-to-order gowns, plus extra time for alterations.</li>
-                  <li>Bring one or two trusted people whose opinion you value — not a crowd.</li>
-                  <li>Keep an open mind — the dress you fall in love with may surprise you.</li>
+                  <li>Bring one or two trusted people whose opinion you value, not a crowd.</li>
+                  <li>Keep an open mind. The dress you fall in love with may surprise you.</li>
                 </ul>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
@@ -1785,8 +1784,8 @@ export default function App() {
             {activeTab === "coming" && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               {[
-                { title: "Calgary — On Our Radar", items: ["Hair & Makeup", "Suit Rentals", "Officiant Services", "Decor & Lighting Rentals", "Transportation", "Music — DJs & Live Bands", "Audio/Visual & Sound Production"] },
-                { title: "Canmore & Banff — Coming Next", items: ["Venues", "Catering", "Photography", "Florals", "Cakes & Desserts", "Hair & Makeup", "Music", "Transportation", "Guest Experience & Tourism", "Accommodations"] },
+                { title: "Calgary: On Our Radar", items: ["Hair & Makeup", "Suit Rentals", "Officiant Services", "Decor & Lighting Rentals", "Transportation", "Music: DJs & Live Bands", "Audio/Visual & Sound Production"] },
+                { title: "Canmore & Banff: Coming Next", items: ["Venues", "Catering", "Photography", "Florals", "Cakes & Desserts", "Hair & Makeup", "Music", "Transportation", "Guest Experience & Tourism", "Accommodations"] },
                 { title: "Permits & Legalities", items: ["Banff National Park Wedding Permits", "AGLC Liquor Licensing", "Marriage Licences in Alberta", "Outdoor Ceremony Regulations"] },
               ].map((section, i) => (
                 <div key={i} className="coming-soon">
@@ -1801,7 +1800,7 @@ export default function App() {
                 <ul>
                   <li>This guide is updated regularly as new vendors are vetted and new sections are added.</li>
                   <li>Purchased this guide and want to be notified of updates? Reach out and we will keep you posted.</li>
-                  <li>Have a vendor recommendation? We love hearing from couples — your experience makes this guide better for everyone.</li>
+                  <li>Have a vendor recommendation? We love hearing from couples. Your experience makes this guide better for everyone.</li>
                 </ul>
               </div>
             </div>
@@ -1835,7 +1834,7 @@ export default function App() {
             </a>
           </div>
           <div className="footer-copy">
-            © {new Date().getFullYear()} The Ultimate Wedding Guide — Canadian Rockies Edition. All rights reserved.
+            © {new Date().getFullYear()} The Ultimate Wedding Guide, Canadian Rockies Edition. All rights reserved.
           </div>
         </footer>
 
