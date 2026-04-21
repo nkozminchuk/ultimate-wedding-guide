@@ -794,25 +794,7 @@ function LandingPage({ onBuy }) {
         Buy the Guide · $29
       </button>
       <p className="landing-buy-note">CAD · One-time purchase · Lifetime access</p>
-<div style={{
-  width: "100%",
-  margin: "40px 0 56px",
-  borderRadius: 4,
-  overflow: "hidden",
-  lineHeight: 0,
-}}>
-  <img
-    src="/hero-photo.jpg"
-    alt="A couple celebrating their wedding in the Canadian Rockies"
-    style={{
-      width: "100%",
-      maxHeight: 520,
-      objectFit: "cover",
-      objectPosition: "center",
-      display: "block",
-    }}
-  />
-</div>
+
       <div style={{ marginBottom: 16 }}>
         <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.6 }}>
@@ -1205,6 +1187,22 @@ export default function App() {
             position: relative;
             overflow: hidden;
           }
+          .region-bg-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            z-index: 0;
+          }
+          .region-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(44,74,62,0.72) 0%, rgba(44,74,62,0.85) 100%);
+            z-index: 1;
+          }
           .region-wrap::before {
             content: '';
             position: absolute;
@@ -1212,6 +1210,7 @@ export default function App() {
             background:
               radial-gradient(ellipse at 20% 20%, rgba(196,149,106,0.12) 0%, transparent 55%),
               radial-gradient(ellipse at 80% 80%, rgba(139,105,20,0.08) 0%, transparent 50%);
+            z-index: 2;
           }
           .region-eyebrow {
             font-family: 'Jost', sans-serif;
@@ -1221,6 +1220,7 @@ export default function App() {
             color: ${COLORS.sandstone};
             margin-bottom: 20px;
             position: relative;
+            z-index: 3;
           }
           .region-title {
             font-family: 'Cormorant Garamond', serif;
@@ -1231,6 +1231,7 @@ export default function App() {
             line-height: 1.05;
             margin-bottom: 8px;
             position: relative;
+            z-index: 3;
           }
           .region-title span { color: ${COLORS.sandstone}; font-style: italic; }
           .region-sub {
@@ -1243,6 +1244,7 @@ export default function App() {
             max-width: 520px;
             line-height: 1.6;
             position: relative;
+            z-index: 3;
           }
           .region-divider {
             width: 48px;
@@ -1251,6 +1253,7 @@ export default function App() {
             margin: 0 auto 56px;
             opacity: 0.5;
             position: relative;
+            z-index: 3;
           }
           .region-grid {
             display: grid;
@@ -1259,6 +1262,7 @@ export default function App() {
             width: 100%;
             max-width: 900px;
             position: relative;
+            z-index: 3;
           }
           .region-card {
             background: rgba(247,243,236,0.05);
@@ -1352,6 +1356,7 @@ export default function App() {
             letter-spacing: 2px;
             color: rgba(247,243,236,0.25);
             position: relative;
+            z-index: 3;
           }
           @media (max-width: 640px) {
             .region-title { font-size: 38px; }
@@ -1359,6 +1364,8 @@ export default function App() {
           }
         `}</style>
         <div className="region-wrap">
+          <img src="/hero-photo.jpg" alt="Canadian Rockies wedding" className="region-bg-photo" />
+          <div className="region-bg-overlay" />
           {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
           <div className="region-eyebrow">The Ultimate Wedding Guide</div>
           <h1 className="region-title">Your dream wedding<br /><span>starts here.</span></h1>
