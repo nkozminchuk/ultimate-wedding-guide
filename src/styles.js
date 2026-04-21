@@ -34,12 +34,29 @@ export const styles = `
     position: relative;
     overflow: hidden;
   }
+  .cover-bg-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 0;
+  }
+  .cover-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(44,74,62,0.75) 0%, rgba(44,74,62,0.88) 100%);
+    z-index: 1;
+  }
   .cover::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse at 30% 20%, rgba(196,149,106,0.15) 0%, transparent 60%),
                 radial-gradient(ellipse at 70% 80%, rgba(139,105,20,0.1) 0%, transparent 50%);
+    z-index: 2;
   }
   .cover-ornament {
     font-family: 'Cormorant Garamond', serif;
@@ -49,6 +66,7 @@ export const styles = `
     text-transform: uppercase;
     margin-bottom: 32px;
     position: relative;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,6 +87,7 @@ export const styles = `
     line-height: 1.05;
     letter-spacing: -1px;
     position: relative;
+    z-index: 3;
     margin-bottom: 8px;
   }
   .cover-title span {
@@ -84,6 +103,7 @@ export const styles = `
     margin-top: 20px;
     letter-spacing: 1px;
     position: relative;
+    z-index: 3;
   }
   .cover-divider {
     width: 100%;
@@ -91,6 +111,7 @@ export const styles = `
     background: linear-gradient(to right, transparent, ${COLORS.sandstone}, transparent);
     margin: 28px 0;
     position: relative;
+    z-index: 3;
     opacity: 0.6;
   }
   .cover-cities {
@@ -100,6 +121,7 @@ export const styles = `
     color: ${COLORS.sandstone};
     text-transform: uppercase;
     position: relative;
+    z-index: 3;
   }
 
   /* NAV */
