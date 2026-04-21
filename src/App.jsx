@@ -1359,8 +1359,14 @@ export default function App() {
             z-index: 3;
           }
           @media (max-width: 640px) {
-            .region-title { font-size: 38px; }
-            .region-grid { grid-template-columns: 1fr; }
+            .region-wrap { padding: 48px 16px 48px; }
+            .region-title { font-size: 36px; }
+            .region-sub { font-size: 17px; margin-bottom: 40px; }
+            .region-grid { grid-template-columns: 1fr; gap: 14px; }
+            .region-card { padding: 24px 20px; }
+            .region-name { font-size: 24px; }
+            .region-desc { font-size: 14px; }
+            .region-footer { font-size: 10px; text-align: center; }
           }
         `}</style>
         <div className="region-wrap">
