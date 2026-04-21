@@ -1436,12 +1436,14 @@ export default function App() {
       <div className="guide-wrap">
         {/* COVER */}
         <div className="cover">
+          <img src="/hero-photo.jpg" alt="Canadian Rockies wedding" className="cover-bg-photo" />
+          <div className="cover-bg-overlay" />
           <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
           <div className="cover-divider" />
           <div className="cover-cities">Canadian Rockies Edition</div>
           <div className="cover-subtitle" style={{marginTop: 12, fontSize: 14, letterSpacing: 3}}>Calgary  ·  Canmore  ·  Banff</div>
           <div className="cover-subtitle">Your complete planning resource for an unforgettable Rocky Mountain wedding</div>
-          <div style={{ marginTop: 32, position: "relative" }}>
+          <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
             <button
               onClick={() => setActiveTab("budget")}
               style={{
