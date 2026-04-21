@@ -794,7 +794,25 @@ function LandingPage({ onBuy }) {
         Buy the Guide · $29
       </button>
       <p className="landing-buy-note">CAD · One-time purchase · Lifetime access</p>
-
+<div style={{
+  width: "100%",
+  margin: "40px 0 56px",
+  borderRadius: 4,
+  overflow: "hidden",
+  lineHeight: 0,
+}}>
+  <img
+    src="/hero-photo.jpg"
+    alt="A couple celebrating their wedding in the Canadian Rockies"
+    style={{
+      width: "100%",
+      maxHeight: 520,
+      objectFit: "cover",
+      objectPosition: "center",
+      display: "block",
+    }}
+  />
+</div>
       <div style={{ marginBottom: 16 }}>
         <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.6 }}>
