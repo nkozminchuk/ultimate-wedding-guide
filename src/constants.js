@@ -29,8 +29,9 @@ export const tabs = [
   { id: "photo",     label: "Photography",    locked: true },
   { id: "florists",  label: "Florists",       locked: true },
   { id: "cakes",     label: "Cakes",          locked: true },
-  { id: "dresses",   label: "Wedding Dresses",locked: true },
-  { id: "coming",    label: "On Our Radar",   locked: true },
+  { id: "dresses",   label: "Wedding Dresses",  locked: true },
+  { id: "hair",      label: "Hair & Makeup",    locked: true },
+  { id: "coming",    label: "On Our Radar",     locked: true },
 ];
 
 // Controls the eyebrow, title, and lead paragraph at the top of each tab.
@@ -47,5 +48,6 @@ export const sectionMeta = {
   florists:  { eyebrow: "Calgary", title: "Florists", lead: "Florals set the tone for your entire wedding aesthetic. Calgary's florist community is exceptionally talented — and nearly all travel to Canmore and Banff.", icon: "florists" },
   cakes:     { eyebrow: "Calgary", title: "Cakes & Desserts", lead: "From elegant tiered cakes to whimsical dessert tables, Calgary's bakers are exceptionally talented. Whatever your vision and budget, there is a baker here for you.", icon: "cakes" },
   dresses:   { eyebrow: "Calgary", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding planning. We recommend visiting each of these boutiques in person — no online browsing compares to trying on the real thing.", icon: "dresses" },
+  hair:      { eyebrow: "Calgary", title: "Hair & Makeup", lead: "The right hair and makeup artist makes you feel like yourself — only more so. Calgary's bridal beauty artists are exceptionally talented, and most travel to Canmore and Banff.", icon: "hair" },
   coming:    { eyebrow: "Canadian Rockies Edition", title: "On Our Radar", lead: "We are constantly scouting, vetting, and adding to this guide. Consider this your insider preview of what's coming — and a reminder that the best vendors book fast.", icon: "coming" },
 };
