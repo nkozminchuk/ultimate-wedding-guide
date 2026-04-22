@@ -50,11 +50,26 @@ export const hairMakeupData = [
     { label: "Email", value: "Nikysbeautymua@gmail.com" },
     { label: "Instagram", value: "@muaniky" },
   ]},
+  { name: "Blush and Coco Brides", tier: "$$", fields: [
+    { label: "Services", value: "Full bridal hair and makeup; attendee styling; flower girl; Honorary Bridesmaid on-site support (touch-ups, dress & veil assistance, personal/emotional support)" },
+    { label: "Style", value: "Signature natural glam and soft glam; full glam also offered; adapts to each bride's unique vision" },
+    { label: "Logistics", value: "Studio in Greenwich, Calgary; fully mobile — majority of clients in Canmore, Banff, and Lake Louise" },
+    { label: "Travel", value: "Calgary, Canmore, Banff & Lake Louise" },
+    { label: "Capacity", value: "Team of 15 artists — accommodates large parties (e.g. 60 hair & makeup across a two-day Indian wedding); minimum 5 services per artist on Saturdays, flexible based on bride's timeline" },
+    { label: "Trial", value: "Mandatory (exceptions made for out-of-town clients); used to determine best products and styles for each client" },
+    { label: "Turnaround", value: "Bridal hair and makeup: approx. 2–3 hours" },
+    { label: "Products", value: "Professional and luxury brands including Giorgio Armani, Chanel, and Tom Ford; suitable for sensitive skin; no airbrush — traditional application performs better in Alberta's dry climate" },
+    { label: "Pricing", value: "Bridal makeup trial $225 · Bridal makeup $275 · Bridal hair trial $225 · Bridal hair $275 · Attendee hair or makeup $180 · Flower girl (10 & under) $75 · Honorary Bridesmaid $160/hr" },
+    { label: "Booking", value: "30% deposit + signed contract to secure date; typically booked 1–1.5 years in advance; last-minute bookings also accommodated" },
+    { label: "Extras", value: "On-site touch-ups available for additional fee; full pricing at blushandcoco.com/services-1; booking form at blushandcoco.com/bookings; fully insured" },
+    { label: "Email", value: "info@blushandcoco.com" },
+    { label: "Instagram", value: "@blushandcocobrides" },
+    { label: "Website", value: "blushandcoco.com", link: "https://www.blushandcoco.com" },
+  ]},
 ];
 
 export const hairMakeupPending = [
   "Asipenko Bridal Team @makeup_asipenko",
-  "Blush and Coco Brides @blushandcocobrides",
   "Mountain Beauties @mountainbeauties",
   "Emilia Beauty Art @emiliabeautyart",
   "TM Artistry Hair & Makeup @tm_artistry_",
