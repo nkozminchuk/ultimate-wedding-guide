@@ -28,6 +28,7 @@ import { photoData, photoPending } from "./data/photo";
 import { floristData, floristPending } from "./data/florists";
 import { cakeData, cakePending } from "./data/cakes";
 import { dressData } from "./data/dresses";
+import { hairMakeupData, hairMakeupPending } from "./data/hairandmakeup";
 
 // =============================================================================
 // COMPONENTS & APP
@@ -1107,6 +1108,7 @@ function Icon({ name, color, size }) {
   if (name === "dresses") return <svg {...props}><path d="M12 2l-4 6h8l-4-6z"/><path d="M8 8l-5 14h18L16 8"/><path d="M8 8h8"/></svg>;
   if (name === "coming") return <svg {...props}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
   if (name === "checklist") return <svg {...props}><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>;
+  if (name === "hair") return <svg {...props}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 11c0 2-1.5 3-1.5 5"/><path d="M13.5 16c0-2-1.5-3-1.5-5"/></svg>;
   if (name === "story") return <svg {...props}><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>;
   return null;
 }
@@ -1121,6 +1123,7 @@ const guideItems = [
   { id: "florists", label: "Florists", icon: "florists" },
   { id: "cakes", label: "Cakes & Desserts", icon: "cakes" },
   { id: "dresses", label: "Wedding Dresses", icon: "dresses" },
+  { id: "hair", label: "Hair & Makeup", icon: "hair" },
   { id: "coming", label: "On Our Radar", icon: "coming" },
 ];
 
@@ -1187,6 +1190,22 @@ export default function App() {
             position: relative;
             overflow: hidden;
           }
+          .region-bg-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            z-index: 0;
+          }
+          .region-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(44,74,62,0.72) 0%, rgba(44,74,62,0.85) 100%);
+            z-index: 1;
+          }
           .region-wrap::before {
             content: '';
             position: absolute;
@@ -1194,6 +1213,7 @@ export default function App() {
             background:
               radial-gradient(ellipse at 20% 20%, rgba(196,149,106,0.12) 0%, transparent 55%),
               radial-gradient(ellipse at 80% 80%, rgba(139,105,20,0.08) 0%, transparent 50%);
+            z-index: 2;
           }
           .region-eyebrow {
             font-family: 'Jost', sans-serif;
@@ -1203,6 +1223,7 @@ export default function App() {
             color: ${COLORS.sandstone};
             margin-bottom: 20px;
             position: relative;
+            z-index: 3;
           }
           .region-title {
             font-family: 'Cormorant Garamond', serif;
@@ -1213,6 +1234,7 @@ export default function App() {
             line-height: 1.05;
             margin-bottom: 8px;
             position: relative;
+            z-index: 3;
           }
           .region-title span { color: ${COLORS.sandstone}; font-style: italic; }
           .region-sub {
@@ -1225,6 +1247,7 @@ export default function App() {
             max-width: 520px;
             line-height: 1.6;
             position: relative;
+            z-index: 3;
           }
           .region-divider {
             width: 48px;
@@ -1233,6 +1256,7 @@ export default function App() {
             margin: 0 auto 56px;
             opacity: 0.5;
             position: relative;
+            z-index: 3;
           }
           .region-grid {
             display: grid;
@@ -1241,6 +1265,7 @@ export default function App() {
             width: 100%;
             max-width: 900px;
             position: relative;
+            z-index: 3;
           }
           .region-card {
             background: rgba(247,243,236,0.05);
@@ -1334,13 +1359,22 @@ export default function App() {
             letter-spacing: 2px;
             color: rgba(247,243,236,0.25);
             position: relative;
+            z-index: 3;
           }
           @media (max-width: 640px) {
-            .region-title { font-size: 38px; }
-            .region-grid { grid-template-columns: 1fr; }
+            .region-wrap { padding: 48px 16px; }
+            .region-title { font-size: 36px; }
+            .region-sub { font-size: 17px; margin-bottom: 40px; }
+            .region-grid { grid-template-columns: 1fr; gap: 14px; }
+            .region-card { padding: 24px 20px; }
+            .region-name { font-size: 24px; }
+            .region-desc { font-size: 14px; }
+            .region-footer { font-size: 10px; text-align: center; }
           }
         `}</style>
         <div className="region-wrap">
+          <img src="/hero-photo.jpg" alt="Canadian Rockies wedding" className="region-bg-photo" />
+          <div className="region-bg-overlay" />
           {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
           <div className="region-eyebrow">The Ultimate Wedding Guide</div>
           <h1 className="region-title">Your dream wedding<br /><span>starts here.</span></h1>
@@ -1359,7 +1393,7 @@ export default function App() {
               </div>
               <div className="region-name">Canadian Rockies</div>
               <div className="region-cities">Calgary · Canmore · Banff</div>
-              <div className="region-desc">36 venues, 9 caterers, 7 florists, photographers, bakers, mobile bars and more, all vetted and ready.</div>
+              <div className="region-desc">Everything you need to plan your Rocky Mountain wedding. Dozens of vetted vendors across every category, detailed, organized, and ready for you. Just sit back, relax, and enjoy the planning.</div>
               <div className="region-cta">Explore the Guide →</div>
             </div>
 
@@ -1402,12 +1436,14 @@ export default function App() {
       <div className="guide-wrap">
         {/* COVER */}
         <div className="cover">
+          <img src="/hero-photo.jpg" alt="Canadian Rockies wedding" className="cover-bg-photo" />
+          <div className="cover-bg-overlay" />
           <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
           <div className="cover-divider" />
           <div className="cover-cities">Canadian Rockies Edition</div>
           <div className="cover-subtitle" style={{marginTop: 12, fontSize: 14, letterSpacing: 3}}>Calgary  ·  Canmore  ·  Banff</div>
           <div className="cover-subtitle">Your complete planning resource for an unforgettable Rocky Mountain wedding</div>
-          <div style={{ marginTop: 32, position: "relative" }}>
+          <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
             <button
               onClick={() => setActiveTab("budget")}
               style={{
@@ -1780,10 +1816,26 @@ export default function App() {
             </div>
           )}
 
+            {activeTab === "hair" && (
+            <SimpleVendors
+              vendors={hairMakeupData}
+              pending={hairMakeupPending}
+              pendingLabel="On our radar: additional hair &amp; makeup artists"
+              infoTitle="Tips for Booking Your Bridal Beauty Team"
+              infoItems={[
+                "Book 8–12 months in advance for peak season (June–September), as the best artists fill up fast.",
+                "A trial session is highly recommended even if not required. It's your chance to perfect the look before the big day.",
+                "Confirm travel fees upfront if your wedding is in Canmore or Banff.",
+                "Ask whether your artist brings a team for larger bridal parties, and confirm the timeline allows enough time per person.",
+                "Check that your artist uses long-wear products suited to your skin type, especially important for outdoor mountain ceremonies.",
+              ]}
+            />
+          )}
+
             {activeTab === "coming" && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               {[
-                { title: "Calgary: On Our Radar", items: ["Hair & Makeup", "Suit Rentals", "Officiant Services", "Decor & Lighting Rentals", "Transportation", "Music: DJs & Live Bands", "Audio/Visual & Sound Production"] },
+                { title: "Calgary: On Our Radar", items: ["Suit Rentals", "Officiant Services", "Decor & Lighting Rentals", "Transportation", "Music: DJs & Live Bands", "Audio/Visual & Sound Production"] },
                 { title: "Canmore & Banff: Coming Next", items: ["Venues", "Catering", "Photography", "Florals", "Cakes & Desserts", "Hair & Makeup", "Music", "Transportation", "Guest Experience & Tourism", "Accommodations"] },
                 { title: "Permits & Legalities", items: ["Banff National Park Wedding Permits", "AGLC Liquor Licensing", "Marriage Licences in Alberta", "Outdoor Ceremony Regulations"] },
               ].map((section, i) => (
