@@ -29,6 +29,7 @@ import { floristData, floristPending } from "./data/florists";
 import { cakeData, cakePending } from "./data/cakes";
 import { dressData } from "./data/dresses";
 import { hairMakeupData, hairMakeupPending } from "./data/hairandmakeup";
+import { rentalData } from "./data/rentals";
 
 // =============================================================================
 // COMPONENTS & APP
@@ -1831,11 +1832,64 @@ export default function App() {
               ]}
             />
           )}
+          {activeTab === "rentals" && (
+            <div>
+              <div className="info-box">
+                <div className="info-box-title">A Note on Event Rentals</div>
+                <ul>
+                  <li>Book rentals 3–6 months in advance for peak season (June–September), especially for tents and large furniture pieces.</li>
+                  <li>Confirm delivery, setup, and pickup fees upfront — these vary widely and can add up quickly.</li>
+                  <li>Some rental companies work from preferred vendor lists at certain venues, so check with your venue before booking.</li>
+                  <li>For mountain weddings in Canmore or Banff, always confirm whether the company travels outside Calgary and what the travel surcharge is.</li>
+                </ul>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
+                {rentalData.map((b, i) => (
+                  <div key={i} style={{
+                    border: `1px solid ${COLORS.border}`,
+                    borderRadius: 4,
+                    overflow: "hidden",
+                    background: COLORS.white,
+                    transition: "box-shadow 0.2s",
+                  }}>
+                    <div style={{ background: COLORS.parchment, padding: "20px 24px", borderBottom: `1px solid ${COLORS.border}` }}>
+                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: COLORS.forest, marginBottom: 4 }}>{b.name}</div>
+                      {b.note && <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: COLORS.sub, marginTop: 4, fontStyle: "italic" }}>{b.note}</div>}
+                    </div>
+                    <div style={{ padding: "16px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
+                      {b.phone && (
+                        <div>
+                          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Phone</div>
+                          <div style={{ fontSize: 14, color: COLORS.text }}>{b.phone}</div>
+                        </div>
+                      )}
+                      {b.email && (
+                        <div>
+                          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Email</div>
+                          <a href={`mailto:${b.email}`} style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.email}</a>
+                        </div>
+                      )}
+                      {b.ig && (
+                        <div>
+                          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
+                          <a href={b.igLink} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.ig}</a>
+                        </div>
+                      )}
+                      <div>
+                        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
+                        <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
             {activeTab === "coming" && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               {[
-                { title: "Calgary: On Our Radar", items: ["Suit Rentals", "Officiant Services", "Decor & Lighting Rentals", "Transportation", "Music: DJs & Live Bands", "Audio/Visual & Sound Production"] },
+                { title: "Calgary: On Our Radar", items: ["Suit Rentals", "Officiant Services", "Transportation", "Music: DJs & Live Bands", "Audio/Visual & Sound Production"] },
                 { title: "Canmore & Banff: Coming Next", items: ["Venues", "Catering", "Photography", "Florals", "Cakes & Desserts", "Hair & Makeup", "Music", "Transportation", "Guest Experience & Tourism", "Accommodations"] },
                 { title: "Permits & Legalities", items: ["Banff National Park Wedding Permits", "AGLC Liquor Licensing", "Marriage Licences in Alberta", "Outdoor Ceremony Regulations"] },
               ].map((section, i) => (
