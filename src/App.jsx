@@ -1292,7 +1292,7 @@ export default function App() {
           .region-card.available { border-color: rgba(196,149,106,0.5); background: rgba(196,149,106,0.08); }
           .region-card.coming { opacity: 0.75; cursor: default; }
           .region-card.coming:hover { transform: none; box-shadow: none; border-color: rgba(196,149,106,0.25); }
-          .region-card.coming .region-notify { pointer-events: auto; cursor: pointer; }
+          .region-card.coming .region-notify { pointer-events: auto; cursor: pointer; position: relative; z-index: 10; }
           .region-badge {
             display: inline-block;
             font-family: 'Jost', sans-serif;
