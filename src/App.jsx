@@ -1644,7 +1644,7 @@ if (region === "vancouver") {
               <div className="section-eyebrow">West Coast Edition</div>
               <h1 className="section-title">The Ultimate Wedding Guide</h1>
               <p className="section-lead">
-                Everything you need to plan your dream wedding in Vancouver, Squamish, Whistler, or Pemberton â€” researched, vetted, and organized so you can stop Googling and start enjoying being engaged.
+                Everything you need to plan your dream wedding in Vancouver, Squamish, Whistler, or Pemberton  — researched, vetted, and organized so you can stop Googling and start enjoying being engaged.
               </p>
               <div style={{ marginTop: 32 }}>
                 <button className="form-btn" onClick={() => setShowPasswordGate(true)}>
@@ -1681,9 +1681,9 @@ if (region === "vancouver") {
                   infoTitle="Good to Know"
                   infoItems={[
                     "Always confirm whether full service includes setup, serving staff, and cleanup.",
-                    "Check if the caterer holds a traveling liquor license â€” if so, you may not need a Special Event Permit.",
+                    "Check if the caterer holds a traveling liquor license  — if so, you may not need a Special Event Permit.",
                     "For blank-canvas venues like Heritage Hall, Pipe Shop, and UBC Botanical Garden, outside catering is required.",
-                    "Sea-to-Sky caterers often have mobile kitchens â€” confirm if your remote venue has kitchen facilities.",
+                    "Sea-to-Sky caterers often have mobile kitchens  — confirm if your remote venue has kitchen facilities.",
                   ]}
                 />
               )}
@@ -1693,11 +1693,11 @@ if (region === "vancouver") {
                   <div className="info-box">
                     <div className="info-box-title">BC Alcohol Licensing: What You Need to Know</div>
                     <ul>
-                      <li>In BC, serving alcohol at a private event requires a Special Event Permit (SEP) from the BC Liquor and Cannabis Regulation Branch â€” unless your venue or caterer holds their own license.</li>
-                      <li>Only the host of the event (the couple) can apply for the SEP â€” vendors cannot apply on your behalf.</li>
+                      <li>In BC, serving alcohol at a private event requires a Special Event Permit (SEP) from the BC Liquor and Cannabis Regulation Branch  — unless your venue or caterer holds their own license.</li>
+                      <li>Only the host of the event (the couple) can apply for the SEP  — vendors cannot apply on your behalf.</li>
                       <li>If your venue is a licensed space (hotel, restaurant, or licensed event space), you generally do not need an SEP.</li>
-                      <li>If your caterer holds a traveling liquor license (e.g. Cocktails & Canapes, Edge Catering), they can serve alcohol under their own license â€” no SEP needed.</li>
-                      <li>Apply at lcrb.gov.bc.ca â€” at least 30 days before your event, earlier in peak summer season.</li>
+                      <li>If your caterer holds a traveling liquor license (e.g. Cocktails & Canapes, Edge Catering), they can serve alcohol under their own license  — no SEP needed.</li>
+                      <li>Apply at lcrb.gov.bc.ca  — at least 30 days before your event, earlier in peak summer season.</li>
                     </ul>
                   </div>
                   <div className="vendor-grid" style={{ marginTop: 24 }}>
@@ -1721,7 +1721,7 @@ if (region === "vancouver") {
                   pendingLabel="On our radar: additional photographers & videographers"
                   infoTitle="Questions to Ask Every Photographer"
                   infoItems={[
-                    "Do you have experience shooting in BC's varied lighting conditions â€” bright summer days, golden mountain light, moody winter interiors?",
+                    "Do you have experience shooting in BC's varied lighting conditions  — bright summer days, golden mountain light, moody winter interiors?",
                     "Do you travel the Sea-to-Sky corridor, and are travel fees included?",
                     "How long until our photos and videos are delivered?",
                     "Do you include a second shooter, or is that an add-on?",
@@ -1740,7 +1740,7 @@ if (region === "vancouver") {
                     infoItems={[
                       "Book your florist 6â€“12 months in advance for peak season (Juneâ€“September).",
                       "For micro-weddings and elopements, look for florists offering Ã  la carte menus with no minimums.",
-                      "Ask about locally grown BC blooms â€” several florists prioritize seasonal and local sourcing.",
+                      "Ask about locally grown BC blooms  — several florists prioritize seasonal and local sourcing.",
                       "Always confirm travel fees if your venue is in the Sea-to-Sky corridor.",
                     ]}
                   />
@@ -1749,7 +1749,7 @@ if (region === "vancouver") {
                       <div className="info-box-title">Bouquet Preservation</div>
                       <ul>
                         {vancouverFloristPreservation.map((v, i) => (
-                          <li key={i}><strong>{v.name}</strong> â€” {v.note} <a href={v.link} target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone }}>{v.url}</a> · {v.ig}</li>
+                          <li key={i}><strong>{v.name}</strong>  — {v.note} <a href={v.link} target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone }}>{v.url}</a> · {v.ig}</li>
                         ))}
                       </ul>
                     </div>
@@ -1765,9 +1765,9 @@ if (region === "vancouver") {
                   infoTitle="Planning Tips for Wedding Cakes"
                   infoItems={[
                     "Book your cake 2â€“6 months in advance; some bakers accommodate shorter timelines.",
-                    "Always confirm delivery policies â€” especially for Sea-to-Sky venues.",
+                    "Always confirm delivery policies  — especially for Sea-to-Sky venues.",
                     "Ask about dietary accommodations early so your baker can plan accordingly.",
-                    "Consider a smaller display cake paired with sheet cakes â€” a popular and cost-effective option.",
+                    "Consider a smaller display cake paired with sheet cakes  — a popular and cost-effective option.",
                   ]}
                 />
               )}
@@ -1812,11 +1812,11 @@ if (region === "vancouver") {
                   pendingLabel="On our radar: additional hair & makeup artists"
                   infoTitle="Tips for Booking Your Bridal Beauty Team"
                   infoItems={[
-                    "Book 6â€“18 months in advance for peak season (Juneâ€“September) â€” the best artists fill up fast.",
+                    "Book 6â€“18 months in advance for peak season (Juneâ€“September)  — the best artists fill up fast.",
                     "A trial session is highly recommended even if not required.",
                     "Confirm travel fees upfront if your wedding is in the Sea-to-Sky corridor.",
                     "Ask whether your artist brings a team for larger bridal parties and confirm the timeline.",
-                    "Check that products are long-wear and suitable for your skin type â€” especially important for outdoor ceremonies.",
+                    "Check that products are long-wear and suitable for your skin type  — especially important for outdoor ceremonies.",
                   ]}
                 />
               )}
@@ -1827,7 +1827,7 @@ if (region === "vancouver") {
                     <div className="info-box-title">A Note on Event Rentals</div>
                     <ul>
                       <li>Book rentals 3â€“6 months in advance for peak season, especially for tents and large furniture.</li>
-                      <li>Confirm delivery, setup, and pickup fees upfront â€” these vary widely.</li>
+                      <li>Confirm delivery, setup, and pickup fees upfront  — these vary widely.</li>
                       <li>For blank-canvas venues (Pipe Shop, Heritage Hall, UBC Botanical Garden), you'll need to bring in almost everything. Factor this into your budget early.</li>
                       <li>Sea-to-Sky venues: confirm whether the rental company travels to Squamish, Whistler, or Pemberton and what the travel surcharge is.</li>
                     </ul>
