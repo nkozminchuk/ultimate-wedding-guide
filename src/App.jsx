@@ -1549,7 +1549,7 @@ if (region === "vancouver") {
             <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
             <div className="cover-divider" />
             <div className="cover-cities">West Coast Edition</div>
-            <div className="cover-subtitle" style={{ marginTop: 12, fontSize: 14, letterSpacing: 3 }}>Vancouver  Â·  Squamish  Â·  Whistler  Â·  Pemberton</div>
+            <div className="cover-subtitle" style={{ marginTop: 12, fontSize: 14, letterSpacing: 3 }}>Vancouver  ·  Squamish  ·  Whistler  ·  Pemberton</div>
             <div className="cover-subtitle">Your complete planning resource for an unforgettable West Coast wedding</div>
             <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
               <button
@@ -1564,10 +1564,10 @@ if (region === "vancouver") {
                 onMouseOver={e => e.currentTarget.style.background = "#d4a870"}
                 onMouseOut={e => e.currentTarget.style.background = COLORS.sandstone}
               >
-                Buy the Guide Â· $29
+                Buy the Guide · $29
               </button>
               <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: "rgba(247,243,236,0.5)", marginTop: 10 }}>
-                CAD Â· One-time purchase Â· Lifetime access
+                CAD · One-time purchase · Lifetime access
               </p>
             </div>
           </div>
@@ -1625,7 +1625,7 @@ if (region === "vancouver") {
                     onClick={() => handleVanTabClick({ id: item.id, locked: true })}
                     style={{ display: "flex", alignItems: "center", gap: 12 }}>
                     <Icon name={item.icon} color="rgba(196,149,106,0.7)" size={14} />
-                    {item.label} {!unlocked && "Â·"}
+                    {item.label} {!unlocked && "·"}
                   </button>
                 ))}
                 {unlocked && (
@@ -1648,7 +1648,7 @@ if (region === "vancouver") {
               </p>
               <div style={{ marginTop: 32 }}>
                 <button className="form-btn" onClick={() => setShowPasswordGate(true)}>
-                  Unlock the Guide Â· $29
+                  Unlock the Guide · $29
                 </button>
               </div>
             </div>
@@ -1749,7 +1749,7 @@ if (region === "vancouver") {
                       <div className="info-box-title">Bouquet Preservation</div>
                       <ul>
                         {vancouverFloristPreservation.map((v, i) => (
-                          <li key={i}><strong>{v.name}</strong> â€” {v.note} <a href={v.link} target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone }}>{v.url}</a> Â· {v.ig}</li>
+                          <li key={i}><strong>{v.name}</strong> â€” {v.note} <a href={v.link} target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone }}>{v.url}</a> · {v.ig}</li>
                         ))}
                       </ul>
                     </div>
@@ -1923,7 +1923,7 @@ if (region === "vancouver") {
               </a>
             </div>
             <div className="footer-copy">
-              Â© {new Date().getFullYear()} The Ultimate Wedding Guide, West Coast Edition. All rights reserved.
+              © {new Date().getFullYear()} The Ultimate Wedding Guide, West Coast Edition. All rights reserved.
             </div>
           </footer>
         </div>
