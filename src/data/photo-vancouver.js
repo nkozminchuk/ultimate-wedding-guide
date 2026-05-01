@@ -1,0 +1,152 @@
+// =============================================================================
+// DATA / PHOTO-VANCOUVER.JS — Vancouver & Sea-to-Sky photographers & videographers
+// Field order: Services → Style → Pricing → Coverage → Second Shooter
+//   → Turnaround → Experience → Travel → Note → Phone → Email
+//   → Instagram → Website
+// =============================================================================
+
+export const vancouverPhotoData = [
+  { name: "The Apartment Photography", tier: "$$$", fields: [
+    { label: "Services", value: "Photography only — hybrid digital + 35mm analog film" },
+    { label: "Style", value: "Editorial, fine art, cinematic, documentary — drawn to light and shadows, textures, and quiet moments" },
+    { label: "Pricing", value: "From $9,900 for 8 hours" },
+    { label: "Coverage", value: "Base package 8 hours; additional hours available" },
+    { label: "Second Shooter", value: "Husband and wife duo — Cat & Jeff — two primary photographers in every package" },
+    { label: "Turnaround", value: "Sneak peek within 1 week · full gallery 4–5 months" },
+    { label: "Awards", value: "International Wedding Photographers of the Year · Best of the Best — Junebug Weddings" },
+    { label: "Extras", value: "Engagement sessions, welcome party coverage, fine art wedding albums available" },
+    { label: "Travel", value: "Vancouver, Sea-to-Sky, and destination worldwide" },
+    { label: "Phone", value: "604-868-4124" },
+    { label: "Email", value: "info@theapartmentphotography.com" },
+    { label: "Instagram", value: "@theapartmentphoto" },
+    { label: "Website", value: "theapartmentphotography.com", link: "https://theapartmentphotography.com" },
+  ]},
+
+  { name: "Tomasz Wagner Photo & Films", tier: "$$$", fields: [
+    { label: "Services", value: "Photography + videography — hybrid film & digital + Super 8mm videography" },
+    { label: "Style", value: "Blend of editorial and documentary/candid" },
+    { label: "Pricing", value: "Starting at $9,000 CAD" },
+    { label: "Coverage", value: "6–12 hours; 8 hours most popular" },
+    { label: "Second Shooter", value: "Yes" },
+    { label: "Turnaround", value: "Photos 4 months · video 3 months" },
+    { label: "Travel", value: "Vancouver, Sea-to-Sky, and beyond" },
+    { label: "Email", value: "hello@tomaszwagner.co" },
+    { label: "Instagram", value: "@tomaszwagnerco" },
+    { label: "Website", value: "tomaszwagner.co", link: "https://tomaszwagner.co" },
+  ]},
+
+  { name: "Isle and Oak Photography", tier: "$$/$$$", fields: [
+    { label: "Services", value: "Photography; collaborative packages with Grey House Visual for videography" },
+    { label: "Style", value: "Documentary, candid, cinematic" },
+    { label: "Pricing", value: "Full day from $6,000 (6 hrs) · elopements from $3,200" },
+    { label: "Coverage", value: "Elopements 2–4 hours · full day 6–10 hours (add-on time available)" },
+    { label: "Second Shooter", value: "Two photographers included in every package" },
+    { label: "Turnaround", value: "Preview gallery immediately after wedding · full delivery 3–4 months" },
+    { label: "Experience", value: "10 years photographing across BC" },
+    { label: "Travel", value: "Vancouver and Sea-to-Sky" },
+    { label: "Email", value: "isleandoakphotography@gmail.com" },
+    { label: "Instagram", value: "@isleandoakphotography" },
+    { label: "Website", value: "isleandoakphotography.com", link: "https://isleandoakphotography.com" },
+  ]},
+
+  { name: "Beautiful Life Studios", tier: "$$", fields: [
+    { label: "Services", value: "Photography only, videography only, or bundled photo + video" },
+    { label: "Style", value: "Documentary/candid, romantic, natural, light & airy; cinematic & film editing available" },
+    { label: "Pricing", value: "Photography from $3,200 + GST · photo + video from $7,050 + GST" },
+    { label: "Coverage", value: "Flexible, typically 8–35 hours" },
+    { label: "Second Shooter", value: "Yes" },
+    { label: "Turnaround", value: "Photos 6–8 weeks · video varies by package" },
+    { label: "Travel", value: "Vancouver, Sea-to-Sky, and beyond" },
+    { label: "Email", value: "hello@beautifullifestudios.com" },
+    { label: "Instagram", value: "@beautifullifebc" },
+    { label: "Website", value: "beautifullifebc.com", link: "https://www.beautifullifebc.com" },
+  ]},
+
+  { name: "Pear Tree Photography", tier: "$$", fields: [
+    { label: "Services", value: "Photography + cinematography" },
+    { label: "Style", value: "Modern candid/documentary with editorial storytelling" },
+    { label: "Pricing", value: "Elopements from $1,750 · weddings from $3,800" },
+    { label: "Coverage", value: "Flexible, typically 8–12 hours" },
+    { label: "Second Shooter", value: "Yes — standard option in main packages" },
+    { label: "Turnaround", value: "Full gallery and/or video within 4–6 weeks" },
+    { label: "Travel", value: "Vancouver and Sea-to-Sky — Squamish, Whistler, Pemberton regularly" },
+    { label: "Email", value: "info@peartreephotography.ca" },
+    { label: "Instagram", value: "@vancouver.photographer" },
+    { label: "Website", value: "peartreephotography.ca", link: "https://peartreephotography.ca" },
+  ]},
+
+  { name: "Farawayland Weddings", tier: "$", fields: [
+    { label: "Services", value: "Photography + videography" },
+    { label: "Style", value: "Documentary, contemporary fashion, and editorial; open to any style" },
+    { label: "Pricing", value: "From $1,395 for 4 hours photography" },
+    { label: "Coverage", value: "Flexible 4–12 hours" },
+    { label: "Second Shooter", value: "Yes — photo and video" },
+    { label: "Turnaround", value: "4–7 weeks" },
+    { label: "Travel", value: "Vancouver and Sea-to-Sky corridor" },
+    { label: "Email", value: "farawaylandweddings@gmail.com" },
+    { label: "Instagram", value: "@farawayland_weddings" },
+    { label: "Website", value: "farawaylandwedding.ca", link: "https://www.farawaylandwedding.ca" },
+  ]},
+
+  { name: "Leah Kathryn Photography", tier: "$$", fields: [
+    { label: "Services", value: "Photography only" },
+    { label: "Style", value: "Timeless — hybrid of traditional, documentary, candid, lifestyle with editorial touches" },
+    { label: "Pricing", value: "$4,000–$6,000 base packages (excluding add-ons)" },
+    { label: "Coverage", value: "6–10 hours; 8 hour minimum for peak season Saturdays; additional hours available" },
+    { label: "Second Shooter", value: "Not included — available as add-on" },
+    { label: "Turnaround", value: "Sneak peeks within 48 hours · full gallery within 12 weeks" },
+    { label: "Experience", value: "12 years shooting weddings" },
+    { label: "Travel", value: "Whistler-based — primarily works Sea-to-Sky corridor; rarely in the city" },
+    { label: "Note", value: "One of the few photographers in the guide based in Whistler — a true Sea-to-Sky specialist.", full: true },
+    { label: "Email", value: "leahkathrynphoto@gmail.com" },
+    { label: "Instagram", value: "@leahkathrynphoto" },
+    { label: "Website", value: "leahkathrynphoto.com", link: "https://leahkathrynphoto.com" },
+  ]},
+
+  { name: "DËMIN Photography", tier: "$", fields: [
+    { label: "Services", value: "Photography + GoPro video highlights" },
+    { label: "Style", value: "Fine art for posed portraits and details · candid/documentary for the rest of the day" },
+    { label: "Pricing", value: "From $1,499 for 3-hour package" },
+    { label: "Coverage", value: "From 3 hours; packages scale up" },
+    { label: "Second Shooter", value: "Available as add-on" },
+    { label: "Turnaround", value: "Typically 4–8 weeks" },
+    { label: "Experience", value: "300+ weddings across varied BC conditions" },
+    { label: "Travel", value: "Vancouver and Sea-to-Sky" },
+    { label: "Email", value: "demin@deminphotography.com" },
+    { label: "Instagram", value: "@deminphotography" },
+    { label: "Website", value: "deminphotography.com", link: "https://deminphotography.com" },
+  ]},
+
+  { name: "IVA MARIIA Photography", tier: "$$", fields: [
+    { label: "Services", value: "Photography only — hybrid digital + 35mm analog film" },
+    { label: "Style", value: "Editorial elegance with natural storytelling; gentle direction rather than stiff posing; authentic, effortless, and romantic; 35mm film adds nostalgic, cinematic texture" },
+    { label: "Pricing", value: "Full day from $4,200 (8 hrs) · elopements from $2,400 (4 hrs)" },
+    { label: "Coverage", value: "Full wedding 8–10 hours · elopements from 4 hours" },
+    { label: "Second Shooter", value: "Yes — recommended for larger guest counts or complex timelines" },
+    { label: "Turnaround", value: "Sneak peek within 24–72 hours · full gallery including film scans 6–8 weeks" },
+    { label: "Travel", value: "Vancouver-based; loves the Sea-to-Sky — Whistler, Squamish, and beyond" },
+    { label: "Note", value: "One of the only photographers in the guide offering hybrid digital + 35mm film — perfect for couples wanting that warm, nostalgic film aesthetic.", full: true },
+    { label: "Email", value: "ivamariia1@gmail.com" },
+    { label: "Instagram", value: "@ivamariia.photo" },
+    { label: "Website", value: "ivaphoto.com", link: "https://www.ivaphoto.com" },
+  ]},
+];
+
+export const vancouverPhotoPending = [
+  "Nadia Hung Photography  nadiahungphotography.com  @nadiahungco",
+  "Sabirova Photography  sabirovaphotography.com  @sabirovaphotography",
+  "John Bello  johnbello.ca  @johnbello.ca",
+  "Cliff Ma  cliffma.com  @cliffmaphotography",
+  "Sachin Khona and Co.  sachinkhona.com  @sachinkhona",
+  "Justin Ho  justinkhophotography.com  @jhophotography",
+  "Candice Marie Photography  candicemariephotography.ca  @candice.m.photography",
+  "Dynamic Weddings  dynamicweddings.ca  @dynamicweddings",
+  "The Coconut Creative  thecoconutcreative.co  @coconutcreativeco",
+  "Whitewall Weddings  whitewallweddings.com  @white_wall_weddings",
+  "Ryan Funk Photography  ryanfunkphotography.com  @ryanfunkphotography",
+  "Ronnie Lee Hill  ronnieleehill.com  @ronnieleehillphotography",
+  "Darby Magill  darbymagill.com  @darbymagill",
+  "Taylor Lee Films  taylorleefilms.com  @taylorleefilms",
+  "Oisin McHugh Photography  oisinmchughphotography.com  @oisinmchugh",
+  "Tara Lilly Photography  taralillyphotography.com  @taralillyphoto",
+];
