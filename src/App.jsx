@@ -1460,7 +1460,476 @@ export default function App() {
       </>
     );
   }
+if (region === "vancouver") {
+    const VAN_PASSWORD = "VanS2S";
+    const vanTabs = vancouverGuideItems.map(i => ({ id: i.id, label: i.label, locked: true }));
+    const isVanLocked = vanTabs.find(t => t.id === activeTab)?.locked;
+    const vanMeta = sectionMeta[activeTab] || sectionMeta["van-venues"];
 
+    function handleVanTabClick(tab) {
+      if (tab.locked && !unlocked) {
+        setShowPasswordGate(true);
+      } else {
+        setActiveTab(tab.id);
+      }
+      setShowMobileMenu(false);
+    }
+
+    return (
+      <>
+        <style>{styles}</style>
+        {showPasswordGate && (
+          <div style={{
+            position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            zIndex: 1000, padding: 24
+          }}>
+            <div style={{
+              background: COLORS.white, borderRadius: 4, padding: "56px 48px",
+              maxWidth: 440, width: "100%", textAlign: "center"
+            }}>
+              <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 400, color: COLORS.forest, marginBottom: 12 }}>
+                Welcome Back
+              </h2>
+              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, marginBottom: 36, lineHeight: 1.6 }}>
+                Enter your guide password to access the full West Coast Edition.
+              </p>
+              <form onSubmit={e => {
+                e.preventDefault();
+                const val = e.target.querySelector("input").value.trim();
+                if (val === VAN_PASSWORD) {
+                  setUnlocked(true);
+                  setShowPasswordGate(false);
+                  setActiveTab("van-venues");
+                } else {
+                  e.target.querySelector("input").value = "";
+                  e.target.querySelector("input").style.borderColor = "#c0392b";
+                  setTimeout(() => { e.target.querySelector("input").style.borderColor = COLORS.border; }, 3000);
+                }
+              }} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                <input
+                  type="password"
+                  placeholder="Enter password"
+                  autoFocus
+                  style={{
+                    fontFamily: "'Jost', sans-serif", fontSize: 15,
+                    padding: "14px 18px", border: `1px solid ${COLORS.border}`,
+                    borderRadius: 3, outline: "none", textAlign: "center",
+                    letterSpacing: 4, color: COLORS.text, width: "100%",
+                    transition: "border-color 0.2s"
+                  }}
+                />
+                <button type="submit" style={{
+                  background: COLORS.forest, color: COLORS.cream,
+                  fontFamily: "'Jost', sans-serif", fontSize: 11,
+                  fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
+                  padding: "16px 32px", border: "none", borderRadius: 2,
+                  cursor: "pointer"
+                }}>
+                  Unlock Guide
+                </button>
+              </form>
+              <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
+                Don't have a password yet?{" "}
+                <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
+                  onClick={() => setShowPasswordGate(false)}>
+                  Purchase the guide
+                </span>{" "}to receive instant access.
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="guide-wrap">
+          {/* VANCOUVER COVER */}
+          <div className="cover">
+            <img src="/hero-photo.jpg" alt="West Coast wedding" className="cover-bg-photo" />
+            <div className="cover-bg-overlay" />
+            <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
+            <div className="cover-divider" />
+            <div className="cover-cities">West Coast Edition</div>
+            <div className="cover-subtitle" style={{ marginTop: 12, fontSize: 14, letterSpacing: 3 }}>Vancouver  Â·  Squamish  Â·  Whistler  Â·  Pemberton</div>
+            <div className="cover-subtitle">Your complete planning resource for an unforgettable West Coast wedding</div>
+            <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
+              <button
+                onClick={() => setShowPasswordGate(true)}
+                style={{
+                  background: COLORS.sandstone, color: COLORS.forest,
+                  fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600,
+                  letterSpacing: 3, textTransform: "uppercase",
+                  padding: "14px 36px", border: "none", borderRadius: 2,
+                  cursor: "pointer", transition: "background 0.2s",
+                }}
+                onMouseOver={e => e.currentTarget.style.background = "#d4a870"}
+                onMouseOut={e => e.currentTarget.style.background = COLORS.sandstone}
+              >
+                Buy the Guide Â· $29
+              </button>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: "rgba(247,243,236,0.5)", marginTop: 10 }}>
+                CAD Â· One-time purchase Â· Lifetime access
+              </p>
+            </div>
+          </div>
+
+          {/* VANCOUVER NAV */}
+          <nav className="nav" style={{ position: "relative" }}>
+            {/* DESKTOP */}
+            <div className="nav-desktop">
+              <div className="nav-item">
+                <button className="nav-btn" onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); }} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>â† All Editions</button>
+              </div>
+              <div className="nav-item">
+                <button className={`nav-btn ${activeTab === "van-home" ? "active" : ""}`} onClick={() => setActiveTab("van-home")}>Home</button>
+              </div>
+              <div className="nav-item">
+                <button className={`nav-btn ${vancouverGuideItems.map(i => i.id).includes(activeTab) ? "active" : ""}`}>
+                  The Guide <span className="nav-arrow">â–¼</span>
+                </button>
+                <div className="dropdown">
+                  {vancouverGuideItems.map(item => (
+                    <button key={item.id} className={`dropdown-item ${activeTab === item.id ? "active" : ""}`}
+                      onClick={() => handleVanTabClick({ id: item.id, locked: true })}>
+                      <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <Icon name={item.icon} color={activeTab === item.id ? COLORS.forest : COLORS.sandstone} size={15} />
+                        {item.label}
+                      </span>
+                      {!unlocked && <span className="lock-dot" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <button className="nav-gift-btn" onClick={() => setShowPasswordGate(true)}>
+                Buy the Guide
+              </button>
+              {unlocked && (
+                <button className="nav-lock-btn" onClick={() => { setUnlocked(false); setActiveTab("van-home"); }}>Lock</button>
+              )}
+            </div>
+
+            {/* MOBILE */}
+            <div className="nav-mobile" style={{ width: "100%", alignItems: "center", justifyContent: "space-between" }}>
+              <button className="nav-btn" style={{ padding: "16px 8px" }} onClick={() => { setActiveTab("van-home"); setShowMobileMenu(false); }}>Home</button>
+              <button className="nav-gift-btn" style={{ margin: "0 8px" }} onClick={() => { setShowPasswordGate(true); setShowMobileMenu(false); }}>Buy the Guide</button>
+              <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
+                <span /><span /><span />
+              </button>
+            </div>
+            {showMobileMenu && (
+              <div className="mobile-menu">
+                <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>â† All Editions</button>
+                <div className="mobile-menu-divider" />
+                <div className="mobile-menu-section">The Guide</div>
+                {vancouverGuideItems.map(item => (
+                  <button key={item.id} className={`mobile-menu-item ${activeTab === item.id ? "active" : ""}`}
+                    onClick={() => handleVanTabClick({ id: item.id, locked: true })}
+                    style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <Icon name={item.icon} color="rgba(196,149,106,0.7)" size={14} />
+                    {item.label} {!unlocked && "Â·"}
+                  </button>
+                ))}
+                {unlocked && (
+                  <>
+                    <div className="mobile-menu-divider" />
+                    <button className="mobile-menu-item" style={{ opacity: 0.4 }} onClick={() => { setUnlocked(false); setActiveTab("van-home"); setShowMobileMenu(false); }}>Lock Guide</button>
+                  </>
+                )}
+              </div>
+            )}
+          </nav>
+
+          {/* VANCOUVER HOME */}
+          {(activeTab === "van-home" || activeTab === "home") && (
+            <div className="content">
+              <div className="section-eyebrow">West Coast Edition</div>
+              <h1 className="section-title">The Ultimate Wedding Guide</h1>
+              <p className="section-lead">
+                Everything you need to plan your dream wedding in Vancouver, Squamish, Whistler, or Pemberton â€” researched, vetted, and organized so you can stop Googling and start enjoying being engaged.
+              </p>
+              <div style={{ marginTop: 32 }}>
+                <button className="form-btn" onClick={() => setShowPasswordGate(true)}>
+                  Unlock the Guide Â· $29
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* VANCOUVER LOCKED */}
+          {isVanLocked && !unlocked && (
+            <LockScreen onUnlock={() => setShowPasswordGate(true)} />
+          )}
+
+          {/* VANCOUVER UNLOCKED CONTENT */}
+          {isVanLocked && unlocked && (
+            <div className="content">
+              <div className="section-eyebrow">{vanMeta?.eyebrow}</div>
+              <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                <Icon name={vanMeta?.icon} color={COLORS.sandstone} size={36} />
+                {vanMeta?.title}
+              </h1>
+              {vanMeta?.lead && <p className="section-lead">{vanMeta.lead}</p>}
+
+              {activeTab === "van-venues" && (
+                <>
+                  <VenueSection sections={vancouverVenueData} />
+                </>
+              )}
+
+              {activeTab === "van-catering" && (
+                <SimpleVendors
+                  vendors={vancouverCateringData}
+                  infoTitle="Good to Know"
+                  infoItems={[
+                    "Always confirm whether full service includes setup, serving staff, and cleanup.",
+                    "Check if the caterer holds a traveling liquor license â€” if so, you may not need a Special Event Permit.",
+                    "For blank-canvas venues like Heritage Hall, Pipe Shop, and UBC Botanical Garden, outside catering is required.",
+                    "Sea-to-Sky caterers often have mobile kitchens â€” confirm if your remote venue has kitchen facilities.",
+                  ]}
+                />
+              )}
+
+              {activeTab === "van-bar" && (
+                <>
+                  <div className="info-box">
+                    <div className="info-box-title">BC Alcohol Licensing: What You Need to Know</div>
+                    <ul>
+                      <li>In BC, serving alcohol at a private event requires a Special Event Permit (SEP) from the BC Liquor and Cannabis Regulation Branch â€” unless your venue or caterer holds their own license.</li>
+                      <li>Only the host of the event (the couple) can apply for the SEP â€” vendors cannot apply on your behalf.</li>
+                      <li>If your venue is a licensed space (hotel, restaurant, or licensed event space), you generally do not need an SEP.</li>
+                      <li>If your caterer holds a traveling liquor license (e.g. Cocktails & Canapes, Edge Catering), they can serve alcohol under their own license â€” no SEP needed.</li>
+                      <li>Apply at lcrb.gov.bc.ca â€” at least 30 days before your event, earlier in peak summer season.</li>
+                    </ul>
+                  </div>
+                  <div className="vendor-grid" style={{ marginTop: 24 }}>
+                    {vancouverBarData.map((v, i) => <VendorCard key={i} vendor={v} />)}
+                  </div>
+                  {vancouverBarPending.length > 0 && (
+                    <div className="pending">
+                      <div className="pending-title">On our radar: additional mobile bar services</div>
+                      <div className="pending-list">
+                        {vancouverBarPending.map((p, i) => <span key={i} className="pending-tag">{p}</span>)}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+
+              {activeTab === "van-photo" && (
+                <SimpleVendors
+                  vendors={vancouverPhotoData}
+                  pending={vancouverPhotoPending}
+                  pendingLabel="On our radar: additional photographers & videographers"
+                  infoTitle="Questions to Ask Every Photographer"
+                  infoItems={[
+                    "Do you have experience shooting in BC's varied lighting conditions â€” bright summer days, golden mountain light, moody winter interiors?",
+                    "Do you travel the Sea-to-Sky corridor, and are travel fees included?",
+                    "How long until our photos and videos are delivered?",
+                    "Do you include a second shooter, or is that an add-on?",
+                    "Can we see a full wedding gallery, not just highlight images?",
+                  ]}
+                />
+              )}
+
+              {activeTab === "van-florists" && (
+                <>
+                  <SimpleVendors
+                    vendors={vancouverFloristData}
+                    pending={vancouverFloristPending}
+                    pendingLabel="On our radar: additional florists"
+                    infoTitle="Planning Tips for Wedding Florals"
+                    infoItems={[
+                      "Book your florist 6â€“12 months in advance for peak season (Juneâ€“September).",
+                      "For micro-weddings and elopements, look for florists offering Ã  la carte menus with no minimums.",
+                      "Ask about locally grown BC blooms â€” several florists prioritize seasonal and local sourcing.",
+                      "Always confirm travel fees if your venue is in the Sea-to-Sky corridor.",
+                    ]}
+                  />
+                  {vancouverFloristPreservation && vancouverFloristPreservation.length > 0 && (
+                    <div className="info-box" style={{ marginTop: 32 }}>
+                      <div className="info-box-title">Bouquet Preservation</div>
+                      <ul>
+                        {vancouverFloristPreservation.map((v, i) => (
+                          <li key={i}><strong>{v.name}</strong> â€” {v.note} <a href={v.link} target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone }}>{v.url}</a> Â· {v.ig}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </>
+              )}
+
+              {activeTab === "van-cakes" && (
+                <SimpleVendors
+                  vendors={vancouverCakeData}
+                  pending={vancouverCakePending}
+                  pendingLabel="On our radar: additional bakers"
+                  infoTitle="Planning Tips for Wedding Cakes"
+                  infoItems={[
+                    "Book your cake 2â€“6 months in advance; some bakers accommodate shorter timelines.",
+                    "Always confirm delivery policies â€” especially for Sea-to-Sky venues.",
+                    "Ask about dietary accommodations early so your baker can plan accordingly.",
+                    "Consider a smaller display cake paired with sheet cakes â€” a popular and cost-effective option.",
+                  ]}
+                />
+              )}
+
+              {activeTab === "van-dresses" && (
+                <div>
+                  <div className="info-box">
+                    <div className="info-box-title">A Note on Wedding Dress Shopping</div>
+                    <ul>
+                      <li>Always book an appointment. Vancouver's top boutiques are by appointment only.</li>
+                      <li>Allow 4â€“6 months for made-to-order gowns, plus extra time for alterations.</li>
+                      <li>Bring one or two trusted people whose opinion you value, not a crowd.</li>
+                      <li>Keep an open mind. The dress you fall in love with may surprise you.</li>
+                    </ul>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
+                    {vancouverDressData.map((b, i) => (
+                      <div key={i} style={{ border: `1px solid ${COLORS.border}`, borderRadius: 4, overflow: "hidden", background: COLORS.white }}>
+                        <div style={{ background: COLORS.parchment, padding: "20px 24px", borderBottom: `1px solid ${COLORS.border}` }}>
+                          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: COLORS.forest, marginBottom: 4 }}>{b.name}</div>
+                        </div>
+                        <div style={{ padding: "16px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
+                          <div>
+                            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
+                            <div style={{ fontSize: 14, color: COLORS.text }}>{b.ig}</div>
+                          </div>
+                          <div>
+                            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
+                            <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "van-hair" && (
+                <SimpleVendors
+                  vendors={vancouverHairMakeupData}
+                  pending={vancouverHairMakeupPending}
+                  pendingLabel="On our radar: additional hair & makeup artists"
+                  infoTitle="Tips for Booking Your Bridal Beauty Team"
+                  infoItems={[
+                    "Book 6â€“18 months in advance for peak season (Juneâ€“September) â€” the best artists fill up fast.",
+                    "A trial session is highly recommended even if not required.",
+                    "Confirm travel fees upfront if your wedding is in the Sea-to-Sky corridor.",
+                    "Ask whether your artist brings a team for larger bridal parties and confirm the timeline.",
+                    "Check that products are long-wear and suitable for your skin type â€” especially important for outdoor ceremonies.",
+                  ]}
+                />
+              )}
+
+              {activeTab === "van-rentals" && (
+                <div>
+                  <div className="info-box">
+                    <div className="info-box-title">A Note on Event Rentals</div>
+                    <ul>
+                      <li>Book rentals 3â€“6 months in advance for peak season, especially for tents and large furniture.</li>
+                      <li>Confirm delivery, setup, and pickup fees upfront â€” these vary widely.</li>
+                      <li>For blank-canvas venues (Pipe Shop, Heritage Hall, UBC Botanical Garden), you'll need to bring in almost everything. Factor this into your budget early.</li>
+                      <li>Sea-to-Sky venues: confirm whether the rental company travels to Squamish, Whistler, or Pemberton and what the travel surcharge is.</li>
+                    </ul>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
+                    {vancouverRentalData.map((b, i) => (
+                      <div key={i} style={{ border: `1px solid ${COLORS.border}`, borderRadius: 4, overflow: "hidden", background: COLORS.white }}>
+                        <div style={{ background: COLORS.parchment, padding: "20px 24px", borderBottom: `1px solid ${COLORS.border}` }}>
+                          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: COLORS.forest, marginBottom: 4 }}>{b.name}</div>
+                          {b.note && <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: COLORS.sub, marginTop: 4, fontStyle: "italic" }}>{b.note}</div>}
+                        </div>
+                        <div style={{ padding: "16px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
+                          {b.phone && (
+                            <div>
+                              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Phone</div>
+                              <div style={{ fontSize: 14, color: COLORS.text }}>{b.phone}</div>
+                            </div>
+                          )}
+                          {b.email && (
+                            <div>
+                              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Email</div>
+                              <a href={`mailto:${b.email}`} style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.email}</a>
+                            </div>
+                          )}
+                          {b.ig && (
+                            <div>
+                              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
+                              <a href={b.igLink} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.ig}</a>
+                            </div>
+                          )}
+                          <div>
+                            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
+                            <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "van-coming" && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                  {[
+                    { title: "Vancouver: Coming Next", items: ["Wedding Planners", "Hair & Makeup (additional artists)", "Photography (additional photographers)", "Florists (additional florists)", "Cakes & Desserts (additional bakers)", "Mobile Bar (additional services)"] },
+                    { title: "Sea-to-Sky: Coming Next", items: ["Venues (Nita Lake Lodge, Green Water Resort, Squamish Gondola, SLCC, Audain Museum)", "Hair & Makeup", "Wedding Dresses"] },
+                    { title: "BC Licensing & Legalities", items: ["Special Event Permit (SEP) full guide", "BC Marriage Licence information", "Outdoor ceremony regulations", "Banff National Park permits (for couples crossing into Alberta)"] },
+                  ].map((section, i) => (
+                    <div key={i} className="coming-soon">
+                      <div className="coming-soon-title">{section.title}</div>
+                      <div className="coming-list">
+                        {section.items.map((it, ii) => <span key={ii} className="coming-tag">{it}</span>)}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="info-box">
+                    <div className="info-box-title">Stay in the Loop</div>
+                    <ul>
+                      <li>This guide is updated regularly as new vendors are vetted and new sections are added.</li>
+                      <li>Purchased this guide and want to be notified of updates? Reach out and we will keep you posted.</li>
+                      <li>Have a vendor recommendation? We love hearing from couples. Your experience makes this guide better for everyone.</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+            </div>
+          )}
+
+          {/* VANCOUVER FOOTER */}
+          <footer className="site-footer">
+            <div className="footer-title">Let's Chat!</div>
+            <div className="footer-divider" />
+            <div className="footer-label">Contact us via email</div>
+            <a href="mailto:info@ultimateweddingguide.ca" className="footer-email">
+              info@ultimateweddingguide.ca
+            </a>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginTop: 20, position: "relative" }}>
+              <a href="https://www.instagram.com/ultimateweddingguideca" target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, textDecoration: "none" }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4956A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="#C4956A" stroke="none"/>
+                </svg>
+                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, color: "#C4956A", textTransform: "uppercase" }}>Instagram</span>
+              </a>
+              <div style={{ width: 1, height: 32, background: "rgba(196,149,106,0.3)" }} />
+              <a href="https://ca.pinterest.com/ultimateweddingguideca" target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, textDecoration: "none" }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4956A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.62-.31-1.54c0-1.45.84-2.53 1.88-2.53.89 0 1.32.67 1.32 1.47 0 .89-.57 2.24-.86 3.48-.25 1.04.51 1.88 1.53 1.88 1.83 0 3.24-1.93 3.24-4.72 0-2.47-1.77-4.19-4.31-4.19-2.93 0-4.65 2.2-4.65 4.47 0 .88.34 1.83.76 2.35.08.1.09.19.07.29-.08.32-.25 1.04-.28 1.18-.04.19-.14.23-.32.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.3-1.15l-.62 2.33c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+                </svg>
+                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, color: "#C4956A", textTransform: "uppercase" }}>Pinterest</span>
+              </a>
+            </div>
+            <div className="footer-copy">
+              Â© {new Date().getFullYear()} The Ultimate Wedding Guide, West Coast Edition. All rights reserved.
+            </div>
+          </footer>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <style>{styles}</style>
@@ -1977,475 +2446,6 @@ export default function App() {
       </div>
     </>
   );
-if (region === "vancouver") {
-    const VAN_PASSWORD = "VanS2S";
-    const vanTabs = vancouverGuideItems.map(i => ({ id: i.id, label: i.label, locked: true }));
-    const isVanLocked = vanTabs.find(t => t.id === activeTab)?.locked;
-    const vanMeta = sectionMeta[activeTab] || sectionMeta["van-venues"];
 
-    function handleVanTabClick(tab) {
-      if (tab.locked && !unlocked) {
-        setShowPasswordGate(true);
-      } else {
-        setActiveTab(tab.id);
-      }
-      setShowMobileMenu(false);
-    }
-
-    return (
-      <>
-        <style>{styles}</style>
-        {showPasswordGate && (
-          <div style={{
-            position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            zIndex: 1000, padding: 24
-          }}>
-            <div style={{
-              background: COLORS.white, borderRadius: 4, padding: "56px 48px",
-              maxWidth: 440, width: "100%", textAlign: "center"
-            }}>
-              <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 400, color: COLORS.forest, marginBottom: 12 }}>
-                Welcome Back
-              </h2>
-              <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, marginBottom: 36, lineHeight: 1.6 }}>
-                Enter your guide password to access the full West Coast Edition.
-              </p>
-              <form onSubmit={e => {
-                e.preventDefault();
-                const val = e.target.querySelector("input").value.trim();
-                if (val === VAN_PASSWORD) {
-                  setUnlocked(true);
-                  setShowPasswordGate(false);
-                  setActiveTab("van-venues");
-                } else {
-                  e.target.querySelector("input").value = "";
-                  e.target.querySelector("input").style.borderColor = "#c0392b";
-                  setTimeout(() => { e.target.querySelector("input").style.borderColor = COLORS.border; }, 3000);
-                }
-              }} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <input
-                  type="password"
-                  placeholder="Enter password"
-                  autoFocus
-                  style={{
-                    fontFamily: "'Jost', sans-serif", fontSize: 15,
-                    padding: "14px 18px", border: `1px solid ${COLORS.border}`,
-                    borderRadius: 3, outline: "none", textAlign: "center",
-                    letterSpacing: 4, color: COLORS.text, width: "100%",
-                    transition: "border-color 0.2s"
-                  }}
-                />
-                <button type="submit" style={{
-                  background: COLORS.forest, color: COLORS.cream,
-                  fontFamily: "'Jost', sans-serif", fontSize: 11,
-                  fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
-                  padding: "16px 32px", border: "none", borderRadius: 2,
-                  cursor: "pointer"
-                }}>
-                  Unlock Guide
-                </button>
-              </form>
-              <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
-                Don't have a password yet?{" "}
-                <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
-                  onClick={() => setShowPasswordGate(false)}>
-                  Purchase the guide
-                </span>{" "}to receive instant access.
-              </p>
-            </div>
-          </div>
-        )}
-
-        <div className="guide-wrap">
-          {/* VANCOUVER COVER */}
-          <div className="cover">
-            <img src="/hero-photo.jpg" alt="West Coast wedding" className="cover-bg-photo" />
-            <div className="cover-bg-overlay" />
-            <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
-            <div className="cover-divider" />
-            <div className="cover-cities">West Coast Edition</div>
-            <div className="cover-subtitle" style={{ marginTop: 12, fontSize: 14, letterSpacing: 3 }}>Vancouver  Â·  Squamish  Â·  Whistler  Â·  Pemberton</div>
-            <div className="cover-subtitle">Your complete planning resource for an unforgettable West Coast wedding</div>
-            <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
-              <button
-                onClick={() => setShowPasswordGate(true)}
-                style={{
-                  background: COLORS.sandstone, color: COLORS.forest,
-                  fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600,
-                  letterSpacing: 3, textTransform: "uppercase",
-                  padding: "14px 36px", border: "none", borderRadius: 2,
-                  cursor: "pointer", transition: "background 0.2s",
-                }}
-                onMouseOver={e => e.currentTarget.style.background = "#d4a870"}
-                onMouseOut={e => e.currentTarget.style.background = COLORS.sandstone}
-              >
-                Buy the Guide Â· $29
-              </button>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: "rgba(247,243,236,0.5)", marginTop: 10 }}>
-                CAD Â· One-time purchase Â· Lifetime access
-              </p>
-            </div>
-          </div>
-
-          {/* VANCOUVER NAV */}
-          <nav className="nav" style={{ position: "relative" }}>
-            {/* DESKTOP */}
-            <div className="nav-desktop">
-              <div className="nav-item">
-                <button className="nav-btn" onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); }} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>â† All Editions</button>
-              </div>
-              <div className="nav-item">
-                <button className={`nav-btn ${activeTab === "van-home" ? "active" : ""}`} onClick={() => setActiveTab("van-home")}>Home</button>
-              </div>
-              <div className="nav-item">
-                <button className={`nav-btn ${vancouverGuideItems.map(i => i.id).includes(activeTab) ? "active" : ""}`}>
-                  The Guide <span className="nav-arrow">â–¼</span>
-                </button>
-                <div className="dropdown">
-                  {vancouverGuideItems.map(item => (
-                    <button key={item.id} className={`dropdown-item ${activeTab === item.id ? "active" : ""}`}
-                      onClick={() => handleVanTabClick({ id: item.id, locked: true })}>
-                      <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <Icon name={item.icon} color={activeTab === item.id ? COLORS.forest : COLORS.sandstone} size={15} />
-                        {item.label}
-                      </span>
-                      {!unlocked && <span className="lock-dot" />}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <button className="nav-gift-btn" onClick={() => setShowPasswordGate(true)}>
-                Buy the Guide
-              </button>
-              {unlocked && (
-                <button className="nav-lock-btn" onClick={() => { setUnlocked(false); setActiveTab("van-home"); }}>Lock</button>
-              )}
-            </div>
-
-            {/* MOBILE */}
-            <div className="nav-mobile" style={{ width: "100%", alignItems: "center", justifyContent: "space-between" }}>
-              <button className="nav-btn" style={{ padding: "16px 8px" }} onClick={() => { setActiveTab("van-home"); setShowMobileMenu(false); }}>Home</button>
-              <button className="nav-gift-btn" style={{ margin: "0 8px" }} onClick={() => { setShowPasswordGate(true); setShowMobileMenu(false); }}>Buy the Guide</button>
-              <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
-                <span /><span /><span />
-              </button>
-            </div>
-            {showMobileMenu && (
-              <div className="mobile-menu">
-                <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>â† All Editions</button>
-                <div className="mobile-menu-divider" />
-                <div className="mobile-menu-section">The Guide</div>
-                {vancouverGuideItems.map(item => (
-                  <button key={item.id} className={`mobile-menu-item ${activeTab === item.id ? "active" : ""}`}
-                    onClick={() => handleVanTabClick({ id: item.id, locked: true })}
-                    style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <Icon name={item.icon} color="rgba(196,149,106,0.7)" size={14} />
-                    {item.label} {!unlocked && "Â·"}
-                  </button>
-                ))}
-                {unlocked && (
-                  <>
-                    <div className="mobile-menu-divider" />
-                    <button className="mobile-menu-item" style={{ opacity: 0.4 }} onClick={() => { setUnlocked(false); setActiveTab("van-home"); setShowMobileMenu(false); }}>Lock Guide</button>
-                  </>
-                )}
-              </div>
-            )}
-          </nav>
-
-          {/* VANCOUVER HOME */}
-          {(activeTab === "van-home" || activeTab === "home") && (
-            <div className="content">
-              <div className="section-eyebrow">West Coast Edition</div>
-              <h1 className="section-title">The Ultimate Wedding Guide</h1>
-              <p className="section-lead">
-                Everything you need to plan your dream wedding in Vancouver, Squamish, Whistler, or Pemberton â€” researched, vetted, and organized so you can stop Googling and start enjoying being engaged.
-              </p>
-              <div style={{ marginTop: 32 }}>
-                <button className="form-btn" onClick={() => setShowPasswordGate(true)}>
-                  Unlock the Guide Â· $29
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* VANCOUVER LOCKED */}
-          {isVanLocked && !unlocked && (
-            <LockScreen onUnlock={() => setShowPasswordGate(true)} />
-          )}
-
-          {/* VANCOUVER UNLOCKED CONTENT */}
-          {isVanLocked && unlocked && (
-            <div className="content">
-              <div className="section-eyebrow">{vanMeta?.eyebrow}</div>
-              <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                <Icon name={vanMeta?.icon} color={COLORS.sandstone} size={36} />
-                {vanMeta?.title}
-              </h1>
-              {vanMeta?.lead && <p className="section-lead">{vanMeta.lead}</p>}
-
-              {activeTab === "van-venues" && (
-                <>
-                  <VenueSection sections={vancouverVenueData} />
-                </>
-              )}
-
-              {activeTab === "van-catering" && (
-                <SimpleVendors
-                  vendors={vancouverCateringData}
-                  infoTitle="Good to Know"
-                  infoItems={[
-                    "Always confirm whether full service includes setup, serving staff, and cleanup.",
-                    "Check if the caterer holds a traveling liquor license â€” if so, you may not need a Special Event Permit.",
-                    "For blank-canvas venues like Heritage Hall, Pipe Shop, and UBC Botanical Garden, outside catering is required.",
-                    "Sea-to-Sky caterers often have mobile kitchens â€” confirm if your remote venue has kitchen facilities.",
-                  ]}
-                />
-              )}
-
-              {activeTab === "van-bar" && (
-                <>
-                  <div className="info-box">
-                    <div className="info-box-title">BC Alcohol Licensing: What You Need to Know</div>
-                    <ul>
-                      <li>In BC, serving alcohol at a private event requires a Special Event Permit (SEP) from the BC Liquor and Cannabis Regulation Branch â€” unless your venue or caterer holds their own license.</li>
-                      <li>Only the host of the event (the couple) can apply for the SEP â€” vendors cannot apply on your behalf.</li>
-                      <li>If your venue is a licensed space (hotel, restaurant, or licensed event space), you generally do not need an SEP.</li>
-                      <li>If your caterer holds a traveling liquor license (e.g. Cocktails & Canapes, Edge Catering), they can serve alcohol under their own license â€” no SEP needed.</li>
-                      <li>Apply at lcrb.gov.bc.ca â€” at least 30 days before your event, earlier in peak summer season.</li>
-                    </ul>
-                  </div>
-                  <div className="vendor-grid" style={{ marginTop: 24 }}>
-                    {vancouverBarData.map((v, i) => <VendorCard key={i} vendor={v} />)}
-                  </div>
-                  {vancouverBarPending.length > 0 && (
-                    <div className="pending">
-                      <div className="pending-title">On our radar: additional mobile bar services</div>
-                      <div className="pending-list">
-                        {vancouverBarPending.map((p, i) => <span key={i} className="pending-tag">{p}</span>)}
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-
-              {activeTab === "van-photo" && (
-                <SimpleVendors
-                  vendors={vancouverPhotoData}
-                  pending={vancouverPhotoPending}
-                  pendingLabel="On our radar: additional photographers & videographers"
-                  infoTitle="Questions to Ask Every Photographer"
-                  infoItems={[
-                    "Do you have experience shooting in BC's varied lighting conditions â€” bright summer days, golden mountain light, moody winter interiors?",
-                    "Do you travel the Sea-to-Sky corridor, and are travel fees included?",
-                    "How long until our photos and videos are delivered?",
-                    "Do you include a second shooter, or is that an add-on?",
-                    "Can we see a full wedding gallery, not just highlight images?",
-                  ]}
-                />
-              )}
-
-              {activeTab === "van-florists" && (
-                <>
-                  <SimpleVendors
-                    vendors={vancouverFloristData}
-                    pending={vancouverFloristPending}
-                    pendingLabel="On our radar: additional florists"
-                    infoTitle="Planning Tips for Wedding Florals"
-                    infoItems={[
-                      "Book your florist 6â€“12 months in advance for peak season (Juneâ€“September).",
-                      "For micro-weddings and elopements, look for florists offering Ã  la carte menus with no minimums.",
-                      "Ask about locally grown BC blooms â€” several florists prioritize seasonal and local sourcing.",
-                      "Always confirm travel fees if your venue is in the Sea-to-Sky corridor.",
-                    ]}
-                  />
-                  {vancouverFloristPreservation && vancouverFloristPreservation.length > 0 && (
-                    <div className="info-box" style={{ marginTop: 32 }}>
-                      <div className="info-box-title">Bouquet Preservation</div>
-                      <ul>
-                        {vancouverFloristPreservation.map((v, i) => (
-                          <li key={i}><strong>{v.name}</strong> â€” {v.note} <a href={v.link} target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone }}>{v.url}</a> Â· {v.ig}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </>
-              )}
-
-              {activeTab === "van-cakes" && (
-                <SimpleVendors
-                  vendors={vancouverCakeData}
-                  pending={vancouverCakePending}
-                  pendingLabel="On our radar: additional bakers"
-                  infoTitle="Planning Tips for Wedding Cakes"
-                  infoItems={[
-                    "Book your cake 2â€“6 months in advance; some bakers accommodate shorter timelines.",
-                    "Always confirm delivery policies â€” especially for Sea-to-Sky venues.",
-                    "Ask about dietary accommodations early so your baker can plan accordingly.",
-                    "Consider a smaller display cake paired with sheet cakes â€” a popular and cost-effective option.",
-                  ]}
-                />
-              )}
-
-              {activeTab === "van-dresses" && (
-                <div>
-                  <div className="info-box">
-                    <div className="info-box-title">A Note on Wedding Dress Shopping</div>
-                    <ul>
-                      <li>Always book an appointment. Vancouver's top boutiques are by appointment only.</li>
-                      <li>Allow 4â€“6 months for made-to-order gowns, plus extra time for alterations.</li>
-                      <li>Bring one or two trusted people whose opinion you value, not a crowd.</li>
-                      <li>Keep an open mind. The dress you fall in love with may surprise you.</li>
-                    </ul>
-                  </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
-                    {vancouverDressData.map((b, i) => (
-                      <div key={i} style={{ border: `1px solid ${COLORS.border}`, borderRadius: 4, overflow: "hidden", background: COLORS.white }}>
-                        <div style={{ background: COLORS.parchment, padding: "20px 24px", borderBottom: `1px solid ${COLORS.border}` }}>
-                          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: COLORS.forest, marginBottom: 4 }}>{b.name}</div>
-                        </div>
-                        <div style={{ padding: "16px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
-                          <div>
-                            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
-                            <div style={{ fontSize: 14, color: COLORS.text }}>{b.ig}</div>
-                          </div>
-                          <div>
-                            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
-                            <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === "van-hair" && (
-                <SimpleVendors
-                  vendors={vancouverHairMakeupData}
-                  pending={vancouverHairMakeupPending}
-                  pendingLabel="On our radar: additional hair & makeup artists"
-                  infoTitle="Tips for Booking Your Bridal Beauty Team"
-                  infoItems={[
-                    "Book 6â€“18 months in advance for peak season (Juneâ€“September) â€” the best artists fill up fast.",
-                    "A trial session is highly recommended even if not required.",
-                    "Confirm travel fees upfront if your wedding is in the Sea-to-Sky corridor.",
-                    "Ask whether your artist brings a team for larger bridal parties and confirm the timeline.",
-                    "Check that products are long-wear and suitable for your skin type â€” especially important for outdoor ceremonies.",
-                  ]}
-                />
-              )}
-
-              {activeTab === "van-rentals" && (
-                <div>
-                  <div className="info-box">
-                    <div className="info-box-title">A Note on Event Rentals</div>
-                    <ul>
-                      <li>Book rentals 3â€“6 months in advance for peak season, especially for tents and large furniture.</li>
-                      <li>Confirm delivery, setup, and pickup fees upfront â€” these vary widely.</li>
-                      <li>For blank-canvas venues (Pipe Shop, Heritage Hall, UBC Botanical Garden), you'll need to bring in almost everything. Factor this into your budget early.</li>
-                      <li>Sea-to-Sky venues: confirm whether the rental company travels to Squamish, Whistler, or Pemberton and what the travel surcharge is.</li>
-                    </ul>
-                  </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
-                    {vancouverRentalData.map((b, i) => (
-                      <div key={i} style={{ border: `1px solid ${COLORS.border}`, borderRadius: 4, overflow: "hidden", background: COLORS.white }}>
-                        <div style={{ background: COLORS.parchment, padding: "20px 24px", borderBottom: `1px solid ${COLORS.border}` }}>
-                          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: COLORS.forest, marginBottom: 4 }}>{b.name}</div>
-                          {b.note && <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: COLORS.sub, marginTop: 4, fontStyle: "italic" }}>{b.note}</div>}
-                        </div>
-                        <div style={{ padding: "16px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
-                          {b.phone && (
-                            <div>
-                              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Phone</div>
-                              <div style={{ fontSize: 14, color: COLORS.text }}>{b.phone}</div>
-                            </div>
-                          )}
-                          {b.email && (
-                            <div>
-                              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Email</div>
-                              <a href={`mailto:${b.email}`} style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.email}</a>
-                            </div>
-                          )}
-                          {b.ig && (
-                            <div>
-                              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
-                              <a href={b.igLink} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.ig}</a>
-                            </div>
-                          )}
-                          <div>
-                            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
-                            <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === "van-coming" && (
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  {[
-                    { title: "Vancouver: Coming Next", items: ["Wedding Planners", "Hair & Makeup (additional artists)", "Photography (additional photographers)", "Florists (additional florists)", "Cakes & Desserts (additional bakers)", "Mobile Bar (additional services)"] },
-                    { title: "Sea-to-Sky: Coming Next", items: ["Venues (Nita Lake Lodge, Green Water Resort, Squamish Gondola, SLCC, Audain Museum)", "Hair & Makeup", "Wedding Dresses"] },
-                    { title: "BC Licensing & Legalities", items: ["Special Event Permit (SEP) full guide", "BC Marriage Licence information", "Outdoor ceremony regulations", "Banff National Park permits (for couples crossing into Alberta)"] },
-                  ].map((section, i) => (
-                    <div key={i} className="coming-soon">
-                      <div className="coming-soon-title">{section.title}</div>
-                      <div className="coming-list">
-                        {section.items.map((it, ii) => <span key={ii} className="coming-tag">{it}</span>)}
-                      </div>
-                    </div>
-                  ))}
-                  <div className="info-box">
-                    <div className="info-box-title">Stay in the Loop</div>
-                    <ul>
-                      <li>This guide is updated regularly as new vendors are vetted and new sections are added.</li>
-                      <li>Purchased this guide and want to be notified of updates? Reach out and we will keep you posted.</li>
-                      <li>Have a vendor recommendation? We love hearing from couples. Your experience makes this guide better for everyone.</li>
-                    </ul>
-                  </div>
-                </div>
-              )}
-
-            </div>
-          )}
-
-          {/* VANCOUVER FOOTER */}
-          <footer className="site-footer">
-            <div className="footer-title">Let's Chat!</div>
-            <div className="footer-divider" />
-            <div className="footer-label">Contact us via email</div>
-            <a href="mailto:info@ultimateweddingguide.ca" className="footer-email">
-              info@ultimateweddingguide.ca
-            </a>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginTop: 20, position: "relative" }}>
-              <a href="https://www.instagram.com/ultimateweddingguideca" target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, textDecoration: "none" }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4956A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                  <circle cx="12" cy="12" r="4"/>
-                  <circle cx="17.5" cy="6.5" r="1" fill="#C4956A" stroke="none"/>
-                </svg>
-                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, color: "#C4956A", textTransform: "uppercase" }}>Instagram</span>
-              </a>
-              <div style={{ width: 1, height: 32, background: "rgba(196,149,106,0.3)" }} />
-              <a href="https://ca.pinterest.com/ultimateweddingguideca" target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, textDecoration: "none" }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4956A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.62-.31-1.54c0-1.45.84-2.53 1.88-2.53.89 0 1.32.67 1.32 1.47 0 .89-.57 2.24-.86 3.48-.25 1.04.51 1.88 1.53 1.88 1.83 0 3.24-1.93 3.24-4.72 0-2.47-1.77-4.19-4.31-4.19-2.93 0-4.65 2.2-4.65 4.47 0 .88.34 1.83.76 2.35.08.1.09.19.07.29-.08.32-.25 1.04-.28 1.18-.04.19-.14.23-.32.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.3-1.15l-.62 2.33c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-                </svg>
-                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, color: "#C4956A", textTransform: "uppercase" }}>Pinterest</span>
-              </a>
-            </div>
-            <div className="footer-copy">
-              Â© {new Date().getFullYear()} The Ultimate Wedding Guide, West Coast Edition. All rights reserved.
-            </div>
-          </footer>
-        </div>
-      </>
-    );
-  }
 
 }
