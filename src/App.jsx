@@ -1835,7 +1835,48 @@ if (region === "vancouver") {
           {(activeTab === "van-home" || activeTab === "home") && (
             <VancouverLandingPage onBuy={() => setShowPasswordGate(true)} />
           )}
+{/* OUR STORY */}
+{activeTab === "why" && (
+  <div className="content">
+    <div className="section-eyebrow">Behind the Guide</div>
+    <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <Icon name="story" color={COLORS.sandstone} size={36} />
+      Our Story
+    </h1>
+    <div style={{ maxWidth: 620 }}>
+      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 400, fontStyle: "italic", color: COLORS.forest, lineHeight: 1.6, marginBottom: 32 }}>
+        "Planning a wedding should be one of the most joyful experiences of your life. I created this guide because I watched someone I love go through the opposite."
+      </p>
+      <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
+        Last summer, my close friend got married. She and her husband were so excited, and they deserved every bit of that excitement. But almost immediately, the planning process started to chip away at it. Every week brought a new curveball. Vendors were hard to find, harder to compare, and nearly impossible to vet without spending hours online. Their planner wasn't providing the relief they had hoped for. Arguments became a daily occurrence. The joy of being engaged was getting buried under the weight of logistics.
+      </p>
+      <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
+        I watched two people who love each other deeply get worn down by a process that should have felt exciting. And I kept thinking: someone should fix this. Someone should do the research, compile the vendors, organize the information, and hand it to couples so they can just breathe and enjoy being engaged.
+      </p>
+      <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>So I did.</p>
+      <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
+        The Ultimate Wedding Guide, West Coast Edition, is built for couples who want to feel relief, excitement, and ease when they think about their wedding. Not dread. It is for the bride who opens her laptop to research venues and immediately feels overwhelmed. It is for the couple who just wants someone to tell them where to start. We have done the Googling, made the calls, vetted the vendors, and organized everything into one beautiful resource so you can close the laptop, pour a glass of wine, and actually enjoy this season of your life.
+      </p>
+      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontStyle: "italic", color: COLORS.forest, lineHeight: 1.7, marginBottom: 4 }}>
+        Congratulations on your engagement. All the best,
+      </p>
+      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontStyle: "italic", color: COLORS.forest, marginBottom: 40 }}>
+        Nadia
+      </p>
+      <div style={{ background: COLORS.forest, borderRadius: 4, padding: "32px 36px", marginBottom: 40 }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontStyle: "italic", color: COLORS.cream, lineHeight: 1.7, marginBottom: 20 }}>
+          "You deserve to feel excited about every single part of planning your wedding. That feeling is exactly what this guide was made to give you."
+        </p>
+        <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, letterSpacing: 3, color: COLORS.sandstone, textTransform: "uppercase" }}>
+          — The Ultimate Wedding Guide
+        </p>
+      </div>
+    </div>
+  </div>
+)}
 
+{/* FREE CHECKLIST */}
+{activeTab === "checklist" && <ChecklistTab />}
           {/* VANCOUVER LOCKED */}
           {isVanLocked && !unlocked && (
             <LockScreen onUnlock={() => setShowPasswordGate(true)} />
@@ -2176,7 +2217,7 @@ if (region === "vancouver") {
               <button className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`} onClick={() => setActiveTab("checklist")}>Free Checklist</button>
             </div>
             <div className="nav-item">
-              <button className={`nav-btn ${guideItems.map(i=>i.id).includes(activeTab) ? "active" : ""}`}>
+              <button className={`nav-btn ${vancouverGuideItems.map(i=>i.id).includes(activeTab) ? "active" : ""}`}>
                 The Guide <span className="nav-arrow">▼</span>
               </button>
               <div className="dropdown">
