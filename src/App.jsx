@@ -1331,6 +1331,7 @@ const vancouverGuideItems = [
   { id: "van-hair",     label: "Hair & Makeup",      icon: "hair" },
   { id: "van-rentals",  label: "Event Rentals",      icon: "venues" },
   { id: "van-coming",   label: "On Our Radar",       icon: "coming" },
+];
 
 function ChecklistTab() {
   const [unlocked, setUnlocked] = useState(false);
