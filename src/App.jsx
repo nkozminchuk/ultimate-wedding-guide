@@ -1763,16 +1763,19 @@ if (region === "vancouver") {
           <nav className="nav" style={{ position: "relative" }}>
             {/* DESKTOP */}
             <div className="nav-desktop">
-              <div className="nav-item">
-                <button className="nav-btn" onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); }} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>← All Editions</button>
-              </div>
-              <div className="nav-item">
-                <button className={`nav-btn ${activeTab === "van-home" ? "active" : ""}`} onClick={() => setActiveTab("van-home")}>Home</button>
-              </div>
-              <div className="nav-item">
-                <button className={`nav-btn ${vancouverGuideItems.map(i => i.id).includes(activeTab) ? "active" : ""}`}>
-                 The Guide <span className="nav-arrow">▼</span>
-                </button>
+            <div className="nav-item">
+  <button className={`nav-btn ${activeTab === "van-home" ? "active" : ""}`} onClick={() => setActiveTab("van-home")}>Home</button>
+</div>
+<div className="nav-item">
+  <button className={`nav-btn ${activeTab === "why" ? "active" : ""}`} onClick={() => setActiveTab("why")}>Our Story</button>
+</div>
+<div className="nav-item">
+  <button className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`} onClick={() => setActiveTab("checklist")}>Free Checklist</button>
+</div>
+<div className="nav-item">
+  <button className={`nav-btn ${vancouverGuideItems.map(i => i.id).includes(activeTab) ? "active" : ""}`}>
+    The Guide <span className="nav-arrow">▼</span>
+  </button>
                 <div className="dropdown">
                   {vancouverGuideItems.map(item => (
                     <button key={item.id} className={`dropdown-item ${activeTab === item.id ? "active" : ""}`}
@@ -1806,6 +1809,9 @@ if (region === "vancouver") {
               <div className="mobile-menu">
                 <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>← All Editions</button>
                 <div className="mobile-menu-divider" />
+                <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
+               <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
+               <div className="mobile-menu-divider" />
                 <div className="mobile-menu-section">The Guide</div>
                 {vancouverGuideItems.map(item => (
                   <button key={item.id} className={`mobile-menu-item ${activeTab === item.id ? "active" : ""}`}
