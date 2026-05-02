@@ -1771,7 +1771,7 @@ if (region === "vancouver") {
               </div>
               <div className="nav-item">
                 <button className={`nav-btn ${vancouverGuideItems.map(i => i.id).includes(activeTab) ? "active" : ""}`}>
-                  The Guide <span className="nav-arrow">â–¼</span>
+                 The Guide <span className="nav-arrow">▼</span>
                 </button>
                 <div className="dropdown">
                   {vancouverGuideItems.map(item => (
