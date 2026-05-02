@@ -626,7 +626,7 @@ function NotifyModal({ cityName, onClose }) {
   );
 }
 
-function GiftModal({ onClose }) {
+function GiftModal({ onClose, region }) {
   const [step, setStep] = useState(1);
   const [giftForm, setGiftForm] = useState({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
   const [loading, setLoading] = useState(false);
@@ -671,7 +671,10 @@ function GiftModal({ onClose }) {
           <>
             <div className="gift-modal-eyebrow">Give the Gift of Planning</div>
             <h2 className="gift-modal-title">Gift the Guide</h2>
-            <p className="gift-modal-sub">The perfect gift for any engaged couple: full vendor directory, budget guide, checklist and more across Calgary, Canmore &amp; Banff.</p>
+            <p className="gift-modal-sub">{region === "vancouver"
+  ? "The perfect gift for any engaged couple: full vendor directory, budget guide, checklist and more across Vancouver, Squamish & Whistler."
+  : "The perfect gift for any engaged couple: full vendor directory, budget guide, checklist and more across Calgary, Canmore & Banff."
+}</p>
             <div style={{ textAlign: "center", padding: "24px 0", borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}`, margin: "0 0 24px" }}>
               <div style={{ display: "inline-block", background: COLORS.sandstone, color: COLORS.white, fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", padding: "4px 14px", borderRadius: 20, marginBottom: 12 }}>
                 Launch Price · Limited Time
@@ -1017,8 +1020,7 @@ function VancouverLandingPage({ onBuy }) {
 
       <div className="landing-divider" />
 
-      {showGift && <GiftModal onClose={() => setShowGift(false)} />}
-      {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
+{showGift && <GiftModal onClose={() => setShowGift(false)} region="vancouver" />}      {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
       <div className="gift-section">
         <div className="gift-eyebrow">Know Someone Getting Married?</div>
         <h2 className="gift-title">Give the Gift of<br /><em>a Dream Wedding</em></h2>
