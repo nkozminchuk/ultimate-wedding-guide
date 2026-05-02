@@ -1131,6 +1131,206 @@ function VancouverLandingPage({ onBuy }) {
   );
 }
 
+function LockScreen({ onUnlock }) {
+  const [purchasing, setPurchasing] = useState(false);
+  const [purchaseError, setPurchaseError] = useState("");
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "" });
+
+  async function handlePurchase(e) {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim()) return;
+    setPurchasing(true);
+    setPurchaseError("");
+    try {
+      const res = await fetch("/.netlify/functions/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, isGift: false }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setPurchaseError("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setPurchaseError("Something went wrong. Please check your connection.");
+    } finally {
+      setPurchasing(false);
+    }
+  }
+
+  return (
+    <div className="lock-screen">
+      <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
+      <h2 className="lock-title">Unlock the Full Guide</h2>
+      <p className="lock-sub">Purchase once and get lifetime access to all vendor categories across Calgary, Canmore, and Banff, plus free updates as we grow.</p>
+      <div className="lock-features">
+        {["36 Venues across Calgary, Canmore & Banff", "9 Caterers", "7 Florists", "8 Bakers & Desserts", "5 Photographers", "4 Mobile Bar Services", "Wedding Dress Boutiques", "Budget Planning Guide", "60-Task Planning Checklist"].map((f, i) => (
+          <span key={i} className="lock-feature-tag">{f}</span>
+        ))}
+      </div>
+      <div style={{ textAlign: "center", margin: "32px 0 8px" }}>
+        <div style={{ display: "inline-block", background: COLORS.sandstone, color: COLORS.white, fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", padding: "4px 14px", borderRadius: 20, marginBottom: 16 }}>
+          Launch Price · Limited Time
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 8 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 52, fontWeight: 600, color: COLORS.forest, lineHeight: 1 }}>$29</div>
+          <div style={{ textAlign: "left" }}>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: COLORS.sub, textDecoration: "line-through" }}>$49</div>
+            <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 1, color: COLORS.sub }}>Regular price</div>
+          </div>
+        </div>
+        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 1, color: COLORS.sub }}>CAD · One-time purchase · Lifetime access</div>
+      </div>
+
+      {!showForm ? (
+        <button className="lock-btn" onClick={() => setShowForm(true)}>Purchase the Guide · $29</button>
+      ) : (
+        <form onSubmit={handlePurchase} style={{ width: "100%", maxWidth: 360, margin: "0 auto", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div className="form-group">
+            <label className="form-label">Your Name</label>
+            <input className="form-input" type="text" placeholder="Your name" required value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Email Address</label>
+            <input className="form-input" type="email" placeholder="your@email.com" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+            <p style={{ fontSize: 11, color: COLORS.sub, marginTop: 4, fontStyle: "italic" }}>Your unique access code will be sent here after purchase.</p>
+          </div>
+          {purchaseError && <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{purchaseError}</p>}
+          <button type="submit" className="lock-btn" disabled={purchasing} style={{ marginTop: 8 }}>
+            {purchasing ? "Redirecting to checkout..." : "Continue to Payment · $29"}
+          </button>
+          <button type="button" onClick={() => setShowForm(false)} style={{ background: "none", border: "none", fontFamily: "'Jost', sans-serif", fontSize: 11, color: COLORS.sub, cursor: "pointer", letterSpacing: 1 }}>Cancel</button>
+        </form>
+      )}
+
+      <p className="lock-note">Already purchased? Enter your access code in the nav bar.</p>
+    </div>
+  );
+}
+
+function PasswordGate({ onSuccess }) {
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const GUIDE_PASSWORD = "rockies2025";
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (input.trim().toLowerCase() === GUIDE_PASSWORD) {
+      onSuccess();
+    } else {
+      setError(true);
+      setInput("");
+      setTimeout(() => setError(false), 3000);
+    }
+  }
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      zIndex: 1000, padding: 24
+    }}>
+      <div style={{
+        background: COLORS.white, borderRadius: 4, padding: "56px 48px",
+        maxWidth: 440, width: "100%", textAlign: "center"
+      }}>
+        <div style={{ width: 40, height: 1, background: COLORS.sandstone, margin: "0 auto 28px" }} />
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 400, color: COLORS.forest, marginBottom: 12 }}>
+          Welcome Back
+        </h2>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, marginBottom: 36, lineHeight: 1.6 }}>
+          Enter your guide password to access the full Canadian Rockies Edition.
+        </p>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <input
+            type="password"
+            placeholder="Enter password"
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            autoFocus
+            style={{
+              fontFamily: "'Jost', sans-serif", fontSize: 15,
+              padding: "14px 18px", border: `1px solid ${error ? "#c0392b" : COLORS.border}`,
+              borderRadius: 3, outline: "none", textAlign: "center",
+              letterSpacing: 4, color: COLORS.text, width: "100%",
+              transition: "border-color 0.2s"
+            }}
+          />
+          {error && (
+            <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic", margin: 0 }}>
+              Incorrect password. Please try again.
+            </p>
+          )}
+          <button type="submit" style={{
+            background: COLORS.forest, color: COLORS.cream,
+            fontFamily: "'Jost', sans-serif", fontSize: 11,
+            fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
+            padding: "16px 32px", border: "none", borderRadius: 2,
+            cursor: "pointer", transition: "background 0.2s"
+          }}>
+            Unlock Guide
+          </button>
+        </form>
+        <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
+          Don't have a password yet?{" "}
+          <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
+            onClick={() => document.querySelector('.guide-wrap') && window.scrollTo(0,0)}>
+            Purchase the guide
+          </span>{" "}to receive instant access.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ── SVG ICONS ────────────────────────────────────────────────────────────────
+function Icon({ name, color, size }) {
+  size = size || 20;
+  const props = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: color, strokeWidth: "1.2", strokeLinecap: "round", strokeLinejoin: "round" };
+  if (name === "budget") return <svg {...props}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+  if (name === "venues") return <svg {...props}><path d="M3 22V9l9-7 9 7v13"/><path d="M9 22V16h6v6"/><path d="M3 9h18"/></svg>;
+  if (name === "catering") return <svg {...props}><path d="M3 17h18"/><path d="M3 17c0-4 2-7 9-7s9 3 9 7"/><path d="M12 10V6"/><circle cx="12" cy="5" r="1"/></svg>;
+  if (name === "bar") return <svg {...props}><path d="M8 22h8"/><path d="M12 11v11"/><path d="M5 3l2 8h10l2-8z"/><path d="M5 3h14"/></svg>;
+  if (name === "photo") return <svg {...props}><rect x="2" y="6" width="20" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l2-3h4l2 3"/></svg>;
+  if (name === "florists") return <svg {...props}><path d="M12 22V12"/><circle cx="12" cy="8" r="3"/><path d="M9 8c0-3-2-5-5-5 0 3 2 5 5 5"/><path d="M15 8c0-3 2-5 5-5 0 3-2 5-5 5"/><path d="M9 8c0 3-2 5-5 5 0-3 2-5 5-5"/><path d="M15 8c0 3 2 5 5 5 0-3-2-5-5-5"/></svg>;
+  if (name === "cakes") return <svg {...props}><path d="M2 19h20v2H2z"/><path d="M4 19v-6h16v6"/><path d="M6 13v-4h12v4"/><path d="M8 9V7h8v2"/><path d="M12 7V4"/><path d="M10 4c0-1.1.9-2 2-2s2 .9 2 2"/></svg>;
+  if (name === "dresses") return <svg {...props}><path d="M12 2l-4 6h8l-4-6z"/><path d="M8 8l-5 14h18L16 8"/><path d="M8 8h8"/></svg>;
+  if (name === "coming") return <svg {...props}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+  if (name === "checklist") return <svg {...props}><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>;
+  if (name === "hair") return <svg {...props}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 11c0 2-1.5 3-1.5 5"/><path d="M13.5 16c0-2-1.5-3-1.5-5"/></svg>;
+  if (name === "story") return <svg {...props}><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>;
+  return null;
+}
+
+const guideItems = [
+  { id: "budget", label: "Budget Guide", icon: "budget" },
+  { id: "tracker", label: "Budget Tracker", icon: "budget" },
+  { id: "venues", label: "Venues", icon: "venues" },
+  { id: "catering", label: "Catering", icon: "catering" },
+  { id: "bar", label: "Mobile Bar", icon: "bar" },
+  { id: "photo", label: "Photography", icon: "photo" },
+  { id: "florists", label: "Florists", icon: "florists" },
+  { id: "cakes", label: "Cakes & Desserts", icon: "cakes" },
+  { id: "dresses", label: "Wedding Dresses", icon: "dresses" },
+  { id: "hair", label: "Hair & Makeup", icon: "hair" },
+  { id: "rentals", label: "Event Rentals", icon: "venues" },
+  { id: "coming", label: "On Our Radar", icon: "coming" },
+];
+
+const vancouverGuideItems = [
+  { id: "van-venues",   label: "Venues",            icon: "venues" },
+  { id: "van-catering", label: "Catering",           icon: "catering" },
+  { id: "van-bar",      label: "Mobile Bar",         icon: "bar" },
+  { id: "van-photo",    label: "Photography",        icon: "photo" },
+  { id: "van-florists", label: "Florists",           icon: "florists" },
+  { id: "van-cakes",    label: "Cakes & Desserts",   icon: "cakes" },
+  { id: "van-dresses",  label: "Wedding Dresses",    icon: "dresses" },
+  { id: "van-hair",     label: "Hair & Makeup",      icon: "hair" },
+  { id: "van-rentals",  label: "Event Rentals",      icon: "venues" },
+  { id: "van-coming",   label: "On Our Radar",       icon: "coming" },
 
 function ChecklistTab() {
   const [unlocked, setUnlocked] = useState(false);
