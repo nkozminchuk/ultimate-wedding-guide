@@ -939,6 +939,203 @@ function LandingPage({ onBuy }) {
           {error && (
             <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{error}</p>
           )}
+          function VancouverLandingPage({ onBuy }) {
+  const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showGift, setShowGift] = useState(false);
+  const [showNotify, setShowNotify] = useState(false);
+  const [notifyCity, setNotifyCity] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://formspree.io/f/mykbkojw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          inquiry_type: form.type,
+          message: form.message,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again or reach out directly.");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const features = [
+    { iconKey: "venues", title: "22+ Verified Venues", desc: "From grand Vancouver hotel ballrooms and waterfront spaces to Sea-to-Sky mountain lodges and botanical gardens." },
+    { iconKey: "checklist", title: "60-Task Checklist", desc: "Every milestone from engagement to wedding day, beautifully organized." },
+    { iconKey: "budget", title: "Budget Planning Guide", desc: "Sample packages from intimate elopements to grand West Coast celebrations." },
+    { iconKey: "photo", title: "Photography & More", desc: "Vetted photographers, florists, caterers, bakers, mobile bars, and more." },
+    { iconKey: "florists", title: "Sea-to-Sky Coverage", desc: "Nearly every vendor covers Vancouver, Squamish, Whistler, and Pemberton." },
+    { iconKey: "cakes", title: "Regularly Updated", desc: "New vendors and sections added as we grow the West Coast Edition." },
+  ];
+
+  return (
+    <div className="landing">
+      <div className="landing-eyebrow">West Coast Edition</div>
+      <h1 className="landing-title">Your wedding should feel<br /><em>exciting. Not overwhelming.</em></h1>
+      <p className="landing-body">
+        We've done the research, vetted the vendors, and organized everything so you can put down the laptop, stop the endless Googling, and actually enjoy being engaged. The Ultimate Wedding Guide, West Coast Edition, gives you everything you need to plan your dream wedding in Vancouver, Squamish, Whistler, or Pemberton — all in one beautiful place.
+      </p>
+
+      <button className="landing-buy-btn" onClick={onBuy}>
+        Buy the Guide · $29
+      </button>
+      <p className="landing-buy-note">CAD · One-time purchase · Lifetime access</p>
+
+      <div style={{ marginBottom: 16 }}>
+        <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.6 }}>
+          Everything you need to plan your West Coast wedding, researched, vetted, and organized for you.
+        </p>
+      </div>
+      <div className="landing-features">
+        {features.map((f, i) => (
+          <div key={i} className="feature-card">
+            <div className="feature-icon" style={{ marginBottom: 12 }}>
+              <Icon name={f.iconKey} color={COLORS.sandstone} size={28} />
+            </div>
+            <div className="feature-title">{f.title}</div>
+            <div className="feature-desc">{f.desc}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="landing-divider" />
+
+      {/* GIFT SECTION */}
+      {showGift && <GiftModal onClose={() => setShowGift(false)} />}
+      {showNotify && <NotifyModal cityName={notifyCity} onClose={() => setShowNotify(false)} />}
+      <div className="gift-section">
+        <div className="gift-eyebrow">Know Someone Getting Married?</div>
+        <h2 className="gift-title">Give the Gift of<br /><em>a Dream Wedding</em></h2>
+        <p className="gift-desc">The perfect gift for any engaged couple. Help them plan the most important day of their lives without the stress.</p>
+        <div className="gift-recipients">
+          {["For the Bride-to-Be", "From the Maid of Honour", "A Gift from Mom", "From the In-Laws", "Bridal Shower Gift", "Engagement Gift"].map((r, i) => (
+            <span key={i} className="gift-tag">{r}</span>
+          ))}
+        </div>
+        <div className="gift-buttons">
+          <button className="gift-btn-primary" onClick={() => setShowGift(true)}>Gift the Guide</button>
+        </div>
+      </div>
+
+      <div className="landing-divider" />
+
+      {/* COMING SOON CITIES */}
+      <div style={{ marginBottom: 56 }}>
+        <div className="landing-eyebrow" style={{ marginBottom: 12 }}>Expanding Across Canada</div>
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 400, color: COLORS.forest, marginBottom: 12, lineHeight: 1.1 }}>
+          More Editions <em style={{ fontStyle: "italic", color: COLORS.sandstone }}>Coming Soon</em>
+        </h2>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: COLORS.sub, marginBottom: 32, lineHeight: 1.6, maxWidth: 500 }}>
+          The Ultimate Wedding Guide is growing. New city editions are in the works, each one as carefully curated as the one you're reading now.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 12, marginBottom: 28 }}>
+          {[
+            { city: "Canadian Rockies", region: "Alberta", status: "Available Now" },
+            { city: "Okanagan", region: "British Columbia", status: "Planned" },
+            { city: "Toronto", region: "Ontario", status: "Planned" },
+            { city: "Muskoka", region: "Ontario", status: "Planned" },
+            { city: "Montreal", region: "Quebec", status: "Planned" },
+            { city: "Niagara-on-the-Lake", region: "Ontario", status: "Planned" },
+            { city: "Halifax", region: "Nova Scotia", status: "Planned" },
+          ].map((c, i) => (
+            <div key={i} style={{
+              border: `1px solid ${c.status === "Available Now" ? "#2C4A3E" : "#D4C5A9"}`,
+              borderRadius: 4,
+              padding: "16px 18px",
+              background: c.status === "Available Now" ? "#E8F0ED" : "#FFFFFF",
+            }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2C4A3E", marginBottom: 3 }}>{c.city}</div>
+              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: "#6B6B6B", letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
+              <div style={{
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+                color: c.status === "Available Now" ? "#2C4A3E" : "#C4956A",
+                background: c.status === "Available Now" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
+                padding: "3px 10px", borderRadius: 20, marginBottom: 12, display: "block",
+              }}>{c.status}</div>
+              {c.status !== "Available Now" && (
+                <button
+                  onClick={() => { setNotifyCity(c.city); setShowNotify(true); }}
+                  style={{
+                    width: "100%",
+                    fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
+                    textTransform: "uppercase", color: "#2C4A3E",
+                    background: "none", border: "1px solid #D4C5A9", borderRadius: 2,
+                    padding: "7px 12px", cursor: "pointer", transition: "all 0.2s",
+                  }}
+                  onMouseOver={e => { e.currentTarget.style.borderColor = "#C4956A"; e.currentTarget.style.color = "#C4956A"; }}
+                  onMouseOut={e => { e.currentTarget.style.borderColor = "#D4C5A9"; e.currentTarget.style.color = "#2C4A3E"; }}
+                >
+                  Notify Me
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="landing-divider" />
+      <h2 className="contact-title">Get in Touch</h2>
+      <p className="contact-sub">Whether you are interested in purchasing the guide, want to be added as a vendor, or simply have a question, we would love to hear from you.</p>
+
+      {submitted ? (
+        <div className="contact-success">
+          <div className="success-icon">✓</div>
+          <p className="success-msg">Thank you! We will be in touch shortly.</p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label className="form-label">Your Name</label>
+            <input className="form-input" type="text" placeholder="Your name" required
+              value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Email Address</label>
+            <input className="form-input" type="email" placeholder="your@email.com" required
+              value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">What can we help you with?</label>
+            <select className="form-input" value={form.type} onChange={e => setForm({ ...form, type: e.target.value })} required>
+              <option value="">Select an option</option>
+              <option value="purchase">I want to purchase the guide</option>
+              <option value="vendor">I want to be added as a vendor</option>
+              <option value="gift">I want to gift the guide</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Message</label>
+            <textarea className="form-textarea" placeholder="Tell us a little more..." required
+              value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
+          </div>
+          {error && <p style={{ fontSize: 13, color: "#c0392b", fontStyle: "italic" }}>{error}</p>}
+          <button type="submit" className="form-btn" disabled={loading}>
+            {loading ? "Sending..." : "Send Message"}
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
           <button type="submit" className="form-btn" disabled={loading}>
             {loading ? "Sending..." : "Send Message"}
           </button>
@@ -1577,7 +1774,7 @@ if (region === "vancouver") {
             {/* DESKTOP */}
             <div className="nav-desktop">
               <div className="nav-item">
-                <button className="nav-btn" onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); }} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>â† All Editions</button>
+                <button className="nav-btn" onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); }} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>← All Editions</button>
               </div>
               <div className="nav-item">
                 <button className={`nav-btn ${activeTab === "van-home" ? "active" : ""}`} onClick={() => setActiveTab("van-home")}>Home</button>
@@ -1617,7 +1814,7 @@ if (region === "vancouver") {
             </div>
             {showMobileMenu && (
               <div className="mobile-menu">
-                <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>â† All Editions</button>
+                <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>← All Editions</button>
                 <div className="mobile-menu-divider" />
                 <div className="mobile-menu-section">The Guide</div>
                 {vancouverGuideItems.map(item => (
@@ -1638,20 +1835,9 @@ if (region === "vancouver") {
             )}
           </nav>
 
-          {/* VANCOUVER HOME */}
+  {/* VANCOUVER HOME */}
           {(activeTab === "van-home" || activeTab === "home") && (
-            <div className="content">
-              <div className="section-eyebrow">West Coast Edition</div>
-              <h1 className="section-title">The Ultimate Wedding Guide</h1>
-              <p className="section-lead">
-                Everything you need to plan your dream wedding in Vancouver, Squamish, Whistler, or Pemberton  — researched, vetted, and organized so you can stop Googling and start enjoying being engaged.
-              </p>
-              <div style={{ marginTop: 32 }}>
-                <button className="form-btn" onClick={() => setShowPasswordGate(true)}>
-                  Unlock the Guide · $29
-                </button>
-              </div>
-            </div>
+            <VancouverLandingPage onBuy={() => setShowPasswordGate(true)} />
           )}
 
           {/* VANCOUVER LOCKED */}
