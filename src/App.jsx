@@ -1763,6 +1763,9 @@ if (region === "vancouver") {
           <nav className="nav" style={{ position: "relative" }}>
             {/* DESKTOP */}
             <div className="nav-desktop">
+              <div className="nav-item">
+  <button className="nav-btn" onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); }} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>← All Editions</button>
+</div>
             <div className="nav-item">
   <button className={`nav-btn ${activeTab === "van-home" ? "active" : ""}`} onClick={() => setActiveTab("van-home")}>Home</button>
 </div>
