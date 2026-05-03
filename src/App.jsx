@@ -1964,8 +1964,8 @@ if (region === "vancouver") {
                     pendingLabel="On our radar: additional florists"
                     infoTitle="Planning Tips for Wedding Florals"
                     infoItems={[
-                      "Book your florist 6â€“12 months in advance for peak season (Juneâ€“September).",
-                      "For micro-weddings and elopements, look for florists offering Ã  la carte menus with no minimums.",
+                      "Book your florist 6-12 months in advance for peak season (June-September).",
+                      "For micro-weddings and elopements, look for florists offering a la carte menus with no minimums.",
                       "Ask about locally grown BC blooms  — several florists prioritize seasonal and local sourcing.",
                       "Always confirm travel fees if your venue is in the Sea-to-Sky corridor.",
                     ]}
@@ -1990,7 +1990,7 @@ if (region === "vancouver") {
                   pendingLabel="On our radar: additional bakers"
                   infoTitle="Planning Tips for Wedding Cakes"
                   infoItems={[
-                    "Book your cake 2â€“6 months in advance; some bakers accommodate shorter timelines.",
+                    "Book your cake 2-6 months in advance; some bakers accommodate shorter timelines.",
                     "Always confirm delivery policies  — especially for Sea-to-Sky venues.",
                     "Ask about dietary accommodations early so your baker can plan accordingly.",
                     "Consider a smaller display cake paired with sheet cakes  — a popular and cost-effective option.",
@@ -2004,7 +2004,7 @@ if (region === "vancouver") {
                     <div className="info-box-title">A Note on Wedding Dress Shopping</div>
                     <ul>
                       <li>Always book an appointment. Vancouver's top boutiques are by appointment only.</li>
-                      <li>Allow 4â€“6 months for made-to-order gowns, plus extra time for alterations.</li>
+                      <li>Allow 4-6 months for made-to-order gowns, plus extra time for alterations.</li>
                       <li>Bring one or two trusted people whose opinion you value, not a crowd.</li>
                       <li>Keep an open mind. The dress you fall in love with may surprise you.</li>
                     </ul>
@@ -2038,7 +2038,7 @@ if (region === "vancouver") {
                   pendingLabel="On our radar: additional hair & makeup artists"
                   infoTitle="Tips for Booking Your Bridal Beauty Team"
                   infoItems={[
-                    "Book 6â€“18 months in advance for peak season (Juneâ€“September)  — the best artists fill up fast.",
+                    "Book 6-18 months in advance for peak season (Juneâ“September)  — the best artists fill up fast.",
                     "A trial session is highly recommended even if not required.",
                     "Confirm travel fees upfront if your wedding is in the Sea-to-Sky corridor.",
                     "Ask whether your artist brings a team for larger bridal parties and confirm the timeline.",
@@ -2052,7 +2052,7 @@ if (region === "vancouver") {
                   <div className="info-box">
                     <div className="info-box-title">A Note on Event Rentals</div>
                     <ul>
-                      <li>Book rentals 3â€“6 months in advance for peak season, especially for tents and large furniture.</li>
+                      <li>Book rentals 3-6 months in advance for peak season, especially for tents and large furniture.</li>
                       <li>Confirm delivery, setup, and pickup fees upfront  — these vary widely.</li>
                       <li>For blank-canvas venues (Pipe Shop, Heritage Hall, UBC Botanical Garden), you'll need to bring in almost everything. Factor this into your budget early.</li>
                       <li>Sea-to-Sky venues: confirm whether the rental company travels to Squamish, Whistler, or Pemberton and what the travel surcharge is.</li>
