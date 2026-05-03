@@ -545,7 +545,90 @@ function BudgetGuide() {
     </div>
   );
 }
+// ── VANCOUVER BUDGET GUIDE ────────────────────────────────────────────────────
+// Add this function to App.jsx right after the BudgetGuide() function closes (after line 539)
 
+function VancouverBudgetGuide() {
+  const packages = [
+    {
+      cls: "pkg-$", tier: "$", name: "The Intimate West Coast Wedding", range: "$15,000 - $30,000",
+      items: [
+        "Venue: Heritage Hall ($700-$3,440), Dr. Sun Yat-Sen Classical Chinese Garden (from $1,050), UBC Botanical Garden (from $1,600), or Fergie's Sunwolf (from $4,200)",
+        "Catering: The Yoga Chef, The Rooted Table, or Farawayland Weddings",
+        "Photography: Farawayland Weddings (from $1,395), Pear Tree Photography (elopements from $1,750), or DEMIN Photography (from $1,499)",
+        "Florals: The Bloomerie (from $275), Garden Party Flowers (no minimum), or Senka Florist (from $185)",
+        "Bar: Liquid Assets Professional Bartending or Roaming Spirits (from $750)",
+        "Hair & Makeup: MJ Power Makeup (from $490) or AMORE by BEA (from $550)",
+        "Best for: Elopements and intimate gatherings under 40 guests",
+      ],
+    },
+    {
+      cls: "pkg-$$", tier: "$$", name: "The Classic West Coast Wedding", range: "$30,000 - $80,000",
+      items: [
+        "Venue: The Permanent ($4,000-$9,000), Stanley Park Pavilion, Pipe Shop ($4,850-$6,150), Pinnacle Hotel at the Pier, VanDusen Botanical Garden, or Furry Creek Golf Club (from $7,999)",
+        "Catering: Savoury City Catering, Cocktails & Canapes, Edge Catering, Supper Club YVR (from $90/person), or Left Coast Catering",
+        "Photography: Isle and Oak Photography (from $3,200), Beautiful Life Studios (from $3,200), Pear Tree Photography (from $3,800), or Leah Kathryn Photography ($4,000-$6,000)",
+        "Florals: Celsia Floral a la carte (from $260), Leis de Buds (from $1,000), Aura Rosa Florals (from $1,000 a la carte), or The Wild Bunch",
+        "Bar: Liquid Assets, Sip Social, Roaming Spirits, or Free Pour Brothers",
+        "Hair & Makeup: Faye Smith Agency, Bridal Hair Vancouver (from $1,500), Ally Lynn Makeup and Hair (from $895), or Beauty En Route (from $550)",
+        "Best for: Full weddings of 50-150 guests with a complete vendor team",
+      ],
+    },
+    {
+      cls: "pkg-$$$", tier: "$$$", name: "The West Coast Dream", range: "$80,000+",
+      items: [
+        "Venue: Fairmont Hotel Vancouver ($150-$300+/person), Fairmont Pacific Rim (from $25,000), JW Marriott Parq Vancouver, The Westin Bayshore, Rosewood Hotel Georgia, or Commodore Ballroom ($17,000 venue + $50,000 F&B)",
+        "Catering: Truffles Fine Foods, Savoury Chef Foods, Edge Catering, or Avela Catering and Events",
+        "Photography: The Apartment Photography (from $9,900), Tomasz Wagner Photo & Films (from $9,000), or Isle and Oak Photography (from $6,000)",
+        "Florals: Celsia Floral Bespoke (from $6,500) or Leis de Buds",
+        "Bar: Full hotel bar service at all luxury venues",
+        "Hair & Makeup: Faye Smith Agency",
+        "Best for: Grand celebrations of 100+ guests with premium vendors and a luxury experience",
+      ],
+    },
+    {
+      cls: "pkg-$", tier: "$", name: "The Sea-to-Sky Elopement", range: "$10,000 - $25,000",
+      items: [
+        "Venue: Fergie's Sunwolf (from $4,200 low season), UBC Botanical Garden Nitobe Garden, or Green Water Resort",
+        "Catering: Fergie's in-house catering (at Sunwolf), The Collective Kitchen, or Left Coast Catering",
+        "Photography: Farawayland Weddings (from $1,395), Pear Tree Photography (elopements from $1,750), Leah Kathryn Photography (Whistler-based), or DEMIN Photography (from $1,499)",
+        "Florals: Senka Florist (from $185, Whistler-based), Aura Rosa Florals (Squamish-based, from $250 Party Packs), or Flowers & Jules",
+        "Bar: Liquid Assets or Roaming Spirits",
+        "Hair & Makeup: MJ Power Makeup (Whistler travel $150) or Beauty En Route (Whistler coverage)",
+        "Best for: Couples who want to escape the city for a mountain or riverside celebration",
+      ],
+    },
+  ];
+
+  return (
+    <div>
+      <div className="info-box" style={{ marginBottom: 32 }}>
+        <div className="info-box-title">How Budget Tiers Work</div>
+        <ul>
+          <li><strong>$</strong>: Under $30,000 total wedding budget. Elopements, micro-weddings, and intimate gatherings.</li>
+          <li><strong>$$</strong>: $30,000-$80,000. Full wedding with complete vendor team, 50-150 guests.</li>
+          <li><strong>$$$</strong>: $80,000+. Grand celebrations with premium vendors and 100+ guests.</li>
+          <li>Many vendors span two tiers (e.g. $/$$) meaning they serve both budget ranges.</li>
+          <li>All prices are approximate and in CAD. Contact vendors directly for current pricing.</li>
+        </ul>
+      </div>
+      <div className="packages">
+        {packages.map((pkg, i) => (
+          <div key={i} className={`package ${pkg.cls}`}>
+            <div className="package-header">
+              <span className="package-tier">{pkg.tier}</span>
+              <span className="package-name">{pkg.name}</span>
+              <span className="package-range">{pkg.range}</span>
+            </div>
+            <div className="package-body">
+              <ul>{pkg.items.map((it, ii) => <li key={ii}>{it}</li>)}</ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // ── APP ─────────────────────────────────────────────────────────────────────
 
@@ -1842,10 +1925,9 @@ if (region === "vancouver") {
           )}
 {/* BUDGET GUIDE */}
 {activeTab === "van-budget" && (
-  <BudgetGuide />
+  <VancouverBudgetGuide />
 )}
 
-{/* BUDGET TRACKER */}
 {activeTab === "van-tracker" && (
   <BudgetTracker />
 )}
