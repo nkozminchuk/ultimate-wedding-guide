@@ -1689,8 +1689,7 @@ export default function App() {
               <div className="region-desc">Everything you need to plan your Rocky Mountain wedding. Dozens of vetted vendors across every category, detailed, organized, and ready for you. Just sit back, relax, and enjoy the planning.</div>
               <div className="region-cta">Explore the Guide →</div>
             </div>
-            <div className="region-card available" onClick={() => setRegion("vancouver")} style={{ backgroundImage: "url('/hero-vancouver.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}>
-              <div className="region-badge available">Available Now</div>
+            <div className="region-card available" onClick={() => setRegion("vancouver")} style={{ backgroundImage: "url('/hero-vancouver.jpg')", backgroundSize: "cover", backgroundPosition: "center top" }}>              <div className="region-badge available">Available Now</div>
               <div style={{ marginBottom: 16 }}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C4956A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
