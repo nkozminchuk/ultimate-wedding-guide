@@ -1840,14 +1840,14 @@ if (region === "vancouver") {
           {(activeTab === "van-home" || activeTab === "home") && (
             <VancouverLandingPage onBuy={() => setShowPasswordGate(true)} />
           )}
-          {/* BUDGET GUIDE */}
+{/* BUDGET GUIDE */}
 {activeTab === "van-budget" && (
-  <BudgetTab />
+  <BudgetGuide />
 )}
 
 {/* BUDGET TRACKER */}
 {activeTab === "van-tracker" && (
-  <TrackerTab />
+  <BudgetTracker />
 )}
 {/* OUR STORY */}
 {activeTab === "why" && (
