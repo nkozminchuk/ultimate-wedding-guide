@@ -1323,16 +1323,18 @@ const guideItems = [
 ];
 
 const vancouverGuideItems = [
-  { id: "van-venues",   label: "Venues",            icon: "venues" },
-  { id: "van-catering", label: "Catering",           icon: "catering" },
-  { id: "van-bar",      label: "Mobile Bar",         icon: "bar" },
-  { id: "van-photo",    label: "Photography",        icon: "photo" },
-  { id: "van-florists", label: "Florists",           icon: "florists" },
-  { id: "van-cakes",    label: "Cakes & Desserts",   icon: "cakes" },
-  { id: "van-dresses",  label: "Wedding Dresses",    icon: "dresses" },
-  { id: "van-hair",     label: "Hair & Makeup",      icon: "hair" },
-  { id: "van-rentals",  label: "Event Rentals",      icon: "venues" },
-  { id: "van-coming",   label: "On Our Radar",       icon: "coming" },
+  { id: "van-budget",   label: "Budget Guide",     icon: "budget" },
+  { id: "van-tracker",  label: "Budget Tracker",   icon: "budget" },
+  { id: "van-venues",   label: "Venues",           icon: "venues" },
+  { id: "van-catering", label: "Catering",         icon: "catering" },
+  { id: "van-bar",      label: "Mobile Bar",       icon: "bar" },
+  { id: "van-photo",    label: "Photography",      icon: "photo" },
+  { id: "van-florists", label: "Florists",         icon: "florists" },
+  { id: "van-cakes",    label: "Cakes & Desserts", icon: "cakes" },
+  { id: "van-dresses",  label: "Wedding Dresses",  icon: "dresses" },
+  { id: "van-hair",     label: "Hair & Makeup",    icon: "hair" },
+  { id: "van-rentals",  label: "Event Rentals",    icon: "venues" },
+  { id: "van-coming",   label: "On Our Radar",     icon: "coming" },
 ];
 
 function ChecklistTab() {
@@ -1838,6 +1840,15 @@ if (region === "vancouver") {
           {(activeTab === "van-home" || activeTab === "home") && (
             <VancouverLandingPage onBuy={() => setShowPasswordGate(true)} />
           )}
+          {/* BUDGET GUIDE */}
+{activeTab === "van-budget" && (
+  <BudgetTab />
+)}
+
+{/* BUDGET TRACKER */}
+{activeTab === "van-tracker" && (
+  <TrackerTab />
+)}
 {/* OUR STORY */}
 {activeTab === "why" && (
   <div className="content">
