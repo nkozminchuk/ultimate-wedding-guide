@@ -39,6 +39,7 @@ import { vancouverCakeData, vancouverCakePending } from "./data/cakes-vancouver"
 import { vancouverDressData } from "./data/dresses-vancouver";
 import { vancouverHairMakeupData, vancouverHairMakeupPending } from "./data/hair-vancouver";
 import { vancouverRentalData } from "./data/rentals-vancouver";
+import { vancouverPlannerData, vancouverPlannerPending } from "./data/planners-vancouver";
 // =============================================================================
 // COMPONENTS & APP
 // =============================================================================
@@ -1417,6 +1418,7 @@ const vancouverGuideItems = [
   { id: "van-dresses",  label: "Wedding Dresses",  icon: "dresses" },
   { id: "van-hair",     label: "Hair & Makeup",    icon: "hair" },
   { id: "van-rentals",  label: "Event Rentals",    icon: "venues" },
+  { id: "van-planners", label: "Wedding Planners", icon: "coming" },
   { id: "van-coming",   label: "On Our Radar",     icon: "coming" },
 ];
 
