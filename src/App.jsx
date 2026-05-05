@@ -2189,7 +2189,21 @@ if (region === "vancouver") {
                   </div>
                 </div>
               )}
-
+{activeTab === "van-planners" && (
+  <SimpleVendors
+    vendors={vancouverPlannerData}
+    pending={vancouverPlannerPending}
+    pendingLabel="On our radar: additional wedding planners"
+    infoTitle="Tips for Hiring a Wedding Planner"
+    infoItems={[
+      "Book your planner first -- before your venue, caterer, or any other vendor. A good planner will help you find and negotiate with everyone else.",
+      "The best planners in Vancouver and the Sea-to-Sky book 1 to 2 years in advance. Don't wait.",
+      "Always confirm whether your venue requires a planner from their approved list.",
+      "Day-of coordination is not the same as full planning -- make sure you understand what is and isn't included in your package.",
+      "Ask how many weddings they take on per year and whether you will work directly with the lead planner or be handed off to a junior coordinator.",
+    ]}
+  />
+)}
               {activeTab === "van-coming" && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                   {[
