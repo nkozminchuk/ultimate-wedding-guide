@@ -59,5 +59,6 @@ export const sectionMeta = {
   "van-dresses":  { eyebrow: "Vancouver", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding planning. Vancouver's bridal boutiques offer something for every style.", icon: "dresses" },
   "van-hair":     { eyebrow: "Vancouver & Sea-to-Sky", title: "Hair & Makeup", lead: "The right artist makes you feel like yourself -- only more so. Vancouver's bridal beauty team is world-class, and most travel the Sea-to-Sky corridor.", icon: "hair" },
   "van-rentals":  { eyebrow: "Vancouver & Sea-to-Sky", title: "Event Rentals", lead: "From furniture and linens to custom builds and statement decor, these companies help bring your West Coast wedding vision to life.", icon: "venues" },
+  "van-planners": { eyebrow: "Vancouver & Sea-to-Sky", title: "Wedding Planners", lead: "The right planner makes everything easier -- and in Vancouver's competitive wedding market, the best ones book years in advance. Here are the West Coast's finest.", icon: "coming" },
   "van-coming":   { eyebrow: "West Coast Edition", title: "On Our Radar", lead: "We are constantly scouting, vetting, and adding to this guide. Here's what's coming next for the West Coast Edition.", icon: "coming" },
 };
