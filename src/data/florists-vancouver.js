@@ -104,6 +104,20 @@ export const vancouverFloristData = [
     { label: "Instagram", value: "@the_wildbunch" },
     { label: "Website", value: "thewildbunch.ca/wedding-flower-shop", link: "https://thewildbunch.ca/collections/the-wedding-flower-shop-vancouver" },
   ]},
+
+  { name: "Weddings with Billies", tier: "$/$$", fields: [
+    { label: "Style", value: "Highly versatile -- lush and romantic, modern and minimalist, wildflower/bohemian, and timeless classic; tailored to each couple's vision, venue, and the natural landscape; seasonal and locally sourced blooms incorporated wherever possible" },
+    { label: "Specialty", value: "Dedicated wedding and event division of Billies House, a full-service floral store in downtown Squamish" },
+    { label: "Services", value: "Full service and partial -- personal florals (bouquets, boutonnieres), centrepieces, ceremony arches, installations, delivery, setup, and teardown; DIY packages (curated stems for self-arranging) and seasonal packages also available" },
+    { label: "Consultations", value: "Yes -- free 1-hour design consultation with custom package; small fee for seasonal packages; additional consultations available" },
+    { label: "Pricing", value: "No minimum spend · DIY packages available · Seasonal packages for cost-effective cohesion · Custom designs typically from $4,000 depending on scale" },
+    { label: "Booking Lead Time", value: "Minimum 2 months recommended for larger weddings; shorter timelines accommodated; elopements and smaller orders from as little as 48 hours' notice" },
+    { label: "Travel", value: "Regularly services Fury Creek through Squamish and up to Pemberton; pickup also available from Billies House in Squamish" },
+    { label: "Note", value: "One of the only florists in the guide offering 48-hour turnaround for elopements -- exceptional for couples planning a spontaneous or last-minute Sea-to-Sky celebration. DIY packages available for budget-conscious couples.", full: true },
+    { label: "Email", value: "yes@weddingswithbillies.com" },
+    { label: "Instagram", value: "@weddingswithbillies" },
+    { label: "Website", value: "weddingswithbillies.com", link: "https://weddingswithbillies.com" },
+  ]},
 ];
 
 export const vancouverFloristPending = [
