@@ -39,6 +39,19 @@ export const vancouverCakeData = [
     { label: "Lead Time", value: "Larger events: up to 1 month · smaller orders: 2 weeks" },
     { label: "Instagram", value: "@shura_good_cake" },
   ]},
+
+  { name: "Pink Sugar Cake Room", tier: "$", fields: [
+    { label: "Specialty", value: "Tiered wedding cakes and small cutting/photography cakes" },
+    { label: "Style", value: "Vintage" },
+    { label: "Pricing", value: "Simple design: 6\" from $100 · 8\" from $150 · Vintage design: 6\" from $120 · 8\" from $170 · Two-tier vintage from $350 depending on detail · Max size is 8\" + 6\" two-tier (serves up to 40 guests) · For larger guest counts, couples often add extra single 8\" cakes for kitchen cutting" },
+    { label: "Tastings", value: "Not offered" },
+    { label: "Pickup", value: "Pickup only -- no delivery or setup; pickup by someone from the wedding party" },
+    { label: "Travel", value: "Vancouver only -- no Sea-to-Sky travel" },
+    { label: "Dietary", value: "Gluten-free, nut-free, egg-free available" },
+    { label: "Booking", value: "Full payment required to reserve date · bookings open approximately 1 month before each month (e.g. July 2026 bookings open around June 1, 2026)" },
+    { label: "Note", value: "Pink Sugar works differently from traditional wedding cake designers -- boutique, relaxed, and booked on a rolling 1-month basis. No delivery, setup, or tastings. Follow on Instagram and check back around 4 to 6 weeks before your wedding month to book.", full: true },
+    { label: "Instagram", value: "@pinksugar_cakeroom" },
+  ]},
 ];
 
 export const vancouverCakePending = [
@@ -47,7 +60,6 @@ export const vancouverCakePending = [
   "Le Gateau Bakeshop  legateaubakeshop.com  @legateaubakeshop",
   "Frolic & Forage  frolicandforagecatering.com  @cakesbypeddie",
   "P31 Bakes  @p31bakes",
-  "Pink Sugar Cake Room  @pinksugar_cakeroom",
   "Cakes in a Box  cakesinabox.com  @cakesinabox",
   "Butter Lane Bake Shop  butterlanebakeshop.com",
   "Joconde Patisserie  joconde.ca",
