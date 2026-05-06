@@ -52,6 +52,23 @@ export const vancouverCakeData = [
     { label: "Note", value: "Pink Sugar works differently from traditional wedding cake designers -- boutique, relaxed, and booked on a rolling 1-month basis. No delivery, setup, or tastings. Follow on Instagram and check back around 4 to 6 weeks before your wedding month to book.", full: true },
     { label: "Instagram", value: "@pinksugar_cakeroom" },
   ]},
+
+  { name: "Cadeaux Bakery", tier: "$/$$", fields: [
+    { label: "Specialty", value: "Tiered wedding cakes, dessert tables, individual pastries, tarts, cupcakes -- all of the above" },
+    { label: "Style", value: "Classic French with modern and inventive touches" },
+    { label: "Pricing", value: "Custom quote based on couple's needs and requests -- contact for pricing" },
+    { label: "Tastings", value: "Yes -- $80 for 4 mini 4\" cakes of your choice of flavours" },
+    { label: "Dietary", value: "No gluten-free, dairy-free, or vegan options · nut allergies considered on a case-by-case basis (not a nut-free bakery)" },
+    { label: "Delivery", value: "Yes -- starting at $125 for under 5km; rates vary by location" },
+    { label: "Travel", value: "Sea-to-Sky subject to availability -- inquire directly" },
+    { label: "Lead Time", value: "3 to 4 months recommended for peak season" },
+    { label: "Deposit", value: "25% deposit to book; remainder due the day before pickup; full payment links also available" },
+    { label: "Note", value: "Cadeaux offers the widest dessert variety of any baker in the guide -- tarts, cupcakes, pastries, and tiered cakes all in one place, ideal for couples wanting a full dessert table.", full: true },
+    { label: "Phone", value: "604-608-8889" },
+    { label: "Email", value: "cadeauxbakery@gmail.com" },
+    { label: "Instagram", value: "@cadeauxbakery" },
+    { label: "Website", value: "cadeauxbakery.com", link: "https://cadeauxbakery.com" },
+  ]},
 ];
 
 export const vancouverCakePending = [
@@ -63,7 +80,6 @@ export const vancouverCakePending = [
   "Cakes in a Box  cakesinabox.com  @cakesinabox",
   "Butter Lane Bake Shop  butterlanebakeshop.com",
   "Joconde Patisserie  joconde.ca",
-  "Cadeaux Bakery  cadeauxbakery.com",
   "Bluebird Cakery  bluebirdcakery.ca",
   "The Stubborn Baker  thestubbornbaker.com",
   "Mooch Custom Confections",
