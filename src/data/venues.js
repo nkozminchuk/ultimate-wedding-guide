@@ -216,11 +216,7 @@ export const venueData = [
         { label: "Instagram", value: "@creeksidevillacanmore" },
         { label: "Website", value: "creeksidevilla.ca", link: "https://www.creeksidevilla.ca" },
       ]},
-      { name: "The Sensory", tier: "$$", fields: [
-        { label: "Style", value: "Event space and restaurant in the heart of Canmore -- intimate and distinctive" },
-        { label: "Instagram", value: "@thesensorycanmore" },
-        { label: "Website", value: "thesensory.ca", link: "https://www.thesensory.ca/sensorysupperseries" },
-      ]},
+
       { name: "Stewart Creek Golf & Country Club", tier: "$$", fields: [
         { label: "Style", value: "Boutique mountain golf club with breathtaking views of the Three Sisters, Cascade, Pigeon, and Ha Ling Mountains; specializes in intimate mountain weddings" },
         { label: "Pricing", value: "Contact for pricing -- minimum spend applies" },
