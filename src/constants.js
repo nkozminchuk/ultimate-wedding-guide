@@ -30,6 +30,7 @@ export const tabs = [
   { id: "dresses",   label: "Wedding Dresses",  locked: true },
   { id: "hair",      label: "Hair & Makeup",    locked: true },
   { id: "rentals",   label: "Event Rentals",    locked: true },
+  { id: "match",     label: "Find My Match",    locked: true },
   { id: "coming",    label: "On Our Radar",     locked: true },
 ];
 
@@ -48,6 +49,7 @@ export const sectionMeta = {
   dresses:   { eyebrow: "Calgary", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding planning. We recommend visiting each of these boutiques in person -- no online browsing compares to trying on the real thing.", icon: "dresses" },
   hair:      { eyebrow: "Calgary", title: "Hair & Makeup", lead: "The right hair and makeup artist makes you feel like yourself -- only more so. Calgary's bridal beauty artists are exceptionally talented, and most travel to Canmore and Banff.", icon: "hair" },
   rentals:   { eyebrow: "Calgary", title: "Event Rentals", lead: "From furniture and linens to tent packages and statement decor, these Calgary rental companies help bring your wedding vision to life -- whether you're hosting downtown or up in the mountains.", icon: "venues" },
+  match:     { eyebrow: "Canadian Rockies Edition", title: "Find My Match", lead: "Answer 5 quick questions and we'll match you with the perfect venues — then compare them side by side.", icon: "venues" },
   coming:    { eyebrow: "Canadian Rockies Edition", title: "On Our Radar", lead: "We are constantly scouting, vetting, and adding to this guide. Consider this your insider preview of what's coming -- and a reminder that the best vendors book fast.", icon: "coming" },
 
   "van-venues":   { eyebrow: "Vancouver - Squamish - Whistler - Pemberton", title: "Venues", lead: "From grand Vancouver hotel ballrooms and waterfront spaces to intimate heritage venues, botanical gardens, and Sea-to-Sky mountain escapes -- the West Coast offers some of Canada's most breathtaking wedding settings.", icon: "venues" },
