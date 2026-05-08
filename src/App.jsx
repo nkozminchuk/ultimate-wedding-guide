@@ -40,6 +40,7 @@ import { vancouverDressData } from "./data/dresses-vancouver";
 import { vancouverHairMakeupData, vancouverHairMakeupPending } from "./data/hair-vancouver";
 import { vancouverRentalData } from "./data/rentals-vancouver";
 import { vancouverPlannerData, vancouverPlannerPending } from "./data/planners-vancouver";
+import FindMyMatchVancouver from "./FindMyMatchVancouver";
 import FindMyMatch from "./FindMyMatch";
 // =============================================================================
 // COMPONENTS & APP
@@ -1421,6 +1422,7 @@ const vancouverGuideItems = [
   { id: "van-hair",     label: "Hair & Makeup",    icon: "hair" },
   { id: "van-rentals",  label: "Event Rentals",    icon: "venues" },
   { id: "van-planners", label: "Wedding Planners", icon: "coming" },
+  { id: "van-match", label: "Find My Match", icon: "venues" },
   { id: "van-coming",   label: "On Our Radar",     icon: "coming" },
 ];
 
@@ -2206,6 +2208,7 @@ if (region === "vancouver") {
     ]}
   />
 )}
+              {activeTab === "van-match" && <FindMyMatchVancouver />}
               {activeTab === "van-coming" && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                   {[
