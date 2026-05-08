@@ -1404,6 +1404,7 @@ const guideItems = [
   { id: "dresses", label: "Wedding Dresses", icon: "dresses" },
   { id: "hair", label: "Hair & Makeup", icon: "hair" },
   { id: "rentals", label: "Event Rentals", icon: "venues" },
+  { id: "match",   label: "Find My Match", icon: "venues" },
   { id: "coming", label: "On Our Radar", icon: "coming" },
 ];
 
