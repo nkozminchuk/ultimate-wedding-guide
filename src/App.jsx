@@ -40,6 +40,7 @@ import { vancouverDressData } from "./data/dresses-vancouver";
 import { vancouverHairMakeupData, vancouverHairMakeupPending } from "./data/hair-vancouver";
 import { vancouverRentalData } from "./data/rentals-vancouver";
 import { vancouverPlannerData, vancouverPlannerPending } from "./data/planners-vancouver";
+import FindMyMatch from "./FindMyMatch";
 // =============================================================================
 // COMPONENTS & APP
 // =============================================================================
@@ -2720,7 +2721,7 @@ if (region === "vancouver") {
               </div>
             </div>
           )}
-
+            {activeTab === "match" && <FindMyMatch />}
             {activeTab === "coming" && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               {[
