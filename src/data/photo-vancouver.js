@@ -130,6 +130,23 @@ export const vancouverPhotoData = [
     { label: "Instagram", value: "@ivamariia.photo" },
     { label: "Website", value: "ivaphoto.com", link: "https://www.ivaphoto.com" },
   ]},
+
+  { name: "Bobbi Barbarich Photography", tier: "$$/$$$", fields: [
+    { label: "Services", value: "Photography only" },
+    { label: "Style", value: "Documentary -- honest, raw emotion; genuine moments rather than directed or fabricated; for clients who want to feel fully present throughout their day" },
+    { label: "Specialty", value: "Destination weddings and large celebrations" },
+    { label: "Experience", value: "15+ years as a documentary wedding photographer in BC" },
+    { label: "Coverage", value: "10 hours to full weekend" },
+    { label: "Second Shooter", value: "Yes -- when the scenario requires it" },
+    { label: "Turnaround", value: "Sneak peek within a few days · full gallery within 8 weeks" },
+    { label: "Pricing", value: "Custom collections -- no pre-made packages; from $7,000; 30% retainer to book" },
+    { label: "Travel", value: "Throughout BC, Alberta, Ontario, and internationally; minimal travel fees depending on schedule" },
+    { label: "Sea-to-Sky", value: "Yes" },
+    { label: "Note", value: "Bobbi's clients want photos that genuinely reflect their experience -- not posed or fabricated. If you want a photographer who disappears into the background and captures the real moments, she's your person.", full: true },
+    { label: "Email", value: "info@bobbibarbarich.ca" },
+    { label: "Instagram", value: "@barbarichphoto" },
+    { label: "Website", value: "bobbibarbarich.ca", link: "https://bobbibarbarich.ca" },
+  ]},
 ];
 
 export const vancouverPhotoPending = [
