@@ -118,6 +118,26 @@ export const vancouverFloristData = [
     { label: "Instagram", value: "@weddingswithbillies" },
     { label: "Website", value: "weddingswithbillies.com", link: "https://weddingswithbillies.com" },
   ]},
+
+  { name: "Fleurescent Blooms", tier: "$/$$/$$$", fields: [
+    { label: "Style", value: "Elevated, modern, and natural with an editorial edge -- intentional, design-forward florals with movement, texture, and colour; no two weddings ever feel the same" },
+    { label: "Specialty", value: "Weddings alongside corporate and editorial events; full event design background means everything is considered as part of the overall experience" },
+    { label: "Services", value: "Full service (bouquets to large-scale installations) and a la carte (budget-conscious, professionally designed)" },
+    { label: "Pricing -- A La Carte Pickup", value: "From $1,250" },
+    { label: "Pricing -- A La Carte Delivery", value: "From $1,850" },
+    { label: "Pricing -- Full Service", value: "From $4,000" },
+    { label: "Pricing -- Full Service with Installations", value: "From $6,500" },
+    { label: "Bridal Bouquet", value: "From $275+ · Elopement Bouquet + Boutonniere package $375 · The Chill Bride Bouquet $250 (ordered online, no consultations, hand-crafted with freshest available blooms -- perfect for the relaxed bride)" },
+    { label: "Consultations", value: "Included with full-service; not included with a la carte (add-on available for small fee)" },
+    { label: "Booking Lead Time", value: "Full service: 8 to 12 months recommended for peak dates · A la carte: closer to date possible depending on availability" },
+    { label: "Deposit", value: "50% deposit + signed agreement to secure date (both full service and a la carte)" },
+    { label: "Delivery", value: "Yes -- both a la carte and full-service" },
+    { label: "Travel", value: "Squamish, Whistler, Pemberton regularly -- this is their backyard · also Gulf Islands, West Vancouver, North Vancouver · select Lower Mainland events · travel fees apply" },
+    { label: "Note", value: "The Chill Bride Bouquet is one of the most unique offerings in the guide -- $250, ordered online, no emails, no fuss. Perfect for elopements and low-key celebrations.", full: true },
+    { label: "Email", value: "shop@fleurescentblooms.com" },
+    { label: "Instagram", value: "@fleurescent.blooms" },
+    { label: "Website", value: "fleurescentblooms.com", link: "https://www.fleurescentblooms.com" },
+  ]},
 ];
 
 export const vancouverFloristPending = [
