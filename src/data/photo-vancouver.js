@@ -17,7 +17,7 @@ export const vancouverPhotoData = [
     { label: "Extras", value: "Engagement sessions, welcome party coverage, fine art wedding albums available" },
     { label: "Travel", value: "Vancouver, Sea-to-Sky, and destination worldwide" },
     { label: "Phone", value: "604-868-4124" },
-    { label: "Email", value: "info@theapartmentphotography.com" },
+    { label: "Email", value: "hey@theaptm.com" },
     { label: "Instagram", value: "@theapartmentphoto" },
     { label: "Website", value: "theapartmentphotography.com", link: "https://theapartmentphotography.com" },
   ]},
