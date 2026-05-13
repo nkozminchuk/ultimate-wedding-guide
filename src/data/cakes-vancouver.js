@@ -69,10 +69,22 @@ export const vancouverCakeData = [
     { label: "Instagram", value: "@cadeauxbakery" },
     { label: "Website", value: "cadeauxbakery.com", link: "https://cadeauxbakery.com" },
   ]},
+
+  { name: "The Vanilla Spot", tier: "$$/$$$ ", fields: [
+    { label: "Specialty", value: "Custom luxury cakes -- tiered wedding cakes, sculpted cakes, highly detailed artistic designs; dessert cups also available" },
+    { label: "Style", value: "Modern, elegant, artistic, and detail-focused; unique to each couple while remaining clean and visually impactful" },
+    { label: "Pricing", value: "Wedding cakes from $850+ depending on size, design complexity, and details · dessert cups from $7 each" },
+    { label: "Tastings", value: "Yes -- dessert cups at $7 per flavour for wedding clients" },
+    { label: "Dietary", value: "No gluten-free, vegan, or specialty dietary options at this time" },
+    { label: "Delivery", value: "Yes -- Metro Vancouver and surrounding areas; Squamish, Whistler, and Sea-to-Sky available; delivery and setup fees vary by location" },
+    { label: "Lead Time", value: "Book as early as possible -- peak season fills quickly" },
+    { label: "Deposit", value: "Signed agreement + non-refundable deposit to secure date; balance due prior to event" },
+    { label: "Note", value: "Every cake is custom designed -- couples are encouraged to share inspiration, venue aesthetic, and vision so the design feels cohesive with their wedding day.", full: true },
+    { label: "Instagram", value: "@thevanillaspot_luxecakes · @thevanillaspot" },
+  ]},
 ];
 
 export const vancouverCakePending = [
-  "The Vanilla Spot  @thevanillaspot_luxecakes",
   "Andrea Ortiz Fuentes  @andreaortizfuentes",
   "Le Gateau Bakeshop  legateaubakeshop.com  @legateaubakeshop",
   "Frolic & Forage  frolicandforagecatering.com  @cakesbypeddie",
