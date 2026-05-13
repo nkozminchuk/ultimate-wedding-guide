@@ -170,6 +170,22 @@ export const vancouverCateringData = [
     { label: "Website", value: "therootedtable.ca", link: "https://www.therootedtable.ca" },
   ]},
 
+
+  { name: "Sheila's Catering Co.", tier: "$/$$", fields: [
+    { label: "Style", value: "Full-service catering for weddings, corporate, and social events; award-winning with a strong reputation across the Lower Mainland" },
+    { label: "Service Styles", value: "Formal plated · buffet · family-style · cocktail hour (canapes) · dessert stations · celebration of life" },
+    { label: "Bar", value: "Yes -- full bar service provided, or Sheila's arranges a bar company to execute the event" },
+    { label: "SEP", value: "Yes -- Sheila's handles the Special Event Permit on behalf of clients" },
+    { label: "Dietary", value: "Yes -- all dietary restrictions accommodated" },
+    { label: "Tastings", value: "Three options: (1) $25/person tasting package pickup at facility when similar menu is in production · (2) Order from online catering menu (sandwiches, appetizers, salads) for a casual quality check · (3) Private tasting at owner's home -- $150/person + taxes, multi-course sampling in a relaxed setting (available April/May)" },
+    { label: "Rentals", value: "Works with Pedersen's, A1, Surdel, and Confettis" },
+    { label: "Territory", value: "Lower Mainland, Fraser Valley, Vancouver, Tri-Cities" },
+    { label: "Booking Lead Time", value: "As much time as possible; weddings can take up to a year to plan" },
+    { label: "Note", value: "Sheila's handles the Special Event Permit themselves -- one less thing for couples to manage. The private tasting at the owner's home is one of the most unique tasting experiences in the guide.", full: true },
+    { label: "Email", value: "info@sheilascatering.com" },
+    { label: "Instagram", value: "@sheilascatering" },
+    { label: "Website", value: "sheilascatering.com", link: "https://www.sheilascatering.com" },
+  ]},
   { name: "Left Coast Catering", tier: "$$", fields: [
     { label: "Style", value: "West Coast cuisine rooted in sustainability; locally sourced fresh produce, meat, and seafood; farm-to-table with an upscale, stress-free experience" },
     { label: "Chef", value: "Alain Van Den Meerssche -- praised across the Sea-to-Sky vendor community" },
