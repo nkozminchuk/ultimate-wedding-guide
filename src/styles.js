@@ -1,9 +1,6 @@
 // =============================================================================
 // STYLES.JS — All global CSS for The Ultimate Wedding Guide
-// Sections: Fonts & Reset · Cover · Nav · Dropdown · Mobile Menu · Footer ·
-//           Content · Info Box · Budget · Vendor Cards · Checklist ·
-//           Coming Soon · Landing Page · Contact Form · Gift Section ·
-//           Gift Modal · Lock Screen · Responsive
+// Palette: warm dark charcoal nav/footer · dusty rose accents · cream/white body
 // =============================================================================
 
 import { COLORS } from "./constants";
@@ -47,15 +44,15 @@ export const styles = `
   .cover-bg-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
     z-index: 1;
   }
   .cover::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 30% 20%, rgba(201,160,122,0.15) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 80%, rgba(184,127,160,0.1) 0%, transparent 50%);
+    background: radial-gradient(ellipse at 30% 20%, rgba(201,160,122,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(184,127,160,0.08) 0%, transparent 50%);
     z-index: 2;
   }
   .cover-ornament {
@@ -124,14 +121,14 @@ export const styles = `
     z-index: 3;
   }
 
-  /* NAV — dusty rose background */
+  /* NAV — warm dark charcoal, sandstone active state */
   .nav {
     background: ${COLORS.forest};
     padding: 0 40px;
     display: flex;
     align-items: center;
     gap: 0;
-    border-top: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(255,255,255,0.06);
     position: relative;
     z-index: 100;
   }
@@ -145,7 +142,7 @@ export const styles = `
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.5);
     background: none;
     border: none;
     cursor: pointer;
@@ -156,10 +153,10 @@ export const styles = `
     align-items: center;
     gap: 6px;
   }
-  .nav-btn:hover { color: ${COLORS.white}; }
+  .nav-btn:hover { color: ${COLORS.sandstone}; }
   .nav-btn.active {
-    color: ${COLORS.white};
-    border-bottom-color: rgba(255,255,255,0.6);
+    color: ${COLORS.sandstone};
+    border-bottom-color: ${COLORS.sandstone};
   }
   .nav-btn .nav-arrow {
     font-size: 8px;
@@ -175,30 +172,30 @@ export const styles = `
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: ${COLORS.white};
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.35);
+    color: ${COLORS.forest};
+    background: ${COLORS.sandstone};
+    border: none;
     border-radius: 2px;
     cursor: pointer;
     transition: background 0.2s;
     white-space: nowrap;
   }
-  .nav-gift-btn:hover { background: rgba(255,255,255,0.3); }
+  .nav-gift-btn:hover { background: #d4a870; }
   .nav-lock-btn {
     padding: 8px 14px;
     font-family: 'Jost', sans-serif;
     font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.3);
     background: none;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 2px;
     cursor: pointer;
     margin-left: 8px;
     transition: all 0.2s;
   }
-  .nav-lock-btn:hover { color: rgba(255,255,255,0.7); }
+  .nav-lock-btn:hover { color: rgba(255,255,255,0.6); }
 
   /* DROPDOWN */
   .dropdown {
@@ -207,10 +204,10 @@ export const styles = `
     left: 0;
     background: ${COLORS.white};
     border: 1px solid ${COLORS.border};
-    border-top: 3px solid ${COLORS.forest};
+    border-top: 3px solid ${COLORS.gold};
     border-radius: 0 0 4px 4px;
     min-width: 220px;
-    box-shadow: 0 8px 32px rgba(184,127,160,0.15);
+    box-shadow: 0 8px 32px rgba(42,31,26,0.12);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -243,11 +240,11 @@ export const styles = `
   .dropdown-item:last-child { border-bottom: none; }
   .dropdown-item:hover {
     background: ${COLORS.mint};
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
     padding-left: 22px;
   }
   .dropdown-item.active {
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
     font-weight: 600;
     background: ${COLORS.mint};
   }
@@ -286,7 +283,7 @@ export const styles = `
     display: flex;
     align-items: center;
     margin-left: auto;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.6);
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -299,8 +296,8 @@ export const styles = `
     left: 0;
     right: 0;
     background: ${COLORS.forest};
-    border-top: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     z-index: 300;
     padding: 8px 0 16px;
   }
@@ -313,18 +310,18 @@ export const styles = `
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.55);
     background: none;
     border: none;
     text-align: left;
     cursor: pointer;
     transition: all 0.15s;
   }
-  .mobile-menu-item:hover { color: ${COLORS.white}; padding-left: 28px; }
-  .mobile-menu-item.active { color: ${COLORS.white}; }
+  .mobile-menu-item:hover { color: ${COLORS.sandstone}; padding-left: 28px; }
+  .mobile-menu-item.active { color: ${COLORS.sandstone}; }
   .mobile-menu-item.gift {
     color: ${COLORS.forest};
-    background: ${COLORS.white};
+    background: ${COLORS.sandstone};
     margin: 8px 16px 4px;
     width: calc(100% - 32px);
     border-radius: 2px;
@@ -332,10 +329,10 @@ export const styles = `
     padding: 14px 24px;
     font-weight: 600;
   }
-  .mobile-menu-item.gift:hover { background: ${COLORS.parchment}; padding-left: 24px; }
+  .mobile-menu-item.gift:hover { background: #d4a870; padding-left: 24px; }
   .mobile-menu-divider {
     height: 1px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.06);
     margin: 8px 16px;
   }
   .mobile-menu-section {
@@ -344,15 +341,16 @@ export const styles = `
     font-size: 9px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: ${COLORS.sandstone};
+    opacity: 0.6;
   }
 
-  /* FOOTER — parchment background, not dark */
+  /* FOOTER — dark charcoal, matches nav */
   .site-footer {
-    background: ${COLORS.parchment};
+    background: ${COLORS.forest};
     padding: 48px 60px;
     text-align: center;
-    border-top: 3px solid ${COLORS.forest};
+    border-top: 3px solid ${COLORS.gold};
     position: relative;
     overflow: hidden;
   }
@@ -367,14 +365,14 @@ export const styles = `
     font-size: 32px;
     font-weight: 400;
     font-style: italic;
-    color: ${COLORS.text};
+    color: ${COLORS.cream};
     margin-bottom: 8px;
     position: relative;
   }
   .footer-divider {
     width: 40px;
     height: 1px;
-    background: ${COLORS.sandstone};
+    background: ${COLORS.gold};
     margin: 16px auto;
     position: relative;
   }
@@ -390,20 +388,18 @@ export const styles = `
   .footer-email {
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
-    color: ${COLORS.forest};
+    color: ${COLORS.cream};
     text-decoration: none;
     border-bottom: 1px solid rgba(184,127,160,0.4);
     padding-bottom: 2px;
     transition: border-color 0.2s;
     position: relative;
   }
-  .footer-email:hover {
-    border-color: ${COLORS.forest};
-  }
+  .footer-email:hover { border-color: ${COLORS.gold}; }
   .footer-copy {
     font-family: 'Jost', sans-serif;
     font-size: 11px;
-    color: ${COLORS.sub};
+    color: rgba(255,255,255,0.25);
     margin-top: 32px;
     letter-spacing: 1px;
     position: relative;
@@ -450,7 +446,7 @@ export const styles = `
   /* INFO BOX */
   .info-box {
     background: ${COLORS.mint};
-    border-left: 3px solid ${COLORS.forest};
+    border-left: 3px solid ${COLORS.gold};
     padding: 24px 28px;
     margin: 32px 0;
     border-radius: 0 4px 4px 0;
@@ -576,7 +572,7 @@ export const styles = `
     transition: box-shadow 0.2s;
   }
   .vendor-card:hover {
-    box-shadow: 0 4px 20px rgba(184,127,160,0.12);
+    box-shadow: 0 4px 20px rgba(184,127,160,0.1);
   }
   .vendor-card-header {
     padding: 16px 22px 14px;
@@ -643,7 +639,7 @@ export const styles = `
     line-height: 1.5;
   }
   .field-value a {
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -696,7 +692,7 @@ export const styles = `
     margin-bottom: 16px;
   }
   .phase-badge {
-    background: ${COLORS.forest};
+    background: ${COLORS.gold};
     color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
@@ -735,10 +731,10 @@ export const styles = `
     background: white;
     border-color: ${COLORS.border};
   }
-  .check-item:hover { border-color: ${COLORS.forest}; }
+  .check-item:hover { border-color: ${COLORS.gold}; }
   .check-item.done {
     background: ${COLORS.mint};
-    border-color: ${COLORS.forest};
+    border-color: ${COLORS.gold};
     opacity: 0.75;
   }
   .check-box {
@@ -754,8 +750,8 @@ export const styles = `
     transition: all 0.15s;
   }
   .check-item.done .check-box {
-    background: ${COLORS.forest};
-    border-color: ${COLORS.forest};
+    background: ${COLORS.gold};
+    border-color: ${COLORS.gold};
   }
   .check-mark {
     color: white;
@@ -780,7 +776,7 @@ export const styles = `
   }
   .progress-bar {
     height: 100%;
-    background: linear-gradient(to right, ${COLORS.forest}, ${COLORS.sandstone});
+    background: linear-gradient(to right, ${COLORS.gold}, ${COLORS.sandstone});
     border-radius: 2px;
     transition: width 0.4s ease;
   }
@@ -824,7 +820,7 @@ export const styles = `
   }
   .coming-tag {
     font-size: 12px;
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
     background: white;
     padding: 6px 14px;
     border-radius: 20px;
@@ -855,7 +851,7 @@ export const styles = `
   }
   .landing-title em {
     font-style: italic;
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
   }
   .landing-body {
     font-family: 'Cormorant Garamond', serif;
@@ -870,7 +866,7 @@ export const styles = `
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: ${COLORS.forest};
+    background: ${COLORS.gold};
     color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 12px;
@@ -894,6 +890,16 @@ export const styles = `
     letter-spacing: 1px;
     color: ${COLORS.sub};
     margin-bottom: 48px;
+  }
+  .section-lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: ${COLORS.sub};
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid ${COLORS.border};
   }
   .landing-features {
     display: grid;
@@ -982,7 +988,7 @@ export const styles = `
     width: 100%;
   }
   .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: ${COLORS.forest};
+    border-color: ${COLORS.gold};
   }
   .form-textarea {
     resize: vertical;
@@ -998,7 +1004,7 @@ export const styles = `
   }
   .form-btn {
     align-self: flex-start;
-    background: ${COLORS.forest};
+    background: ${COLORS.gold};
     color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 12px;
@@ -1016,7 +1022,7 @@ export const styles = `
   .form-success {
     padding: 20px 24px;
     background: ${COLORS.mint};
-    border: 1px solid ${COLORS.forest};
+    border: 1px solid ${COLORS.gold};
     border-radius: 4px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
@@ -1027,8 +1033,8 @@ export const styles = `
     align-items: center;
     gap: 6px;
     background: ${COLORS.mint};
-    border: 1px solid ${COLORS.forest};
-    color: ${COLORS.forest};
+    border: 1px solid ${COLORS.gold};
+    color: ${COLORS.gold};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 600;
@@ -1039,13 +1045,12 @@ export const styles = `
     margin-bottom: 20px;
   }
 
-  /* GIFT SECTION — parchment background, not dark */
+  /* GIFT SECTION — dark charcoal block, dusty rose accents */
   .gift-section {
     margin: 56px 0;
     padding: 48px;
-    background: ${COLORS.parchment};
+    background: ${COLORS.forest};
     border-radius: 4px;
-    border: 1px solid ${COLORS.border};
     position: relative;
     overflow: hidden;
   }
@@ -1053,14 +1058,14 @@ export const styles = `
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 80% 20%, rgba(184,127,160,0.1) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 80% 20%, rgba(184,127,160,0.12) 0%, transparent 60%);
   }
   .gift-eyebrow {
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: ${COLORS.sandstone};
+    color: ${COLORS.gold};
     margin-bottom: 12px;
     position: relative;
   }
@@ -1068,21 +1073,21 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 38px;
     font-weight: 400;
-    color: ${COLORS.text};
+    color: ${COLORS.cream};
     line-height: 1.1;
     margin-bottom: 16px;
     position: relative;
   }
   .gift-title em {
     font-style: italic;
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
   }
   .gift-desc {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 300;
     font-style: italic;
-    color: ${COLORS.sub};
+    color: rgba(248,244,240,0.7);
     margin-bottom: 32px;
     line-height: 1.6;
     max-width: 480px;
@@ -1101,12 +1106,11 @@ export const styles = `
   .gift-tag {
     font-family: 'Jost', sans-serif;
     font-size: 12px;
-    color: ${COLORS.forest};
-    border: 1px solid rgba(184,127,160,0.5);
+    color: ${COLORS.gold};
+    border: 1px solid rgba(184,127,160,0.4);
     padding: 6px 14px;
     border-radius: 20px;
     letter-spacing: 0.5px;
-    background: ${COLORS.white};
   }
   .gift-buttons {
     display: flex;
@@ -1115,7 +1119,7 @@ export const styles = `
     position: relative;
   }
   .gift-btn-primary {
-    background: ${COLORS.forest};
+    background: ${COLORS.gold};
     color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
@@ -1131,25 +1135,25 @@ export const styles = `
   .gift-btn-primary:hover { background: #a36d8e; }
   .gift-btn-secondary {
     background: transparent;
-    color: ${COLORS.forest};
+    color: ${COLORS.cream};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
     padding: 16px 32px;
-    border: 1px solid rgba(184,127,160,0.5);
+    border: 1px solid rgba(248,244,240,0.25);
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s;
   }
-  .gift-btn-secondary:hover { border-color: ${COLORS.forest}; }
+  .gift-btn-secondary:hover { border-color: rgba(248,244,240,0.6); }
 
   /* GIFT MODAL */
   .gift-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(184,127,160,0.85);
+    background: rgba(42,31,26,0.92);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1204,7 +1208,7 @@ export const styles = `
     text-align: center;
   }
   .gift-tier-option:hover { border-color: ${COLORS.sandstone}; }
-  .gift-tier-option.selected { border-color: ${COLORS.forest}; background: ${COLORS.mint}; }
+  .gift-tier-option.selected { border-color: ${COLORS.gold}; background: ${COLORS.mint}; }
   .gift-tier-price {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
@@ -1267,39 +1271,39 @@ export const styles = `
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
+    color: ${COLORS.gold};
     margin-bottom: 8px;
   }
   .gift-card-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
-    color: ${COLORS.white};
+    color: ${COLORS.cream};
     margin-bottom: 16px;
   }
   .gift-card-message {
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
     font-style: italic;
-    color: rgba(255,255,255,0.8);
+    color: rgba(248,244,240,0.75);
     line-height: 1.6;
     margin-bottom: 20px;
   }
   .gift-card-divider {
     height: 1px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(184,127,160,0.3);
     margin: 16px 0;
   }
   .gift-card-password {
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     letter-spacing: 3px;
-    color: rgba(255,255,255,0.7);
+    color: ${COLORS.gold};
     margin-bottom: 4px;
   }
   .gift-card-password-value {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
-    color: ${COLORS.white};
+    color: ${COLORS.cream};
     letter-spacing: 4px;
   }
 
@@ -1337,9 +1341,9 @@ export const styles = `
   }
   .lock-feature-tag {
     font-size: 13px;
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
     background: ${COLORS.mint};
-    border: 1px solid rgba(184,127,160,0.3);
+    border: 1px solid rgba(184,127,160,0.25);
     padding: 6px 16px;
     border-radius: 20px;
     font-family: 'Jost', sans-serif;
@@ -1363,7 +1367,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 36px;
     font-weight: 600;
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
     margin-bottom: 4px;
   }
   .lock-tier-name {
@@ -1381,7 +1385,7 @@ export const styles = `
   }
   .lock-btn {
     display: inline-block;
-    background: ${COLORS.forest};
+    background: ${COLORS.gold};
     color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 12px;
