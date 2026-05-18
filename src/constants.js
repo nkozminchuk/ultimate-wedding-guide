@@ -3,12 +3,12 @@
 // =============================================================================
 
 export const COLORS = {
-  forest:    "#3D2B22",  // warm dark cocoa — nav, headings, buttons (replaces green)
-  gold:      "#B87FA0",  // dusty rose — primary accent (replaces gold)
+  forest:    "#B87FA0",  // dusty rose — PRIMARY brand colour (nav, buttons, headings, accents)
+  gold:      "#B87FA0",  // dusty rose — same, used for tier badges & subsection titles
   sandstone: "#C9A07A",  // warm sand-gold — supporting accent (eyebrows, highlights)
   cream:     "#F8F4F0",  // warm cream — primary background
-  parchment: "#EDE5DF",  // warm parchment — card backgrounds
-  mint:      "#F0E6E2",  // soft blush — active states, highlighted rows (replaces mint)
+  parchment: "#EDE5DF",  // warm parchment — card backgrounds, gift section bg
+  mint:      "#F5EDF0",  // soft blush-pink — active/done states (replaces green mint)
   text:      "#2A2A2A",  // body text
   sub:       "#7A6060",  // muted warm grey — secondary text
   border:    "#E0D4CC",  // warm border
@@ -60,7 +60,7 @@ export const sectionMeta = {
   "van-photo":    { eyebrow: "Vancouver & Sea-to-Sky", title: "Photography & Videography", lead: "BC's landscapes -- ocean, forest, mountain -- reward photographers who truly know light. These are the best in the region.", icon: "photo" },
   "van-florists": { eyebrow: "Vancouver & Sea-to-Sky", title: "Florists", lead: "From lush romantic arrangements to organic, nature-inspired designs, Vancouver's florist community is exceptionally talented -- and many travel the Sea-to-Sky corridor.", icon: "florists" },
   "van-cakes":    { eyebrow: "Vancouver & Sea-to-Sky", title: "Cakes & Desserts", lead: "From modern minimalist tiered cakes to whimsical structural creations, Vancouver's bakers bring exceptional craft to your wedding table.", icon: "cakes" },
-  "van-dresses":  { eyebrow: "Vancouver", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding planning. Vancouver's bridal boutiques offer something for every style.", icon: "dresses" },
+  "van-dresses":  { eyebrow: "Vancouver", title: "Wedding Dresses", lead: "Finding your dress is one of the most magical moments of wedding painting. Vancouver's bridal boutiques offer something for every style.", icon: "dresses" },
   "van-hair":     { eyebrow: "Vancouver & Sea-to-Sky", title: "Hair & Makeup", lead: "The right artist makes you feel like yourself -- only more so. Vancouver's bridal beauty team is world-class, and most travel the Sea-to-Sky corridor.", icon: "hair" },
   "van-rentals":  { eyebrow: "Vancouver & Sea-to-Sky", title: "Event Rentals", lead: "From furniture and linens to custom builds and statement decor, these companies help bring your West Coast wedding vision to life.", icon: "venues" },
   "van-planners": { eyebrow: "Vancouver & Sea-to-Sky", title: "Wedding Planners", lead: "The right planner makes everything easier -- and in Vancouver's competitive wedding market, the best ones book years in advance. Here are the West Coast's finest.", icon: "coming" },
