@@ -278,26 +278,20 @@ export const styles = `
   }
 
   /* HAMBURGER */
-  .hamburger-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 16px 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: auto;
-  }
-  .hamburger-btn span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: rgba(247,243,236,0.7);
-    transition: all 0.2s;
-  }
-  .hamburger-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .hamburger-btn.open span:nth-child(2) { opacity: 0; }
-  .hamburger-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+ .hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 16px 4px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: rgba(247,243,236,0.7);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
 
   .mobile-menu {
     position: absolute;
