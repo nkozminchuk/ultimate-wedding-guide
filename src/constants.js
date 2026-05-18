@@ -3,18 +3,19 @@
 // =============================================================================
 
 export const COLORS = {
-  forest:    "#2C4A3E",
-  gold:      "#8B6914",
-  sandstone: "#C4956A",
-  cream:     "#F7F3EC",
-  parchment: "#EDE8DF",
-  mint:      "#E8F0ED",
-  text:      "#2A2A2A",
-  sub:       "#6B6B6B",
-  border:    "#D4C5A9",
+  forest:    "#2E2632",  // deep plum-charcoal — replaces forest green (headings, nav active, buttons)
+  gold:      "#A8738A",  // dusty rose — replaces gold (primary accent)
+  sandstone: "#C9A07A",  // warm sand-gold — supporting accent (eyebrows, italic highlights)
+  cream:     "#F8F4F0",  // warm cream — primary background (unchanged feel)
+  parchment: "#EDE5E0",  // warm parchment — card backgrounds, gift section
+  mint:      "#EDE0DC",  // soft blush — replaces mint (active states, highlighted rows)
+  text:      "#2A2A2A",  // body text (unchanged)
+  sub:       "#7A6870",  // muted rose-grey — replaces sub grey
+  border:    "#DDD4CC",  // warm border (unchanged feel)
   white:     "#FFFFFF",
 };
 
+// Add new tabs here. locked: true = requires guide password.
 export const tabs = [
   { id: "home",      label: "Home" },
   { id: "checklist", label: "Free Checklist" },
@@ -34,6 +35,7 @@ export const tabs = [
   { id: "coming",    label: "On Our Radar",     locked: true },
 ];
 
+// Controls the eyebrow, title, and lead paragraph at the top of each tab.
 export const sectionMeta = {
   home:      { eyebrow: "Canadian Rockies Edition", title: "The Ultimate Wedding Guide", lead: "" },
   why:       { eyebrow: "Behind the Guide", title: "Our Story", lead: "", icon: "story" },
