@@ -1896,7 +1896,7 @@ if (region === "vancouver") {
               <button className="nav-btn" style={{ padding: "16px 8px" }} onClick={() => { setActiveTab("van-home"); setShowMobileMenu(false); }}>Home</button>
               <button className="nav-gift-btn" style={{ margin: "0 8px" }} onClick={() => { setShowPasswordGate(true); setShowMobileMenu(false); }}>Buy the Guide</button>
               <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
-              <span /><span /><span />
+              THE GUIDE
               </button>
             </div>
             {showMobileMenu && (
@@ -2365,7 +2365,7 @@ if (region === "vancouver") {
               Gift the Guide
             </button>
             <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
-            <span /><span /><span />
+            THE GUIDE
             </button>
           </div>
 
