@@ -1894,8 +1894,7 @@ if (region === "vancouver") {
             {/* MOBILE */}
             <div className="nav-mobile" style={{ width: "100%", alignItems: "center", justifyContent: "space-between" }}>
               <button className="nav-btn" style={{ padding: "16px 8px" }} onClick={() => { setActiveTab("van-home"); setShowMobileMenu(false); }}>Home</button>
-              <button className="nav-gift-btn" style={{ margin: "0 8px" }} onClick={() => { setShowPasswordGate(true); setShowMobileMenu(false); }}>Buy the Guide</button>
-              <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
+<button className="nav-btn" style={{ padding: "16px 8px", opacity: 0.6, fontSize: 12 }} onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>← All Editions</button>              <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
               THE GUIDE
               </button>
             </div>
@@ -2361,9 +2360,7 @@ if (region === "vancouver") {
           {/* MOBILE NAV */}
           <div className="nav-mobile" style={{ width: "100%", alignItems: "center", justifyContent: "space-between" }}>
             <button className={`nav-btn ${activeTab === "home" ? "active" : ""}`} style={{ padding: "16px 8px" }} onClick={() => { setActiveTab("home"); setShowMobileMenu(false); }}>Home</button>
-            <button className="nav-gift-btn" style={{ margin: "0 8px" }} onClick={() => { setActiveTab("home"); setShowMobileMenu(false); setTimeout(() => document.querySelector(".gift-section")?.scrollIntoView({ behavior: "smooth" }), 100); }}>
-              Gift the Guide
-            </button>
+           <button className="nav-btn" style={{ padding: "16px 8px", opacity: 0.6, fontSize: 12 }} onClick={() => { setRegion(null); setShowMobileMenu(false); }}>← All Editions</button>
             <button className={`hamburger-btn ${showMobileMenu ? "open" : ""}`} onClick={() => setShowMobileMenu(!showMobileMenu)}>
             THE GUIDE
             </button>
