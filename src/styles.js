@@ -83,7 +83,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 72px;
     font-weight: 300;
-    color: ${COLORS.cream};
+    color: ${COLORS.white};
     line-height: 1.05;
     letter-spacing: -1px;
     position: relative;
@@ -99,7 +99,7 @@ export const styles = `
     font-size: 18px;
     font-weight: 300;
     font-style: italic;
-    color: rgba(248,244,240,0.7);
+    color: rgba(255,255,255,0.75);
     margin-top: 20px;
     letter-spacing: 1px;
     position: relative;
@@ -124,14 +124,14 @@ export const styles = `
     z-index: 3;
   }
 
-  /* NAV */
+  /* NAV — dusty rose background */
   .nav {
     background: ${COLORS.forest};
     padding: 0 40px;
     display: flex;
     align-items: center;
     gap: 0;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255,255,255,0.15);
     position: relative;
     z-index: 100;
   }
@@ -145,7 +145,7 @@ export const styles = `
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(248,244,240,0.55);
+    color: rgba(255,255,255,0.65);
     background: none;
     border: none;
     cursor: pointer;
@@ -156,10 +156,10 @@ export const styles = `
     align-items: center;
     gap: 6px;
   }
-  .nav-btn:hover { color: ${COLORS.sandstone}; }
+  .nav-btn:hover { color: ${COLORS.white}; }
   .nav-btn.active {
-    color: ${COLORS.sandstone};
-    border-bottom-color: ${COLORS.sandstone};
+    color: ${COLORS.white};
+    border-bottom-color: rgba(255,255,255,0.6);
   }
   .nav-btn .nav-arrow {
     font-size: 8px;
@@ -175,30 +175,30 @@ export const styles = `
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: ${COLORS.forest};
-    background: ${COLORS.sandstone};
-    border: none;
+    color: ${COLORS.white};
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
     border-radius: 2px;
     cursor: pointer;
     transition: background 0.2s;
     white-space: nowrap;
   }
-  .nav-gift-btn:hover { background: #d4a870; }
+  .nav-gift-btn:hover { background: rgba(255,255,255,0.3); }
   .nav-lock-btn {
     padding: 8px 14px;
     font-family: 'Jost', sans-serif;
     font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(248,244,240,0.3);
+    color: rgba(255,255,255,0.4);
     background: none;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 2px;
     cursor: pointer;
     margin-left: 8px;
     transition: all 0.2s;
   }
-  .nav-lock-btn:hover { color: rgba(248,244,240,0.6); }
+  .nav-lock-btn:hover { color: rgba(255,255,255,0.7); }
 
   /* DROPDOWN */
   .dropdown {
@@ -207,10 +207,10 @@ export const styles = `
     left: 0;
     background: ${COLORS.white};
     border: 1px solid ${COLORS.border};
-    border-top: 3px solid ${COLORS.sandstone};
+    border-top: 3px solid ${COLORS.forest};
     border-radius: 0 0 4px 4px;
     min-width: 220px;
-    box-shadow: 0 8px 32px rgba(61,43,34,0.12);
+    box-shadow: 0 8px 32px rgba(184,127,160,0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -242,7 +242,7 @@ export const styles = `
   }
   .dropdown-item:last-child { border-bottom: none; }
   .dropdown-item:hover {
-    background: ${COLORS.parchment};
+    background: ${COLORS.mint};
     color: ${COLORS.forest};
     padding-left: 22px;
   }
@@ -286,7 +286,7 @@ export const styles = `
     display: flex;
     align-items: center;
     margin-left: auto;
-    color: rgba(248,244,240,0.7);
+    color: rgba(255,255,255,0.8);
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -299,8 +299,8 @@ export const styles = `
     left: 0;
     right: 0;
     background: ${COLORS.forest};
-    border-top: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     z-index: 300;
     padding: 8px 0 16px;
   }
@@ -313,18 +313,18 @@ export const styles = `
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(248,244,240,0.6);
+    color: rgba(255,255,255,0.7);
     background: none;
     border: none;
     text-align: left;
     cursor: pointer;
     transition: all 0.15s;
   }
-  .mobile-menu-item:hover { color: ${COLORS.sandstone}; padding-left: 28px; }
-  .mobile-menu-item.active { color: ${COLORS.sandstone}; }
+  .mobile-menu-item:hover { color: ${COLORS.white}; padding-left: 28px; }
+  .mobile-menu-item.active { color: ${COLORS.white}; }
   .mobile-menu-item.gift {
     color: ${COLORS.forest};
-    background: ${COLORS.sandstone};
+    background: ${COLORS.white};
     margin: 8px 16px 4px;
     width: calc(100% - 32px);
     border-radius: 2px;
@@ -332,10 +332,10 @@ export const styles = `
     padding: 14px 24px;
     font-weight: 600;
   }
-  .mobile-menu-item.gift:hover { background: #d4a870; padding-left: 24px; }
+  .mobile-menu-item.gift:hover { background: ${COLORS.parchment}; padding-left: 24px; }
   .mobile-menu-divider {
     height: 1px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.1);
     margin: 8px 16px;
   }
   .mobile-menu-section {
@@ -344,16 +344,15 @@ export const styles = `
     font-size: 9px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: ${COLORS.sandstone};
-    opacity: 0.7;
+    color: rgba(255,255,255,0.5);
   }
 
-  /* FOOTER */
+  /* FOOTER — parchment background, not dark */
   .site-footer {
-    background: ${COLORS.forest};
+    background: ${COLORS.parchment};
     padding: 48px 60px;
     text-align: center;
-    border-top: 3px solid ${COLORS.sandstone};
+    border-top: 3px solid ${COLORS.forest};
     position: relative;
     overflow: hidden;
   }
@@ -361,14 +360,14 @@ export const styles = `
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(201,160,122,0.1) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 100%, rgba(184,127,160,0.08) 0%, transparent 60%);
   }
   .footer-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px;
     font-weight: 400;
     font-style: italic;
-    color: ${COLORS.cream};
+    color: ${COLORS.text};
     margin-bottom: 8px;
     position: relative;
   }
@@ -391,20 +390,20 @@ export const styles = `
   .footer-email {
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
-    color: ${COLORS.cream};
+    color: ${COLORS.forest};
     text-decoration: none;
-    border-bottom: 1px solid rgba(201,160,122,0.4);
+    border-bottom: 1px solid rgba(184,127,160,0.4);
     padding-bottom: 2px;
     transition: border-color 0.2s;
     position: relative;
   }
   .footer-email:hover {
-    border-color: ${COLORS.sandstone};
+    border-color: ${COLORS.forest};
   }
   .footer-copy {
     font-family: 'Jost', sans-serif;
     font-size: 11px;
-    color: rgba(248,244,240,0.3);
+    color: ${COLORS.sub};
     margin-top: 32px;
     letter-spacing: 1px;
     position: relative;
@@ -432,7 +431,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 48px;
     font-weight: 400;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     line-height: 1.1;
     margin-bottom: 20px;
   }
@@ -451,7 +450,7 @@ export const styles = `
   /* INFO BOX */
   .info-box {
     background: ${COLORS.mint};
-    border-left: 3px solid ${COLORS.gold};
+    border-left: 3px solid ${COLORS.forest};
     padding: 24px 28px;
     margin: 32px 0;
     border-radius: 0 4px 4px 0;
@@ -460,7 +459,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
     font-weight: 600;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 12px;
     letter-spacing: 0.5px;
   }
@@ -518,7 +517,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 500;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
   }
   .package-range {
     margin-left: auto;
@@ -577,7 +576,7 @@ export const styles = `
     transition: box-shadow 0.2s;
   }
   .vendor-card:hover {
-    box-shadow: 0 4px 20px rgba(61,43,34,0.08);
+    box-shadow: 0 4px 20px rgba(184,127,160,0.12);
   }
   .vendor-card-header {
     padding: 16px 22px 14px;
@@ -592,7 +591,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 600;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
   }
   .vendor-right {
     display: flex;
@@ -698,7 +697,7 @@ export const styles = `
   }
   .phase-badge {
     background: ${COLORS.forest};
-    color: ${COLORS.cream};
+    color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     letter-spacing: 2px;
@@ -711,7 +710,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 26px;
     font-weight: 500;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
   }
   .phase-progress {
     margin-left: auto;
@@ -736,10 +735,10 @@ export const styles = `
     background: white;
     border-color: ${COLORS.border};
   }
-  .check-item:hover { border-color: ${COLORS.sandstone}; }
+  .check-item:hover { border-color: ${COLORS.forest}; }
   .check-item.done {
     background: ${COLORS.mint};
-    border-color: ${COLORS.gold};
+    border-color: ${COLORS.forest};
     opacity: 0.75;
   }
   .check-box {
@@ -755,8 +754,8 @@ export const styles = `
     transition: all 0.15s;
   }
   .check-item.done .check-box {
-    background: ${COLORS.gold};
-    border-color: ${COLORS.gold};
+    background: ${COLORS.forest};
+    border-color: ${COLORS.forest};
   }
   .check-mark {
     color: white;
@@ -781,7 +780,7 @@ export const styles = `
   }
   .progress-bar {
     height: 100%;
-    background: linear-gradient(to right, ${COLORS.gold}, ${COLORS.sandstone});
+    background: linear-gradient(to right, ${COLORS.forest}, ${COLORS.sandstone});
     border-radius: 2px;
     transition: width 0.4s ease;
   }
@@ -808,7 +807,7 @@ export const styles = `
     font-size: 36px;
     font-weight: 400;
     font-style: italic;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 16px;
   }
   .coming-soon-sub {
@@ -850,13 +849,13 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 52px;
     font-weight: 400;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     line-height: 1.1;
     margin-bottom: 24px;
   }
   .landing-title em {
     font-style: italic;
-    color: ${COLORS.sandstone};
+    color: ${COLORS.forest};
   }
   .landing-body {
     font-family: 'Cormorant Garamond', serif;
@@ -871,8 +870,8 @@ export const styles = `
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: ${COLORS.gold};
-    color: ${COLORS.cream};
+    background: ${COLORS.forest};
+    color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -895,16 +894,6 @@ export const styles = `
     letter-spacing: 1px;
     color: ${COLORS.sub};
     margin-bottom: 48px;
-  }
-  .section-lead {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: ${COLORS.sub};
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid ${COLORS.border};
   }
   .landing-features {
     display: grid;
@@ -930,7 +919,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 600;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 4px;
   }
   .feature-desc {
@@ -947,7 +936,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 36px;
     font-weight: 400;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 8px;
   }
   .contact-sub {
@@ -993,7 +982,7 @@ export const styles = `
     width: 100%;
   }
   .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: ${COLORS.gold};
+    border-color: ${COLORS.forest};
   }
   .form-textarea {
     resize: vertical;
@@ -1001,7 +990,7 @@ export const styles = `
   }
   .form-select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A07A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B87FA0' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
     padding-right: 36px;
@@ -1010,7 +999,7 @@ export const styles = `
   .form-btn {
     align-self: flex-start;
     background: ${COLORS.forest};
-    color: ${COLORS.cream};
+    color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -1022,23 +1011,23 @@ export const styles = `
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
   }
-  .form-btn:hover { background: #2e1e16; }
+  .form-btn:hover { background: #a36d8e; }
   .form-btn:active { transform: scale(0.98); }
   .form-success {
     padding: 20px 24px;
     background: ${COLORS.mint};
-    border: 1px solid ${COLORS.gold};
+    border: 1px solid ${COLORS.forest};
     border-radius: 4px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
   }
   .free-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     background: ${COLORS.mint};
-    border: 1px solid ${COLORS.gold};
+    border: 1px solid ${COLORS.forest};
     color: ${COLORS.forest};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
@@ -1050,12 +1039,13 @@ export const styles = `
     margin-bottom: 20px;
   }
 
-  /* GIFT SECTION */
+  /* GIFT SECTION — parchment background, not dark */
   .gift-section {
     margin: 56px 0;
     padding: 48px;
-    background: ${COLORS.forest};
+    background: ${COLORS.parchment};
     border-radius: 4px;
+    border: 1px solid ${COLORS.border};
     position: relative;
     overflow: hidden;
   }
@@ -1063,7 +1053,7 @@ export const styles = `
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 80% 20%, rgba(201,160,122,0.15) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 80% 20%, rgba(184,127,160,0.1) 0%, transparent 60%);
   }
   .gift-eyebrow {
     font-family: 'Jost', sans-serif;
@@ -1078,21 +1068,21 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 38px;
     font-weight: 400;
-    color: ${COLORS.cream};
+    color: ${COLORS.text};
     line-height: 1.1;
     margin-bottom: 16px;
     position: relative;
   }
   .gift-title em {
     font-style: italic;
-    color: ${COLORS.sandstone};
+    color: ${COLORS.forest};
   }
   .gift-desc {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 300;
     font-style: italic;
-    color: rgba(248,244,240,0.7);
+    color: ${COLORS.sub};
     margin-bottom: 32px;
     line-height: 1.6;
     max-width: 480px;
@@ -1111,11 +1101,12 @@ export const styles = `
   .gift-tag {
     font-family: 'Jost', sans-serif;
     font-size: 12px;
-    color: ${COLORS.sandstone};
-    border: 1px solid rgba(201,160,122,0.4);
+    color: ${COLORS.forest};
+    border: 1px solid rgba(184,127,160,0.5);
     padding: 6px 14px;
     border-radius: 20px;
     letter-spacing: 0.5px;
+    background: ${COLORS.white};
   }
   .gift-buttons {
     display: flex;
@@ -1124,8 +1115,8 @@ export const styles = `
     position: relative;
   }
   .gift-btn-primary {
-    background: ${COLORS.sandstone};
-    color: ${COLORS.forest};
+    background: ${COLORS.forest};
+    color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 600;
@@ -1137,28 +1128,28 @@ export const styles = `
     cursor: pointer;
     transition: background 0.2s;
   }
-  .gift-btn-primary:hover { background: #d4a870; }
+  .gift-btn-primary:hover { background: #a36d8e; }
   .gift-btn-secondary {
     background: transparent;
-    color: ${COLORS.cream};
+    color: ${COLORS.forest};
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
     padding: 16px 32px;
-    border: 1px solid rgba(248,244,240,0.3);
+    border: 1px solid rgba(184,127,160,0.5);
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s;
   }
-  .gift-btn-secondary:hover { border-color: rgba(248,244,240,0.7); }
+  .gift-btn-secondary:hover { border-color: ${COLORS.forest}; }
 
   /* GIFT MODAL */
   .gift-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(61,43,34,0.92);
+    background: rgba(184,127,160,0.85);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1186,7 +1177,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 34px;
     font-weight: 400;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 8px;
     line-height: 1.1;
   }
@@ -1213,12 +1204,12 @@ export const styles = `
     text-align: center;
   }
   .gift-tier-option:hover { border-color: ${COLORS.sandstone}; }
-  .gift-tier-option.selected { border-color: ${COLORS.gold}; background: ${COLORS.mint}; }
+  .gift-tier-option.selected { border-color: ${COLORS.forest}; background: ${COLORS.mint}; }
   .gift-tier-price {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 600;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 4px;
   }
   .gift-tier-name {
@@ -1253,7 +1244,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px;
     font-weight: 400;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 12px;
   }
   .gift-success-sub {
@@ -1276,39 +1267,39 @@ export const styles = `
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: ${COLORS.sandstone};
+    color: rgba(255,255,255,0.7);
     margin-bottom: 8px;
   }
   .gift-card-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
-    color: ${COLORS.cream};
+    color: ${COLORS.white};
     margin-bottom: 16px;
   }
   .gift-card-message {
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
     font-style: italic;
-    color: rgba(248,244,240,0.7);
+    color: rgba(255,255,255,0.8);
     line-height: 1.6;
     margin-bottom: 20px;
   }
   .gift-card-divider {
     height: 1px;
-    background: rgba(201,160,122,0.3);
+    background: rgba(255,255,255,0.2);
     margin: 16px 0;
   }
   .gift-card-password {
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     letter-spacing: 3px;
-    color: ${COLORS.sandstone};
+    color: rgba(255,255,255,0.7);
     margin-bottom: 4px;
   }
   .gift-card-password-value {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
-    color: ${COLORS.cream};
+    color: ${COLORS.white};
     letter-spacing: 4px;
   }
 
@@ -1325,7 +1316,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 40px;
     font-weight: 400;
-    color: ${COLORS.forest};
+    color: ${COLORS.text};
     margin-bottom: 16px;
   }
   .lock-sub {
@@ -1347,8 +1338,8 @@ export const styles = `
   .lock-feature-tag {
     font-size: 13px;
     color: ${COLORS.forest};
-    background: ${COLORS.parchment};
-    border: 1px solid ${COLORS.border};
+    background: ${COLORS.mint};
+    border: 1px solid rgba(184,127,160,0.3);
     padding: 6px 16px;
     border-radius: 20px;
     font-family: 'Jost', sans-serif;
@@ -1391,7 +1382,7 @@ export const styles = `
   .lock-btn {
     display: inline-block;
     background: ${COLORS.forest};
-    color: ${COLORS.cream};
+    color: ${COLORS.white};
     font-family: 'Jost', sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -1404,7 +1395,7 @@ export const styles = `
     transition: background 0.2s;
     text-decoration: none;
   }
-  .lock-btn:hover { background: #2e1e16; }
+  .lock-btn:hover { background: #a36d8e; }
   .lock-note {
     margin-top: 16px;
     font-size: 13px;
