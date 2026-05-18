@@ -47,7 +47,7 @@ export const styles = `
 .cover-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(247,243,236,0.15) 0%, rgba(0,0,0,0.35) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%);
   z-index: 1;
 }
   .cover::before {
