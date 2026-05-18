@@ -3,15 +3,15 @@
 // =============================================================================
 
 export const COLORS = {
-  forest:    "#2E2632",  // deep plum-charcoal — replaces forest green (headings, nav active, buttons)
-  gold:      "#A8738A",  // dusty rose — replaces gold (primary accent)
-  sandstone: "#C9A07A",  // warm sand-gold — supporting accent (eyebrows, italic highlights)
-  cream:     "#F8F4F0",  // warm cream — primary background (unchanged feel)
-  parchment: "#EDE5E0",  // warm parchment — card backgrounds, gift section
-  mint:      "#EDE0DC",  // soft blush — replaces mint (active states, highlighted rows)
-  text:      "#2A2A2A",  // body text (unchanged)
-  sub:       "#7A6870",  // muted rose-grey — replaces sub grey
-  border:    "#DDD4CC",  // warm border (unchanged feel)
+  forest:    "#3D2B22",  // warm dark cocoa — nav, headings, buttons (replaces green)
+  gold:      "#B87FA0",  // dusty rose — primary accent (replaces gold)
+  sandstone: "#C9A07A",  // warm sand-gold — supporting accent (eyebrows, highlights)
+  cream:     "#F8F4F0",  // warm cream — primary background
+  parchment: "#EDE5DF",  // warm parchment — card backgrounds
+  mint:      "#F0E6E2",  // soft blush — active states, highlighted rows (replaces mint)
+  text:      "#2A2A2A",  // body text
+  sub:       "#7A6060",  // muted warm grey — secondary text
+  border:    "#E0D4CC",  // warm border
   white:     "#FFFFFF",
 };
 
