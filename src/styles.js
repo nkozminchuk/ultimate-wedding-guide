@@ -44,12 +44,12 @@ export const styles = `
     display: block;
     z-index: 0;
   }
-  .cover-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(44,74,62,0.75) 0%, rgba(44,74,62,0.88) 100%);
-    z-index: 1;
-  }
+.cover-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(247,243,236,0.15) 0%, rgba(0,0,0,0.35) 100%);
+  z-index: 1;
+}
   .cover::before {
     content: '';
     position: absolute;
