@@ -1,7 +1,7 @@
 // =============================================================================
 // DATA / BAR.JS — Mobile bar services (Calgary)
 // Field order: Setup → Pricing → Alcohol → Cocktails → Mocktails → Guest Count
-//   → AGLC → Licensed & Insured → Phone → Instagram → Website
+//   → AGLC → Licensed & Insured → Email → Phone → Instagram → Website
 // =============================================================================
 
 export const barData = [
@@ -14,6 +14,7 @@ export const barData = [
     { label: "Guest Count", value: "No minimum or maximum — 500+ bartenders on roster" },
     { label: "AGLC", value: "Can handle the liquor licence or guide couples through the process themselves" },
     { label: "Licensed & Insured", value: "Yes" },
+    { label: "Email", value: "blacktieandbourbon@gmail.com" },
     { label: "Instagram", value: "@blacktieandbourbonevents" },
   ]},
   { name: "In the Mix Bartending", tier: "$/$$", fields: [
@@ -23,6 +24,7 @@ export const barData = [
     { label: "Mocktails", value: "Yes — full mocktail menus available" },
     { label: "Guest Count", value: "No minimum or maximum — all event sizes welcome" },
     { label: "AGLC", value: "Handles licensing when supplying alcohol; client responsible if supplying own" },
+    { label: "Email", value: "inthemixcalgary@gmail.com" },
     { label: "Website", value: "inthemixcalgary.com", link: "https://www.inthemixcalgary.com" },
   ]},
   { name: "The Prosecco Cart Inc.", tier: "$/$$", fields: [
@@ -34,6 +36,7 @@ export const barData = [
     { label: "Guest Count", value: "No minimum or maximum" },
     { label: "AGLC", value: "Couple or venue is responsible for the liquor licence" },
     { label: "Licensed & Insured", value: "Yes" },
+    { label: "Email", value: "info@proseccocart.ca" },
     { label: "Instagram", value: "@theproseccocart" },
     { label: "Website", value: "proseccocart.ca", link: "https://www.proseccocart.ca" },
   ]},
@@ -45,6 +48,7 @@ export const barData = [
     { label: "Guest Count", value: "20–2,000 guests" },
     { label: "AGLC", value: "Client/venue responsible — easy online application at aglc.ca" },
     { label: "Insurance", value: "$5M general liability, WCB coverage, City of Calgary business licence" },
+    { label: "Email", value: "melissa@sudsandsodas.com" },
     { label: "Instagram", value: "@sudsandsodas" },
     { label: "Website", value: "sudsandsodas.com", link: "https://www.sudsandsodas.com" },
   ]},
