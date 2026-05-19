@@ -836,7 +836,7 @@ function GiftModal({ onClose, region }) {
   );
 }
 
-function LandingPage({ onBuy }) {
+function LandingPage({ onBuy, setRegion }) {
   const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -2482,7 +2482,7 @@ if (region === "vancouver") {
         )}
 
         {/* HOME */}
-        {activeTab === "home" && <LandingPage onBuy={() => setActiveTab("budget")} />}
+        {activeTab === "home" && <LandingPage onBuy={() => setActiveTab("budget")} setRegion={setRegion} />}
 
         {/* FREE CHECKLIST */}
         {activeTab === "checklist" && <ChecklistTab />}
