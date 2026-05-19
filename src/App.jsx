@@ -1724,9 +1724,22 @@ export default function App() {
               <div className="region-desc">From waterfront ceremonies and botanical gardens to mountain lodge escapes — everything you need to plan your perfect West Coast wedding.</div>
               <div className="region-cta">Explore the Guide →</div>
             </div>
+            {/* OKANAGAN — IN PROGRESS */}
+<div className="region-card coming" style={{ borderColor: "rgba(196,149,106,0.5)", background: "rgba(196,149,106,0.05)" }}>
+  <div className="region-badge" style={{ background: "rgba(196,149,106,0.15)", color: "#C4956A", border: "1px solid rgba(196,149,106,0.3)" }}>In Progress</div>
+  <div style={{ marginBottom: 16 }}>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(196,149,106,0.6)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+      <circle cx="12" cy="9" r="2.5"/>
+    </svg>
+  </div>
+  <div className="region-name">Okanagan</div>
+  <div className="region-cities">Kelowna · Penticton · Vernon</div>
+  <div className="region-desc">Vineyard ceremonies, orchard receptions, and stunning lake views. Wine country weddings done right.</div>
+  <button className="region-notify" onClick={e => { e.stopPropagation(); setNotifyCity("Okanagan"); setShowNotify(true); }}>Notify Me When Live</button>
+</div>
             {/* COMING SOON */}
             {[
-              { name: "Okanagan", cities: "Kelowna · Penticton · Vernon", desc: "Vineyard ceremonies, orchard receptions, and stunning lake views. Wine country weddings done right." },
               { name: "Toronto & Surroundings", cities: "Toronto · Muskoka · Niagara", desc: "Grand ballrooms, intimate restaurants, and lakeside escapes across Ontario's best wedding destinations." },
               { name: "Montreal", cities: "Montreal · Quebec City", desc: "Old world charm meets modern sophistication across francophone Canada's most romantic wedding destinations." },
               { name: "Ottawa", cities: "Ottawa · Gatineau", desc: "Canada's capital offers stunning heritage venues, beautiful gardens, and an intimate wedding scene." },
