@@ -1053,7 +1053,7 @@ function LandingPage({ onBuy, setRegion }) {
   );
 }
 
-function VancouverLandingPage({ onBuy }) {
+function VancouverLandingPage({ onBuy, setRegion }) {
   const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -1149,8 +1149,8 @@ function VancouverLandingPage({ onBuy }) {
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 12, marginBottom: 28 }}>
           {[
-            { city: "Canadian Rockies", region: "Alberta", status: "Available Now" },
-            { city: "Okanagan", region: "British Columbia", status: "Planned" },
+            { city: "Canadian Rockies", region: "Alberta", status: "Available Now", link: true },
+            { city: "Okanagan", region: "British Columbia", status: "In Progress" },
             { city: "Toronto", region: "Ontario", status: "Planned" },
             { city: "Muskoka", region: "Ontario", status: "Planned" },
             { city: "Montreal", region: "Quebec", status: "Planned" },
@@ -1170,7 +1170,20 @@ function VancouverLandingPage({ onBuy }) {
                 background: c.status === "Available Now" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
                 padding: "3px 10px", borderRadius: 20, marginBottom: 12, display: "block",
               }}>{c.status}</div>
-              {c.status !== "Available Now" && (
+              {c.link ? (
+  <button
+    onClick={() => { setRegion("rockies"); }}
+    style={{
+      width: "100%", fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
+      textTransform: "uppercase", color: "#FFFFFF", background: "#2C4A3E",
+      border: "1px solid #2C4A3E", borderRadius: 2, padding: "7px 12px", cursor: "pointer",
+    }}
+    onMouseOver={e => { e.currentTarget.style.background = "#C4956A"; e.currentTarget.style.borderColor = "#C4956A"; }}
+    onMouseOut={e => { e.currentTarget.style.background = "#2C4A3E"; e.currentTarget.style.borderColor = "#2C4A3E"; }}
+  >
+    View Guide →
+  </button>
+) : c.status !== "Available Now" && (
                 <button
                   onClick={() => { setNotifyCity(c.city); setShowNotify(true); }}
                   style={{
