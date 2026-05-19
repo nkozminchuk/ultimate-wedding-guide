@@ -2681,15 +2681,21 @@ if (region === "vancouver") {
                       <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: COLORS.forest, marginBottom: 4 }}>{b.name}</div>
                     </div>
                     <div style={{ padding: "16px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
-                      <div>
-                        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
-                        <div style={{ fontSize: 14, color: COLORS.text }}>{b.ig}</div>
-                      </div>
-                      <div>
-                        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
-                        <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
-                      </div>
-                    </div>
+  {b.email && (
+    <div>
+      <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Email</div>
+      <div style={{ fontSize: 14, color: COLORS.text }}>{b.email}</div>
+    </div>
+  )}
+  <div>
+    <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Instagram</div>
+    <a href={b.igLink} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.ig}</a>
+  </div>
+  <div>
+    <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 3 }}>Website</div>
+    <a href={b.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: COLORS.forest, textDecoration: "underline", textUnderlineOffset: 3 }}>{b.url}</a>
+  </div>
+</div>
                   </div>
                 ))}
               </div>
