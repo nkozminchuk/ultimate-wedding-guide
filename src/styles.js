@@ -136,7 +136,7 @@ export const styles = `
     position: relative;
   }
   .nav-btn {
-    padding: 16px 20px;
+    padding: 16px 14px;
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -166,7 +166,7 @@ export const styles = `
   .nav-item:hover .nav-arrow { transform: rotate(180deg); }
   .nav-gift-btn {
     margin-left: auto;
-    padding: 8px 20px;
+    padding: 8px 14px;
     font-family: 'Jost', sans-serif;
     font-size: 10px;
     font-weight: 600;
