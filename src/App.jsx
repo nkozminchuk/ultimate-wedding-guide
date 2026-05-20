@@ -1332,10 +1332,10 @@ function PasswordGate({ onSuccess }) {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const GUIDE_PASSWORD = "rockies2025";
-
+  const VALID_CODES = ["TX4R-AYAH-UDFJ"]; // Todd Kwiczak
   function handleSubmit(e) {
     e.preventDefault();
-    if (input.trim().toLowerCase() === GUIDE_PASSWORD) {
+    if (input.trim().toLowerCase() === GUIDE_PASSWORD || VALID_CODES.includes(input.trim().toUpperCase())) {
       onSuccess();
     } else {
       setError(true);
