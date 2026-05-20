@@ -1482,8 +1482,8 @@ function ChecklistTab() {
 // Replace TEAM_PHOTO and DUO_PHOTO with actual hosted image URLs
 // =============================================================================
 
-const TEAM_PHOTO = "https://your-hosted-image-url.com/smitten-team.jpg"; // replace with actual URL
-const DUO_PHOTO = "https://your-hosted-image-url.com/smitten-duo.jpg";   // replace with actual URL
+const TEAM_PHOTO = "/smitten2.jpg";
+const DUO_PHOTO = "/smitten1.jpg";
 
 const smittenQA = [
   {
@@ -1673,7 +1673,19 @@ const [openIndex, setOpenIndex] = useState(null);
         <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub, marginBottom: 6 }}>Follow Along</div>
         <a href="https://www.instagram.com/smittenevents" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: COLORS.sandstone, textDecoration: "none" }}>@smittenevents</a>
       </div>
-
+{/* PHOTO CREDIT */}
+<div style={{ textAlign: "center", padding: "16px 0", borderTop: `1px solid ${COLORS.border}`, marginTop: 0 }}>
+  <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub }}>
+    Photography by{" "}
+    <a href="https://christinepienaarphotography.com" target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone, textDecoration: "underline", textUnderlineOffset: 3 }}>
+      Christine Pienaar Photography
+    </a>
+    {" · "}
+    <a href="https://www.instagram.com/cpienaarphoto" target="_blank" rel="noopener noreferrer" style={{ color: COLORS.sandstone, textDecoration: "underline", textUnderlineOffset: 3 }}>
+      @cpienaarphoto
+    </a>
+  </div>
+</div>
     </div>
   );
 }
