@@ -46,7 +46,7 @@ import FindMyMatch from "./FindMyMatch";
 // COMPONENTS & APP
 // =============================================================================
 function VendorCard({ vendor }) {
-  const [open, setOpen] = (false);
+  const [open, setOpen] = useState(false);
   return (
     <div className="vendor-card">
       <div className="vendor-card-header" onClick={() => setOpen(!open)}>
@@ -152,8 +152,8 @@ function SimpleVendors({ vendors, pending, pendingLabel, infoTitle, infoItems })
 
 function ChecklistGate({ onUnlock }) {
   const [form, setForm] = ({ name: "", email: "" });
-  const [loading, setLoading] = (false);
-  const [error, setError] = ("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -311,8 +311,8 @@ function BudgetTracker() {
   };
 
   const [data, setData] = (loadData);
-  const [newCategory, setNewCategory] = ("");
-  const [saved, setSaved] = (false);
+  const [newCategory, setNewCategory] = useState("");
+  const [saved, setSaved] = useState(false);
 
   const save = (updated) => {
     try {
@@ -638,9 +638,9 @@ function VancouverBudgetGuide() {
 // ── NOTIFY MODAL ─────────────────────────────────────────────────────────────
 function NotifyModal({ cityName, onClose }) {
   const [form, setForm] = ({ name: "", email: "" });
-  const [loading, setLoading] = (false);
-  const [submitted, setSubmitted] = (false);
-  const [error, setError] = ("");
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -715,8 +715,8 @@ function NotifyModal({ cityName, onClose }) {
 function GiftModal({ onClose, region }) {
   const [step, setStep] = (1);
   const [giftForm, setGiftForm] = ({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
-  const [loading, setLoading] = (false);
-  const [error, setError] = ("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleGiftSubmit(e) {
     e.preventDefault();
@@ -838,12 +838,12 @@ function GiftModal({ onClose, region }) {
 
 function LandingPage({ onBuy, setRegion }) {
   const [form, setForm] = ({ name: "", email: "", type: "", message: "" });
-  const [submitted, setSubmitted] = (false);
-  const [loading, setLoading] = (false);
-  const [error, setError] = ("");
-  const [showGift, setShowGift] = (false);
-  const [showNotify, setShowNotify] = (false);
-  const [notifyCity, setNotifyCity] = ("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showGift, setShowGift] = useState(false);
+  const [showNotify, setShowNotify] = useState(false);
+  const [notifyCity, setNotifyCity] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -1055,12 +1055,12 @@ function LandingPage({ onBuy, setRegion }) {
 
 function VancouverLandingPage({ onBuy, setRegion }) {
   const [form, setForm] = ({ name: "", email: "", type: "", message: "" });
-  const [submitted, setSubmitted] = (false);
-  const [loading, setLoading] = (false);
-  const [error, setError] = ("");
-  const [showGift, setShowGift] = (false);
-  const [showNotify, setShowNotify] = (false);
-  const [notifyCity, setNotifyCity] = ("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showGift, setShowGift] = useState(false);
+  const [showNotify, setShowNotify] = useState(false);
+  const [notifyCity, setNotifyCity] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -1249,9 +1249,9 @@ function VancouverLandingPage({ onBuy, setRegion }) {
 }
 
 function LockScreen({ onUnlock }) {
-  const [purchasing, setPurchasing] = (false);
-  const [purchaseError, setPurchaseError] = ("");
-  const [showForm, setShowForm] = (false);
+  const [purchasing, setPurchasing] = useState(false);
+  const [purchaseError, setPurchaseError] = useState("");
+  const [showForm, setShowForm] = useState(false);
   const [form, setForm] = ({ name: "", email: "" });
 
   async function handlePurchase(e) {
@@ -1329,9 +1329,9 @@ function LockScreen({ onUnlock }) {
 }
 
 function PasswordGate({ onSuccess }) {
-  const [input, setInput] = ("");
-  const [error, setError] = (false);
-  const [loading, setLoading] = (false);
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -1470,7 +1470,7 @@ const vancouverGuideItems = [
 ];
 
 function ChecklistTab() {
-  const [unlocked, setUnlocked] = (false);
+  const [unlocked, setUnlocked] = useState(false);
   return (
     <div className="content">
       <div className="section-eyebrow">{sectionMeta.checklist.eyebrow}</div>
@@ -1587,7 +1587,7 @@ const smittenQA = [
 ];
 
 function SmittenQA() {
-const [openIndex, setOpenIndex] = (null);
+const [openIndex, setOpenIndex] = useState(null);
   
   return (
     <div className="content" style={{ maxWidth: 960 }}>
@@ -1705,14 +1705,13 @@ const [openIndex, setOpenIndex] = (null);
 }
 
 export default function App() {
-  const [region, setRegion] = (null);
+  const [region, setRegion] = useState(null);
   const [activeTab, setActiveTab] = ("home");
   const [unlocked, setUnlocked] = useState(false);
   const [showPasswordGate, setShowPasswordGate] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showNotify, setShowNotify] = useState(false);
   const [notifyCity, setNotifyCity] = useState("");
-  const [loading, setLoading] = useState(false); // eslint-disable-line no-unused-vars
   const meta = sectionMeta[activeTab] || sectionMeta["home"];
   const isLocked = tabs.find(t => t.id === activeTab)?.locked;
 
@@ -2010,7 +2009,6 @@ export default function App() {
     );
   }
 if (region === "vancouver") {
-    const VAN_PASSWORD = "VanS2S";
     const vanTabs = vancouverGuideItems.map(i => ({ id: i.id, label: i.label, locked: true }));
     const isVanLocked = vanTabs.find(t => t.id === activeTab)?.locked;
     const vanMeta = sectionMeta[activeTab] || sectionMeta["van-venues"];
@@ -2043,18 +2041,32 @@ if (region === "vancouver") {
               <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, marginBottom: 36, lineHeight: 1.6 }}>
                 Enter your guide password to access the full West Coast Edition.
               </p>
-              <form onSubmit={e => {
+              <form onSubmit={async e => {
                 e.preventDefault();
                 const val = e.target.querySelector("input").value.trim();
-                if (val === VAN_PASSWORD) {
-                  setUnlocked(true);
-                  setShowPasswordGate(false);
-                  setActiveTab("van-venues");
-                } else {
+                setLoading(true);
+                try {
+                  const res = await fetch("/.netlify/functions/validate-code", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code: val }),
+                  });
+                  const data = await res.json();
+                  if (data.valid) {
+                    setUnlocked(true);
+                    setShowPasswordGate(false);
+                    setActiveTab("van-venues");
+                  } else {
+                    e.target.querySelector("input").value = "";
+                    e.target.querySelector("input").style.borderColor = "#c0392b";
+                    setTimeout(() => { e.target.querySelector("input").style.borderColor = COLORS.border; }, 3000);
+                  }
+                } catch {
                   e.target.querySelector("input").value = "";
                   e.target.querySelector("input").style.borderColor = "#c0392b";
                   setTimeout(() => { e.target.querySelector("input").style.borderColor = COLORS.border; }, 3000);
                 }
+                setLoading(false);
               }} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 <input
                   type="password"
