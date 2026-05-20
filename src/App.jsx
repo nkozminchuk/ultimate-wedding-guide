@@ -2013,7 +2013,7 @@ if (region === "vancouver") {
     const vanTabs = vancouverGuideItems.map(i => ({ id: i.id, label: i.label, locked: true }));
     const isVanLocked = vanTabs.find(t => t.id === activeTab)?.locked;
     const vanMeta = sectionMeta[activeTab] || sectionMeta["van-venues"];
-
+    const [loading, setLoading] = useState(false);
     function handleVanTabClick(tab) {
       if (tab.locked && !unlocked) {
         setShowPasswordGate(true);
