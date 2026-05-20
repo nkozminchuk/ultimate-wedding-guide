@@ -1576,7 +1576,7 @@ function SmittenQA() {
 const [openIndex, setOpenIndex] = useState(null);
   
   return (
-    <div className="content" style={{ maxWidth: 780 }}>
+    <div className="content" style={{ maxWidth: 960 }}>
 
       {/* HEADER */}
       <div className="section-eyebrow">Expert Q&A</div>
@@ -2582,7 +2582,7 @@ if (region === "vancouver") {
               <button className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`} onClick={() => setActiveTab("checklist")}>Free Checklist</button>
             </div>
             <div className="nav-item">
-  <button className={`nav-btn ${activeTab === "ask-a-planner" ? "active" : ""}`} onClick={() => setActiveTab("ask-a-planner")}>Ask a Planner</button>
+  <button className={`nav-btn ${activeTab === "ask-a-planner" ? "active" : ""}`} onClick={() => setActiveTab("ask-a-planner")}>Expert Q&A</button>
 </div>
             <div className="nav-item">
               <button className={`nav-btn ${vancouverGuideItems.map(i=>i.id).includes(activeTab) ? "active" : ""}`}>
@@ -2625,7 +2625,7 @@ if (region === "vancouver") {
               <div className="mobile-menu-divider" />
               <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
               <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
-              <button className="mobile-menu-item" onClick={() => { setActiveTab("ask-a-planner"); setShowMobileMenu(false); }}>Ask a Planner</button>
+              <button className="mobile-menu-item" onClick={() => { setActiveTab("ask-a-planner"); setShowMobileMenu(false); }}>Expert Q&A</button>
               <div className="mobile-menu-divider" />
               <div className="mobile-menu-section">The Guide</div>
               {guideItems.map(item => (
