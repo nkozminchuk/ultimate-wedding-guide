@@ -1706,12 +1706,13 @@ const [openIndex, setOpenIndex] = useState(null);
 
 export default function App() {
   const [region, setRegion] = useState(null);
-  const [activeTab, setActiveTab] = ("home");
+  const [activeTab, setActiveTab] = useState("home");
   const [unlocked, setUnlocked] = useState(false);
   const [showPasswordGate, setShowPasswordGate] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showNotify, setShowNotify] = useState(false);
   const [notifyCity, setNotifyCity] = useState("");
+  const [loading, setLoading] = useState(false);
   const meta = sectionMeta[activeTab] || sectionMeta["home"];
   const isLocked = tabs.find(t => t.id === activeTab)?.locked;
 
