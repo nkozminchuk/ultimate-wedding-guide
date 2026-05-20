@@ -1573,8 +1573,8 @@ const smittenQA = [
 ];
 
 function SmittenQA() {
-  const [openIndex, setOpenIndex] = React.useState(null);
-
+const [openIndex, setOpenIndex] = useState(null);
+  
   return (
     <div className="content" style={{ maxWidth: 780 }}>
 
