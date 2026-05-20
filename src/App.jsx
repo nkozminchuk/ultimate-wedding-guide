@@ -1908,6 +1908,9 @@ if (region === "vancouver") {
 <div className="nav-item">
   <button className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`} onClick={() => setActiveTab("checklist")}>Free Checklist</button>
 </div>
+              <div className="nav-item">
+  <button className={`nav-btn ${activeTab === "ask-a-planner" ? "active" : ""}`} onClick={() => setActiveTab("ask-a-planner")}>Expert Q&A</button>
+</div>
 <div className="nav-item">
   <button className={`nav-btn ${vancouverGuideItems.map(i => i.id).includes(activeTab) ? "active" : ""}`}>
     The Guide <span className="nav-arrow">▼</span>
@@ -1946,6 +1949,7 @@ if (region === "vancouver") {
                 <div className="mobile-menu-divider" />
                 <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
                <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
+                <button className="mobile-menu-item" onClick={() => { setActiveTab("ask-a-planner"); setShowMobileMenu(false); }}>Expert Q&A</button>
                <div className="mobile-menu-divider" />
                 <div className="mobile-menu-section">The Guide</div>
                 {vancouverGuideItems.map(item => (
@@ -2020,6 +2024,7 @@ if (region === "vancouver") {
 
 {/* FREE CHECKLIST */}
 {activeTab === "checklist" && <ChecklistTab />}
+          {activeTab === "ask-a-planner" && <SmittenQA />}
           {/* VANCOUVER LOCKED */}
           {isVanLocked && !unlocked && (
             <LockScreen onUnlock={() => setShowPasswordGate(true)} />
@@ -2375,6 +2380,9 @@ if (region === "vancouver") {
               <button className={`nav-btn ${activeTab === "checklist" ? "active" : ""}`} onClick={() => setActiveTab("checklist")}>Free Checklist</button>
             </div>
             <div className="nav-item">
+  <button className={`nav-btn ${activeTab === "ask-a-planner" ? "active" : ""}`} onClick={() => setActiveTab("ask-a-planner")}>Ask a Planner</button>
+</div>
+            <div className="nav-item">
               <button className={`nav-btn ${vancouverGuideItems.map(i=>i.id).includes(activeTab) ? "active" : ""}`}>
                 The Guide <span className="nav-arrow">▼</span>
               </button>
@@ -2415,6 +2423,7 @@ if (region === "vancouver") {
               <div className="mobile-menu-divider" />
               <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
               <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
+              <button className="mobile-menu-item" onClick={() => { setActiveTab("ask-a-planner"); setShowMobileMenu(false); }}>Ask a Planner</button>
               <div className="mobile-menu-divider" />
               <div className="mobile-menu-section">The Guide</div>
               {guideItems.map(item => (
@@ -2499,7 +2508,7 @@ if (region === "vancouver") {
 
         {/* FREE CHECKLIST */}
         {activeTab === "checklist" && <ChecklistTab />}
-
+        {activeTab === "ask-a-planner" && <SmittenQA />}
         {/* LOCKED */}
         {isLocked && !unlocked && <LockScreen onUnlock={() => setShowPasswordGate(true)} />}
 
