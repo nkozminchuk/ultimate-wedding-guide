@@ -1476,6 +1476,208 @@ function ChecklistTab() {
   );
 }
 
+// =============================================================================
+// SMITTEN EVENTS Q&A COMPONENT
+// Paste this entire block into App.jsx ABOVE line 1450 (before export default function App)
+// Replace TEAM_PHOTO and DUO_PHOTO with actual hosted image URLs
+// =============================================================================
+
+const TEAM_PHOTO = "https://your-hosted-image-url.com/smitten-team.jpg"; // replace with actual URL
+const DUO_PHOTO = "https://your-hosted-image-url.com/smitten-duo.jpg";   // replace with actual URL
+
+const smittenQA = [
+  {
+    section: "About Smitten Events",
+    items: [
+      {
+        q: "What makes Smitten Events' approach to wedding planning unique?",
+        a: "Smitten Events is a boutique wedding and event planning firm based in Vancouver. Since 2013 we have planned hundreds of experience-rich events rooted in thoughtful hospitality, intentional design, and seamless execution throughout Vancouver, the Sea-to-Sky region, the Okanagan, and beyond. What makes our approach unique is the balance between thoughtful logistics and meaningful storytelling. We believe events should feel like a true reflection of the host — not a one-size-fits-all formula. We approach every planning decision — from venue flow to design details and guest experience — with intention, so the celebration feels cohesive, effortless, and deeply personal.",
+      },
+      {
+        q: "You plan weddings across Vancouver, the Sea-to-Sky, and the Okanagan — three very different regions. How does your planning approach change depending on where the wedding is?",
+        a: "Every location offers a different event experience, so our planning approach shifts based on the location and what a celebration requires. In Vancouver, weddings tend to be more urban and fast-paced, with a strong focus on timelines, vendor coordination, and navigating busy venues. In the Sea-to-Sky region, planning often centres on guest experience, with factors like transportation, accommodation, and mountain weather playing a significant role. In the Okanagan, weddings often feel like destination weekends — planning usually extends beyond the wedding day itself to include welcome events, winery experiences, and guest coordination across multiple days. No matter the location, our goal is always to create an event experience that feels seamless, personal, and enjoyable for everyone involved.",
+      },
+      {
+        q: "What drew you to wedding planning, and what keeps you passionate about it after all these years?",
+        a: "Wedding planning combines the elements we love most in events: design, logistics, hospitality, storytelling, and creating meaningful experiences. What continues to inspire us is how wedding celebrations bring together family, culture, and community in such a powerful way. A wedding is one of the only times in your life where you get to gather all your loved ones together — and that's a big deal. No matter how many weddings we plan, there is something incredibly rewarding about watching a couple feel fully present on such a momentous day.",
+      },
+    ],
+  },
+  {
+    section: "Vancouver & Sea-to-Sky",
+    items: [
+      {
+        q: "What makes Vancouver such a special place to get married?",
+        a: "Vancouver offers couples an incredible mix of natural beauty, world-class hospitality, and sophisticated event spaces. Within a single wedding weekend, couples can host waterfront events, mountain-view ceremonies, and elegant receptions in the heart of the city. What couples need to know is that top Vancouver venues and vendors book far in advance, particularly during peak wedding season. The city also requires thoughtful planning around traffic, accessibility, and weather — even summer weddings need a strong rain plan and a timeline built with flexibility in mind.",
+      },
+      {
+        q: "The Sea-to-Sky corridor has exploded in popularity for weddings. What do you love most about working in that region?",
+        a: "What we love about Sea-to-Sky weddings is how immersive they feel. Weddings naturally become full experiences and encourage guests to slow down, stay for the weekend, and truly connect with the environment. What surprises couples most is how logistics-driven Sea-to-Sky weddings can be behind the scenes. Vendor travel, accommodation availability, shuttle timing, weather shifts, and remote venue access all require careful coordination. In order for a celebration to feel relaxed and effortless for guests, incredibly detailed planning is required behind the scenes.",
+      },
+      {
+        q: "Many Sea-to-Sky venues require couples to work with planners from an approved list. What advice do you have for couples navigating those requirements?",
+        a: "Working with a planner who understands a venue — along with their layout, policies, vendor access, and event flow — can make a big difference to a seamless planning experience. Our advice is to look at venue-recommended planners and vendors as an advantage. Vendors with strong venue familiarity can anticipate challenges early, streamline communication, and create a much smoother event overall.",
+      },
+      {
+        q: "What is the biggest logistical challenge unique to Sea-to-Sky weddings that couples often don't anticipate?",
+        a: "Transportation and timing are usually the biggest surprises. Travel between venues, hotels, and mountain towns almost always takes longer than guests expect, especially during peak weekends in the winter or summer months. For weddings in Whistler, Squamish, or Pemberton, transportation planning becomes a major part of the guest experience. Shuttle schedules, vendor load-ins, parking limitations, and weather conditions all need to be carefully managed to keep events flowing smoothly.",
+      },
+    ],
+  },
+  {
+    section: "Okanagan",
+    items: [
+      {
+        q: "The Okanagan is having a real moment as a wedding destination. What makes it so special?",
+        a: "The Okanagan offers couples a destination wedding atmosphere while still feeling accessible for guests traveling within BC or Canada. The combination of vineyards, lake views, and relaxed luxury creates a setting that naturally lends itself to multi-day celebrations. The Okanagan is well suited to couples who prioritize guest experience and want their wedding to feel immersive and welcoming.",
+      },
+      {
+        q: "What should couples know before booking a vineyard or winery as their venue?",
+        a: "Winery weddings are stunning, but they often come with unique operational considerations. Many venues have strict rules around guest capacity, event timing, transportation, and outdoor setup requirements. Couples also need to be aware of weather and guest comfort — summer heat in the Okanagan can be intense, particularly during outdoor ceremonies and cocktail hours. Shade structures, hydration stations, transportation planning, and realistic timelines make a significant difference in how guests experience the celebration.",
+      },
+      {
+        q: "How does the Okanagan vendor landscape compare to Vancouver?",
+        a: "There are some great vendors in the Okanagan, but the vendor pool is smaller than Vancouver's and availability becomes limited during peak season. Couples should prioritize booking their planner, venue, photographer, rental company, and transportation team as early as possible. Most Vancouver vendors will travel to the Okanagan for weddings, but keep in mind that additional travel and accommodation fees will apply.",
+      },
+    ],
+  },
+  {
+    section: "Planning Wisdom",
+    items: [
+      {
+        q: "What is the single biggest mistake couples make when planning a West Coast wedding?",
+        a: "One of the biggest mistakes couples make is prioritizing aesthetics before thinking through the logistics of the overall wedding experience. Design is an important part of creating a beautiful celebration, but what guests remember most is how the wedding felt. Realistic timelines, weather contingencies, and an experienced vendor team all play a huge role in creating a seamless event. The weddings that feel the most relaxed and effortless are almost always the ones where logistics were considered just as carefully as the visual details from the very beginning.",
+      },
+      {
+        q: "When should couples book their wedding planner relative to other vendors?",
+        a: "Ideally, couples should hire their wedding planner near the beginning of the process — often before booking most major vendors. A planner helps guide foundational decisions that impact every part of a wedding, including venue selection, budget allocation, vendor recommendations, and guest experience. Bringing a planner in early creates a much more cohesive planning experience and often helps couples avoid costly or stressful decisions later.",
+      },
+      {
+        q: "What is the most underrated vendor category that couples consistently forget about until it's too late?",
+        a: "Rentals are often one of the most underestimated elements of wedding planning, especially for tented or blank-space venues. Many couples do not realize how much cost and planning goes into creating a fully functional event space beyond tables and chairs. Lighting, lounge furniture, tabletop items, generators, flooring, catering tents, and washrooms all play a major role in both the guest experience and the overall design.",
+      },
+      {
+        q: "Full planning vs. day-of coordination — how do couples know which one is right for them?",
+        a: "One of the biggest misconceptions in the wedding industry is the idea of 'day-of coordination.' In reality, there is no such thing as coordinating a wedding by stepping in on the wedding day alone. Proper coordination requires months of preparation, timeline creation, vendor communication, logistics management, and final oversight leading up to the event. For couples deciding between full planning and coordination support, the real question is how much guidance they want throughout the planning process. Full planning is ideal for couples who want comprehensive support from start to finish. Wedding coordination is best suited to couples who want to manage most of the planning themselves but still need a professional to take over logistics and execution in the final weeks.",
+      },
+      {
+        q: "What does a truly stress-free wedding day look like from a planner's perspective?",
+        a: "A truly stress-free wedding day is one where the couple never has to think about logistics, timelines, or problem-solving. They are fully immersed in the celebration and can spend meaningful time with their guests. Behind the scenes, this level of ease comes from months of preparation, detailed production timelines, and constant coordination with vendors throughout the day. Our team monitors timing, directs setup, oversees transitions, and problem-solves quietly to ensure that every moving piece stays aligned without the couple needing to step in.",
+      },
+      {
+        q: "What is one piece of advice you wish every couple knew before they started planning?",
+        a: "Many couples underestimate how directly tied their overall budget is to the number of guests attending. Catering, rentals, florals, stationery, staffing, and venue requirements all scale with guest count — often much faster than expected. Sometimes simplifying a guest list can completely transform an experience. A more intentional guest count often creates room in the budget for the elements couples care most about, while also allowing the celebration to feel more personal, relaxed, and connected. The most memorable weddings are not necessarily the largest or most elaborate. They are the ones that feel thoughtful, welcoming, and genuinely reflective of the couple hosting them.",
+      },
+    ],
+  },
+];
+
+function SmittenQA() {
+  const [openIndex, setOpenIndex] = React.useState(null);
+
+  return (
+    <div className="content" style={{ maxWidth: 780 }}>
+
+      {/* HEADER */}
+      <div className="section-eyebrow">Expert Q&A</div>
+      <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42, fontWeight: 400, color: COLORS.forest, lineHeight: 1.1, marginBottom: 8 }}>
+        Planning Wisdom from<br /><em style={{ color: COLORS.sandstone }}>Smitten Events</em>
+      </h1>
+      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.7, maxWidth: 580, marginBottom: 40 }}>
+        Since 2013, Smitten Events has planned hundreds of weddings across Vancouver, the Sea-to-Sky corridor, and the Okanagan. We asked them everything — and they answered.
+      </p>
+
+      {/* TEAM PHOTO */}
+      <div style={{ borderRadius: 6, overflow: "hidden", marginBottom: 40, position: "relative" }}>
+        <img src={TEAM_PHOTO} alt="Smitten Events Team" style={{ width: "100%", height: 420, objectFit: "cover", objectPosition: "center top", display: "block" }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top, rgba(44,74,62,0.85) 0%, transparent 100%)", padding: "32px 28px 24px" }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "rgba(247,243,236,0.7)", marginBottom: 4 }}>Vancouver · Sea-to-Sky · Okanagan</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 600, color: "#F7F3EC" }}>The Smitten Events Team</div>
+        </div>
+      </div>
+
+      {/* PULL QUOTE */}
+      <div style={{
+        background: COLORS.parchment,
+        borderLeft: `3px solid ${COLORS.sandstone}`,
+        borderRadius: "0 4px 4px 0",
+        padding: "28px 32px",
+        marginBottom: 48,
+      }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontStyle: "italic", fontWeight: 400, color: COLORS.forest, lineHeight: 1.6, margin: 0, marginBottom: 12 }}>
+          "The most memorable weddings are not necessarily the largest or most elaborate. They are the ones that feel thoughtful, welcoming, and genuinely reflective of the couple hosting them."
+        </p>
+        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone }}>Smitten Events</div>
+      </div>
+
+      {/* Q&A SECTIONS */}
+      {smittenQA.map((section, si) => (
+        <div key={si} style={{ marginBottom: 48 }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 20, paddingBottom: 12, borderBottom: `1px solid ${COLORS.border}` }}>
+            {section.section}
+          </div>
+          {section.items.map((item, qi) => {
+            const key = `${si}-${qi}`;
+            const isOpen = openIndex === key;
+            return (
+              <div key={qi} style={{ borderBottom: `1px solid ${COLORS.border}`, marginBottom: 0 }}>
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : key)}
+                  style={{
+                    width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
+                    padding: "18px 0", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16,
+                  }}
+                >
+                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 600, color: COLORS.forest, lineHeight: 1.4, flex: 1 }}>
+                    {item.q}
+                  </span>
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 18, color: COLORS.sandstone, flexShrink: 0, marginTop: 2, transition: "transform 0.2s", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}>+</span>
+                </button>
+                {isOpen && (
+                  <div style={{ paddingBottom: 20, paddingRight: 32 }}>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, color: COLORS.text, lineHeight: 1.75, margin: 0 }}>
+                      {item.a}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+
+      {/* DUO PHOTO + CTA */}
+      <div style={{ borderRadius: 6, overflow: "hidden", marginTop: 16, marginBottom: 40, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+        <img src={DUO_PHOTO} alt="Smitten Events Founders" style={{ width: "100%", height: 360, objectFit: "cover", objectPosition: "center", display: "block" }} />
+        <div style={{ background: COLORS.forest, padding: "40px 36px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "rgba(247,243,236,0.6)", marginBottom: 12 }}>Based in Vancouver</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 26, fontWeight: 400, color: "#F7F3EC", lineHeight: 1.3, marginBottom: 16 }}>
+            Ready to start planning your West Coast wedding?
+          </div>
+          <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontStyle: "italic", color: "rgba(247,243,236,0.75)", lineHeight: 1.6, marginBottom: 28 }}>
+            Smitten Events offers full planning and coordination services across Vancouver, Sea-to-Sky, and the Okanagan.
+          </p>
+          <a href="https://www.smittenevents.ca" target="_blank" rel="noopener noreferrer" style={{
+            display: "inline-block", fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
+            textTransform: "uppercase", color: COLORS.forest, background: COLORS.sandstone,
+            border: "none", borderRadius: 2, padding: "12px 20px", cursor: "pointer", textDecoration: "none",
+            alignSelf: "flex-start",
+          }}>
+            Visit Smitten Events →
+          </a>
+        </div>
+      </div>
+
+      {/* INSTAGRAM HANDLE */}
+      <div style={{ textAlign: "center", padding: "24px 0", borderTop: `1px solid ${COLORS.border}` }}>
+        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub, marginBottom: 6 }}>Follow Along</div>
+        <a href="https://www.instagram.com/smittenevents" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: COLORS.sandstone, textDecoration: "none" }}>@smittenevents</a>
+      </div>
+
+    </div>
+  );
+}
+
 export default function App() {
   const [region, setRegion] = useState(null);
   const [activeTab, setActiveTab] = useState("home");
