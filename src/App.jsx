@@ -1331,17 +1331,31 @@ function LockScreen({ onUnlock }) {
 function PasswordGate({ onSuccess }) {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-  const GUIDE_PASSWORD = "rockies2025";
-  const VALID_CODES = ["TX4R-AYAH-UDFJ"]; // Todd Kwiczak
-  function handleSubmit(e) {
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (input.trim().toLowerCase() === GUIDE_PASSWORD || VALID_CODES.includes(input.trim().toUpperCase())) {
-      onSuccess();
-    } else {
+    setLoading(true);
+    try {
+      const res = await fetch("/.netlify/functions/validate-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: input.trim() }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        onSuccess();
+      } else {
+        setError(true);
+        setInput("");
+        setTimeout(() => setError(false), 3000);
+      }
+    } catch (err) {
       setError(true);
       setInput("");
       setTimeout(() => setError(false), 3000);
     }
+    setLoading(false);
   }
 
   return (
@@ -1381,14 +1395,14 @@ function PasswordGate({ onSuccess }) {
               Incorrect password. Please try again.
             </p>
           )}
-          <button type="submit" style={{
+          <button type="submit" disabled={loading} style={{
             background: COLORS.forest, color: COLORS.cream,
             fontFamily: "'Jost', sans-serif", fontSize: 11,
             fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
             padding: "16px 32px", border: "none", borderRadius: 2,
             cursor: "pointer", transition: "background 0.2s"
           }}>
-            Unlock Guide
+            {loading ? "Checking..." : "Unlock Guide"}
           </button>
         </form>
         <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
@@ -2054,14 +2068,14 @@ if (region === "vancouver") {
                     transition: "border-color 0.2s"
                   }}
                 />
-                <button type="submit" style={{
+                <button type="submit" disabled={loading} style={{
                   background: COLORS.forest, color: COLORS.cream,
                   fontFamily: "'Jost', sans-serif", fontSize: 11,
                   fontWeight: 500, letterSpacing: 3, textTransform: "uppercase",
                   padding: "16px 32px", border: "none", borderRadius: 2,
                   cursor: "pointer"
                 }}>
-                  Unlock Guide
+                  {loading ? "Checking..." : "Unlock Guide"}
                 </button>
               </form>
               <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
