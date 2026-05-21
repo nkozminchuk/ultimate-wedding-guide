@@ -151,7 +151,7 @@ function SimpleVendors({ vendors, pending, pendingLabel, infoTitle, infoItems })
 }
 
 function ChecklistGate({ onUnlock }) {
-  const [form, setForm] = ({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -231,7 +231,7 @@ function ChecklistGate({ onUnlock }) {
 
 function Checklist() {
   const total = checklistData.reduce((a, p) => a + p.items.length, 0);
-  const [checked, setChecked] = ({});
+  const [checked, setChecked] = useState({});
   const doneCount = Object.values(checked).filter(Boolean).length;
   const pct = Math.round((doneCount / total) * 100);
 
@@ -310,7 +310,7 @@ function BudgetTracker() {
     return { totalBudget: "", rows: DEFAULT_CATEGORIES };
   };
 
-  const [data, setData] = (loadData);
+  const [data, setData] = useState(loadData);
   const [newCategory, setNewCategory] = useState("");
   const [saved, setSaved] = useState(false);
 
@@ -637,7 +637,7 @@ function VancouverBudgetGuide() {
 
 // ── NOTIFY MODAL ─────────────────────────────────────────────────────────────
 function NotifyModal({ cityName, onClose }) {
-  const [form, setForm] = ({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "" });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -713,8 +713,8 @@ function NotifyModal({ cityName, onClose }) {
 }
 
 function GiftModal({ onClose, region }) {
-  const [step, setStep] = (1);
-  const [giftForm, setGiftForm] = ({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
+  const [step, setStep] = useState(1);
+  const [giftForm, setGiftForm] = useState({ recipientName: "", recipientEmail: "", senderName: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -837,7 +837,7 @@ function GiftModal({ onClose, region }) {
 }
 
 function LandingPage({ onBuy, setRegion }) {
-  const [form, setForm] = ({ name: "", email: "", type: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -1054,7 +1054,7 @@ function LandingPage({ onBuy, setRegion }) {
 }
 
 function VancouverLandingPage({ onBuy, setRegion }) {
-  const [form, setForm] = ({ name: "", email: "", type: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", type: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -1252,7 +1252,7 @@ function LockScreen({ onUnlock }) {
   const [purchasing, setPurchasing] = useState(false);
   const [purchaseError, setPurchaseError] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = ({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "" });
 
   async function handlePurchase(e) {
     e.preventDefault();
@@ -2009,18 +2009,19 @@ export default function App() {
       </>
     );
   }
-if (region === "vancouver") {
+function handleVanTabClick(tab) {
+    if (tab.locked && !unlocked) {
+      setShowPasswordGate(true);
+    } else {
+      setActiveTab(tab.id);
+    }
+    setShowMobileMenu(false);
+  }
+
+  if (region === "vancouver") {
     const vanTabs = vancouverGuideItems.map(i => ({ id: i.id, label: i.label, locked: true }));
     const isVanLocked = vanTabs.find(t => t.id === activeTab)?.locked;
     const vanMeta = sectionMeta[activeTab] || sectionMeta["van-venues"];
-    function handleVanTabClick(tab) {
-      if (tab.locked && !unlocked) {
-        setShowPasswordGate(true);
-      } else {
-        setActiveTab(tab.id);
-      }
-      setShowMobileMenu(false);
-    }
 
     return (
       <>
