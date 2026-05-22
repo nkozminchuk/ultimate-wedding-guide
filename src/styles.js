@@ -552,7 +552,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 500;
-    color: ${COLORS.gold};
+    color: ${COLORS.forest};
     margin: 48px 0 24px;
     padding-bottom: 12px;
     border-bottom: 1px solid ${COLORS.border};
