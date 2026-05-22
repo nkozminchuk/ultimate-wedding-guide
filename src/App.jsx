@@ -3068,8 +3068,8 @@ function handleVanTabClick(tab) {
           )}
         )}
 
-          </div>{/* end .content */}
-          </div>{/* end parallax wrapper */}
+          </div>
+          </div>
 
         {/* FOOTER */}
         <footer className="site-footer">
