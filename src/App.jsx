@@ -3066,10 +3066,9 @@ function handleVanTabClick(tab) {
               </div>
             </div>
           )}
+        </div>
+        </div>
         )}
-
-          </div>
-          </div>
 
         {/* FOOTER */}
         <footer className="site-footer">
