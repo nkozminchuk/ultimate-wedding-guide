@@ -113,6 +113,24 @@ export const vancouverHairMakeupData = [
     { label: "Instagram", value: "@beautyenroute" },
     { label: "Website", value: "beautyenroute.ca", link: "https://beautyenroute.ca" },
   ]},
+
+  { name: "Colleen Conroy Makeup", tier: "$$", fields: [
+    { label: "Services", value: "Hair & makeup" },
+    { label: "Style", value: "Natural, romantic, soft glam -- the 'you-just-enhanced' version of yourself; highlights what's already there so brides feel confident, comfortable, and completely themselves; adapts to each bride's vision with a focus on looking beautiful both in person and through the lens" },
+    { label: "Travel", value: "Mobile -- travels to venue; based in Whistler, primarily serves Squamish, Whistler, and Pemberton; available for destination weddings; travel fees calculated per km (there and back); accommodation the evening before required for services outside the Sea-to-Sky Corridor or before 5:30 AM" },
+    { label: "Capacity", value: "Solo: up to 3 people for 2 services each (6 individual services total); team of assistants available for larger bridal parties" },
+    { label: "Products", value: "Wide variety of professional brands, thoroughly tested for ease of use, quality, and longevity; allergies and sensitivities discussed before every appointment" },
+    { label: "Airbrush", value: "Yes -- always recommended" },
+    { label: "Pricing", value: "Mon–Thu: from $650 (without trial) / $1,050 (with trial) · Fri & Sun: from $1,050 (without trial) / $1,450 (with trial) · Saturday: from $1,700 (without trial) / $2,100 (with trial) · 30% non-refundable deposit required · full pricing: colleenconroymakeup.com/2026-service-menu" },
+    { label: "Trial", value: "Optional (not required); reserved for booked clients; held mid-week at a studio in Whistler or at client's accommodation/residence; day-before trials available (aligns well with welcome parties and rehearsals); recommended 1–3 months before the wedding; approximately 2.5 hours" },
+    { label: "Booking", value: "Book as early as possible -- artists book up to 12 months in advance; inquiry form at colleenconroymakeup.com/booknow" },
+    { label: "Touch-ups", value: "Yes -- available throughout the day and evening; priced according to individual needs" },
+    { label: "Insurance", value: "Yes" },
+    { label: "Note", value: "Colleen also offers a Bridal Beauty Prep Guide ($47) -- a resource built from 20+ years of industry experience walking brides through everything they need to do in the months before their wedding to look and feel their absolute best.", full: true },
+    { label: "Email", value: "info@colleenconroymakeup.com" },
+    { label: "Instagram", value: "@colleenconroymakeup" },
+    { label: "Website", value: "colleenconroymakeup.com", link: "https://www.colleenconroymakeup.com" },
+  ]},
 ];
 
 export const vancouverHairMakeupPending = [
