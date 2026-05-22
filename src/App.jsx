@@ -3066,7 +3066,6 @@ function handleVanTabClick(tab) {
               </div>
             </div>
           )}
-        </div>
         )}
 
           </div>{/* end .content */}
