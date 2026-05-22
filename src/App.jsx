@@ -2756,7 +2756,27 @@ function handleVanTabClick(tab) {
 
         {/* UNLOCKED CONTENT */}
         {isLocked && unlocked && (
-          <div className="content">
+          <div style={{ position: "relative" }}>
+            {meta.bgPhoto && (
+              <>
+                <div style={{
+                  position: "fixed",
+                  inset: 0,
+                  backgroundImage: `url(${meta.bgPhoto})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundAttachment: "fixed",
+                  zIndex: 0,
+                }} />
+                <div style={{
+                  position: "fixed",
+                  inset: 0,
+                  background: "rgba(248,244,240,0.82)",
+                  zIndex: 1,
+                }} />
+              </>
+            )}
+          <div className="content" style={{ position: "relative", zIndex: 2 }}>
             <div className="section-eyebrow">{meta.eyebrow}</div>
             <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
               <Icon name={meta.icon} color={COLORS.sandstone} size={36} />
@@ -3048,6 +3068,9 @@ function handleVanTabClick(tab) {
           )}
         </div>
         )}
+
+          </div>{/* end .content */}
+          </div>{/* end parallax wrapper */}
 
         {/* FOOTER */}
         <footer className="site-footer">
