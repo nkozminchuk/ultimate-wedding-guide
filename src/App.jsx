@@ -2774,6 +2774,21 @@ function handleVanTabClick(tab) {
                   background: "rgba(248,244,240,0.82)",
                   zIndex: 1,
                 }} />
+                {meta.bgPhotoCredit && (
+                  <div style={{
+                    position: "fixed",
+                    bottom: 12,
+                    left: 16,
+                    zIndex: 10,
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: 10,
+                    letterSpacing: 1,
+                    color: "rgba(42,31,26,0.5)",
+                    pointerEvents: "none",
+                  }}>
+                    {meta.bgPhotoCredit}
+                  </div>
+                )}
               </>
             )}
           <div className="content" style={{ position: "relative", zIndex: 2 }}>
