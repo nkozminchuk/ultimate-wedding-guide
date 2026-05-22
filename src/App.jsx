@@ -2760,23 +2760,22 @@ function handleVanTabClick(tab) {
             {meta.bgPhoto && (
               <>
                 <div style={{
-                  position: "fixed",
+                  position: "absolute",
                   inset: 0,
                   backgroundImage: `url(${meta.bgPhoto})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                  backgroundAttachment: "fixed",
                   zIndex: 0,
                 }} />
                 <div style={{
-                  position: "fixed",
+                  position: "absolute",
                   inset: 0,
                   background: "rgba(248,244,240,0.82)",
                   zIndex: 1,
                 }} />
                 {meta.bgPhotoCredit && (
                   <div style={{
-                    position: "fixed",
+                    position: "absolute",
                     bottom: 12,
                     left: 16,
                     zIndex: 10,
