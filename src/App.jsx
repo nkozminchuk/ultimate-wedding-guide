@@ -2807,7 +2807,7 @@ function handleVanTabClick(tab) {
                 <div style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: 28, fontWeight: 500,
-                  color: COLORS.gold,
+                  color: COLORS.forest,
                   paddingBottom: 12,
                   borderBottom: `1px solid ${COLORS.border}`,
                   marginBottom: 16,
