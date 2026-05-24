@@ -138,6 +138,19 @@ export const vancouverFloristData = [
     { label: "Instagram", value: "@fleurescent.blooms" },
     { label: "Website", value: "fleurescentblooms.com", link: "https://www.fleurescentblooms.com" },
   ]},
+
+  { name: "Bliss Event Co.", tier: "$$/$$$", fields: [
+    { label: "Style", value: "Natural, romantic elegance with a modern touch -- layered, textural, and inspired by the surrounding mountain environment; balances softness with thoughtful structure and movement" },
+    { label: "Services", value: "Full-service floral design -- personal florals, centrepieces, ceremony installations, arches, hanging installations, tablescapes, and large-scale statement pieces" },
+    { label: "Pricing", value: "No minimum for planning clients · Non-planning minimums vary by season, location, and scope · Bridal bouquets from $275+" },
+    { label: "Travel", value: "Based in Whistler; travels throughout BC for weddings and events" },
+    { label: "Booking", value: "12–18 months recommended for peak dates; smaller orders more flexible" },
+    { label: "Note", value: "Bliss Event Co. offers both florals and full wedding planning in-house. Their floral and planning teams work together, making them an exceptional choice for couples who want a fully cohesive look and feel.", full: true },
+    { label: "Phone", value: "604-905-9948" },
+    { label: "Email", value: "info@blissevent.ca" },
+    { label: "Instagram", value: "@blisswhistler" },
+    { label: "Website", value: "blissevent.ca", link: "https://www.blissevent.ca" },
+  ]},
 ];
 
 export const vancouverFloristPending = [
@@ -149,7 +162,6 @@ export const vancouverFloristPending = [
   "Oak & Willow Floral Design  oakandwillowflorist.com  @oakandwillowflorist",
   "Flowers & Jules  flowersandjules.com (Sea-to-Sky)",
   "Ninebark Floral Design  ninebarkdesign.com (Sea-to-Sky)",
-  "Bliss Event  blissevent.ca  @blisswhistler (Sea-to-Sky -- also wedding planner)",
   "Da Fiori Floral Design  dafioridesign.com",
   "Fang Design Studio  fangdesignco.com",
   "Nicola Adam Floral  nicolaadam.com",
