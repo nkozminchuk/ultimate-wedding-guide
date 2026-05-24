@@ -91,10 +91,24 @@ export const vancouverPlannerData = [
     { label: "Instagram", value: "@luxaffairs" },
     { label: "Website", value: "luxaffairs.com", link: "https://luxaffairs.com" },
   ]},
+
+  { name: "Bliss Event Co.", tier: "$$/$$$", fields: [
+    { label: "Style", value: "Collaborative, detail-driven, and deeply personal; inspired by the natural beauty of Whistler and the surrounding mountains -- refined celebrations that balance elevated design with a warm and welcoming atmosphere" },
+    { label: "Services", value: "Complete planning · Partial planning · Partial planning + design · Intimate weddings · Destination elopements" },
+    { label: "Specialty", value: "Bespoke weddings of all sizes -- from intimate alpine elopements to large-scale destination celebrations and multi-day wedding weekends; immersive events connected to the surrounding landscape" },
+    { label: "Weddings Per Year", value: "Limited intake -- boutique studio intentionally takes on a small number of weddings per year to ensure every couple receives high-level care and creativity" },
+    { label: "Pricing", value: "Full planning from $14,000+ · Coordination and partial planning vary by scope -- custom proposal provided after initial consultation" },
+    { label: "Booking", value: "12–18 months recommended for full planning and larger wedding weekends, especially peak summer and winter dates; smaller weddings and floral-only may have more flexibility" },
+    { label: "Territory", value: "Based in Whistler; primarily serves Whistler, Pemberton & Squamish; select destination weddings throughout BC and beyond" },
+    { label: "Note", value: "Bliss Event Co. offers both wedding planning and full-service florals in-house -- planning and design teams work closely together, so every detail feels cohesive and intentionally curated.", full: true },
+    { label: "Phone", value: "604-905-9948" },
+    { label: "Email", value: "info@blissevent.ca" },
+    { label: "Instagram", value: "@blisswhistler" },
+    { label: "Website", value: "blissevent.ca", link: "https://www.blissevent.ca" },
+  ]},
 ];
 
 export const vancouverPlannerPending = [
-  "Bliss Event  blissevent.ca  @blisswhistler (Sea-to-Sky -- also florist)",
   "Love & Confetti  loveandconfetti.ca (Sea-to-Sky)",
   "Whistler Elopements  whistlerelopements.com (Sea-to-Sky)",
   "Blue Violet Events  bluevioletevents.ca (Sea-to-Sky)",
