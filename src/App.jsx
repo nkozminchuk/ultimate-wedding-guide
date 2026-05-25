@@ -989,7 +989,7 @@ function LandingPage({ onBuy, setRegion }) {
       width: "100%",
       fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
       textTransform: "uppercase", color: "#2A1F1A",
-      background: "none", border: "1px solid ${COLORS.border}", borderRadius: 2,
+      background: "none", border: `1px solid ${COLORS.border}`, borderRadius: 2,
       padding: "7px 12px", cursor: "pointer", transition: "all 0.2s",
     }}
     onMouseOver={e => { e.currentTarget.style.borderColor = "#C4956A"; e.currentTarget.style.color = "#C4956A"; }}
@@ -1189,7 +1189,7 @@ function VancouverLandingPage({ onBuy, setRegion }) {
                   style={{
                     width: "100%", fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
                     textTransform: "uppercase", color: "#2A1F1A", background: "none",
-                    border: "1px solid ${COLORS.border}", borderRadius: 2, padding: "7px 12px", cursor: "pointer",
+                    border: `1px solid ${COLORS.border}`, borderRadius: 2, padding: "7px 12px", cursor: "pointer",
                   }}
                   onMouseOver={e => { e.currentTarget.style.borderColor = "#C4956A"; e.currentTarget.style.color = "#C4956A"; }}
                   onMouseOut={e => { e.currentTarget.style.borderColor = COLORS.border; e.currentTarget.style.color = "#2A1F1A"; }}
