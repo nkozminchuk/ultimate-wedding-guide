@@ -193,7 +193,7 @@ function ChecklistGate({ onUnlock }) {
       <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: "#C4956A", marginBottom: 12 }}>
         Free Access
       </div>
-      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 400, color: "#2C4A3E", marginBottom: 12, lineHeight: 1.1 }}>
+      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 38, fontWeight: 400, color: "#2A1F1A", marginBottom: 12, lineHeight: 1.1 }}>
         Get the Free Checklist
       </h2>
       <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: "#6B6B6B", lineHeight: 1.6, marginBottom: 36 }}>
@@ -953,18 +953,18 @@ function LandingPage({ onBuy, setRegion }) {
             { city: "Halifax", region: "Nova Scotia", status: "Planned" },
           ].map((c, i) => (
             <div key={i} style={{
-              border: `1px solid ${c.status === "In Progress" ? "#2C4A3E" : "#D4C5A9"}`,
+              border: `1px solid ${c.status === "In Progress" ? "#2A1F1A" : COLORS.border}`,
               borderRadius: 4,
               padding: "16px 18px",
-              background: c.status === "In Progress" ? "#E8F0ED" : "#FFFFFF",
+              background: c.status === "In Progress" ? "#F5EDF0" : "#FFFFFF",
             }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2C4A3E", marginBottom: 3 }}>{c.city}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2A1F1A", marginBottom: 3 }}>{c.city}</div>
               <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: "#6B6B6B", letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
               <div style={{
                 fontFamily: "'Jost', sans-serif",
                 fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
-                color: c.status === "In Progress" ? "#2C4A3E" : "#C4956A",
-                background: c.status === "In Progress" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
+                color: c.status === "In Progress" ? "#2A1F1A" : "#C4956A",
+                background: c.status === "In Progress" ? "rgba(184,127,160,0.1)" : "rgba(196,149,106,0.1)",
                 padding: "3px 10px", borderRadius: 20, marginBottom: 12, display: "block",
               }}>{c.status}</div>
               {c.link ? (
@@ -974,11 +974,11 @@ function LandingPage({ onBuy, setRegion }) {
       width: "100%",
       fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
       textTransform: "uppercase", color: "#FFFFFF",
-      background: "#2C4A3E", border: "1px solid #2C4A3E", borderRadius: 2,
+      background: "#2A1F1A", border: "1px solid #2A1F1A", borderRadius: 2,
       padding: "7px 12px", cursor: "pointer", transition: "all 0.2s",
     }}
     onMouseOver={e => { e.currentTarget.style.background = "#C4956A"; e.currentTarget.style.borderColor = "#C4956A"; }}
-    onMouseOut={e => { e.currentTarget.style.background = "#2C4A3E"; e.currentTarget.style.borderColor = "#2C4A3E"; }}
+    onMouseOut={e => { e.currentTarget.style.background = "#2A1F1A"; e.currentTarget.style.borderColor = "#2A1F1A"; }}
   >
     View Guide →
   </button>
@@ -988,12 +988,12 @@ function LandingPage({ onBuy, setRegion }) {
     style={{
       width: "100%",
       fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
-      textTransform: "uppercase", color: "#2C4A3E",
-      background: "none", border: "1px solid #D4C5A9", borderRadius: 2,
+      textTransform: "uppercase", color: "#2A1F1A",
+      background: "none", border: "1px solid ${COLORS.border}", borderRadius: 2,
       padding: "7px 12px", cursor: "pointer", transition: "all 0.2s",
     }}
     onMouseOver={e => { e.currentTarget.style.borderColor = "#C4956A"; e.currentTarget.style.color = "#C4956A"; }}
-    onMouseOut={e => { e.currentTarget.style.borderColor = "#D4C5A9"; e.currentTarget.style.color = "#2C4A3E"; }}
+    onMouseOut={e => { e.currentTarget.style.borderColor = COLORS.border; e.currentTarget.style.color = "#2A1F1A"; }}
   >
     Notify Me
   </button>
@@ -1158,16 +1158,16 @@ function VancouverLandingPage({ onBuy, setRegion }) {
             { city: "Halifax", region: "Nova Scotia", status: "Planned" },
           ].map((c, i) => (
             <div key={i} style={{
-              border: `1px solid ${c.status === "Available Now" ? "#2C4A3E" : "#D4C5A9"}`,
+              border: `1px solid ${c.status === "Available Now" ? "#2A1F1A" : COLORS.border}`,
               borderRadius: 4, padding: "16px 18px",
-              background: c.status === "Available Now" ? "#E8F0ED" : "#FFFFFF",
+              background: c.status === "Available Now" ? "#F5EDF0" : "#FFFFFF",
             }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2C4A3E", marginBottom: 3 }}>{c.city}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 600, color: "#2A1F1A", marginBottom: 3 }}>{c.city}</div>
               <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, color: "#6B6B6B", letterSpacing: 1, marginBottom: 8 }}>{c.region}</div>
               <div style={{
                 fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
-                color: c.status === "Available Now" ? "#2C4A3E" : "#C4956A",
-                background: c.status === "Available Now" ? "rgba(44,74,62,0.1)" : "rgba(196,149,106,0.1)",
+                color: c.status === "Available Now" ? "#2A1F1A" : "#C4956A",
+                background: c.status === "Available Now" ? "rgba(184,127,160,0.1)" : "rgba(196,149,106,0.1)",
                 padding: "3px 10px", borderRadius: 20, marginBottom: 12, display: "block",
               }}>{c.status}</div>
               {c.link ? (
@@ -1175,11 +1175,11 @@ function VancouverLandingPage({ onBuy, setRegion }) {
     onClick={() => { setRegion("rockies"); }}
     style={{
       width: "100%", fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
-      textTransform: "uppercase", color: "#FFFFFF", background: "#2C4A3E",
-      border: "1px solid #2C4A3E", borderRadius: 2, padding: "7px 12px", cursor: "pointer",
+      textTransform: "uppercase", color: "#FFFFFF", background: "#2A1F1A",
+      border: "1px solid #2A1F1A", borderRadius: 2, padding: "7px 12px", cursor: "pointer",
     }}
     onMouseOver={e => { e.currentTarget.style.background = "#C4956A"; e.currentTarget.style.borderColor = "#C4956A"; }}
-    onMouseOut={e => { e.currentTarget.style.background = "#2C4A3E"; e.currentTarget.style.borderColor = "#2C4A3E"; }}
+    onMouseOut={e => { e.currentTarget.style.background = "#2A1F1A"; e.currentTarget.style.borderColor = "#2A1F1A"; }}
   >
     View Guide →
   </button>
@@ -1188,11 +1188,11 @@ function VancouverLandingPage({ onBuy, setRegion }) {
                   onClick={() => { setNotifyCity(c.city); setShowNotify(true); }}
                   style={{
                     width: "100%", fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
-                    textTransform: "uppercase", color: "#2C4A3E", background: "none",
-                    border: "1px solid #D4C5A9", borderRadius: 2, padding: "7px 12px", cursor: "pointer",
+                    textTransform: "uppercase", color: "#2A1F1A", background: "none",
+                    border: "1px solid ${COLORS.border}", borderRadius: 2, padding: "7px 12px", cursor: "pointer",
                   }}
                   onMouseOver={e => { e.currentTarget.style.borderColor = "#C4956A"; e.currentTarget.style.color = "#C4956A"; }}
-                  onMouseOut={e => { e.currentTarget.style.borderColor = "#D4C5A9"; e.currentTarget.style.color = "#2C4A3E"; }}
+                  onMouseOut={e => { e.currentTarget.style.borderColor = COLORS.border; e.currentTarget.style.color = "#2A1F1A"; }}
                 >
                   Notify Me
                 </button>
@@ -1360,7 +1360,7 @@ function PasswordGate({ onSuccess }) {
 
   return (
     <div style={{
-      position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)",
+      position: "fixed", inset: 0, background: "rgba(42,31,26,0.96)",
       display: "flex", alignItems: "center", justifyContent: "center",
       zIndex: 1000, padding: 24
     }}>
@@ -1604,7 +1604,7 @@ const [openIndex, setOpenIndex] = useState(null);
       {/* TEAM PHOTO */}
       <div style={{ borderRadius: 6, overflow: "hidden", marginBottom: 40, position: "relative" }}>
         <img src={TEAM_PHOTO} alt="Smitten Events Team" style={{ width: "100%", height: 420, objectFit: "cover", objectPosition: "center top", display: "block" }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top, rgba(44,74,62,0.85) 0%, transparent 100%)", padding: "32px 28px 24px" }}>
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top, rgba(42,31,26,0.85) 0%, transparent 100%)", padding: "32px 28px 24px" }}>
           <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "rgba(247,243,236,0.7)", marginBottom: 4 }}>Vancouver · Sea-to-Sky · Okanagan</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 600, color: "#F7F3EC" }}>The Smitten Events Team</div>
         </div>
@@ -2028,7 +2028,7 @@ function handleVanTabClick(tab) {
         <style>{styles}</style>
         {showPasswordGate && (
           <div style={{
-            position: "fixed", inset: 0, background: "rgba(44,74,62,0.96)",
+            position: "fixed", inset: 0, background: "rgba(42,31,26,0.96)",
             display: "flex", alignItems: "center", justifyContent: "center",
             zIndex: 1000, padding: 24
           }}>
