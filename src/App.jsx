@@ -1894,21 +1894,23 @@ export default function App() {
             gap: 8px;
           }
           .region-notify {
-            display: inline-block;
-            margin-top: 12px;
+            display: block;
+            width: 100%;
+            margin-top: 16px;
             font-family: 'Jost', sans-serif;
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(247,243,236,0.4);
-            border: 1px solid rgba(247,243,236,0.15);
-            padding: 6px 16px;
+            color: ${COLORS.cream};
+            border: 1px solid rgba(247,243,236,0.5);
+            padding: 12px 16px;
             border-radius: 2px;
             cursor: pointer;
             transition: all 0.2s;
-            background: none;
+            background: rgba(255,255,255,0.1);
+            text-align: center;
           }
-          .region-notify:hover { color: rgba(247,243,236,0.7); border-color: rgba(247,243,236,0.3); }
+          .region-notify:hover { background: rgba(255,255,255,0.2); border-color: rgba(247,243,236,0.8); color: ${COLORS.white}; }
           .region-footer {
             margin-top: 56px;
             font-family: 'Jost', sans-serif;
@@ -1936,6 +1938,9 @@ export default function App() {
           <div className="region-eyebrow">The Ultimate Wedding Guide</div>
           <h1 className="region-title">Your dream wedding<br /><span>starts here.</span></h1>
           <p className="region-sub">We have done the research, vetted the vendors, and organized everything — so you don't have to. Select your region and let's get planning.</p>
+          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, letterSpacing: 2, color: COLORS.sandstone, marginBottom: 8, position: "relative", zIndex: 3 }}>
+            FROM <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 600, letterSpacing: 0 }}>$29</span> CAD · One-time purchase · Lifetime access
+          </p>
           <div className="region-divider" />
 
           <div className="region-grid">
@@ -2112,7 +2117,7 @@ function handleVanTabClick(tab) {
             <div className="cover-divider" />
             <div className="cover-cities">West Coast Edition</div>
             <div className="cover-subtitle" style={{ marginTop: 12, fontSize: 14, letterSpacing: 3 }}>Vancouver  ·  Squamish  ·  Whistler  ·  Pemberton</div>
-            <div className="cover-subtitle">Your complete planning resource for an unforgettable West Coast wedding</div>
+            <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a West Coast wedding</div>
             <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
               <button
                 onClick={() => setShowPasswordGate(true)}
@@ -2571,7 +2576,7 @@ function handleVanTabClick(tab) {
           <div className="cover-divider" />
           <div className="cover-cities">Canadian Rockies Edition</div>
           <div className="cover-subtitle" style={{marginTop: 12, fontSize: 14, letterSpacing: 3}}>Calgary  ·  Canmore  ·  Banff</div>
-          <div className="cover-subtitle">Your complete planning resource for an unforgettable Rocky Mountain wedding</div>
+          <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a Rocky Mountain wedding</div>
           <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
             <button
               onClick={() => setActiveTab("budget")}
