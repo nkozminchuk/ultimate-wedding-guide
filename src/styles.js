@@ -96,7 +96,7 @@ export const styles = `
     font-size: 18px;
     font-weight: 300;
     font-style: italic;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.92);
     margin-top: 20px;
     letter-spacing: 1px;
     position: relative;
@@ -136,7 +136,7 @@ export const styles = `
     position: relative;
   }
   .nav-btn {
-    padding: 16px 14px;
+    padding: 16px 20px;
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -166,7 +166,7 @@ export const styles = `
   .nav-item:hover .nav-arrow { transform: rotate(180deg); }
   .nav-gift-btn {
     margin-left: auto;
-    padding: 8px 14px;
+    padding: 8px 20px;
     font-family: 'Jost', sans-serif;
     font-size: 10px;
     font-weight: 600;
@@ -552,7 +552,7 @@ export const styles = `
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 500;
-    color: ${COLORS.forest};
+    color: ${COLORS.gold};
     margin: 48px 0 24px;
     padding-bottom: 12px;
     border-bottom: 1px solid ${COLORS.border};
