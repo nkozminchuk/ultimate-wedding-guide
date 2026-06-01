@@ -124,23 +124,24 @@ export const styles = `
   /* NAV — warm dark charcoal, sandstone active state */
   .nav {
     background: ${COLORS.forest};
-    padding: 0 40px;
+    padding: 0 24px;
     display: flex;
     align-items: center;
     gap: 0;
     border-top: 1px solid rgba(255,255,255,0.06);
     position: relative;
     z-index: 100;
+    overflow: hidden;
   }
   .nav-item {
     position: relative;
   }
   .nav-btn {
-    padding: 16px 20px;
+    padding: 16px 14px;
     font-family: 'Jost', sans-serif;
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
     background: none;
@@ -166,21 +167,21 @@ export const styles = `
   .nav-item:hover .nav-arrow { transform: rotate(180deg); }
   .nav-gift-btn {
     margin-left: auto;
-    padding: 8px 20px;
+    flex-shrink: 0;
+    padding: 8px 14px;
     font-family: 'Jost', sans-serif;
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: ${COLORS.forest};
-    background: ${COLORS.sandstone};
+    color: ${COLORS.white};
+    background: ${COLORS.gold};
     border: none;
     border-radius: 2px;
     cursor: pointer;
     transition: background 0.2s;
-    white-space: nowrap;
   }
-  .nav-gift-btn:hover { background: #d4a870; }
+  .nav-gift-btn:hover { background: #a36d8e; }
   .nav-lock-btn {
     padding: 8px 14px;
     font-family: 'Jost', sans-serif;
