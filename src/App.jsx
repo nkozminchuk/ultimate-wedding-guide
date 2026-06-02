@@ -2279,7 +2279,42 @@ function handleVanTabClick(tab) {
 
           {/* VANCOUVER UNLOCKED CONTENT */}
           {isVanLocked && unlocked && (
-            <div className="content">
+            <div style={{ position: "relative" }}>
+              {vanMeta?.bgPhoto && (
+                <>
+                  <div style={{
+                    position: "absolute",
+                    inset: 0,
+                    backgroundImage: `url(${vanMeta.bgPhoto})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundAttachment: "fixed",
+                    zIndex: 0,
+                  }} />
+                  <div style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "rgba(248,244,240,0.55)",
+                    zIndex: 1,
+                  }} />
+                  {vanMeta?.bgPhotoCredit && (
+                    <div style={{
+                      position: "absolute",
+                      bottom: 12,
+                      left: 16,
+                      zIndex: 10,
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: 10,
+                      letterSpacing: 1,
+                      color: "rgba(42,31,26,0.5)",
+                      pointerEvents: "none",
+                    }}>
+                      {vanMeta.bgPhotoCredit}
+                    </div>
+                  )}
+                </>
+              )}
+            <div className="content" style={{ position: "relative", zIndex: 2 }}>
               <div className="section-eyebrow">{vanMeta?.eyebrow}</div>
               <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: 16 }}>
                 <Icon name={vanMeta?.icon} color={COLORS.sandstone} size={36} />
@@ -2527,6 +2562,7 @@ function handleVanTabClick(tab) {
                 </div>
               )}
 
+            </div>
             </div>
           )}
 
