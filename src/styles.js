@@ -131,7 +131,7 @@ export const styles = `
     border-top: 1px solid rgba(255,255,255,0.06);
     position: relative;
     z-index: 100;
-    overflow: hidden;
+    overflow: visible;
   }
   .nav-item {
     position: relative;
