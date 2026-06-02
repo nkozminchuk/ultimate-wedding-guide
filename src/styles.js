@@ -137,9 +137,9 @@ export const styles = `
     position: relative;
   }
   .nav-btn {
-    padding: 16px 14px;
+    padding: 16px 10px;
     font-family: 'Jost', sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
