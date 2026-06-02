@@ -2286,7 +2286,7 @@ function handleVanTabClick(tab) {
                     position: "absolute",
                     inset: 0,
                     backgroundImage: `url(${vanMeta.bgPhoto})`,
-                    backgroundSize: "cover",
+                    backgroundSize: vanMeta?.bgPhotoSize || "cover",
                     backgroundPosition: "center",
                     backgroundAttachment: "fixed",
                     zIndex: 0,
