@@ -1407,10 +1407,23 @@ function PasswordGate({ onSuccess }) {
         </form>
         <p style={{ marginTop: 24, fontSize: 12, color: COLORS.sub, lineHeight: 1.6 }}>
           Don't have a password yet?{" "}
-          <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
-            onClick={() => document.querySelector('.guide-wrap') && window.scrollTo(0,0)}>
-            Purchase the guide
-          </span>{" "}to receive instant access.
+         <span style={{ color: COLORS.sandstone, textDecoration: "underline", cursor: "pointer", textUnderlineOffset: 3 }}
+  onClick={async () => {
+    try {
+      const res = await fetch("/.netlify/functions/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ region: "rockies" }),
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+    } catch (err) {
+      console.error("Checkout error:", err);
+    }
+  }}>
+  Purchase the guide
+</span>
+          {" "}to receive instant access.
         </p>
       </div>
     </div>
