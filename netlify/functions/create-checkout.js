@@ -76,6 +76,7 @@ exports.handler = async (event) => {
       ],
       success_url: `${process.env.URL}${config.successPath}&code=${accessCode}&name=${encodeURIComponent(recipientName || name || '')}`,
       cancel_url: `${process.env.URL}`,
+      allow_promotion_codes: true,
     });
 
     return {
