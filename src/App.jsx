@@ -2147,7 +2147,7 @@ function handleVanTabClick(tab) {
             <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a West Coast wedding</div>
             <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
               <button
-                onClick={() => setShowPasswordGate(true)}
+                onClick={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "vancouver" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }}
                 style={{
                   background: COLORS.sandstone, color: COLORS.forest,
                   fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600,
@@ -2202,7 +2202,7 @@ function handleVanTabClick(tab) {
                   ))}
                 </div>
               </div>
-              <button className="nav-gift-btn" onClick={() => setShowPasswordGate(true)}>
+              <button className="nav-gift-btn" onClick={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "vancouver" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }}>
                 Buy the Guide
               </button>
               {unlocked && (
@@ -2246,7 +2246,7 @@ function handleVanTabClick(tab) {
 
   {/* VANCOUVER HOME */}
           {(activeTab === "van-home" || activeTab === "home") && (
-            <VancouverLandingPage onBuy={() => setShowPasswordGate(true)} />
+            <VancouverLandingPage onBuy={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "vancouver" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }} setRegion={setRegion} />
           )}
 {/* BUDGET GUIDE */}
 {activeTab === "van-budget" && (
@@ -2642,7 +2642,7 @@ function handleVanTabClick(tab) {
           <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a Rocky Mountain wedding</div>
           <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
             <button
-              onClick={() => setActiveTab("budget")}
+              onClick={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "rockies" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }}
               style={{
                 background: COLORS.sandstone,
                 color: COLORS.forest,
@@ -2814,7 +2814,7 @@ function handleVanTabClick(tab) {
         )}
 
         {/* HOME */}
-        {activeTab === "home" && <LandingPage onBuy={() => setActiveTab("budget")} setRegion={setRegion} />}
+        {activeTab === "home" && <LandingPage onBuy={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "rockies" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }} setRegion={setRegion} />}
 
         {/* FREE CHECKLIST */}
         {activeTab === "checklist" && <ChecklistTab />}
