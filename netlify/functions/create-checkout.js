@@ -9,6 +9,27 @@ function generateCode() {
   ).join('-');
 }
 
+// Send email via Resend
+async function sendEmail(to, subject, text) {
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+    },
+    body: JSON.stringify({
+      from: 'The Ultimate Wedding Guide <info@ultimateweddingguide.ca>',
+      to: [to],
+      subject,
+      text,
+    }),
+  });
+  if (!response.ok) {
+    const err = await response.text();
+    console.error('Resend error:', err);
+  }
+}
+
 // Region-specific content
 const regionConfig = {
   vancouver: {
@@ -78,6 +99,44 @@ exports.handler = async (event) => {
       cancel_url: `${process.env.URL}`,
       allow_promotion_codes: true,
     });
+
+    // If a 100% promo code is applied, Stripe marks the session amount_total as 0
+    // and the webhook may not fire — so we send emails directly here.
+    try {
+      const retrieved = await stripe.checkout.sessions.retrieve(session.id);
+      if (retrieved.amount_total === 0) {
+        const deliveryEmail = isGift ? recipientEmail : email;
+        const deliveryName = isGift ? recipientName : (name || senderName || '');
+        const guideUrl = 'https://www.ultimateweddingguide.ca';
+        const isVancouver = region === 'vancouver';
+
+        const unlockInstructions = isVancouver
+          ? `Visit ${guideUrl}, select the West Coast Edition, and click "The Guide" to enter your code and unlock full access.`
+          : `Visit ${guideUrl}, select the Canadian Rockies Edition, and click "The Guide" to enter your code and unlock full access.`;
+
+        const emailBody = isGift
+          ? `Hi ${recipientName},\n\n${senderName} has gifted you The Ultimate Wedding Guide — ${config.editionLabel}!\n\n${message ? `Their message: "${message}"\n\n` : ''}Your access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nThe Ultimate Wedding Guide`
+          : `Hi ${deliveryName},\n\nThank you for your Ultimate Wedding Guide — ${config.editionLabel}!\n\nYour access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nNadia\nThe Ultimate Wedding Guide`;
+
+        // Customer email
+        await sendEmail(deliveryEmail, 'Your Ultimate Wedding Guide Access Code', emailBody);
+
+        // Owner notification
+        const ownerBody = [
+          `New purchase received (100% promo code applied)!`,
+          ``,
+          `Edition: ${config.editionLabel}`,
+          `Buyer: ${name || senderName} (${email})`,
+          isGift ? `Gift recipient: ${recipientName} (${recipientEmail})` : null,
+          `Access code: ${accessCode}`,
+          `Region: ${region || 'rockies'}`,
+        ].filter(Boolean).join('\n');
+
+        await sendEmail('info@ultimateweddingguide.ca', `New Purchase (Free/Promo) — ${config.editionLabel}`, ownerBody);
+      }
+    } catch (freeOrderErr) {
+      console.error('Free order email error:', freeOrderErr);
+    }
 
     return {
       statusCode: 200,
