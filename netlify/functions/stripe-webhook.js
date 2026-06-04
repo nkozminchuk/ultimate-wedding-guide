@@ -42,28 +42,59 @@ exports.handler = async (event) => {
       ? `Visit ${guideUrl}, select the West Coast Edition, and click "The Guide" to enter your code and unlock full access.`
       : `Visit ${guideUrl}, select the Canadian Rockies Edition, and click "The Guide" to enter your code and unlock full access.`;
 
-    // Send email via Formspree
+    const emailBody = isGift === 'true'
+      ? `Hi ${recipientName},\n\n${senderName} has gifted you The Ultimate Wedding Guide — ${edition}!\n\n${giftMessage ? `Their message: "${giftMessage}"\n\n` : ''}Your access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nThe Ultimate Wedding Guide`
+      : `Hi ${buyerName},\n\nThank you for purchasing The Ultimate Wedding Guide — ${edition}!\n\nYour access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nNadia\nThe Ultimate Wedding Guide`;
+
+    // Send email via Resend
     try {
-      await fetch('https://formspree.io/f/mykbkojw', {
+      const response = await fetch('https://api.resend.com/emails', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        },
         body: JSON.stringify({
-          inquiry_type: 'purchase_complete',
-          recipient_name: deliveryName,
-          recipient_email: deliveryEmail,
-          access_code: accessCode,
-          is_gift: isGift,
-          region: region || 'rockies',
-          sender_name: senderName || '',
-          gift_message: giftMessage || '',
+          from: 'The Ultimate Wedding Guide <info@ultimateweddingguide.ca>',
+          to: [deliveryEmail],
           subject: `Your Ultimate Wedding Guide Access Code`,
-          message: isGift === 'true'
-            ? `Hi ${recipientName},\n\n${senderName} has gifted you The Ultimate Wedding Guide — ${edition}!\n\n${giftMessage ? `Their message: "${giftMessage}"\n\n` : ''}Your access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nThe Ultimate Wedding Guide`
-            : `Hi ${buyerName},\n\nThank you for purchasing The Ultimate Wedding Guide — ${edition}!\n\nYour access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nNadia\nThe Ultimate Wedding Guide`,
+          text: emailBody,
         }),
       });
+
+      if (!response.ok) {
+        const err = await response.text();
+        console.error('Resend error:', err);
+      }
     } catch (emailErr) {
       console.error('Email send error:', emailErr);
+    }
+
+    // Send owner notification
+    try {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: 'The Ultimate Wedding Guide <info@ultimateweddingguide.ca>',
+          to: ['info@ultimateweddingguide.ca'],
+          subject: `New Purchase — ${edition}`,
+          text: [
+            `New purchase received!`,
+            ``,
+            `Edition: ${edition}`,
+            `Buyer: ${buyerName} (${buyerEmail})`,
+            isGift === 'true' ? `Gift recipient: ${recipientName} (${recipientEmail})` : null,
+            `Access code: ${accessCode}`,
+            `Region: ${region || 'rockies'}`,
+          ].filter(Boolean).join('\n'),
+        }),
+      });
+    } catch (notifyErr) {
+      console.error('Owner notification error:', notifyErr);
     }
   }
 
