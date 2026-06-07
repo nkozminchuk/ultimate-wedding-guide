@@ -131,17 +131,30 @@ export const vancouverHairMakeupData = [
     { label: "Instagram", value: "@colleenconroymakeup" },
     { label: "Website", value: "colleenconroymakeup.com", link: "https://www.colleenconroymakeup.com" },
   ]},
+
+  { name: "Negar Khoshgoo Beauty", tier: "$$/$$$", fields: [
+  { label: "Services", value: "Hair & makeup" },
+  { label: "Style", value: "Timeless, elegant, and refined bridal beauty; specializes in luxury bridal looks including natural, soft glam, modern glam, and editorial-inspired; fully customized to each bride's vision, features, and wedding style" },
+  { label: "Travel", value: "Mobile -- travels to venue or getting-ready location; serves Greater Vancouver, Fraser Valley, Vancouver Island, Whistler, and the Sea-to-Sky Corridor; destination weddings available; travel fees may apply" },
+  { label: "Capacity", value: "Accommodates both intimate weddings and larger bridal parties; trusted team of experienced artists available for larger groups" },
+  { label: "Timing", value: "2.5–4 hours for bridal hair & makeup depending on desired look" },
+  { label: "Products", value: "Curated selection of professional luxury products; known for longevity, photography performance, and all-day wear; suitable for sensitive skin -- product selection customized to individual needs" },
+  { label: "Airbrush", value: "No -- specializes in traditional HD bridal makeup techniques" },
+  { label: "Pricing", value: "See negarkhoshgoo.ca/book-online for current pricing and service details" },
+  { label: "Trial", value: "Highly recommended but not mandatory; booked and charged separately" },
+  { label: "Booking", value: "6–12 months recommended, especially for peak season; signed service agreement + non-refundable retainer required to secure date" },
+  { label: "Packages", value: "Customized bridal party packages available based on group size and service requirements" },
+  { label: "Touch-ups", value: "Yes -- touch-up and stay-on-site services available on request" },
+  { label: "Insurance", value: "Yes" },
+  { label: "Instagram", value: "@negarkhoshgoo" },
+  { label: "Website", value: "negarkhoshgoo.ca", link: "https://www.negarkhoshgoo.ca" },
+]},
 ];
 
 export const vancouverHairMakeupPending = [
-  "AMORE by BEA  amorebybea.com  @amore.bybea",
   "The Love Team Collective  theloveteammakeupandhair.com  @theloveteam_official",
   "Paige Griffith Makeup Artist  paigegriffithmakeup.com  @paigegriffithmakeup",
   "Save the Date Beauty  savethedatebeauty.com  @savethedatebeauty",
-  "Yes Mona Beauty  yesmona.com  @yesmonavan",
   "Alisha Hopps Makeup and Hair  alishahopps.com  @alisha_hopps",
-  "Makeup by Haleh  makeupbyhaleh.com  @vancouver.beautyland",
   "Lindsay Maclean Studios  lindsaymacleanstudios.com  @lindsaymacleanstudios",
-  "DAKABRUSH Makeup Artist  dakabrush.com  @dakabrush",
-  "Negar Khoshgoo  negarkhoshgoo.ca  @negarkhoshgoo",
 ];
