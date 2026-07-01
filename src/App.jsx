@@ -1786,7 +1786,7 @@ function BlushAndCocoQA() {
  
       {/* HERO PHOTO */}
       <div style={{ borderRadius: 6, overflow: "hidden", marginBottom: 40, position: "relative" }}>
-        <img src={BLUSH_COCO_HERO} alt="Blush and Coco Brides" style={{ width: "100%", height: 480, objectFit: "cover", objectPosition: "center top", display: "block" }} />
+        <img src={BLUSH_COCO_HERO} alt="Blush and Coco Brides" style={{ width: "100%", height: 650, objectFit: "cover", objectPosition: "center 20%", display: "block" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top, rgba(44,74,62,0.85) 0%, transparent 100%)", padding: "32px 28px 24px" }}>
           <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "rgba(247,243,236,0.7)", marginBottom: 4 }}>Calgary, Alberta</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 600, color: "#F7F3EC" }}>Blush & Coco Brides</div>
@@ -2389,7 +2389,7 @@ function handleVanTabClick(tab) {
                 <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
                <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
                 <button className="mobile-menu-item" onClick={() => { setActiveTab("ask-a-planner"); setShowMobileMenu(false); }}>Expert Q&A</button>
-                <button className={`nav-btn ${activeTab === "bridal-beauty-qa" ? "active" : ""}`} onClick={() => setActiveTab("bridal-beauty-qa")}>Bridal Beauty</button>
+                <button className="mobile-menu-item" onClick={() => { setActiveTab("bridal-beauty-qa"); setShowMobileMenu(false); }}>Bridal Beauty</button>
                <div className="mobile-menu-divider" />
                 <div className="mobile-menu-section">The Guide</div>
                 {vancouverGuideItems.map(item => (
@@ -2860,6 +2860,9 @@ function handleVanTabClick(tab) {
   <button className={`nav-btn ${activeTab === "ask-a-planner" ? "active" : ""}`} onClick={() => setActiveTab("ask-a-planner")}>Expert Q&A</button>
 </div>
             <div className="nav-item">
+  <button className={`nav-btn ${activeTab === "bridal-beauty-qa" ? "active" : ""}`} onClick={() => setActiveTab("bridal-beauty-qa")}>Bridal Beauty</button>
+</div>
+            <div className="nav-item">
               <button className={`nav-btn ${vancouverGuideItems.map(i=>i.id).includes(activeTab) ? "active" : ""}`}>
                 The Guide <span className="nav-arrow">▼</span>
               </button>
@@ -2901,6 +2904,7 @@ function handleVanTabClick(tab) {
               <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
               <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
               <button className="mobile-menu-item" onClick={() => { setActiveTab("ask-a-planner"); setShowMobileMenu(false); }}>Expert Q&A</button>
+              <button className="mobile-menu-item" onClick={() => { setActiveTab("bridal-beauty-qa"); setShowMobileMenu(false); }}>Bridal Beauty</button>
               <div className="mobile-menu-divider" />
               <div className="mobile-menu-section">The Guide</div>
               {guideItems.map(item => (
