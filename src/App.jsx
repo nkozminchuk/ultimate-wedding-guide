@@ -1716,7 +1716,171 @@ const [openIndex, setOpenIndex] = useState(null);
     </div>
   );
 }
-
+const BLUSH_COCO_HERO = "/blush-coco-hero.jpg"; // Upload SFDESIGN-350.jpg to /public as this filename
+ 
+const blushAndCocoQA = [
+  {
+    section: "About Blush & Coco Brides",
+    items: [
+      {
+        q: "Tell us a little about Blush & Coco Brides — how did you get started, and what makes your approach unique?",
+        a: "I actually got started through dance. I was always that friend doing everyone else's hair and makeup, putting on lashes, and helping everyone get ready. I've always loved makeup, beauty, and making people feel confident. I never really thought doing makeup could be a full-time career, but once I got into weddings and my business grew, I realized this was exactly what I wanted to do. What makes my approach unique is that I truly want everyone to feel like themselves. I'm not trying to change anyone's beauty — I simply want to enhance what is already there. There's a quote by Emily Dickinson that says, 'Beauty is not caused. It is.' I love that because it's exactly how I feel. Our job is simply to help bring out the beauty that's already there and help our brides feel like the very best version of themselves.",
+      },
+    ],
+  },
+  {
+    section: "Booking & Planning",
+    items: [
+      {
+        q: "How far in advance should brides book their hair and makeup artist?",
+        a: "We're typically booking about a year in advance, so if you have your heart set on a specific date or artist, I'd definitely recommend booking around a year ahead. We do have a large team, so we can sometimes accommodate last-minute bookings, but our busiest Saturdays from May through October fill up very quickly — especially June, July, August, and September.",
+      },
+      {
+        q: "Do you recommend a bridal hair and makeup trial, and why?",
+        a: "Absolutely. Trials are so important because they give us a chance to figure out exactly what our bride loves and her preferences — and maybe what she doesn't love as much. We can experiment with different looks, colours, hairstyles, and products, and it allows us to go into the wedding day with a clear plan. There are no surprises because everyone knows exactly what we are creating, and that makes the whole morning feel so much more relaxed.",
+      },
+    ],
+  },
+  {
+    section: "The Wedding Day",
+    items: [
+      {
+        q: "What's your process like on the wedding day? What can a bride expect when working with Blush & Coco?",
+        a: "Our process is actually pretty simple — we bring the salon to you. Our goal is for everyone to feel comfortable, relaxed, and completely taken care of. You get to sit back, enjoy the morning, and we handle the rest. Before we begin, we do a consultation with each person to make sure we are on the same page. Asking the right questions helps us create exactly the look our clients are hoping for. You can expect a lot of attention to detail from us. We truly believe the look is all in the details. We strive for perfection, and at the end of the day, we just want our brides to feel amazing. If our brides are happy, we're happy.",
+      },
+      {
+        q: "What is the biggest bridal beauty mistake you see, and how can brides avoid it?",
+        a: "I think one of the biggest mistakes is trying to choose a look that doesn't really feel like you. Sometimes brides feel pressure to follow trends or try something completely different from what they normally wear — whether that's much heavier makeup or a hairstyle they would never usually choose. Trends are fun, but I always encourage brides to choose what makes them feel the most confident and comfortable. This is usually something we discover during the trial.",
+      },
+    ],
+  },
+  {
+    section: "Trends & Advice",
+    items: [
+      {
+        q: "What bridal beauty trends are you loving right now?",
+        a: "We're seeing a lot of brides choosing softer, more effortless hairstyles — wearing their hair down with a beautiful blowout or loose curls instead of feeling like everything has to be perfectly pinned into place. For makeup, we're loving fresh, glowy skin, soft radiant makeup, and of course blush. Everyone seems to be a blush girl these days! We are also loving glossy lips.",
+      },
+      {
+        q: "What's one piece of advice you wish every bride knew before her wedding day?",
+        a: "Choose vendors you trust, and then let them take care of you. The best wedding mornings are when a bride can truly relax, be present, and enjoy getting ready with the people she loves. Of course there are always a few nerves, but there really is no need to stress. Everything always comes together, and your vendor team is there to make sure you're taken care of every step of the way. Your wedding day goes by so quickly, so try to soak it all in, enjoy every moment, and know that it's all going to be okay. It's such a special day, and you deserve to experience it rather than worry about it.",
+      },
+    ],
+  },
+];
+ 
+function BlushAndCocoQA() {
+  const [openIndex, setOpenIndex] = useState(null);
+ 
+  return (
+    <div className="content" style={{ maxWidth: 960 }}>
+ 
+      {/* HEADER */}
+      <div className="section-eyebrow">Bridal Beauty Q&A</div>
+      <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42, fontWeight: 400, color: COLORS.forest, lineHeight: 1.1, marginBottom: 8 }}>
+        Beauty Wisdom from<br /><em style={{ color: COLORS.sandstone }}>Blush & Coco Brides</em>
+      </h1>
+      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.7, maxWidth: 580, marginBottom: 40 }}>
+        Calgary-based bridal hair and makeup artist Jenah Mackinaw has been making brides feel like the most beautiful version of themselves for years. We asked her everything — and she answered.
+      </p>
+ 
+      {/* HERO PHOTO */}
+      <div style={{ borderRadius: 6, overflow: "hidden", marginBottom: 40, position: "relative" }}>
+        <img src={BLUSH_COCO_HERO} alt="Blush and Coco Brides" style={{ width: "100%", height: 480, objectFit: "cover", objectPosition: "center top", display: "block" }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top, rgba(44,74,62,0.85) 0%, transparent 100%)", padding: "32px 28px 24px" }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "rgba(247,243,236,0.7)", marginBottom: 4 }}>Calgary, Alberta</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 600, color: "#F7F3EC" }}>Blush & Coco Brides</div>
+        </div>
+      </div>
+ 
+      {/* PULL QUOTE */}
+      <div style={{
+        background: COLORS.parchment,
+        borderLeft: `3px solid ${COLORS.sandstone}`,
+        borderRadius: "0 4px 4px 0",
+        padding: "28px 32px",
+        marginBottom: 48,
+      }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontStyle: "italic", fontWeight: 400, color: COLORS.forest, lineHeight: 1.6, margin: 0, marginBottom: 12 }}>
+          "Beauty is not caused. It is. Our job is simply to help bring out the beauty that's already there."
+        </p>
+        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sandstone }}>Jenah Mackinaw · Blush & Coco Brides</div>
+      </div>
+ 
+      {/* Q&A SECTIONS */}
+      {blushAndCocoQA.map((section, si) => (
+        <div key={si} style={{ marginBottom: 48 }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: COLORS.sandstone, marginBottom: 20, paddingBottom: 12, borderBottom: `1px solid ${COLORS.border}` }}>
+            {section.section}
+          </div>
+          {section.items.map((item, qi) => {
+            const key = `${si}-${qi}`;
+            const isOpen = openIndex === key;
+            return (
+              <div key={qi} style={{ borderBottom: `1px solid ${COLORS.border}`, marginBottom: 0 }}>
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : key)}
+                  style={{
+                    width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
+                    padding: "18px 0", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16,
+                  }}
+                >
+                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 600, color: COLORS.forest, lineHeight: 1.4, flex: 1 }}>
+                    {item.q}
+                  </span>
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 18, color: COLORS.sandstone, flexShrink: 0, marginTop: 2, transition: "transform 0.2s", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}>+</span>
+                </button>
+                {isOpen && (
+                  <div style={{ paddingBottom: 20, paddingRight: 32 }}>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, color: COLORS.text, lineHeight: 1.75, margin: 0 }}>
+                      {item.a}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+ 
+      {/* CTA BLOCK */}
+      <div style={{ borderRadius: 6, overflow: "hidden", marginTop: 16, marginBottom: 40, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+        <img src={BLUSH_COCO_HERO} alt="Blush and Coco Brides" style={{ width: "100%", height: 320, objectFit: "cover", objectPosition: "center top", display: "block" }} />
+        <div style={{ background: COLORS.forest, padding: "40px 36px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "rgba(247,243,236,0.6)", marginBottom: 12 }}>Based in Calgary, Alberta</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 26, fontWeight: 400, color: "#F7F3EC", lineHeight: 1.3, marginBottom: 16 }}>
+            Ready to feel like the most beautiful version of yourself?
+          </div>
+          <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontStyle: "italic", color: "rgba(247,243,236,0.75)", lineHeight: 1.6, marginBottom: 28 }}>
+            Blush & Coco Brides offers bridal hair and makeup services for Calgary weddings and beyond.
+          </p>
+          <a href="https://www.instagram.com/blushandcocobrides" target="_blank" rel="noopener noreferrer" style={{
+            display: "inline-block", fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2,
+            textTransform: "uppercase", color: COLORS.forest, background: COLORS.sandstone,
+            border: "none", borderRadius: 2, padding: "12px 20px", cursor: "pointer", textDecoration: "none",
+            alignSelf: "flex-start",
+          }}>
+            Follow on Instagram →
+          </a>
+        </div>
+      </div>
+ 
+      {/* INSTAGRAM HANDLE */}
+      <div style={{ textAlign: "center", padding: "24px 0", borderTop: `1px solid ${COLORS.border}` }}>
+        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub, marginBottom: 6 }}>Follow Along</div>
+        <a href="https://www.instagram.com/blushandcocobrides" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: COLORS.sandstone, textDecoration: "none" }}>@blushandcocobrides</a>
+      </div>
+ 
+      {/* PHOTO CREDIT — update once confirmed with Jenah */}
+      <div style={{ textAlign: "center", padding: "16px 0", borderTop: `1px solid ${COLORS.border}`, marginTop: 0 }}>
+        <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub }}>
+          Photography by [Photographer Name — confirm with Jenah]
+        </div>
+      </div>
+ 
+    </div>
+  );
+}
 export default function App() {
   const [region, setRegion] = useState(null);
   const [activeTab, setActiveTab] = useState("home");
