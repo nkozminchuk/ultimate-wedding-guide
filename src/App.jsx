@@ -2348,6 +2348,7 @@ function handleVanTabClick(tab) {
 </div>
               <div className="nav-item">
   <button className={`nav-btn ${activeTab === "ask-a-planner" ? "active" : ""}`} onClick={() => setActiveTab("ask-a-planner")}>Expert Q&A</button>
+  <button className={`nav-btn ${activeTab === "bridal-beauty-qa" ? "active" : ""}`} onClick={() => setActiveTab("bridal-beauty-qa")}>Bridal Beauty</button>
 </div>
 <div className="nav-item">
   <button className={`nav-btn ${vancouverGuideItems.map(i => i.id).includes(activeTab) ? "active" : ""}`}>
@@ -2388,6 +2389,7 @@ function handleVanTabClick(tab) {
                 <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
                <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
                 <button className="mobile-menu-item" onClick={() => { setActiveTab("ask-a-planner"); setShowMobileMenu(false); }}>Expert Q&A</button>
+                <button className={`nav-btn ${activeTab === "bridal-beauty-qa" ? "active" : ""}`} onClick={() => setActiveTab("bridal-beauty-qa")}>Bridal Beauty</button>
                <div className="mobile-menu-divider" />
                 <div className="mobile-menu-section">The Guide</div>
                 {vancouverGuideItems.map(item => (
@@ -2463,6 +2465,7 @@ function handleVanTabClick(tab) {
 {/* FREE CHECKLIST */}
 {activeTab === "checklist" && <ChecklistTab />}
           {activeTab === "ask-a-planner" && <SmittenQA />}
+          {activeTab === "bridal-beauty-qa" && <BlushAndCocoQA />}
           {/* VANCOUVER LOCKED */}
           {isVanLocked && !unlocked && (
             <LockScreen onUnlock={() => setShowPasswordGate(true)} />
@@ -2983,6 +2986,7 @@ function handleVanTabClick(tab) {
         {/* FREE CHECKLIST */}
         {activeTab === "checklist" && <ChecklistTab />}
         {activeTab === "ask-a-planner" && <SmittenQA />}
+        {activeTab === "bridal-beauty-qa" && <BlushAndCocoQA />}
         {/* LOCKED */}
         {isLocked && !unlocked && <LockScreen onUnlock={() => setShowPasswordGate(true)} />}
 
