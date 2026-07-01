@@ -2348,6 +2348,8 @@ function handleVanTabClick(tab) {
 </div>
               <div className="nav-item">
   <button className={`nav-btn ${activeTab === "ask-a-planner" ? "active" : ""}`} onClick={() => setActiveTab("ask-a-planner")}>Expert Q&A</button>
+</div>
+<div className="nav-item">
   <button className={`nav-btn ${activeTab === "bridal-beauty-qa" ? "active" : ""}`} onClick={() => setActiveTab("bridal-beauty-qa")}>Bridal Beauty</button>
 </div>
 <div className="nav-item">
