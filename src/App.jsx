@@ -1871,10 +1871,10 @@ function BlushAndCocoQA() {
         <a href="https://www.instagram.com/blushandcocobrides" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: COLORS.sandstone, textDecoration: "none" }}>@blushandcocobrides</a>
       </div>
  
-      {/* PHOTO CREDIT — update once confirmed with Jenah */}
+      {/* PHOTO CREDIT */}
       <div style={{ textAlign: "center", padding: "16px 0", borderTop: `1px solid ${COLORS.border}`, marginTop: 0 }}>
         <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: COLORS.sub }}>
-          Photography by [Photographer Name — confirm with Jenah]
+          Photography by Blair Marie · blairmariephotography.com
         </div>
       </div>
  
