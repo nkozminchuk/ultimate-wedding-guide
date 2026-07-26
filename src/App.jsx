@@ -883,10 +883,10 @@ function LandingPage({ onBuy, setRegion, onEnterGuide }) {
 
   return (
     <div className="landing">
-      <div className="landing-eyebrow">Canadian Rockies Edition</div>
+      <div className="landing-eyebrow">The Ultimate Wedding Guide</div>
       <h1 className="landing-title">Your wedding should feel<br /><em>exciting. Not overwhelming.</em></h1>
       <p className="landing-body">
-        We've done the research, vetted the vendors, and organized everything so you can put down the laptop, stop the endless Googling, and actually enjoy being engaged. The Ultimate Wedding Guide, Canadian Rockies Edition, gives you everything you need to plan your dream wedding in Calgary, Canmore, or Banff, all in one beautiful place.
+        We've done the research, vetted the vendors, and organized everything so you can put down the laptop, stop the endless Googling, and actually enjoy being engaged. The Ultimate Wedding Guide gives you everything you need to plan your dream wedding — starting with Calgary, Canmore, and Banff, plus Vancouver and the Sea-to-Sky corridor, all in one beautiful place.
       </p>
 
       <button className="landing-buy-btn" onClick={onBuy}>
@@ -906,7 +906,7 @@ function LandingPage({ onBuy, setRegion, onEnterGuide }) {
       <div style={{ marginBottom: 16 }}>
         <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.6 }}>
-          Everything you need to plan your Rocky Mountain wedding, researched, vetted, and organized for you.
+          Everything you need to plan your Canadian wedding, researched, vetted, and organized for you.
         </p>
       </div>
       <div className="landing-features">
@@ -1123,7 +1123,7 @@ function VancouverLandingPage({ onBuy, setRegion, onEnterGuide }) {
       <div style={{ marginBottom: 16 }}>
         <div className="landing-eyebrow" style={{ marginBottom: 8 }}>What's Inside the Guide</div>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, lineHeight: 1.6 }}>
-          Everything you need to plan your West Coast wedding, researched, vetted, and organized for you.
+          Everything you need to plan your Canadian wedding, researched, vetted, and organized for you.
         </p>
       </div>
       <div className="landing-features">
@@ -1391,7 +1391,7 @@ function PasswordGate({ onSuccess }) {
           Welcome Back
         </h2>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, marginBottom: 36, lineHeight: 1.6 }}>
-          Enter your guide password to access the full Canadian Rockies Edition.
+          Enter your guide password to access the full Ultimate Wedding Guide, including every live edition.
         </p>
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <input
@@ -2241,7 +2241,7 @@ function handleVanTabClick(tab) {
                 Welcome Back
               </h2>
               <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: COLORS.sub, marginBottom: 36, lineHeight: 1.6 }}>
-                Enter your guide password to access the full West Coast Edition.
+                Enter your guide password to access the full Ultimate Wedding Guide, including every live edition.
               </p>
               <form onSubmit={async e => {
                 e.preventDefault();
@@ -2324,9 +2324,8 @@ function handleVanTabClick(tab) {
             <div className="cover-bg-overlay" />
             <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
             <div className="cover-divider" />
-            <div className="cover-cities">West Coast Edition</div>
-            <div className="cover-subtitle" style={{ marginTop: 12, fontSize: 14, letterSpacing: 3 }}>Vancouver  ·  Squamish  ·  Whistler  ·  Pemberton</div>
-            <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a West Coast wedding</div>
+            <div className="cover-cities">Vancouver  ·  Squamish  ·  Whistler  ·  Pemberton  ·  Calgary  ·  Canmore  ·  Banff</div>
+            <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a wedding anywhere in Canada</div>
             <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
               <button
                 onClick={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "vancouver" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }}
@@ -2834,9 +2833,8 @@ function handleVanTabClick(tab) {
           <div className="cover-bg-overlay" />
           <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
           <div className="cover-divider" />
-          <div className="cover-cities">Canadian Rockies Edition</div>
-          <div className="cover-subtitle" style={{marginTop: 12, fontSize: 14, letterSpacing: 3}}>Calgary  ·  Canmore  ·  Banff</div>
-          <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a Rocky Mountain wedding</div>
+          <div className="cover-cities">Calgary  ·  Canmore  ·  Banff  ·  Vancouver  ·  Sea-to-Sky</div>
+          <div className="cover-subtitle" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Your complete guide to planning a wedding anywhere in Canada</div>
           <div style={{ marginTop: 32, position: "relative", zIndex: 3 }}>
             <button
               onClick={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "rockies" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }}
@@ -2986,7 +2984,7 @@ function handleVanTabClick(tab) {
                 So I did.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.8, color: COLORS.text, marginBottom: 24 }}>
-                The Ultimate Wedding Guide, Canadian Rockies Edition, is built for couples who want to feel relief, excitement, and ease when they think about their wedding. Not dread. It is for the bride who opens her laptop to research venues and immediately feels overwhelmed. It is for the couple who just wants someone to tell them where to start. We have done the Googling, made the calls, vetted the vendors, and organized everything into one beautiful resource so you can close the laptop, pour a glass of wine, and actually enjoy this season of your life.
+                The Ultimate Wedding Guide is built for couples who want to feel relief, excitement, and ease when they think about their wedding. Not dread. It is for the bride who opens her laptop to research venues and immediately feels overwhelmed. It is for the couple who just wants someone to tell them where to start. We have done the Googling, made the calls, vetted the vendors, and organized everything into one beautiful resource so you can close the laptop, pour a glass of wine, and actually enjoy this season of your life.
               </p>
               <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontStyle: "italic", color: COLORS.forest, lineHeight: 1.7, marginBottom: 4 }}>
                 Congratulations on your engagement. All the best,
@@ -3390,7 +3388,7 @@ function handleVanTabClick(tab) {
             </a>
           </div>
           <div className="footer-copy">
-            © {new Date().getFullYear()} The Ultimate Wedding Guide, Canadian Rockies Edition. All rights reserved.
+            © {new Date().getFullYear()} The Ultimate Wedding Guide. All rights reserved.
           </div>
         </footer>
 
