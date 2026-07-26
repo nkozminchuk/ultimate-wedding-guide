@@ -289,7 +289,7 @@ export const styles = `
     .nav-mobile { display: flex; }
   }
   @media (min-width: 641px) {
-    .nav-desktop { display: flex; align-items: center; flex: 1; }
+    .nav-desktop { display: flex; align-items: center; flex: 1; flex-wrap: wrap; row-gap: 6px; column-gap: 4px; }
     .nav-mobile { display: none; }
   }
 
