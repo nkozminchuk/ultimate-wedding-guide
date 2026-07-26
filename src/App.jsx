@@ -2854,7 +2854,7 @@ function handleVanTabClick(tab) {
       <div className="guide-wrap">
         {/* COVER */}
         <div className="cover">
-          <img src="/hero-photo.jpg" alt="Canadian Rockies wedding" className="cover-bg-photo" />
+          <img src="/hero-vancouver.jpg" alt="Wedding in Vancouver" className="cover-bg-photo" />
           <div className="cover-bg-overlay" />
           <div className="cover-title">The Ultimate<br /><span>Wedding Guide</span></div>
           <div className="cover-divider" />
