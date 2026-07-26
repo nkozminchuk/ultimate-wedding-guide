@@ -96,7 +96,7 @@ export const styles = `
     font-size: 18px;
     font-weight: 300;
     font-style: italic;
-    color: rgba(255,255,255,0.92);
+    color: rgba(255,255,255,0.75);
     margin-top: 20px;
     letter-spacing: 1px;
     position: relative;
@@ -124,24 +124,23 @@ export const styles = `
   /* NAV — warm dark charcoal, sandstone active state */
   .nav {
     background: ${COLORS.forest};
-    padding: 0 24px;
+    padding: 0 40px;
     display: flex;
     align-items: center;
     gap: 0;
     border-top: 1px solid rgba(255,255,255,0.06);
     position: relative;
     z-index: 100;
-    overflow: visible;
   }
   .nav-item {
     position: relative;
   }
   .nav-btn {
-    padding: 16px 10px;
+    padding: 16px 14px;
     font-family: 'Jost', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
     background: none;
@@ -165,23 +164,42 @@ export const styles = `
     opacity: 0.6;
   }
   .nav-item:hover .nav-arrow { transform: rotate(180deg); }
-  .nav-gift-btn {
+  .nav-enter-btn {
     margin-left: auto;
-    flex-shrink: 0;
-    padding: 8px 14px;
+    padding: 9px 18px;
     font-family: 'Jost', sans-serif;
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: ${COLORS.white};
     background: ${COLORS.gold};
     border: none;
     border-radius: 2px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .nav-gift-btn:hover { background: #a36d8e; }
+  .nav-enter-btn:hover { background: #a86a8e; }
+  .nav-gift-btn {
+    padding: 8px 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: ${COLORS.forest};
+    background: ${COLORS.sandstone};
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-gift-btn:hover { background: #d4a870; }
   .nav-lock-btn {
     padding: 8px 14px;
     font-family: 'Jost', sans-serif;
