@@ -2352,7 +2352,26 @@ function handleVanTabClick(tab) {
             {/* DESKTOP */}
             <div className="nav-desktop">
               <div className="nav-item">
-  <button className="nav-btn" onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); }} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>← All Editions</button>
+  <button className="nav-btn" style={{ opacity: 0.85 }}>
+    Switch Edition <span className="nav-arrow">▼</span>
+  </button>
+  <div className="dropdown">
+    <button className={`dropdown-item ${region === "rockies" ? "active" : ""}`}
+      onClick={() => { setRegion("rockies"); setActiveTab("home"); }}>
+      <span>Canadian Rockies</span>
+    </button>
+    <button className={`dropdown-item ${region === "vancouver" ? "active" : ""}`}
+      onClick={() => { setRegion("vancouver"); setActiveTab("van-home"); }}>
+      <span>Vancouver &amp; Sea-to-Sky</span>
+    </button>
+    <div className="dropdown-divider" />
+    <div className="dropdown-item" style={{ opacity: 0.4, cursor: "default" }}>
+      <span>Okanagan</span><span style={{ fontSize: 9 }}>Coming Soon</span>
+    </div>
+    <div className="dropdown-item" style={{ opacity: 0.4, cursor: "default" }}>
+      <span>Montreal</span><span style={{ fontSize: 9 }}>Coming Soon</span>
+    </div>
+  </div>
 </div>
             <div className="nav-item">
   <button className={`nav-btn ${activeTab === "van-home" ? "active" : ""}`} onClick={() => setActiveTab("van-home")}>Home</button>
@@ -2413,7 +2432,13 @@ function handleVanTabClick(tab) {
             </div>
             {showMobileMenu && (
               <div className="mobile-menu">
-                <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setUnlocked(false); setActiveTab("home"); setShowMobileMenu(false); }}>← All Editions</button>
+                <div className="mobile-menu-section" style={{ marginTop: 0 }}>Switch Edition</div>
+                <button className={`mobile-menu-item ${region === "rockies" ? "active" : ""}`}
+                  onClick={() => { setRegion("rockies"); setActiveTab("home"); setShowMobileMenu(false); }}>Canadian Rockies</button>
+                <button className={`mobile-menu-item ${region === "vancouver" ? "active" : ""}`}
+                  onClick={() => { setRegion("vancouver"); setActiveTab("van-home"); setShowMobileMenu(false); }}>Vancouver &amp; Sea-to-Sky</button>
+                <button className="mobile-menu-item" style={{ opacity: 0.4 }} disabled>Okanagan · Coming Soon</button>
+                <button className="mobile-menu-item" style={{ opacity: 0.4 }} disabled>Montreal · Coming Soon</button>
                 <div className="mobile-menu-divider" />
                 <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
                <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
@@ -2873,7 +2898,26 @@ function handleVanTabClick(tab) {
           {/* DESKTOP NAV */}
           <div className="nav-desktop">
             <div className="nav-item">
-              <button className="nav-btn" onClick={() => setRegion(null)} style={{ opacity: 0.5, fontSize: 10, letterSpacing: 2 }}>← All Editions</button>
+              <button className="nav-btn" style={{ opacity: 0.85 }}>
+                Switch Edition <span className="nav-arrow">▼</span>
+              </button>
+              <div className="dropdown">
+                <button className={`dropdown-item ${region === "rockies" ? "active" : ""}`}
+                  onClick={() => { setRegion("rockies"); setActiveTab("home"); }}>
+                  <span>Canadian Rockies</span>
+                </button>
+                <button className={`dropdown-item ${region === "vancouver" ? "active" : ""}`}
+                  onClick={() => { setRegion("vancouver"); setActiveTab("van-home"); }}>
+                  <span>Vancouver &amp; Sea-to-Sky</span>
+                </button>
+                <div className="dropdown-divider" />
+                <div className="dropdown-item" style={{ opacity: 0.4, cursor: "default" }}>
+                  <span>Okanagan</span><span style={{ fontSize: 9 }}>Coming Soon</span>
+                </div>
+                <div className="dropdown-item" style={{ opacity: 0.4, cursor: "default" }}>
+                  <span>Montreal</span><span style={{ fontSize: 9 }}>Coming Soon</span>
+                </div>
+              </div>
             </div>
             <div className="nav-item">
               <button className={`nav-btn ${activeTab === "home" ? "active" : ""}`} onClick={() => setActiveTab("home")}>Home</button>
@@ -2936,7 +2980,13 @@ function handleVanTabClick(tab) {
           {/* MOBILE DROPDOWN MENU */}
           {showMobileMenu && (
             <div className="mobile-menu">
-              <button className="mobile-menu-item" style={{ opacity: 0.5, fontSize: 10 }} onClick={() => { setRegion(null); setShowMobileMenu(false); }}>← All Editions</button>
+              <div className="mobile-menu-section" style={{ marginTop: 0 }}>Switch Edition</div>
+              <button className={`mobile-menu-item ${region === "rockies" ? "active" : ""}`}
+                onClick={() => { setRegion("rockies"); setActiveTab("home"); setShowMobileMenu(false); }}>Canadian Rockies</button>
+              <button className={`mobile-menu-item ${region === "vancouver" ? "active" : ""}`}
+                onClick={() => { setRegion("vancouver"); setActiveTab("van-home"); setShowMobileMenu(false); }}>Vancouver &amp; Sea-to-Sky</button>
+              <button className="mobile-menu-item" style={{ opacity: 0.4 }} disabled>Okanagan · Coming Soon</button>
+              <button className="mobile-menu-item" style={{ opacity: 0.4 }} disabled>Montreal · Coming Soon</button>
               <div className="mobile-menu-divider" />
               <button className="mobile-menu-item" onClick={() => { setActiveTab("why"); setShowMobileMenu(false); }}>Our Story</button>
               <button className="mobile-menu-item" onClick={() => { setActiveTab("checklist"); setShowMobileMenu(false); }}>Free Checklist</button>
