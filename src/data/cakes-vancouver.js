@@ -15,6 +15,20 @@ export const vancouverCakeData = [
     { label: "Instagram", value: "@saharacakeboutique" },
   ]},
 
+  { name: "Butter Lane Bake Shop", tier: "$/$$", fields: [
+    { label: "Specialty", value: "Custom wedding cakes, dessert tables, cupcakes, macarons, cookies, and handcrafted desserts -- from intimate wedding desserts to large-scale dessert displays" },
+    { label: "Style", value: "Modern, elegant, timeless, and refined -- clean finishes and high-quality ingredients; everything baked from scratch using real butter and premium in-house made fillings" },
+    { label: "Pricing", value: "Wedding cakes from $9.50/serving; most couples invest $700+ · Cutting cake option from $140 · Dessert tables from $12/guest (fully customized)" },
+    { label: "Tastings", value: "Yes -- tasting boxes available for purchase; cost credited toward wedding order when booked" },
+    { label: "Dietary", value: "Gluten-friendly, dairy-free, vegan, and other dietary requests accommodated where possible" },
+    { label: "Delivery", value: "Yes -- Metro Vancouver and Sea-to-Sky corridor including Squamish and Whistler; also services venues throughout BC; delivery fees based on distance and setup requirements" },
+    { label: "Lead Time", value: "2–6 months recommended for peak summer weekends; shorter timelines accommodated when availability allows" },
+    { label: "Booking", value: "Inquiry via website or email → design consultation → quote → deposit to secure date" },
+    { label: "Email", value: "info@butterlanebakeshop.com" },
+    { label: "Instagram", value: "@butterlanebakeshop" },
+    { label: "Website", value: "butterlanebakeshop.com", link: "https://www.butterlanebakeshop.com" },
+  ]},
+
   { name: "The Cake and The Giraffe", tier: "$$", fields: [
     { label: "Specialty", value: "Tiered cakes, carved/structural cakes, hand-painted cakes, large floral arrangements on cake; occasional dessert tables and guest favours" },
     { label: "Style", value: "Dabbles in everything -- classic, modern, rustic, whimsical, minimalist; gets especially excited about structural and nerdy cakes!" },
@@ -90,7 +104,6 @@ export const vancouverCakePending = [
   "Frolic & Forage  frolicandforagecatering.com  @cakesbypeddie",
   "P31 Bakes  @p31bakes",
   "Cakes in a Box  cakesinabox.com  @cakesinabox",
-  "Butter Lane Bake Shop  butterlanebakeshop.com",
   "Joconde Patisserie  joconde.ca",
   "Bluebird Cakery  bluebirdcakery.ca",
   "The Stubborn Baker  thestubbornbaker.com",
