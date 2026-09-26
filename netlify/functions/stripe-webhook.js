@@ -1,7 +1,24 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { Resend } = require('resend');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+async function sendEmail(to, subject, text) {
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+    },
+    body: JSON.stringify({
+      from: 'The Ultimate Wedding Guide <info@ultimateweddingguide.ca>',
+      to: [to],
+      subject,
+      text,
+    }),
+  });
+  if (!response.ok) {
+    const err = await response.text();
+    console.error('Resend error:', err);
+  }
+}
 
 exports.handler = async (event) => {
   const sig = event.headers['stripe-signature'];
@@ -29,37 +46,42 @@ exports.handler = async (event) => {
       recipientEmail,
       senderName,
       giftMessage,
+      editionLabel,
+      cities,
+      region,
     } = session.metadata;
 
     const deliveryEmail = isGift === 'true' ? recipientEmail : buyerEmail;
     const deliveryName = isGift === 'true' ? recipientName : buyerName;
+    const guideUrl = 'https://www.ultimateweddingguide.ca';
+
+    const unlockInstructions = region === 'vancouver'
+      ? `Visit ${guideUrl}, select the West Coast Edition, and click "The Guide" to enter your code and unlock full access.`
+      : `Visit ${guideUrl}, select the Canadian Rockies Edition, and click "The Guide" to enter your code and unlock full access.`;
+
+    const emailBody = isGift === 'true'
+      ? `Hi ${recipientName},\n\n${senderName} has gifted you The Ultimate Wedding Guide — ${editionLabel}!\n\n${giftMessage ? `Their message: "${giftMessage}"\n\n` : ''}Your access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nThe Ultimate Wedding Guide`
+      : `Hi ${buyerName},\n\nThank you for your Ultimate Wedding Guide — ${editionLabel}!\n\nYour access code is: ${accessCode}\n\n${unlockInstructions}\n\nCongratulations on your engagement!\n\nNadia\nThe Ultimate Wedding Guide`;
 
     try {
-      await resend.emails.send({
-        from: 'The Ultimate Wedding Guide <info@ultimateweddingguide.ca>',
-        to: deliveryEmail,
-        subject: 'Your Ultimate Wedding Guide Access Code 🌿',
-        html: isGift === 'true'
-          ? `
-            <p>Hi ${recipientName},</p>
-            <p><strong>${senderName}</strong> has gifted you <strong>The Ultimate Wedding Guide — Canadian Rockies Edition</strong>!</p>
-            ${giftMessage ? `<p>Their message: <em>"${giftMessage}"</em></p>` : ''}
-            <p>Your access code is: <strong style="font-size:1.2em;">${accessCode}</strong></p>
-            <p>Visit <a href="https://www.ultimateweddingguide.ca">ultimateweddingguide.ca</a> and click <strong>"The Guide"</strong> to enter your code and unlock full access.</p>
-            <p>Congratulations on your engagement! 💍</p>
-            <p>— The Ultimate Wedding Guide</p>
-          `
-          : `
-            <p>Hi ${buyerName},</p>
-            <p>Thank you for purchasing <strong>The Ultimate Wedding Guide — Canadian Rockies Edition</strong>!</p>
-            <p>Your access code is: <strong style="font-size:1.2em;">${accessCode}</strong></p>
-            <p>Visit <a href="https://www.ultimateweddingguide.ca">ultimateweddingguide.ca</a> and click <strong>"The Guide"</strong> to enter your code and unlock full access.</p>
-            <p>Congratulations on your engagement! 💍</p>
-            <p>— Nadia<br>The Ultimate Wedding Guide</p>
-          `,
-      });
+      // Customer email
+      await sendEmail(deliveryEmail, 'Your Ultimate Wedding Guide Access Code', emailBody);
+
+      // Owner notification
+      const ownerBody = [
+        `New purchase received!`,
+        ``,
+        `Edition: ${editionLabel}`,
+        `Buyer: ${buyerName} (${buyerEmail})`,
+        isGift === 'true' ? `Gift recipient: ${recipientName} (${recipientEmail})` : null,
+        `Access code: ${accessCode}`,
+        `Region: ${region || 'rockies'}`,
+        `Amount: $${(session.amount_total / 100).toFixed(2)} CAD`,
+      ].filter(Boolean).join('\n');
+
+      await sendEmail('info@ultimateweddingguide.ca', `New Purchase — ${editionLabel}`, ownerBody);
     } catch (emailErr) {
-      console.error('Resend email error:', emailErr);
+      console.error('Email send error:', emailErr);
     }
   }
 
