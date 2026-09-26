@@ -1266,7 +1266,7 @@ function VancouverLandingPage({ onBuy, setRegion, onEnterGuide }) {
   );
 }
 
-function LockScreen({ onUnlock }) {
+function LockScreen({ onUnlock, region = "rockies" }) {
   const [purchasing, setPurchasing] = useState(false);
   const [purchaseError, setPurchaseError] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -1281,7 +1281,7 @@ function LockScreen({ onUnlock }) {
       const res = await fetch("/.netlify/functions/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, isGift: false }),
+        body: JSON.stringify({ name: form.name, email: form.email, isGift: false, region }),
       });
       const data = await res.json();
       if (data.url) {
@@ -2411,8 +2411,8 @@ function handleVanTabClick(tab) {
                 </button>
               )}
               <button className="nav-gift-btn" onClick={async () => { try { const res = await fetch("/.netlify/functions/create-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ region: "vancouver" }) }); const data = await res.json(); if (data.url) window.location.href = data.url; } catch(err) { console.error(err); } }}>
-                Buy the Guide
-              </button>
+  Buy the Guide
+</button>
               {unlocked && (
                 <button className="nav-lock-btn" onClick={() => { setUnlocked(false); setActiveTab("van-home"); }}>Lock</button>
               )}
@@ -2522,7 +2522,7 @@ function handleVanTabClick(tab) {
           {activeTab === "bridal-beauty-qa" && <BlushAndCocoQA />}
           {/* VANCOUVER LOCKED */}
           {isVanLocked && !unlocked && (
-            <LockScreen onUnlock={() => setShowPasswordGate(true)} />
+            <LockScreen onUnlock={() => setShowPasswordGate(true)} region="vancouver" />
           )}
 
           {/* VANCOUVER UNLOCKED CONTENT */}
